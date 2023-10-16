@@ -1,0 +1,28 @@
+
+<ul [class.active]="root">
+  <li *ngFor="let menu of data; index as i;"
+      class="aside-menu-item sub-menu"
+      [class.open]="menu.active">
+    <div class="aside-item"
+         matRipple
+         (click)="selectValue(menu)">
+      <mat-icon *ngIf="menu.icon && menu.icon !== ''"
+                class="menu-icon md-20">{{menu.icon}}</mat-icon>
+      <div class="menu-title"
+           [class.seleted]="selectItem && selectItem[bindValue] === menu[bindValue]">
+        {{menu[bindLabel]}}
+      </div>
+      <div class="arrow" *ngIf="menu.children && menu.children.length > 0"></div>
+    </div>
+    <div class="sub-menu-list"
+         *ngIf="menu.children && menu.children.length > 0">
+      <aside-menu-item
+        [bindLabel]="bindLabel"
+        [bindValue]="bindValue"
+        [selectItem]="selectItem"
+        [items]="menu.children"
+        [root]="menu.active"
+        (selected)="selectedEmit($event)"></aside-menu-item>
+    </div>
+  </li>
+</ul>

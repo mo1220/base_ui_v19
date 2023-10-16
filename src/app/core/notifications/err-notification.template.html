@@ -1,0 +1,19 @@
+<div class="err-noti-wrap">
+  <p class="err-noti-title">{{data}}</p>
+
+<!--  <button class="err-noti-btn" (click)="errOpen = !errOpen">-->
+<!--    <i class="fa fa-caret-down" aria-hidden="true"></i>-->
+<!--  </button>-->
+<!--  <div class="err-noti-txt" *ngIf="errOpen === true">-->
+<!--    <p style="margin-bottom: 4px">-->
+<!--      {{data}}-->
+<!--    </p>-->
+<!--  </div>-->
+
+  <button mat-icon-button class="err-noti-exit" (click)="snackBarRef.dismiss()">
+    <mat-icon style="font-size: 10px">close</mat-icon>
+  </button>
+</div>
+<!--
+<div class="err-noti-wrap-bg"></div>
+-->

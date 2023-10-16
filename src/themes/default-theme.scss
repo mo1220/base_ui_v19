@@ -1,0 +1,77 @@
+@use '@angular/material' as mat;
+@import '../styles-variables.scss';
+
+$app-primary: (
+  50: lighten($primary, 50%),
+  100: lighten($primary, 40%),
+  200: lighten($primary, 30%),
+  300: lighten($primary, 20%),
+  400: lighten($primary, 10%),
+  500: $primary,
+  600: darken($primary, 10%),
+  700: darken($primary, 20%),
+  800: darken($primary, 30%),
+  900: darken($primary, 40%),
+  A100: $primary,
+  A200: $primary,
+  A400: $primary,
+  A700: $primary,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$dtk-primary: mat.define-palette($app-primary, 500);
+$dtk-accent: mat.define-palette(mat.$grey-palette, 800);
+$dtk-warn: mat.define-palette(mat.$red-palette, 800);
+
+$dtk-typography: mat.define-typography-config(
+  $font-family: $font-family-sans-serif,
+  //( $font-size, $line-height: $font-size, $font-weight: 400, $font-family: null, $letter-spacing: normal)
+  //$headline-1: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  //$headline-2: mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  //$headline-3: mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  //$headline-4: mat.define-typography-level(34px, 40px, 400),
+  //$headline-5: mat.define-typography-level(24px, 32px, 400),
+  //$headline-6: mat.define-typography-level(24px, 32px, 400),
+  //$subtitle-1: mat.define-typography-level(24px, 32px, 400) 태그 에 해당하는 섹션 제목입니다 <h3>.
+  //$subtitle-2: mat.define-typography-level(24px, 32px, 400)	태그 에 해당하는 섹션 제목입니다 <h4>.
+  //$body-1: mat.define-typography-level(24px, 32px, 400)	기본 본문 텍스트입니다.
+  //$body-2: mat.define-typography-level(24px, 32px, 400)	보조 본문 텍스트.
+  //$caption: mat.define-typography-level(24px, 32px, 400)	더 작은 본문과 힌트 텍스트.
+  //$button	버튼과 앵커.
+  $body-1: mat.define-typography-level(12px, 36px, 400), // 버튼.
+  $body-2: mat.define-typography-level(12px, 36px, 400), // 보조 본문 텍스트.
+  $button: mat.define-typography-level(12px, 36px, 400, $letter-spacing: 0)
+);
+
+$dtk-level: mat.define-typography-level(
+  $font-family: $font-family-sans-serif,
+  $font-weight: 400,
+  $font-size: 12px,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+$dtk-theme: mat.define-light-theme((
+  color: (
+    primary: $dtk-primary,
+    accent: $dtk-accent,
+    warn: $dtk-warn
+  ),
+  typography: $dtk-typography,
+  level: $dtk-level
+));

@@ -1,0 +1,34 @@
+<div class="style-guide-wrap">
+  <div class="style-guide-aside">
+    <h2 class="aside-title">
+      <span class="aside-title-icon">
+        <mat-icon class="md-16">draw</mat-icon>
+      </span>
+      Style Guide
+    </h2>
+    <div class="style-guide-nav">
+      <aside-menu [items]="menus"
+                  (valueChange)="routeNav($event)"
+                  [bindValue]="'link'"
+                  [bindLabel]="'name'">
+      </aside-menu>
+    </div>
+  </div>
+  <div class="style-guide-container">
+    <div class="style-guide-content-bg"></div>
+    <div class="style-guide-content">
+      <h2>{{title}}</h2>
+      <p>
+        설명 설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명
+        설명 설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명<br />
+        설명 설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명<br />
+        설명 설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명
+        설명 설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명<br />
+        설명 설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명<br />
+        설명 설명설명설명설명설명설명설명설명설명설명설명설명설명설명
+      </p>
+
+      Page 시작
+    </div>
+  </div>
+</div>

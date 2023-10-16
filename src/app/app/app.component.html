@@ -1,0 +1,111 @@
+<div class="app-wrap default-theme">
+  <header class="app-header">
+    <h1>Data Tree Studio</h1>
+    <div class="gnb">
+      <nav>
+        <ul>
+          <li *ngFor="let menu of menus; index as i">
+            <button matRipple [matRippleColor]="rippleColor">
+              <mat-icon class="md-16">{{menu.icon}}</mat-icon>
+              {{menu[lang]}}
+              <i class="fa fa-angle-down" *ngIf="menu.children && menu.children.length > 0"></i>
+            </button>
+            <ul *ngIf="menu.children && menu.children.length > 0">
+              <li *ngFor="let mn of menu.children; index as ii">
+                <button matRipple [matRippleColor]="rippleColor">
+                  {{mn[lang]}}
+                  <i class="fa fa-caret-right"
+                     *ngIf="mn.children && mn.children.length > 0"></i>
+                </button>
+                <ul *ngIf="mn.children && mn.children.length > 0">
+                  <li *ngFor="let m of mn.children; index as iii">
+                    <button matRipple [matRippleColor]="rippleColor">
+                      {{m[lang]}}
+                      <i class="fa fa-caret-right"
+                         *ngIf="m.children && m.children.length > 0"></i>
+                    </button>
+                    <ul *ngIf="m.children && m.children.length > 0">
+                      <li *ngFor="let lm of m.children; index as iiii">
+                        <button matRipple [matRippleColor]="rippleColor">
+                          {{lm[lang]}}
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="top-menu">
+      <button mat-button>
+        <mat-icon class="md-18">search</mat-icon>
+      </button>
+      <button mat-button>
+        <mat-icon class="md-18 fill">account_circle</mat-icon>
+        홍길동
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <button mat-button>
+        <mat-icon matBadge="15"
+                  [matBadgeSize]="'small'"
+                  matBadgeColor="warn">notifications</mat-icon>
+      </button>
+      <button mat-button>
+        <mat-icon matBadge="15"
+                  [matBadgeSize]="'small'"
+                  matBadgeColor="warn">shopping_bag</mat-icon>
+      </button>
+      <button mat-button [matMenuTriggerFor]="langBtn">
+        <mat-icon>language</mat-icon>
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <mat-menu #langBtn="matMenu"
+                class="lang-select-menu">
+        <button *ngFor="let lg of languages | keys"
+                mat-menu-item
+                [class.active]="lang === lg.key"
+                (click)="changeLang(lg)">
+          {{lg.value.name}}</button>
+      </mat-menu>
+    </div>
+  </header>
+  <div class="app-container">
+    <div class="app-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <footer class="app-footer">
+    <div class="footer-tab">
+      <mat-tab-group mat-stretch-tabs="false"
+                     cdkDropList
+                     cdkDropListOrientation="horizontal"
+                     class="nav-tabs"
+                     (cdkDropListDropped)="drop($event)"
+                     mat-align-tabs="start">
+        <mat-tab *ngFor="let tab of routingTabs; index as i;">
+          <ng-template mat-tab-label>
+            <!--[style.padding-right]="routingTabs.length > 1 ? '2rem' : '1rem'"-->
+            <div class="tab-box"
+                 [class.active]="activeNum === i"
+                 [title]="tab.label" cdkDrag>
+              <mat-icon class="md-14">table</mat-icon>
+              <span [innerHTML]="tab.label | translate"></span>
+              <span class="close font-weight-light"
+                    *ngIf="routingTabs.length > 1"
+                    (click)="removeTab($event, tab, i)">×</span>
+              <!--<div class="tab-placeholder" *cdkDragPlaceholder></div>-->
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="copyright">
+      Current Version
+      <button mat-button>DTS V1.0</button>
+      &copy; <b>DataTreeKorea</b> All Rights Reserved.
+    </div>
+  </footer>
+</div>

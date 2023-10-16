@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+$dtk-dark-primary: mat.define-palette(mat.$brown-palette, 700, 300, 900);
+$dtk-dark-accent: mat.define-palette(mat.$deep-purple-palette, 300);
+$dtk-dark-warn: mat.define-palette(mat.$red-palette, 600);
+
+$dtk-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $dtk-dark-primary,
+    accent: $dtk-dark-accent,
+    warn: $dtk-dark-warn
+  )
+));
+/*
+$dtk-dark-primary,
+$dtk-dark-accent,
+$dtk-dark-warn
+*/

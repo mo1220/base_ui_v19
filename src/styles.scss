@@ -1,0 +1,106 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+@import 'styles-variables';
+
+@import '@angular/material/theming';
+@import './themes/default-theme';
+@import './themes/dark-theme';
+
+@import 'styles-reset.scss-theme';
+
+.default-theme {
+  @include mat.all-component-themes($dtk-theme);
+}
+.dark-theme {
+  @include mat.all-component-themes($dtk-dark-theme);
+}
+
+$font-family: $font-family-sans-serif;
+
+//@import 'bootstrap.min.css';
+@import 'fonts'; // 모든 폰트
+
+/*
+PopoverModule,
+PaginationModule,
+TimepickerModule,
+TooltipModule,
+TabsModule,
+CollapseModule,
+ButtonsModule,
+*/
+
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+* {
+  font-family: $default-font;
+}
+html, body {
+  height: 100%;
+  position: relative;
+  --mat-badge-small-size-text-size: 7px;
+}
+body {
+  margin: 0;
+  font-family: $default-font;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+}
+
+ul, ol, dl {
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+
+p {
+  font-size: 12px;
+}
+
+/****************************** ST: Material Style ******************************************/
+/* ST: Mat-icon */
+.mat-icon {
+  vertical-align: middle;
+  /* 아이콘 채우기 */
+  &.fill {
+    font-variation-settings: "FILL" 1;
+  }
+
+  /* 아이콘 사이즈 md-${size} */
+  @each $size in 12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 42, 48, 72 {
+    &.md-#{$size} {
+      font-size: $size + px !important;
+      width: $size + px !important;
+      height: $size + px !important;
+      line-height: $size + px !important;
+    }
+    /* 아이콘 두께 md-wt-${size} */
+    @each $weight in 100, 200, 300, 400, 500, 600, 700 {
+      &.wt-#{$weight} {
+        font-weight: $weight !important;
+      }
+    }
+  }
+}
+/* EN: Mat-icon */
+/* ST: Mat-button */
+.mdc-button {
+  min-width: 0 !important;
+  padding: 0 5px;
+}
+/* EN: Mat-button*/
+
+/* ST: Mat-Menu-Item */
+.mat-mdc-menu-item {
+  min-height: 30px !important;
+}
+/* EN: Mat-Menu-Item */
+
+/****************************** EN: Material Style ******************************************/
