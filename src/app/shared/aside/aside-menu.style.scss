@@ -209,6 +209,10 @@ $sidebar-footer-height: 230px;
       padding: 0 10px 0 10px;
       color: $text-color;
       cursor: pointer;
+      &.active {
+        color: $secondary-text-color;
+        font-weight: 500;
+      }
       .menu-icon {
         text-align: center;
         display: inline-block;

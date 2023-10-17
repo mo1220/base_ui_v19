@@ -1,15 +1,15 @@
 
 <ul [class.active]="root">
-  <li *ngFor="let menu of data; index as i;"
+  <li *ngFor="let menu of items; index as i;"
       class="aside-menu-item sub-menu"
       [class.open]="menu.active">
     <div class="aside-item"
+         [class.active]="currentUrl === menu.link"
          matRipple
          (click)="selectValue(menu)">
       <mat-icon *ngIf="menu.icon && menu.icon !== ''"
                 class="menu-icon md-20">{{menu.icon}}</mat-icon>
-      <div class="menu-title"
-           [class.seleted]="selectItem && selectItem[bindValue] === menu[bindValue]">
+      <div class="menu-title">
         {{menu[bindLabel]}}
       </div>
       <div class="arrow" *ngIf="menu.children && menu.children.length > 0"></div>
@@ -18,6 +18,7 @@
          *ngIf="menu.children && menu.children.length > 0">
       <aside-menu-item
         [bindLabel]="bindLabel"
+        [currentUrls]="currentUrls"
         [bindValue]="bindValue"
         [selectItem]="selectItem"
         [items]="menu.children"

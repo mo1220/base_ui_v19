@@ -57,7 +57,7 @@ export const STYLE_GUIDE_MENU = [
       },
       {
         name: 'Select',
-        link: 'form/select',
+        link: '/form/select',
         desc: `Select 설명 <span></span>`
       },
       {
@@ -133,7 +133,7 @@ export const STYLE_GUIDE_MENU = [
       },
       {
         name: 'Card',
-        link: 'panel/card',
+        link: '/panel/card',
         desc: `Card 설명 <span></span>`
       },
       {
@@ -145,11 +145,6 @@ export const STYLE_GUIDE_MENU = [
         name: 'Splitter',
         link: '/panel/splitter',
         desc: `Splitter 설명 <span></span>`
-      },
-      {
-        name: 'TabView',
-        link: '/panel/tabView',
-        desc: `TabView 설명 <span></span>`
       }
     ]
   },

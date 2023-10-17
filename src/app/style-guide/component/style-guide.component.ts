@@ -16,7 +16,7 @@ import * as _ from 'lodash';
   encapsulation: ViewEncapsulation.None
 })
 export class StyleGuideComponent implements AfterViewInit, OnDestroy {
-  menus = [ ...STYLE_GUIDE_MENU ];
+  menus: any = [ ...STYLE_GUIDE_MENU ];
   title = '';
   desc = ''; // 설명
   currentUrls = [];
@@ -47,7 +47,10 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-
+    const fi = _.findIndex(this.menus, (d:any) => d.link === ('/' + this.currentUrls[1]));
+    if(fi !== -1) {
+      this.menus[fi].active = true;
+    }
   }
 
   routeNav(e: any) {
@@ -61,13 +64,14 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
   setTitle() {
     const urls = _.clone(this.currentUrls);
     urls.shift();
+
     let menus = _.cloneDeep(this.menus);
     let names = '';
     this.breadcrumb = _.reduce(urls, (r:any[], v: string, k:number) => {
 
       names = names + '/' + v;
-      const crumb: any = _.find(menus, d => d.link === names);
-      const index: number = _.findIndex(menus, d => d.link === names);
+      const crumb: any = _.find(menus, (d:any) => d.link === names);
+      const index: number = _.findIndex(menus, (d:any) => d.link === names);
 
       r.push({ name: crumb.name, menu: [ ...menus ], index });
       menus = crumb.children;

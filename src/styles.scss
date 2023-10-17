@@ -199,4 +199,19 @@ button {
     }
   }
 }
+.breadcrumb-children {
+  .mat-mdc-menu-content {
+    .mat-mdc-menu-item {
+      line-height: 25px !important;
+      height: 25px !important;
+      font-size: .5rem !important;
+
+      &.active {
+        background-color: $primary;
+        color: #FFF;
+      }
+    }
+  }
+}
+
 /****************************** EN: Breadcrumb *************************************************/
