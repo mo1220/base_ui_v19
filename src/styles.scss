@@ -52,6 +52,7 @@ body {
 
 h1,h2,h3,h4,h5,h6 {
   margin: 0;
+  font-weight: 600;
 }
 
 ul, ol, dl {
@@ -62,6 +63,11 @@ ul, ol, dl {
 
 p {
   font-size: 12px;
+}
+
+button {
+  border: none;
+  background: transparent;
 }
 
 /****************************** ST: Material Style ******************************************/
@@ -104,3 +110,93 @@ p {
 /* EN: Mat-Menu-Item */
 
 /****************************** EN: Material Style ******************************************/
+
+
+/****************************** ST: Breadcrumb *************************************************/
+.dtk-breadcrumb {
+  height: 35px;
+
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    li {
+      position: relative;
+
+      span {
+        font-size: 13px;
+      }
+
+      button {
+        line-height: 36px;
+        padding: 0 15px;
+        font-size: .75rem;
+        color: #888;
+        font-weight: 200;
+        cursor: pointer;
+        &:hover {
+          color: #333;
+        }
+      }
+      /*&:after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 100%;
+        background-color: rgba(230,230,230,.8);
+        position: absolute;
+        top: 0;
+        right: 0;
+      }*/
+      + li {
+        &:before {
+          content: '';
+          display: block;
+          width: 6px;
+          height: 6px;
+          position: absolute;
+          left: -3px;
+          top: 50%;
+          border-top: 2px solid #BBB;
+          border-right: 2px solid #BBB;
+          transform: translateY(-50%) rotate(45deg);
+        }
+      }
+
+      &:first-child {
+        button {
+          padding: 0 15px 0 0;
+        }
+      }
+
+      &:last-child {
+        color: #555;
+        font-weight: 600;
+
+        &:after {
+          height: 0;
+        }
+
+        button {
+          color: #666;
+          font-weight: 400;
+        }
+      }
+
+      &.active {
+        &:before {
+          top: 50%;
+          border-top: 2px solid #888;
+          border-right: 2px solid #888;
+          transform: translateY(-50%) rotate(315deg);
+        }
+
+        button {
+          color: #666;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+/****************************** EN: Breadcrumb *************************************************/

@@ -1,307 +1,296 @@
 export const STYLE_GUIDE_MENU = [
   {
+    name: 'Typography',
+    icon: 'text_fields',
+    link: '/typography',
+    desc: `Datatree UI Noto Sans를 기반으로 한 Typography`
+  },
+  {
     name: 'Form',
     icon: 'edit_note',
-    link: 'form',
+    link: '/form',
     children: [
       {
         name: 'Auto Complete',
-        link: 'autoComplete'
+        link: '/form/autoComplete',
+        desc: `Auto Complete 설명 <span></span>`
       },
       {
         name: 'Calendar',
-        link: 'calendar'
+        link: '/form/calendar',
+        desc: `Calendar 설명 <span></span>`
       },
       {
         name: 'Checkbox',
-        link: 'checkbox'
+        link: '/form/checkbox',
+        desc: `Calendar 설명 <span></span>`
       },
       {
         name: 'Chips',
-        link: 'chips'
+        link: '/form/chips',
+        desc: `Chips 설명 <span></span>`
       },
       {
         name: 'Color Picker',
-        link: 'colorPicker',
-        children: [
-          {
-            name: 'Color Picker1',
-            link: 'colorPicker1',
-            children: [
-              {
-                name: 'Color Picker1-1',
-                link: 'colorPicker1-1',
-                children: [
-                  {
-                    name: 'Color Picker1-1-1',
-                    link: 'colorPicker1-1-1',
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            name: 'Color Picker2',
-            link: 'colorPicker2'
-          }
-        ]
+        link: '/form/colorPicker',
+        desc: `Color Picker 설명 <span></span>`
       },
       {
         name: 'Dropdown',
-        link: 'dropdown'
+        link: '/form/dropdown',
+        desc: `Dropdown 설명 <span></span>`
       },
       {
         name: 'Editor',
-        link: 'editor'
+        link: '/form/editor',
+        desc: `Editor 설명 <span></span>`
       },
       {
-        name: 'InputGroup',
-        link: 'inputGroup'
-      },
-      {
-        name: 'InputMask',
-        link: 'inputMask'
-      },
-      {
-        name: 'InputSwitch',
-        link: 'inputSwitch'
-      },
-      {
-        name: 'InputText',
-        link: 'inputText'
-      },
-      {
-        name: 'InputTextarea',
-        link: 'inputTextarea'
-      },
-      {
-        name: 'InputNumber',
-        link: 'inputNumber'
+        name: 'Input',
+        link: '/form/input',
+        desc: `Input 설명 <span></span>`
       },
       {
         name: 'Knob',
-        link: 'knob'
+        link: '/form/knob',
+        desc: `Knob 설명 <span></span>`
       },
       {
-        name: 'KeyFilter',
-        link: 'keyFilter'
+        name: 'Select',
+        link: 'form/select',
+        desc: `Select 설명 <span></span>`
       },
       {
-        name: 'MultiSelect',
-        link: 'multiSelect'
-      },
-      {
-        name: 'RadioButton',
-        link: 'radioButton'
+        name: 'Radio',
+        link: '/form/radio',
+        desc: `Radio 설명 <span></span>`
       },
       {
         name: 'Rating',
-        link: 'rating'
+        link: '/form/rating',
+        desc: `Rating 설명 <span></span>`
       },
       {
         name: 'Slider',
-        link: 'slider'
+        link: '/form/slider',
+        desc: `Slider 설명 <span></span>`
       }
     ]
   },
   {
     name: 'Button',
     icon: 'left_click',
-    link: 'button',
+    link: '/button',
     children: [
       {
         name: 'Button',
-        link: 'button'
+        link: '/button/button',
+        desc: `Button 설명 <span></span>`
       },
       {
         name: 'SplitButton',
-        link: 'splitButton'
+        link: '/button/splitButton',
+        desc: `Split Button 설명 <span></span>`
       },
       {
         name: 'Speed Dial',
-        link: 'speedDial'
+        link: '/button/speedDial',
+        desc: `Speed Dial 설명 <span></span>`
       }
     ]
   },
   {
     name: 'Data',
     icon: 'database',
-    link: 'data',
+    link: '/data',
     children: [
       {
         name: 'Table',
-        link: 'table'
+        link: '/data/table',
+        desc: `Table 설명 <span></span>`
       },
       {
         name: 'Paginator',
-        link: 'paginator'
+        link: '/data/paginator',
+        desc: `Paginator 설명 <span></span>`
       },
       {
         name: 'Tree',
-        link: 'tree'
+        link: '/data/tree',
+        desc: `Tree 설명 <span></span>`
       }
     ]
   },
   {
     name: 'Panel',
     icon: 'top_panel_open',
-    link: 'panel',
+    link: '/panel',
     children: [
       {
         name: 'Accordion',
-        link: 'accordion'
+        link: '/panel/accordion',
+        desc: `Accordion 설명 <span></span>`
       },
       {
         name: 'Card',
-        link: 'card'
+        link: 'panel/card',
+        desc: `Card 설명 <span></span>`
       },
       {
         name: 'Divider',
-        link: 'divider'
+        link: '/panel/divider',
+        desc: `Divider 설명 <span></span>`
       },
       {
         name: 'Splitter',
-        link: 'splitter'
+        link: '/panel/splitter',
+        desc: `Splitter 설명 <span></span>`
       },
       {
         name: 'TabView',
-        link: 'tabView'
+        link: '/panel/tabView',
+        desc: `TabView 설명 <span></span>`
       }
     ]
   },
   {
     name: 'File',
     icon: 'save',
-    link: 'file',
+    link: '/file',
     children: [
       {
         name: 'Upload',
-        link: 'upload'
+        link: '/file/upload',
+        desc: `Upload 설명 <span></span>`
       }
     ]
   },
   {
     name: 'Menu',
     icon: 'menu',
-    link: 'menu',
+    link: '/menu',
     children: [
       {
         name: 'Breadcrumb',
-        link: 'breadcrumb'
+        link: '/menu/breadcrumb',
+        desc: `Breadcrumb 설명 <span></span>`
       },
       {
         name: 'ContextMenu',
-        link: 'contextMenu'
+        link: '/menu/contextMenu',
+        desc: `ContextMenu 설명 <span></span>`
       },
       {
-        name: 'Dock',
-        link: 'dock'
+        name: 'Gnb',
+        link: '/menu/gnb',
+        desc: `Global Navigation <span></span>`
+      },
+      {
+        name: 'Lnb',
+        link: '/menu/lnb',
+        desc: `Local Navigation 설명 <span></span>`
       },
       {
         name: 'Menu',
-        link: 'menu'
-      },
-      {
-        name: 'Menubar',
-        link: 'menubar'
-      },
-      {
-        name: 'MegaMenu',
-        link: 'megaMenu'
-      },
-      {
-        name: 'PanelMenu',
-        link: 'panelMenu'
-      },
-      {
-        name: 'SlideMenu',
-        link: 'slideMenu'
+        link: '/menu/menu',
+        desc: `Menu 설명 <span></span>`
       },
       {
         name: 'Steps',
-        link: 'steps'
+        link: '/menu/steps',
+        desc: `Steps 설명 <span></span>`
       },
       {
         name: 'TabMenu',
-        link: 'tabMenu'
-      },
-      {
-        name: 'TieredMenu',
-        link: 'tieredMenu'
+        link: '/menu/tabMenu',
+        desc: `TabMenu 설명 <span></span>`
       }
     ]
   },
   {
     name: 'Messages',
     icon: 'forum',
-    link: 'messages',
+    link: '/messages',
     children: [
       {
         name: 'Messages',
-        link: 'messages'
+        link: '/messages/messages',
+        desc: `Messages 설명 <span></span>`
       },
       {
         name: 'Toast',
-        link: 'toast'
+        link: '/messages/toast',
+        desc: `Toast 설명 <span></span>`
       }
     ]
   },
-  {
+  /*{
     name: 'Drag&Drop',
     icon: 'drag_pan',
     link: 'dragDrop',
     children: [
       {
         name: 'Drag & Drop',
-        link: 'dragDrop'
+        link: 'dragDrop/dragDrop',
+        desc: `Drag & Drop 설명 <span></span>`
       }
     ]
-  },
-  {
+  },*/
+  /*{
     name: 'Misc',
     icon: 'sync_saved_locally',
     link: 'misc',
     children: [
       {
         name: 'Avatar',
-        link: 'avatar'
+        link: 'misc/avatar',
+        desc: `Avatar 설명 <span></span>`
       },
       {
         name: 'Badge',
-        link: 'badge'
+        link: 'misc/badge',
+        desc: `Badge 설명 <span></span>`
       },
       {
         name: 'BlockUI',
-        link: 'blockUI'
+        link: 'misc/blockUI',
+        desc: `BlockUI 설명 <span></span>`
       },
       {
         name: 'Chip',
-        link: 'chip'
+        link: 'misc/chip',
+        desc: `Chip 설명 <span></span>`
       },
       {
         name: 'Inplace',
-        link: 'inplace'
+        link: 'misc/inplace',
+        desc: `Inplace 설명 <span></span>`
       },
       {
         name: 'ScrollTop',
-        link: 'scrollTop'
+        link: 'misc/scrollTop',
+        desc: `ScrollTop 설명 <span></span>`
       },
       {
         name: 'Skeleton',
-        link: 'skeleton'
+        link: 'misc/skeleton',
+        desc: `Skeleton 설명 <span></span>`
       },
       {
         name: 'ProgressBar',
-        link: 'progressBar'
+        link: 'misc/progressBar',
+        desc: `ProgressBar 설명 <span></span>`
       },
       {
         name: 'ProgressSpinner',
-        link: 'progressSpinner'
+        link: 'misc/progressSpinner',
+        desc: `ProgressSpinner 설명 <span></span>`
       },
       {
         name: 'Tag',
-        link: 'tag'
+        link: 'misc/tag',
+        desc: `Tag 설명 <span></span>`
       },
     ]
-  },
+  },*/
 ];

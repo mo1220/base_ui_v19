@@ -14,6 +14,7 @@ export class AsideMenuComponent implements OnInit {
   @Input() bindLabel:string = '';
   @Input() bindValue:string = '';
   @Input() placeholder:string = '';
+  @Input() currentUrls:any = [];
   @Output() search: EventEmitter<any> = new EventEmitter();
 
   val: string = '';
@@ -72,7 +73,7 @@ export class AsideMenuComponent implements OnInit {
 
   ngOnInit() {
     this.bindLabel = this.bindLabel ? this.bindLabel : 'name';
-    this.bindValue = this.bindValue ? this.bindValue : 'value';
+    // this.bindValue = this.bindValue ? this.bindValue : 'value';
     this.placeholder = this.placeholder ? this.placeholder : 'Select Item';
     this.label = this.selectItem ? this.selectItem[this.bindLabel] : '';
   }
@@ -84,7 +85,7 @@ export class AsideMenuComponent implements OnInit {
 
   selectedEvent(e: any) {
     this.selectProcess(e);
-    const value = this.selectItem ? this.selectItem[this.bindValue] : '';
+    const value = this.selectItem ? this.bindValue && this.bindValue !== '' ? this.selectItem[this.bindValue] : this.selectItem : '';
     this.valueChanged(value);
   }
 
@@ -117,7 +118,7 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
   @Input() root:boolean | any = false;
   @Output() selected:EventEmitter<any> = new EventEmitter();
   @Input() selectItem:any;
-
+  @Input() currentUrls:any = [];
   label:string = '';
   value:string = '';
   data:any = [];
