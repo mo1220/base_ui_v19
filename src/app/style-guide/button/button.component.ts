@@ -16,7 +16,6 @@ export interface btnMenuType {
   title: string;
   anchor: string;
   desc: string;
-  active: boolean;
 }
 
 /**
@@ -45,61 +44,51 @@ export class StyleGuideButtonComponent implements AfterViewInit, OnDestroy {
       title: 'Basic',
       anchor: 'basic',
       desc: '컬러별 기본 버튼',
-      active: true
     },
     {
       title: 'Outline',
       anchor: 'outline',
       desc: '컬러별 라인 버튼',
-      active: false
     },
     {
       title: 'Size',
       anchor: 'size',
       desc: '사이즈별 버튼',
-      active: false
     },
     {
       title: 'Block',
       anchor: 'block',
       desc: 'Block 버튼',
-      active: false
     }
     ,{
       title: 'Disabled State',
       anchor: 'disabled',
       desc: '컬러별 disabled 버튼',
-      active: false
     },
     {
       title: 'Icon Label',
       anchor: 'iconLabel',
       desc: 'Icon Label 버튼',
-      active: false
     },
     {
       title: 'Icon Only',
       anchor: 'iconOnly',
       desc: 'Icon만 있는 버튼',
-      active: false
     },
     {
       title: 'Progress Button',
       anchor: 'progress',
       desc: '전송 중 버튼',
-      active: false
     },
     {
       title: 'Toggle Button',
       anchor: 'toggle',
       desc: '토글 버튼',
-      active: false
     },
     {
       title: 'Radio Buttons',
       anchor: 'radio',
       desc: '라디오 형태 버튼',
-        active: false
     }
   ]
 
