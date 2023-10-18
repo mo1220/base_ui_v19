@@ -11,6 +11,8 @@
 @import './themes/dark-theme';
 
 @import 'styles-reset.scss-theme';
+@import 'bootstrap.theme';
+@import '~ladda/dist/ladda.min.css';
 
 .default-theme {
   @include mat.all-component-themes($dtk-theme);
@@ -213,5 +215,19 @@ button {
     }
   }
 }
-
 /****************************** EN: Breadcrumb *************************************************/
+.d-flex{
+  display: flex;
+  &.row{
+    flex-direction: row;
+  }
+  &.col{
+    flex-direction: column;
+    &-center{
+      justify-content: center;
+    }
+  }
+}
+.txt-center{
+  text-align: center;
+}

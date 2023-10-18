@@ -100,11 +100,11 @@ import { StyleGuideTypographyComponent } from './typography/typography.component
     // Typography
     StyleGuideTypographyComponent
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    StyleGuideRoutingModule,
-  ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        StyleGuideRoutingModule,
+    ],
   exports: [],
   providers: []
 })

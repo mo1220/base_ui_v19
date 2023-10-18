@@ -85,7 +85,7 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Button',
         link: '/button/button',
-        desc: `Button 설명 <span></span>`
+        desc: `<b>테마, 사이즈별, 아이콘, 라벨</b> 등이 포함된 표준 Button`
       },
       {
         name: 'SplitButton',

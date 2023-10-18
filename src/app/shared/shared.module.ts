@@ -46,6 +46,8 @@ import { PipesModule } from './pipes/index'; // Pipe
 import { RouterModule } from '@angular/router';
 import { AsideMenuComponent, AsideMenuItemComponent } from './aside/aside-menu.component'; // Left Menu
 
+import {LaddaModule} from "angular2-ladda";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -93,6 +95,12 @@ import { AsideMenuComponent, AsideMenuItemComponent } from './aside/aside-menu.c
 
     PipesModule,
     RouterModule,
+    LaddaModule.forRoot({
+      style: 'zoom-out',
+      spinnerSize: 20,
+      spinnerColor: 'white',
+      spinnerLines: 12
+    }),
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -149,7 +157,9 @@ import { AsideMenuComponent, AsideMenuItemComponent } from './aside/aside-menu.c
 
     // Shared Component
     AsideMenuComponent,
-    AsideMenuItemComponent
+    AsideMenuItemComponent,
+
+    LaddaModule
   ],
   providers: [],
 })

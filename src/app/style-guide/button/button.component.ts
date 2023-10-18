@@ -1,6 +1,23 @@
-import { AfterViewInit, Component, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  ViewEncapsulation
+} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {Router} from '@angular/router';
+
+export interface btnMenuType {
+  title: string;
+  anchor: string;
+  desc: string;
+  active: boolean;
+}
 
 /**
  * @class StyleGuideButtonComponent *
@@ -11,6 +28,81 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class StyleGuideButtonComponent implements AfterViewInit, OnDestroy {
+  loading = false;
+  checked = false;
+  singleModel = 'No';
+  radioModel = 'Left';
+  radioActive = [1, 2, 3];
+  activeRadio = 0;
+  activeNum = 0;
+
+  @ViewChild('contentWrap') contentWrap: ElementRef;
+  @ViewChildren('anchor') anchors: QueryList<ElementRef>;
+  scrolling = false;
+
+  buttonMenu: Array<btnMenuType> = [
+    {
+      title: 'Basic',
+      anchor: 'basic',
+      desc: '컬러별 기본 버튼',
+      active: true
+    },
+    {
+      title: 'Outline',
+      anchor: 'outline',
+      desc: '컬러별 라인 버튼',
+      active: false
+    },
+    {
+      title: 'Size',
+      anchor: 'size',
+      desc: '사이즈별 버튼',
+      active: false
+    },
+    {
+      title: 'Block',
+      anchor: 'block',
+      desc: 'Block 버튼',
+      active: false
+    }
+    ,{
+      title: 'Disabled State',
+      anchor: 'disabled',
+      desc: '컬러별 disabled 버튼',
+      active: false
+    },
+    {
+      title: 'Icon Label',
+      anchor: 'iconLabel',
+      desc: 'Icon Label 버튼',
+      active: false
+    },
+    {
+      title: 'Icon Only',
+      anchor: 'iconOnly',
+      desc: 'Icon만 있는 버튼',
+      active: false
+    },
+    {
+      title: 'Progress Button',
+      anchor: 'progress',
+      desc: '전송 중 버튼',
+      active: false
+    },
+    {
+      title: 'Toggle Button',
+      anchor: 'toggle',
+      desc: '토글 버튼',
+      active: false
+    },
+    {
+      title: 'Radio Buttons',
+      anchor: 'radio',
+      desc: '라디오 형태 버튼',
+        active: false
+    }
+  ]
+
   constructor(
     private translate: TranslateService,
     private router: Router
@@ -19,4 +111,43 @@ export class StyleGuideButtonComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void { }
 
   ngOnDestroy(): void { }
+
+  onClick() {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 3000)
+  }
+
+  onAnchor(activeIdx: number){
+    this.scrolling = true;
+    this.activeNum = activeIdx;
+    const targetY = this.anchors.get(activeIdx)?.nativeElement?.offsetTop;
+    window.scrollTo({left: 0, top: targetY, behavior: 'smooth'});
+  }
+
+  contentScroll(scrollTop: number): void{
+    if (!this.scrolling) {
+      for(let i=0; i<this.buttonMenu.length-1; i++){
+        const from = this.anchors.get(i)?.nativeElement.offsetTop - 50;
+        const to = this.anchors.get(i+1)?.nativeElement.offsetTop - 50;
+        if(scrollTop < to && scrollTop > from){
+          this.activeNum = i;
+          break;
+        }
+      }
+    }
+  }
+
+  @HostListener('window:scroll', ['$event']) // for window scroll events
+  onWindowScroll(event: any) {
+    event.stopPropagation();
+    console.log(event)
+    this.contentScroll(window.scrollY);
+  }
+  @HostListener('window:scrollend', ['$event']) // for window scroll events
+  onWindowScrollEnd(event: any) {
+    event.stopPropagation();
+    this.scrolling = false;
+  }
 }

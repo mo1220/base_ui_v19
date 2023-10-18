@@ -58,5 +58,42 @@
     h1, h2, h3, h4, h5, h6 {
       margin-bottom: 15px;
     }
+
+    button{
+      margin-bottom: 5px;
+      margin-right: 7px !important;
+    }
+  }
+}
+
+.component-wrap {
+  flex: 1;
+  padding-right: 10px;
+}
+.aside-menu-right {
+  width: 300px;
+  border-left: 1px solid #ddd;
+  padding: 10px 15px;
+  ul {
+    position: sticky;
+    top: 60px;
+    li {
+      cursor: pointer;
+      font-size: $default-font-size;
+      margin-bottom: 8px;
+      &.active{
+        position: relative;
+        &:before{
+          content: '';
+          display: block;
+          border-left: 3px solid #007bff;
+          position: absolute;
+          left: -16px;
+          top: 0;
+          //width: 5px;
+          height: 100%;
+        }
+      }
+    }
   }
 }
