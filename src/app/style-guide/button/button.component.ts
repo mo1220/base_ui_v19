@@ -142,7 +142,6 @@ export class StyleGuideButtonComponent implements AfterViewInit, OnDestroy {
   @HostListener('window:scroll', ['$event']) // for window scroll events
   onWindowScroll(event: any) {
     event.stopPropagation();
-    console.log(event)
     this.contentScroll(window.scrollY);
   }
   @HostListener('window:scrollend', ['$event']) // for window scroll events
