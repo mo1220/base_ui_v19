@@ -55,10 +55,15 @@ export class StyleGuideSplitButtonComponent implements AfterViewInit, OnDestroy 
       desc: '사이즈별 split 버튼'
     },
     {
+      id: 'rounded',
+      title: 'Rounded',
+      desc: '라운드  split 버튼'
+    },
+    {
       id: 'disable',
       title: 'Disabled State',
       desc: 'disable 상태 split 버튼'
-    }
+    },
   ];
 
   scrolling: boolean = false;

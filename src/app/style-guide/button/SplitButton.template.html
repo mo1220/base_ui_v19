@@ -5,7 +5,7 @@
       <p>{{menu.desc}}</p>
       <ng-container [ngSwitch]="menu.id">
         <div class="style-guide-example d-flex" *ngSwitchCase="'basic'">
-          <div>
+          <div class="d-flex-1">
             <h5>전체 버튼 클릭</h5>
             <button matRipple type="button" class="btn btn-primary btn-split" [matMenuTriggerFor]="basic">
               Dropdown Menu1
@@ -16,7 +16,7 @@
               <button mat-menu-item>Item 2</button>
             </mat-menu>
           </div>
-          <div>
+          <div class="d-flex-1">
             <h5>화살표 버튼 클릭</h5>
             <label class="btn btn-primary btn-split" role="button">
               Dropdown Menu2
@@ -27,7 +27,7 @@
               <button mat-menu-item>Item 2</button>
             </mat-menu>
           </div>
-          <div>
+          <div class="d-flex-1">
             <h5>라벨/화살표 버튼 클릭</h5>
             <div class="btn-split-group"  role="group" aria-label="Button group with nested dropdown" style="margin-left: 7px;">
               <button type="button" class="btn btn-primary btn-split-item" (click)="onClick()">Dropdown Menu3</button>
@@ -40,7 +40,7 @@
               <button mat-menu-item>Item 2</button>
             </mat-menu>
           </div>
-          <div style="margin-left:15px;">
+          <div class="d-flex-1">
             <h5>Nesting group 버튼 클릭</h5>
             <div class="btn-split-group"  role="group" aria-label="Button group with nested dropdown" style="margin-left: 7px;">
               <button type="button" class="btn btn-primary btn-split-item" (click)="onClick('First')">First</button>
@@ -91,72 +91,147 @@
           </mat-menu>
         </div>
 
+        <!--ST: color -->
         <div class="style-guide-example" *ngSwitchCase="'colorType'">
-          <button type="button" class="btn btn-primary btn-split" [matMenuTriggerFor]="primary">
-            Primary
-            <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
-          </button>
-          <mat-menu #primary="matMenu">
-            <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button>
-          </mat-menu>
-          <button type="button" class="btn btn-secondary btn-split" [matMenuTriggerFor]="secondary">
-            Secondary
-            <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
-          </button>
-          <mat-menu #secondary="matMenu">
-            <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button>
-          </mat-menu>
-          <button type="button" class="btn btn-success btn-split" [matMenuTriggerFor]="sucess">
-            Sucess
-            <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
-          </button>
-          <mat-menu #sucess="matMenu">
-            <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button>
-          </mat-menu>
-          <button type="button" class="btn btn-info btn-split" [matMenuTriggerFor]="info">
-            Info
-            <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
-          </button>
-          <mat-menu #info="matMenu">
-            <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button>
-          </mat-menu>
-          <button type="button" class="btn btn-warning btn-split" [matMenuTriggerFor]="warning">
-            Warning
-            <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
-          </button>
-          <mat-menu #warning="matMenu">
-            <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button>
-          </mat-menu>
-          <button type="button" class="btn btn-danger btn-split" [matMenuTriggerFor]="danger">
-            Danger
-            <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
-          </button>
-          <mat-menu #danger="matMenu">
-            <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button>
-          </mat-menu>
-          <button type="button" class="btn btn-light btn-split" [matMenuTriggerFor]="light">
-            Light
-            <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
-          </button>
-          <mat-menu #light="matMenu">
-            <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button>
-          </mat-menu>
-          <button type="button" class="btn btn-dark btn-split" [matMenuTriggerFor]="dark">
-            Dark
-            <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
-          </button>
-          <mat-menu #dark="matMenu">
-            <button mat-menu-item>Item 1</button>
-            <button mat-menu-item>Item 2</button>
-          </mat-menu>
+          <!-- ST: color defualt -->
+          <div>
+            <button type="button" class="btn btn-primary btn-split" [matMenuTriggerFor]="primary">
+              Primary
+              <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #primary="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-secondary btn-split" [matMenuTriggerFor]="secondary">
+              Secondary
+              <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #secondary="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-success btn-split" [matMenuTriggerFor]="sucess">
+              Sucess
+              <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #sucess="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-info btn-split" [matMenuTriggerFor]="info">
+              Info
+              <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #info="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-warning btn-split" [matMenuTriggerFor]="warning">
+              Warning
+              <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #warning="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-danger btn-split" [matMenuTriggerFor]="danger">
+              Danger
+              <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #danger="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-light btn-split" [matMenuTriggerFor]="light">
+              Light
+              <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #light="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-dark btn-split" [matMenuTriggerFor]="dark">
+              Dark
+              <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #dark="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+          </div>
+          <!-- EN: color defualt -->
+          <!-- ST: color split-->
+          <div>
+            <button type="button" class="btn btn-primary btn-split">
+              Primary
+              <span class="btn-split-menu" [matMenuTriggerFor]="primary"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #primary="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-secondary btn-split">
+              Secondary
+              <span class="btn-split-menu" [matMenuTriggerFor]="secondary"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #secondary="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-success btn-split">
+              Sucess
+              <span class="btn-split-menu" [matMenuTriggerFor]="sucess"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #sucess="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-info btn-split">
+              Info
+              <span class="btn-split-menu" [matMenuTriggerFor]="info"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #info="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-warning btn-split">
+              Warning
+              <span class="btn-split-menu" [matMenuTriggerFor]="warning"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #warning="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-danger btn-split">
+              Danger
+              <span class="btn-split-menu" [matMenuTriggerFor]="danger"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #danger="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-light btn-split">
+              Light
+              <span class="btn-split-menu" [matMenuTriggerFor]="light"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #light="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <button type="button" class="btn btn-dark btn-split">
+              Dark
+              <span class="btn-split-menu" [matMenuTriggerFor]="dark"><i class="fa fa-caret-down"></i></span>
+            </button>
+            <mat-menu #dark="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+          </div>
+          <!-- EN: color split-->
         </div>
+        <!--EN: color -->
+
         <div class="style-guide-example" *ngSwitchCase="'colorOutlineType'">
           <!-- ST: Outline -->
           <div>
@@ -493,6 +568,47 @@
           </mat-menu>
         </div>
         <!--EN: disable-->
+
+        <!--ST: rounded -->
+        <div class="style-guide-example" *ngSwitchCase="'rounded'">
+          <button type="button" class="btn btn-primary btn-split btn-split-rounded" [matMenuTriggerFor]="round1">
+            Rounded
+            <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
+          </button>
+            <mat-menu #round1="matMenu">
+              <button mat-menu-item>Item 1</button>
+              <button mat-menu-item>Item 2</button>
+            </mat-menu>
+
+          <label role="button" class="btn btn-secondary btn-split btn-split-rounded">
+            Rounded
+            <span class="btn-split-menu"  [matMenuTriggerFor]="round2"><i class="fa fa-caret-down"></i></span>
+          </label>
+          <mat-menu #round2="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
+
+          <button type="button" class="btn btn-outline-primary btn-split btn-split-rounded" [matMenuTriggerFor]="round1">
+            Rounded
+            <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
+          </button>
+          <mat-menu #round1="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
+
+          <label role="button" class="btn btn-outline-secondary btn-split btn-split-rounded">
+            Rounded
+            <span class="btn-split-menu"  [matMenuTriggerFor]="round2"><i class="fa fa-caret-down"></i></span>
+          </label>
+          <mat-menu #round2="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
+
+        </div>
+        <!--EN: rounded -->
 
       </ng-container>
     </ng-container>
