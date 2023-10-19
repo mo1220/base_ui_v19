@@ -90,7 +90,7 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'SplitButton',
         link: '/button/splitButton',
-        desc: `Split Button 설명 <span></span>`
+        desc: `<b>Menu</b>와 <b>Button</b>이 혼합된 표준 Split Button`
       },
       {
         name: 'Speed Dial',

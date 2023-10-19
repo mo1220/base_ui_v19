@@ -2,6 +2,13 @@ import { AfterViewInit, Component, OnDestroy, ViewEncapsulation } from '@angular
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
+export interface splitBtnMenuType {
+  title: string;
+  anchor?: string;
+  desc: string;
+}
+
+
 /**
  * @class StyleGuideSpeedDialComponent *
  * */
@@ -11,6 +18,12 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class StyleGuideSpeedDialComponent implements AfterViewInit, OnDestroy {
+  splitMenu: Array<splitBtnMenuType> = [
+    {
+      title: 'Basic',
+      desc: '컬러별 Split 버튼'
+    }
+  ]
   constructor(
     private translate: TranslateService,
     private router: Router

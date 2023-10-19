@@ -1,4 +1,5 @@
 @import "styles-variables";
+
 $btn-primary-color: #FFF !default;
 $btn-font-family: 'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
 $btn-font-size: .75rem !default;
@@ -8,7 +9,8 @@ $btn-sm-font-size: 10px;
 $btn-xsm-font-size: 8px;
 $border-radius: .25rem;
 $btn-xsm-border-radius: 3px;
-$border-radius-left: 3px 0 0 3px;
+$border-radius-left: $border-radius 0 0 $border-radius;
+$border-radius-right: 0 $border-radius $border-radius 0;
 
 //$btn-color:                   var(--#{$prefix}body-color);
 $btn-padding: .5rem !default;
@@ -29,8 +31,8 @@ $btn-padding-x-sm: .5rem;
 $btn-padding-y-xsm: 4px;
 $btn-padding-x-xsm: .35rem;
 
-$btn-active-box-shadow:       inset 0 3px 5px rgba($black, .125);
-$btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075);
+$btn-active-box-shadow: inset 0 3px 5px rgba($black, .125);
+$btn-box-shadow: inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075);
 $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 //$btn-border-width:            $input-btn-border-width;
 
@@ -44,6 +46,23 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
 .btn {
   border-radius: $border-radius;
 
+  &.btn-outline-primary,
+  &.btn-outline-secondary,
+  &.btn-outline-success,
+  &.btn-outline-info,
+  &.btn-outline-warning,
+  &.btn-outline-danger,
+  &.btn-outline-light,
+  &.btn-outline-dark {
+    // Split button
+    .btn-split-menu {
+      border-left-width: 1px;
+      border-left-style: solid;
+      border-left-color: inherit;
+    }
+  }
+
+  /**** Size Button ****/
   &.btn-xlg {
     font-size: $btn-xlg-font-size;
     padding: $btn-padding-y-xlg $btn-padding-x-xlg;
@@ -65,11 +84,13 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
     padding: $btn-padding-y-xsm $btn-padding-x-xsm;
   }
 
+  /**** Block Button ****/
   &.btn-block {
     display: block;
     width: 100%;
   }
 
+  /**** Icon Label Button ****/
   &.btn-labeled {
     padding-top: 0;
     padding-bottom: 0;
@@ -110,22 +131,47 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
     }
   }
 
+  /**** Circle  Button ****/
   &.btn-circle {
     border-radius: 50%;
   }
 
+  /**** Icon Only button ****/
   &.btn-icon {
     padding: $btn-padding;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    .fa{ width: $btn-font-size; height: $btn-font-size; }
-    &.btn-xlg { .fa{ width: $btn-xlg-font-size; height: $btn-xlg-font-size; } }
-    &.btn-lg { .fa{ width: $btn-lg-font-size; height: $btn-lg-font-size; } }
+
+    .fa {
+      width: $btn-font-size;
+      height: $btn-font-size;
+    }
+
+    &.btn-xlg {
+      .fa {
+        width: $btn-xlg-font-size;
+        height: $btn-xlg-font-size;
+      }
+    }
+
+    &.btn-lg {
+      .fa {
+        width: $btn-lg-font-size;
+        height: $btn-lg-font-size;
+      }
+    }
+
     &.btn-sm {
       padding: 0.375rem;
-      .fa{ width: $btn-sm-font-size; height: $btn-sm-font-size; } }
+
+      .fa {
+        width: $btn-sm-font-size;
+        height: $btn-sm-font-size;
+      }
+    }
+
     &.btn-xsm {
       .fa {
         width: $btn-xsm-font-size;
@@ -137,33 +183,111 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
       }
     }
   }
+
+  /**** Raised(shadow) button ****/
   &.btn-raised {
     box-shadow: $btn-raised-shadow;
+  }
+
+  /**** Split Button ****/
+  &.btn-split {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-right: 7px;
+
+    span {
+      cursor: pointer;
+      position: relative;
+      right: -12px;
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: $border-radius-right;
+
+      &.btn-split-menu {
+        &:hover {
+          background-color: rgba(0, 0, 0, .2);
+        }
+      }
+    }
+
+    &.btn-xlg {
+      span.btn-split-menu {
+        right: -20px;
+      }
+    }
+
+    &.btn-lg {
+      span.btn-split-menu {
+        right: -16px;
+      }
+    }
+
+    &.btn-sm {
+      span.btn-split-menu {
+        right: -9px;
+      }
+    }
+
+    &.btn-xsm {
+      span.btn-split-menu {
+        right: -6px;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+    }
   }
 
   &.btn-toggle {
     border-color: #ddd;
     //background-color: transparent;
-    &.checked{
+    &.checked {
       background-color: inherit;
     }
   }
 
-  &.active{
+  &.active {
     background-color: $primary !important;
     border-color: $primary !important;
   }
 }
 
+label.btn-split {
+  margin-bottom: 5px;
+  cursor: default !important;
+
+}
+
+.btn-split-group {
+  display: flex;
+
+  button.btn {
+    margin-right: 0 !important;
+  }
+
+  .btn-split-item {
+    border-radius: 0;
+  }
+
+  .btn-split-item:first-child {
+    border-radius: $border-radius-left;
+    padding: 0 12px;
+  }
+
+  .btn-split-item:last-child {
+    padding: 6px 12px;
+    border-radius: $border-radius-right;
+  }
+}
+
 .btn-group-toggle {
-  .btn-check:checked + .btn-outline-primary  {
-    color: $btn-primary-color!important;
+  .btn-check:checked + .btn-outline-primary {
+    color: $btn-primary-color !important;
   }
 }
 
 .btn-info,
 .btn-primary,
 .btn-outline-primary:hover,
-.btn-outline-info:hover{
-  color:$btn-primary-color !important;
+.btn-outline-info:hover {
+  color: $btn-primary-color !important;
 }
