@@ -104,5 +104,9 @@
     "request": "Request",
     "state": "review",
     "move": "Move"
+  },
+  "placeholder": {
+    "keyword_placeholder": "Enter your search term",
+    "datepicker_placeholder": "Please select your dates"
   }
 }

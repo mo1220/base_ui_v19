@@ -13,12 +13,12 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Auto Complete',
         link: '/form/autoComplete',
-        desc: `Auto Complete 설명 <span></span>`
+        desc: `검색어 자동완성, 검색어 추천`
       },
       {
         name: 'Calendar',
         link: '/form/calendar',
-        desc: `Calendar 설명 <span></span>`
+        desc: `날짜 혹은 시간 선택을 위한 Calendar`
       },
       {
         name: 'Checkbox',

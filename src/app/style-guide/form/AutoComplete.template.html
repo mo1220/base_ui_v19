@@ -1,3 +1,45 @@
-<div>
-  Auto Complete
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basic>Basic</h3>
+    <p>클릭 시 자동완성 열림</p>
+    <div class="style-guide-example">
+      <input type="text" class="form-control form-control-sm"
+             [placeholder]="'placeholder.keyword_placeholder' | translate"
+             [(ngModel)]="keyword[0]"
+             (keyup)="keyupEvent($event)"
+             [matAutocomplete]="auto"/>
+      <mat-autocomplete #auto="matAutocomplete">
+        <ng-container><!-- *ngIf="autoCompleteView"-->
+          <mat-option *ngFor="let item of completeList;" [value]="item">
+            {{item}}
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </div>
+
+    <h3 #anchor #reactive>Group Autocompl</h3>
+    <p>입력 시 자동완성</p>
+    <div class="style-guide-example">
+      <input type="text" class="form-control"
+             [placeholder]="'placeholder.keyword_placeholder' | translate"
+             [(ngModel)]="keyword[1]"
+             [formControl]="control"
+             [matAutocomplete]="auto"/>
+      <mat-autocomplete #auto="matAutocomplete">
+        <ng-container *ngIf="autoCompleteView">
+          <mat-option *ngFor="let item of filteredList | async;" [value]="item">
+            {{item}}a
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </div>
+  </div>
+
+  <div class="aside-menu-right">
+    <ul>
+      <li *ngFor="let menu of menu; let i=index;" (click)="onAnchor(i)" [class.active]="activeNum === i">
+        {{ menu.title }}
+      </li>
+    </ul>
+  </div>
 </div>

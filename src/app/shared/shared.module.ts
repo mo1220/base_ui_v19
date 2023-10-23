@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 // Angular Material
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
@@ -57,6 +58,7 @@ import {LaddaModule} from "angular2-ladda";
 
     // Angular Material
     DragDropModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatTabsModule,
     MatProgressSpinnerModule,
@@ -114,6 +116,7 @@ import {LaddaModule} from "angular2-ladda";
     TranslateModule,
 
     DragDropModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatMenuModule,
     MatTabsModule,
