@@ -51,25 +51,146 @@ body {
   margin: 0;
   font-family: $default-font;
 }
-
+// Header Style
 h1,h2,h3,h4,h5,h6 {
   margin: 0;
   font-weight: 600;
+  margin-bottom: 10px;
 }
-
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 14px;
+}
+h6 {
+  font-size: 12px;
+}
+//
+p {
+  font-size: 12px;
+}
+//
+button {
+  border: none;
+  background: transparent;
+}
+// list style
 ul, ol, dl {
   list-style: none;
   margin:0;
   padding:0;
-}
-
-p {
   font-size: 12px;
+  color: #666;
+  li {
+    & > ul,
+    & > ol {
+      margin-top: 5px;
+      margin-left: 15px;
+    }
+  }
+  // 리스트 기분
+  &.base-ul {
+    & > li {
+      position: relative;
+      margin-bottom: 5px;
+      padding-left: 15px;
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 7px;
+        left: 5px;
+        width: 4px;
+        height: 4px;
+        background: #333;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  // Font Awesome Icon List
+  // .icon-ul + fa-뺀 아이콘 Class
+  &.icon-ul {
+    & > li {
+      position: relative;
+      margin-bottom: 5px;
+      &:before {
+        content: '';
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        display: inline-block;
+        margin-right: 5px;
+      }
+      & > ol,
+      & > ul {
+        margin-left: 30px;
+      }
+    }
+  }
+
+  &.base-ol {
+    list-style: decimal;
+    & > li {
+      &::marker {
+        color: #333;
+      }
+      padding-left: 5px;
+    }
+  }
 }
 
-button {
-  border: none;
-  background: transparent;
+
+.base-guide {
+  border:1px solid #DDD;
+  /*box-shadow: $box-shadow;*/
+  border-radius: 5px;
+  padding: 20px 20px 15px 110px;
+  position: relative;
+  margin-bottom: 15px;
+  &:before {
+    content: 'developer_guide';
+    display: block;
+    font-family: 'Material Symbols Outlined';
+    font-size: 42px;
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    color: #AAA;
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width:0;
+    border-right:1px solid #DDD;
+    top: 20px;
+    left: 80px;
+    bottom: 20px;
+  }
+  &.info {
+    &:before {
+      content: 'info';
+      color: $blue;
+    }
+  }
+
+  &.noti {
+    &:before {
+      content: 'campaign';
+      color: $orange;
+    }
+  }
+
+  &.warning {
+    &:before {
+      content: 'warning';
+      color: $danger;
+    }
+  }
 }
 
 /****************************** ST: Material Style ******************************************/
