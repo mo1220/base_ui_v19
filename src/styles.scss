@@ -234,3 +234,50 @@ button {
 .txt-center{
   text-align: center;
 }
+
+/****************************** ST: ngx-datepicker *************************************************/
+.bs-datepicker-container {
+  padding: 0 !important;
+}
+.bs-datepicker-body table td.week span
+{
+  color: $primary !important;
+}
+
+.bs-datepicker-body table td span.selected,
+.bs-datepicker-head,
+.bs-datepicker-head, .bs-datepicker button:active,
+.bs-datepicker-body table td.selected span,
+.bs-datepicker-body table td span[class*="select-"]:after,
+.bs-datepicker-body table td[class*="select-"] span:after,
+.bs-datepicker-body table td.active-week span:hover,
+.theme-green .btn-today-wrapper .btn-success, .theme-green .btn-clear-wrapper .btn
+{
+  background-color: $primary !important;
+  border: none !important;
+  color: #fff !important;
+}
+.bs-datepicker-buttons {
+  padding: 5px !important;
+}
+.bs-datepicker-predefined-btns button {
+  background-color: $primary !important;
+  opacity: 0.7;
+  &.selected {
+    //background-color: $primary ;
+    opacity: 1;
+  }
+}
+.bs-timepicker-field {
+  width: 50px !important;
+}
+.bs-chevron {
+  width: 8px !important;
+  height: 8px !important;
+  border-width: 2px 0 0 2px !important;
+}
+.ngx-today {
+  color: $primary;
+}
+/****************************** EN: ngx-datepicker *************************************************/
+

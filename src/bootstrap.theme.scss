@@ -303,3 +303,15 @@ label.btn-split {
 .btn-outline-info:hover {
   color: $btn-primary-color !important;
 }
+
+.form-control {
+  font-size: 0.76rem !important;
+  &.datepicker {
+    width: 280px;
+    &-range {
+      width: 558px;
+    }
+  }
+}
+
+
