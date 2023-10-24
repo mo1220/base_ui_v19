@@ -1,10 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basicGnb>GNB 기본</h3>
+    <p>솔루션에 적용하여 보다 유연한 Depth 표현이 가능하도록 설계</p>
+    <div class="style-guide-example">
+      <!-- ST : GNB -->
+      <div class="gnb">
+        <nav>
+          <ul>
+            <li *ngFor="let menu of menus; index as i">
+              <button matRipple [matRippleColor]="rippleColor">
+                <mat-icon class="md-16">{{menu.icon}}</mat-icon>
+                {{menu[lang]}}
+                <i class="fa fa-angle-down" *ngIf="menu.children && menu.children.length > 0"></i>
+              </button>
+              <ul *ngIf="menu.children && menu.children.length > 0">
+                <li *ngFor="let mn of menu.children; index as ii">
+                  <button matRipple [matRippleColor]="rippleColor">
+                    {{mn[lang]}}
+                    <i class="fa fa-caret-right"
+                       *ngIf="mn.children && mn.children.length > 0"></i>
+                  </button>
+                  <ul *ngIf="mn.children && mn.children.length > 0">
+                    <li *ngFor="let m of mn.children; index as iii">
+                      <button matRipple [matRippleColor]="rippleColor">
+                        {{m[lang]}}
+                        <i class="fa fa-caret-right"
+                           *ngIf="m.children && m.children.length > 0"></i>
+                      </button>
+                      <ul *ngIf="m.children && m.children.length > 0">
+                        <li *ngFor="let lm of m.children; index as iiii">
+                          <button matRipple [matRippleColor]="rippleColor">
+                            {{lm[lang]}}
+                          </button>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <!-- EN : GNB -->
+    </div>
+  </div>
+  <aside-menu-right [menu]="buttonMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

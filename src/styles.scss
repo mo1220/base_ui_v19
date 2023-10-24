@@ -932,3 +932,68 @@ input[type="radio"].mgr:checked:before {
   opacity: 1;
 }
 /******************************** EN: Toast Message *******************************************/
+
+
+/********************************* ST: CDK Context Menu *****************************/
+
+.context-menu {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 180px;
+  max-width: 280px;
+  background-color: rgb(255, 255, 255);
+  padding: 6px 0;
+  box-shadow: $box-shadow;
+  hr {
+    margin: 0;
+  }
+  &-item {
+    background-color: transparent;
+    cursor: pointer;
+    border: none !important;
+
+    user-select: none;
+    min-width: 64px;
+    line-height: 30px;
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex: 1;
+    font-size: 12px;
+    position: relative;
+    .mat-icon {
+      position: relative;
+      left: -8px;
+      color: #888;
+    }
+    &.cdk-menu-trigger {
+      &:after {
+        content: '\f0da';
+        font-family: FontAwesome;
+        display: block;
+        position: absolute;
+        top:0;
+        right: 5px;
+        color: #999;
+      }
+    }
+    &:focus-visible {
+      border: none !important;
+      border-image-width: 0 !important;
+      border-width: 0;
+    }
+    &:hover {
+      background-color: rgba(0,0,0, 0.05);
+    }
+    &:active {
+      border: none;
+      background-color: $primary;
+      color: #FFF;
+    }
+  }
+}
+
+
+/********************************* EN: CDK Context Menu *****************************/

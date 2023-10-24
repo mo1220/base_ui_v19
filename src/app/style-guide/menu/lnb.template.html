@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basicLnb>LNB 기본</h3>
+    <p>
+      솔루션에 적용하여 보다 유연한 Depth 표현이 가능하도록 설계<br />
+      <code>input: currentUrls</code> 현재 URL을 넘기면 Highlight &nbsp;<br />
+      <code>output: valueChange</code> 클릭이벤트 발생시
+    </p>
+    <div class="style-guide-example">
+      <div style="display: flex; background-color:#F9FBFF; border:1px solid #CCC;">
+        <!-- ST : LNB -->
+        <div style="width: 250px; background-color:#FFF; border-right:1px solid #CCC;">
+          <aside-menu [items]="menus"
+                      [bindLabel]="'name'">
+          </aside-menu>
+        </div>
+        <!--
+        [currentUrls]="currentUrls"
+        (valueChange)="routeNav($event)"
+        -->
+        <!-- EN : LNB -->
+        <div style="flex:1; display: flex; justify-content: center; align-items: center;">
+          <div style="color:#999; font-size: 12px;">Content</div>
+        </div>
+      </div>
 
-</body>
-</html>
+    </div>
+  </div>
+  <aside-menu-right [menu]="buttonMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

@@ -1,10 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basicContextMenu>Context 기본</h3>
+    <p>Material CDK Menu Module 기반 Context Menu<br /> 중첩된 상황에 맞는 메뉴.</p>
+    <div class="style-guide-example">
+      <!-- ST : ContextMenu -->
+      <div class="example-context-area" [cdkContextMenuTriggerFor]="outer">
+        Outer context menu
+        <div class="example-context-area" [cdkContextMenuTriggerFor]="inner">Inner context menu</div>
+      </div>
 
-</body>
-</html>
+      <ng-template #outer>
+        <div class="context-menu" cdkMenu>
+          <button class="context-menu-item" cdkMenuItem>
+            <mat-icon class="md-18">save</mat-icon>
+            Save
+          </button>
+          <button class="context-menu-item" cdkMenuItem>
+            아이콘 없음
+          </button>
+          <button class="context-menu-item" cdkMenuItem>
+            <mat-icon class="md-18">logout</mat-icon>
+            Exit
+          </button>
+        </div>
+      </ng-template>
+
+      <ng-template #inner>
+        <div class="context-menu" cdkMenu>
+          <button class="context-menu-item" cdkMenuItem
+                  [cdkMenuTriggerFor]="filterMenu">
+            필터
+          </button>
+          <button class="context-menu-item" cdkMenuItem
+                  [cdkMenuTriggerFor]="nullMenu">
+            정리
+          </button>
+          <button class="context-menu-item" cdkMenuItem>
+            값 그룹화
+          </button>
+          <button class="context-menu-item" cdkMenuItem
+                  [cdkMenuTriggerFor]="splitMenu">
+            값 분할
+          </button>
+          <hr />
+          <button class="context-menu-item" cdkMenuItem>
+            항목명 변경
+          </button>
+          <button class="context-menu-item" cdkMenuItem
+                  [cdkMenuTriggerFor]="typeMenu">
+            항목 타입 변경
+          </button>
+          <hr />
+          <button class="context-menu-item" cdkMenuItem>
+            항목 제거
+          </button>
+        </div>
+      </ng-template>
+
+      <ng-template #filterMenu>
+        <div class="context-menu" cdkMenu>
+          <button class="context-menu-item" cdkMenuItem>Where 조건 입력</button>
+          <button class="context-menu-item" cdkMenuItem>사용자 필터</button>
+        </div>
+      </ng-template>
+      <ng-template #nullMenu>
+        <div class="context-menu" cdkMenu>
+          <button class="context-menu-item" cdkMenuItem>누락 데이터 변경</button>
+          <button class="context-menu-item" cdkMenuItem>누락 데이터 삭제</button>
+        </div>
+      </ng-template>
+      <ng-template #splitMenu>
+        <div class="context-menu" cdkMenu>
+          <button class="context-menu-item" cdkMenuItem>값 분할</button>
+          <button class="context-menu-item" cdkMenuItem>JSON Parsing</button>
+        </div>
+      </ng-template>
+      <ng-template #typeMenu>
+        <div class="context-menu" cdkMenu>
+          <button class="context-menu-item" cdkMenuItem>Date</button>
+          <button class="context-menu-item" cdkMenuItem>정수</button>
+          <button class="context-menu-item" cdkMenuItem>실수</button>
+          <button class="context-menu-item" cdkMenuItem>문자열</button>
+        </div>
+      </ng-template>
+      <!-- EN : ContextMenu -->
+    </div>
+  </div>
+  <aside-menu-right [menu]="buttonMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 // Angular Material
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkMenuModule } from '@angular/cdk/menu';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -62,6 +63,7 @@ import { CustomToastComponent } from './toast-message/toast-message.component';
 
     // Angular Material
     DragDropModule,
+    CdkMenuModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatTabsModule,
@@ -123,6 +125,7 @@ import { CustomToastComponent } from './toast-message/toast-message.component';
     TranslateModule,
 
     DragDropModule,
+    CdkMenuModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatMenuModule,

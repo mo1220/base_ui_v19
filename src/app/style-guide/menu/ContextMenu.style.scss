@@ -1,0 +1,13 @@
+
+.example-context-area {
+  display: inline-grid;
+  border: 1px dashed black;
+  background: rgba(0,0,0, 0.02);
+}
+
+.example-context-area .example-context-area {
+  margin: 100px;
+  width: 200px;
+  height: 100px;
+  background: #FFF;
+}
