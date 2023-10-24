@@ -10,13 +10,8 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import {NotificationService} from "../../core/notifications/notification.service";
+import {menuType} from "../style-guide.models";
 
-export interface splitBtnMenuType {
-  title: string;
-  anchor?: string;
-  desc: string;
-  id :string;
-}
 
 /**
  * @class StyleGuideSplitButtonComponent *
@@ -28,40 +23,40 @@ export interface splitBtnMenuType {
 })
 export class StyleGuideSplitButtonComponent implements AfterViewInit, OnDestroy {
   // MenuS
-  splitMenu: Array<splitBtnMenuType> = [
+  splitMenu: Array<menuType> = [
     {
-      id: 'basic',
       title: 'Basic',
+      anchor: 'basic',
       desc: '기본 split 버튼'
     },
     {
-      id: 'position',
       title: 'Position',
+      anchor: 'position',
       desc: '위치별 split 버튼'
     },
     {
-      id: 'colorType',
       title: 'Color Type',
+      anchor: 'colorType',
       desc: '컬러별 split 버튼'
     },
     {
-      id: 'colorOutlineType',
       title: 'Color Outline Type',
+      anchor: 'colorOutlineType',
       desc: '컬러별 라인 split 버튼'
     },
     {
-      id: 'size',
       title: 'Size',
+      anchor: 'size',
       desc: '사이즈별 split 버튼'
     },
     {
-      id: 'rounded',
       title: 'Rounded',
+      anchor: 'rounded',
       desc: '라운드  split 버튼'
     },
     {
-      id: 'disable',
       title: 'Disabled State',
+      anchor: 'disable',
       desc: 'disable 상태 split 버튼'
     },
   ];

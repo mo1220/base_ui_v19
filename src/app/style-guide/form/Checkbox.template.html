@@ -1,10 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basic>Basic</h3>
+    <p>기본 checkbox</p>
+    <div class="style-guide-example d-flex alignC">
+      <code>Magic Input</code>
+      <input type="checkbox" class="mgc" checked/> Default
+      <input type="checkbox" class="mgc mgc-primary" checked /> Primary
+      <input type="checkbox" class="mgc mgc-success" checked /> Success
+      <input type="checkbox" class="mgc mgc-info" checked /> Info
+      <input type="checkbox" class="mgc mgc-warning" checked /> Warning
+      <input type="checkbox" class="mgc mgc-danger" checked /> Danger
+    </div>
+    <div class="style-guide-example d-flex alignC">
+      <code>Material</code>
+      <mat-checkbox class="matcheckbox"
+                    *ngFor="let item of checkList.sublist"
+                    [(ngModel)]="item.checked"
+                    [color]="item.color"
+                    (ngModelChange)="updateAllComplete()">
+        {{item.name}}
+      </mat-checkbox>
+    </div>
 
-</body>
-</html>
+    <h3 #anchor #size>Size</h3>
+    <p>사이즈별 checkbox</p>
+    <div class="style-guide-example d-flex alignC">
+      <div style="flex:1">
+        <code>magic input</code>
+        <input type="checkbox" class="mgc mgc-sm mgc-primary" checked />
+        <label>small</label>
+        <input type="checkbox" class="mgc mgc-primary" checked />
+        <label>default</label>
+        <input type="checkbox" class="mgc mgc-lg mgc-primary" checked />
+        <label>large</label>
+      </div>
+      <div style="flex: 1">
+        <code>material</code>
+        <mat-checkbox class="matcheckbox-sm" [color]="'primary'">
+          small</mat-checkbox>
+        <mat-checkbox class="matcheckbox" [color]="'primary'">
+          default</mat-checkbox>
+        <mat-checkbox class="matcheckbox-lg" [color]="'primary'">
+          large</mat-checkbox>
+      </div>
+    </div>
+
+    <h3 #anchor #round>Rounded</h3>
+    <p>라운드 checkbox</p>
+    <div class="style-guide-example d-flex alignC">
+      <code>Magic Input</code>
+      <input type="checkbox" class="mgc mgc-circle" checked/> Default
+      <input type="checkbox" class="mgc mgc-circle mgc-primary" checked /> Primary
+      <input type="checkbox" class="mgc mgc-circle mgc-success" checked /> Success
+      <input type="checkbox" class="mgc mgc-circle mgc-info" checked /> Info
+      <input type="checkbox" class="mgc mgc-circle mgc-warning" checked /> Warning
+      <input type="checkbox" class="mgc mgc-circle mgc-danger" checked /> Danger
+    </div>
+    <div class="style-guide-example d-flex alignC">
+      <code>Material</code>
+      <mat-checkbox class="matcheckbox matcheckbox-rounded"
+                    *ngFor="let item of checkList.sublist"
+                    [(ngModel)]="item.checked"
+                    [color]="item.color"
+                    (ngModelChange)="updateAllComplete()">
+        {{item.name}}
+      </mat-checkbox>
+    </div>
+
+    <h3 #anchor #group>Group</h3>
+    <p>전체 선택(해제)이 가능한 group checkbox</p>
+    <div class="style-guide-example">
+      <code>Material</code>
+      <ul class="checkbox-group">
+        <li class="select-all">
+          <mat-checkbox class="matcheckbox"
+                        [checked]="checkList.checked"
+                        [color]="checkList.color"
+                        [indeterminate]="someComplete()"
+                        (change)="setAll($event.checked)">
+            {{checkList.name}}
+          </mat-checkbox>
+        </li>
+        <li *ngFor="let item of checkList.sublist">
+          <mat-checkbox class="matcheckbox-sm"
+                        [(ngModel)]="item.checked"
+                        [color]="item.color"
+                        (ngModelChange)="updateAllComplete()">
+            {{item.name}}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </div>
+
+
+    <h3 #anchor #disabled>Disabled State</h3>
+    <p>disabled checkbox</p>
+    <div class="style-guide-example d-flex alignC">
+      <code>Magic Input</code>
+      <input type="checkbox" class="mgc mgc-circle" checked [disabled]="true"/> Default
+      <input type="checkbox" class="mgc mgc-circle mgc-primary" checked [disabled]="true" /> Primary
+      <input type="checkbox" class="mgc mgc-circle mgc-success" checked [disabled]="true" /> Success
+      <input type="checkbox" class="mgc mgc-circle mgc-info" checked [disabled]="true" /> Info
+      <input type="checkbox" class="mgc mgc-circle mgc-warning" checked [disabled]="true" /> Warning
+      <input type="checkbox" class="mgc mgc-circle mgc-danger" checked [disabled]="true" /> Danger
+    </div>
+    <div class="style-guide-example d-flex alignC">
+      <code>Material</code>
+      <mat-checkbox class="matcheckbox matcheckbox-rounded"
+                    *ngFor="let item of checkList.sublist"
+                    [(ngModel)]="item.checked"
+                    [color]="item.color"
+                    [disabled]="true">
+        {{item.name}}
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <aside-menu-right [menu]="checkboxMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

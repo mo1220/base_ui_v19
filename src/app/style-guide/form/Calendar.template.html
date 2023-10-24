@@ -3,7 +3,7 @@
     <h3 #anchor #basic>Basic</h3>
     <p>기본 날짜 선택 Date Picker<br>
       <code>[minDate], [maxDate] </code>// Date format 변수<br>
-      <code>[bsConfig.outsideClick]:  true | false </code>// 바깥 클릭 시 닫힘
+      <code>[bsConfig.outsideClick]:  true | false </code>// 바깥 클릭 시 닫힘<br>
       <code>[bsConfig.dateInputFormat]: 'YYYY-MM'-DD' | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</code><br>
       <code>[bsConfig.showWeekNumbers]: true | false </code>// week 표시
     </p>
@@ -141,11 +141,6 @@
     </div>
   </div>
 
-  <div class="aside-menu-right">
-    <ul>
-      <li *ngFor="let menu of menu; let i=index;" (click)="onAnchor(i)" [class.active]="activeNum === i">
-        {{ menu.title }}
-      </li>
-    </ul>
-  </div>
+  <aside-menu-right [menu]="calendarMenu"
+                    [anchor]="anchors"></aside-menu-right>
 </div>

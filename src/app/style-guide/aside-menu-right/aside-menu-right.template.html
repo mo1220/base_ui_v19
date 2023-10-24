@@ -1,0 +1,7 @@
+<div class="aside-menu-right">
+  <ul>
+    <li *ngFor="let mn of menu; let i=index;" (click)="onAnchor(i)" [class.active]="activeNum === i">
+      {{ mn.title }}
+    </li>
+  </ul>
+</div>

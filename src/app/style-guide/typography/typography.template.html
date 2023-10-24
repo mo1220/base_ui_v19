@@ -131,11 +131,13 @@
       <div class="msg error">처리중 오류가 발생했습니다.</div>
     </div>
   </div>
-  <div class="aside-menu-right">
-    <ul>
-      <li *ngFor="let menu of buttonMenu; let i=index;" (click)="onAnchor(i)" [class.active]="activeNum === i">
-        {{ menu.title }}
-      </li>
-    </ul>
-  </div>
+  <aside-menu-right [menu]="typoMenu"
+                    [anchor]="anchors"></aside-menu-right>
+<!--  <div class="aside-menu-right">-->
+<!--    <ul>-->
+<!--      <li *ngFor="let menu of buttonMenu; let i=index;" (click)="onAnchor(i)" [class.active]="activeNum === i">-->
+<!--        {{ menu.title }}-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </div>-->
 </div>

@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basic>Basic</h3>
+    <p>클릭 시 자동완성 열림</p>
+    <div class="style-guide-example">
 
-</body>
-</html>
+    </div>
+  </div>
+
+  <aside-menu-right [menu]="chipsMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

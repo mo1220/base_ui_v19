@@ -18,17 +18,17 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Calendar',
         link: '/form/calendar',
-        desc: `날짜 혹은 시간 선택을 위한 Calendar`
+        desc: `<b>날짜</b> 혹은 <b>시간</b> 선택을 위한 Calendar`
       },
       {
         name: 'Checkbox',
         link: '/form/checkbox',
-        desc: `Calendar 설명 <span></span>`
+        desc: `<b>테마, 사이즈별, 그룹화</b> 등이 포함된 표준 Checkbox`
       },
       {
         name: 'Chips',
         link: '/form/chips',
-        desc: `Chips 설명 <span></span>`
+        desc: `<b>키워드, 목록</b> 등 String Array를 관리하기 위한 Chip Group`
       },
       {
         name: 'Color Picker',
@@ -289,3 +289,9 @@ export const STYLE_GUIDE_MENU = [
     ]
   },*/
 ];
+
+export interface menuType {
+  title: string;
+  anchor: string;
+  desc?: string;
+}
