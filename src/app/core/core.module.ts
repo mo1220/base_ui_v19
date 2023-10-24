@@ -47,6 +47,7 @@ import { authLogin, authLogout } from './auth/auth.actions';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { TitleService } from './title/title.service';
 import { MatIconModule } from "@angular/material/icon";
+import { ToastrModule } from 'ngx-toastr';
 
 export {
   TitleService,
@@ -83,35 +84,36 @@ export function HttpLoaderFactory(http: HttpClient) {
       FormsModule,
       MatSnackBarModule,
       MatIconModule,
-        // ToastrModule.forRoot({
-        //     // closeButton: true,
-        //     timeOut: 8000,
-        //     extendedTimeOut: 1500,
-        //     positionClass: 'toast-bottom-right',
-        //     preventDuplicates: true,
-        //     progressBar: true,
-        //     toastClass: 'toast toast-bootstrap-compatibility-fix'
-        // }),
-        // ngrx
-        StoreModule.forRoot(reducers, { metaReducers }),
-        StoreRouterConnectingModule.forRoot(),
-        EffectsModule.forRoot([
-            AuthEffects,
-            SettingsEffects
-        ]),
-        environment.production
-            ? []
-            : StoreDevtoolsModule.instrument({
-                name: 'ENCORE DP'
-            }),
-        // 3rd party
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        })
+      ToastrModule.forRoot({
+          // closeButton: true,
+          timeOut: 8000,
+          extendedTimeOut: 1500,
+          positionClass: 'toast-bottom-right',
+          preventDuplicates: true,
+          progressBar: true,
+          closeButton: true,
+          toastClass: 'toast toast-bootstrap-compatibility-fix'
+      }),
+      // ngrx
+      StoreModule.forRoot(reducers, { metaReducers }),
+      StoreRouterConnectingModule.forRoot(),
+      EffectsModule.forRoot([
+          AuthEffects,
+          SettingsEffects
+      ]),
+      environment.production
+          ? []
+          : StoreDevtoolsModule.instrument({
+              name: 'ENCORE DP'
+          }),
+      // 3rd party
+      TranslateModule.forRoot({
+          loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient]
+          }
+      })
     ],
     declarations: [
       ErrNotificationComponent
@@ -128,9 +130,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       // material
       MatSnackBarModule,
       MatIconModule,
-      // ToastrModule,
       // 3rd party
       TranslateModule,
+      ToastrModule,
       ErrNotificationComponent
     ]
 })

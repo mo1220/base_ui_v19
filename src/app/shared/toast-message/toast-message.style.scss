@@ -1,0 +1,85 @@
+:host {
+  background-color: #FFF;
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 6px;
+  padding: 10px 10px 10px 10px;
+  width: 300px;
+  border-radius: 3px 3px 3px 3px;
+  color: #000;
+  pointer-events: all;
+  cursor: pointer;
+
+}
+
+:host.border-blue{
+  border-top:4px solid #04c4f3;
+}
+:host.border-green{
+  border-top: 4px solid #51d21a;
+}
+:host.border-red{
+  border-top: 4px solid red;
+}
+
+.toast-close-button{
+  color: #999;
+  opacity: 1;
+
+}
+.toast-close-button:hover{
+  color: #02ceff;
+}
+.custom-title{
+  color: #FFF;
+}
+.custom-message {
+  color: #FFFA;
+  font-size: 11px;
+  max-height: 91px;
+  overflow: hidden;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.clip-trace {
+  font-size: 12px;
+  color: #FFFA;
+  position: relative;
+  &-title {
+    margin:8px 0 5px 0;
+    font-weight: 600;
+    font-size: 11px;
+  }
+  &-btn {
+    padding: 0 8px 0 0;
+    line-height: 20px;
+    background-color: #FFF3;
+    color: #FFFD;
+    font-size: 10px;
+    white-space: nowrap;
+    .fa {
+      padding: 0 8px;
+      line-height: 20px;
+      background-color: #FFF3;
+      margin-right: 8px;
+    }
+    &:hover {
+      background-color: #FFF5;
+      color: #FFF;
+    }
+  }
+  &-copy-tooltip {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    font-size: 10px;
+    color:#FFF;
+    background-color: #0006;
+    padding:0 8px;
+    line-height: 16px;
+    border-radius: 3px;
+  }
+}

@@ -47,8 +47,11 @@ import { PipesModule } from './pipes/index'; // Pipe
 import { RouterModule } from '@angular/router';
 import { AsideMenuComponent, AsideMenuItemComponent } from './aside/aside-menu.component'; // Left Menu
 
-import {LaddaModule} from "angular2-ladda";
-import {PopupMessage} from "./popup-message/popup-message";
+import { ToastrModule } from 'ngx-toastr';
+import { LaddaModule } from 'angular2-ladda';
+
+import { PopupMessage } from './popup-message/popup-message';
+import { CustomToastComponent } from './toast-message/toast-message.component';
 
 @NgModule({
   imports: [
@@ -98,17 +101,19 @@ import {PopupMessage} from "./popup-message/popup-message";
 
     PipesModule,
     RouterModule,
+    ToastrModule,
     LaddaModule.forRoot({
       style: 'zoom-out',
       spinnerSize: 20,
       spinnerColor: 'white',
-      spinnerLines: 12
+      spinnerLines: 36
     }),
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
     AsideMenuItemComponent, // Left Menu Item
     PopupMessage, // Popup Message
+    CustomToastComponent,
   ],
   exports: [
     CommonModule,
@@ -164,9 +169,11 @@ import {PopupMessage} from "./popup-message/popup-message";
     AsideMenuComponent,
     AsideMenuItemComponent,
     PopupMessage,
+    CustomToastComponent,
 
     //3rd Party
-    LaddaModule
+    LaddaModule,
+    ToastrModule,
   ],
   providers: [],
 })

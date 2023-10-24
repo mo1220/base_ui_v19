@@ -32,7 +32,7 @@
       <div class="alert alert-primary" role="alert">
         A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
       </div>
-      <h5>추가적인 내용이 있을대</h5>
+      <h5>추가적인 내용이 있을때</h5>
       <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Well done!</h4>
         <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
@@ -74,18 +74,12 @@
     <h3 #anchor #toastMessage>Toast Message</h3>
     <p> API 결과 등 상태 알림 메세지</p>
     <div class="style-guide-example">
-      <button class="btn btn-outline-success" (click)="msgBox('success')">Success</button>
-      <button class="btn btn-outline-info" (click)="msgBox('info')">Info</button>
-      <button class="btn btn-outline-warning" (click)="msgBox('warning')">Warning</button>
-      <button class="btn btn-outline-danger" (click)="msgBox('error')">Error</button>
+      <button class="btn btn-outline-success" (click)="toastMsgBox('success')">Success</button>
+      <button class="btn btn-outline-info" (click)="toastMsgBox('info')">Info</button>
+      <button class="btn btn-outline-warning" (click)="toastMsgBox('warning')">Warning</button>
+      <button class="btn btn-outline-danger" (click)="toastMsgBox('error')">Error</button>
     </div>
   </div>
-  <div class="aside-menu-right">
-    <ul>
-      <li *ngFor="let menu of buttonMenu; let i=index;" (click)="onAnchor(i)"
-          [class.active]="activeNum === i">
-        {{ menu.title }}
-      </li>
-    </ul>
-  </div>
+  <aside-menu-right [menu]="buttonMenu"
+                    [anchor]="anchors"></aside-menu-right>
 </div>
