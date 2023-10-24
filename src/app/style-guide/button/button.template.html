@@ -292,12 +292,6 @@
     </div>
 
   </div>
-  <div class="aside-menu-right">
-    <ul>
-      <li *ngFor="let menu of buttonMenu; let i=index;" (click)="onAnchor(i)"
-          [class.active]="activeNum === i">
-        {{ menu.title }}
-      </li>
-    </ul>
-  </div>
+  <aside-menu-right [menu]="buttonMenu"
+                    [anchor]="anchors"></aside-menu-right>
 </div>

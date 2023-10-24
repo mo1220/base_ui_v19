@@ -11,12 +11,7 @@ import {
 } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {Router} from '@angular/router';
-
-export interface btnMenuType {
-  title: string;
-  anchor: string;
-  desc: string;
-}
+import {menuType} from "../style-guide.models";
 
 /**
  * @class StyleGuideButtonComponent *
@@ -37,9 +32,8 @@ export class StyleGuideButtonComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('contentWrap') contentWrap: ElementRef;
   @ViewChildren('anchor') anchors: QueryList<ElementRef>;
-  scrolling = false;
 
-  buttonMenu: Array<btnMenuType> = [
+  buttonMenu: Array<menuType> = [
     {
       title: 'Basic',
       anchor: 'basic',
@@ -108,34 +102,4 @@ export class StyleGuideButtonComponent implements AfterViewInit, OnDestroy {
     }, 3000)
   }
 
-  onAnchor(activeIdx: number){
-    this.scrolling = true;
-    this.activeNum = activeIdx;
-    const targetY = this.anchors.get(activeIdx)?.nativeElement?.offsetTop;
-    window.scrollTo({left: 0, top: targetY, behavior: 'smooth'});
-  }
-
-  contentScroll(scrollTop: number): void{
-    if (!this.scrolling) {
-      for(let i=0; i<this.buttonMenu.length-1; i++){
-        const from = this.anchors.get(i)?.nativeElement.offsetTop - 50;
-        const to = this.anchors.get(i+1)?.nativeElement.offsetTop - 50;
-        if(scrollTop < to && scrollTop > from){
-          this.activeNum = i;
-          break;
-        }
-      }
-    }
-  }
-
-  @HostListener('window:scroll', ['$event']) // for window scroll events
-  onWindowScroll(event: any) {
-    event.stopPropagation();
-    this.contentScroll(window.scrollY);
-  }
-  @HostListener('window:scrollend', ['$event']) // for window scroll events
-  onWindowScrollEnd(event: any) {
-    event.stopPropagation();
-    this.scrolling = false;
-  }
 }

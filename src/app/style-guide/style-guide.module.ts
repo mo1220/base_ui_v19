@@ -49,10 +49,14 @@ import { StyleGuideDividerComponent } from './panel/Divider.component';
 import { StyleGuideSplitterComponent } from './panel/Splitter.component';
 // typography
 import { StyleGuideTypographyComponent } from './typography/typography.component';
+import {AsideMenuRightComponent} from "./aside-menu-right/aside-menu-right.component";
 
 
 @NgModule({
   declarations: [
+    // 공통
+    AsideMenuRightComponent,
+
     StyleGuideComponent,
     // Infomation
     StyleGuideInfomationComponent,

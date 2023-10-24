@@ -18,7 +18,7 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Calendar',
         link: '/form/calendar',
-        desc: `날짜 혹은 시간 선택을 위한 Calendar`
+        desc: `<b>날짜</b> 혹은 <b>시간</b> 선택을 위한 Calendar`
       },
       {
         name: 'Checkbox',
@@ -28,7 +28,7 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Chips',
         link: '/form/chips',
-        desc: `Chips 설명 <span></span>`
+        desc: `<b>키워드, 목록</b> 등 String Array를 관리하기 위한 Chip Group`
       },
       {
         name: 'Color Picker',
@@ -289,3 +289,9 @@ export const STYLE_GUIDE_MENU = [
     ]
   },*/
 ];
+
+export interface menuType {
+  title: string;
+  anchor: string;
+  desc?: string;
+}

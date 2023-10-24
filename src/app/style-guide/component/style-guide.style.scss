@@ -81,31 +81,3 @@
   flex: 1;
   padding-right: 20px;
 }
-.aside-menu-right {
-  width: 300px;
-  border-left: 1px solid #ddd;
-  padding: 10px 15px;
-  ul {
-    position: sticky;
-    top: 60px;
-    li {
-      cursor: pointer;
-      font-size: $default-font-size;
-      margin-bottom: 8px;
-      &.active{
-        position: relative;
-        color: $primary;
-        &:before{
-          content: '';
-          display: block;
-          border-left: 3px solid #007bff;
-          position: absolute;
-          left: -16px;
-          top: 0;
-          //width: 5px;
-          height: 100%;
-        }
-      }
-    }
-  }
-}

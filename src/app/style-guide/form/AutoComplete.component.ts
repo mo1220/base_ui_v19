@@ -13,12 +13,7 @@ import * as events from "events";
 import {FormControl} from "@angular/forms";
 import {Observable, startWith} from "rxjs";
 import {map} from "rxjs/operators";
-
-export interface menuType {
-  title: string;
-  anchor: string;
-  desc?: string;
-}
+import {menuType} from "../style-guide.models";
 
 /**
  * @class StyleGuideButtonComponent *
@@ -32,9 +27,7 @@ export class StyleGuideAutoComplateComponent implements AfterViewInit, OnDestroy
 
   @ViewChild('contentWrap') contentWrap: ElementRef;
   @ViewChildren('anchor') anchors: QueryList<ElementRef>;
-  scrolling = false;
-  activeNum = 0;
-  menu: Array<menuType> = [
+  autocompleteMenu: Array<menuType> = [
     {
       title: 'Basic',
       anchor: 'basic',
@@ -78,35 +71,4 @@ export class StyleGuideAutoComplateComponent implements AfterViewInit, OnDestroy
 
   ngOnDestroy(): void { }
 
-
-  onAnchor(activeIdx: number){
-    this.scrolling = true;
-    this.activeNum = activeIdx;
-    const targetY = this.anchors.get(activeIdx)?.nativeElement?.offsetTop;
-    window.scrollTo({left: 0, top: targetY, behavior: 'smooth'});
-  }
-
-  contentScroll(scrollTop: number): void{
-    if (!this.scrolling) {
-      for(let i=0; i<this.menu.length-1; i++){
-        const from = this.anchors.get(i)?.nativeElement.offsetTop - 50;
-        const to = this.anchors.get(i+1)?.nativeElement.offsetTop - 50;
-        if(scrollTop < to && scrollTop > from){
-          this.activeNum = i;
-          break;
-        }
-      }
-    }
-  }
-
-  @HostListener('window:scroll', ['$event']) // for window scroll events
-  onWindowScroll(event: any) {
-    event.stopPropagation();
-    this.contentScroll(window.scrollY);
-  }
-  @HostListener('window:scrollend', ['$event']) // for window scroll events
-  onWindowScrollEnd(event: any) {
-    event.stopPropagation();
-    this.scrolling = false;
-  }
 }
