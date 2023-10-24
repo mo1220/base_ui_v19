@@ -304,6 +304,8 @@ label.btn-split {
   color: $btn-primary-color !important;
 }
 
+
+/**** form ****/
 .form-control {
   font-size: 0.76rem !important;
   &.datepicker {
@@ -313,5 +315,13 @@ label.btn-split {
     }
   }
 }
-
+/**** checkbox ****/
+.checkbox-group {
+  li {
+    margin-left: 10px;
+    &.select-all {
+      margin-left: 0;
+    }
+  }
+}
 

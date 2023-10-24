@@ -55,8 +55,13 @@
     background: #FFF;
     border-radius: 5px;
     margin-bottom: 20px;
+    font-size: 12px;
     h1, h2, h3, h4, h5, h6 {
       margin-bottom: 15px;
+    }
+
+    mat-checkbox {
+      margin-left: 10px;
     }
 
     button{
@@ -68,8 +73,8 @@
 
 .d-flex {
   input {
-    margin-left: 10px;
-    &:first-child { margin: 0;}
+    margin-left: 20px;
+    &:first-child { margin-left: 0;}
   }
 }
 .component-wrap {
