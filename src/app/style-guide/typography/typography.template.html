@@ -1,46 +1,141 @@
-<div>
-  <h3>제목 스타일</h3>
-  <p>
-    제목 스타일 <code class="language-plaintext highlighter-rouge">
-    &lt;h1&gt;&lt;/h1&gt;
-    &lt;h2&gt;&lt;/h2&gt;
-    &lt;h3&gt;&lt;/h3&gt;
-    &lt;h4&gt;&lt;/h4&gt;
-    &lt;h5&gt;&lt;/h5&gt;
-    &lt;h6&gt;&lt;/h6&gt;
-  </code>
-  </p>
-  <div class="style-guide-example">
-    <h1>첫번째 제목 스타일 Font-size: 40px</h1>
-    <h2>두번째 제목 스타일 Font-size: 32px</h2>
-    <h3>세번째 제목 스타일 Font-size: 28px</h3>
-    <h4>네번째 제목 스타일 Font-size: 24px</h4>
-    <h5>다섯번째 제목 스타일 Font-size: 20px</h5>
-    <h6>여섯번째 제목 스타일 Font-size: 16px</h6>
-  </div>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #titleStyle>제목 스타일</h3>
+    <p>
+      제목 스타일 <code class="language-plaintext highlighter-rouge">
+      &lt;h1&gt;&lt;/h1&gt;
+      &lt;h2&gt;&lt;/h2&gt;
+      &lt;h3&gt;&lt;/h3&gt;
+      &lt;h4&gt;&lt;/h4&gt;
+      &lt;h5&gt;&lt;/h5&gt;
+      &lt;h6&gt;&lt;/h6&gt;
+    </code>
+    </p>
+    <div class="style-guide-example">
+      <h1>첫번째 제목 스타일 Font-size: 40px</h1>
+      <h2>두번째 제목 스타일 Font-size: 32px</h2>
+      <h3>세번째 제목 스타일 Font-size: 28px</h3>
+      <h4>네번째 제목 스타일 Font-size: 24px</h4>
+      <h5>다섯번째 제목 스타일 Font-size: 20px</h5>
+      <h6>여섯번째 제목 스타일 Font-size: 16px</h6>
+    </div>
 
-  <h3>설명 스타일</h3>
-  <p>
-    설명 스타일 설명
-  </p>
-  <div class="style-guide-example">
-    <p>설명 예제</p>
-  </div>
+    <h3 #anchor #descStyle>설명 스타일</h3>
+    <p>
+      설명/리스트 스타일 가이드
+    </p>
+    <div class="style-guide-example">
+      <p>
+        Data Tree Typography 설명 단락 입니다. <br />
+        설명은 여러줄 들어갈 수 있습니다. 내용이 길어질 경우 다음 줄로 넘어 갈 수 있습니다.
+      </p>
+      <h5>리스트 기본</h5>
+      <ul class="base-ul">
+        <li>데이터</li>
+        <li>
+          트리
+          <ol class="base-ol">
+            <li>나무1</li>
+            <li>나무2</li>
+            <li>나무3</li>
+          </ol>
+        </li>
+        <li>코리아</li>
+        <li>스튜디오</li>
+        <li>포탈</li>
+      </ul>
+      <hr />
+      <h5>체크박스 아이콘 리스트</h5>
+      <ul class="icon-ul check-circle-o">
+        <li>데이터</li>
+        <li>
+          트리
+          <ol class="base-ol">
+            <li>나무1</li>
+            <li>나무2</li>
+            <li>나무3</li>
+          </ol>
+        </li>
+        <li>코리아</li>
+        <li>스튜디오</li>
+        <li>포탈</li>
+      </ul>
+    </div>
 
-  <h3>가이드 스타일</h3>
-  <p>
-    가이드 스타일 설명
-  </p>
-  <div class="style-guide-example">
-    <p>가이드 예제</p>
-  </div>
+    <h3 #anchor #guideStyle>가이드 스타일</h3>
+    <p>
+      기능 가이드/알림 스타일 설명
+    </p>
+    <div class="style-guide-example">
+      <!-- info, noti, warning,  -->
+      <div class="base-guide">
+        <h5>기본 메세지</h5>
+        <p>
+          페이지에 기능설명이나 가이드가 필요할때 들어갑니다.
+        </p>
+        <ul class="icon-ul check">
+          <li>체크 할 것 1</li>
+          <li>체크 할 것 2</li>
+          <li>체크 할 것 3</li>
+          <li>체크 할 것 4</li>
+        </ul>
+      </div>
+      <div class="base-guide info">
+        <h5>활용 가이드 안내</h5>
+        <p>
+          페이지에 기능설명이나 가이드가 필요할때 들어갑니다.
+        </p>
+        <ul class="icon-ul check">
+          <li>체크 할 것 1</li>
+          <li>체크 할 것 2</li>
+          <li>체크 할 것 3</li>
+          <li>체크 할 것 4</li>
+        </ul>
+      </div>
 
-  <h3>알림 스타일</h3>
-  <p>
-    알림 스타일 설명
-  </p>
-  <div class="style-guide-example">
-    <p>알림 예제</p>
-  </div>
+      <div class="base-guide noti">
+        <h5>기능 알림입니다!</h5>
+        <p>
+          페이지에 기능설명이나 가이드가 필요할때 들어갑니다.
+        </p>
+        <ul class="icon-ul flag">
+          <li>체크 할 것 1</li>
+          <li>체크 할 것 2</li>
+          <li>체크 할 것 3</li>
+          <li>체크 할 것 4</li>
+        </ul>
+      </div>
 
+      <div class="base-guide warning">
+        <h5>주의 사항</h5>
+        <p>
+          페이지에 기능설명이나 가이드가 필요할때 들어갑니다.
+        </p>
+        <ul class="icon-ul exclamation">
+          <li>체크 할 것 1</li>
+          <li>체크 할 것 2</li>
+          <li>체크 할 것 3</li>
+          <li>체크 할 것 4</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 #anchor #alramStyle>알림 스타일</h3>
+    <p>
+      Chart 생성이나 Data Workflow, ML 단계 설정 중 값이 맞지 않아 메세지를 주어야 할 경우 미리 알림 메세지를 주거나 잘못된 입력에 주의를 표시해 준다.
+    </p>
+    <div class="style-guide-example">
+      <p>상태별 메세지 예시</p>
+      <div class="msg info">아이디를 입력해 주세요.</div>
+      <div class="msg warning">아이디는 필수 입력값입니다.</div>
+      <div class="msg error">처리중 오류가 발생했습니다.</div>
+    </div>
+  </div>
+  <div class="aside-menu-right">
+    <ul>
+      <li *ngFor="let menu of buttonMenu; let i=index;" (click)="onAnchor(i)" [class.active]="activeNum === i">
+        {{ menu.title }}
+      </li>
+    </ul>
+  </div>
 </div>
