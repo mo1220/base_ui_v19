@@ -46,7 +46,7 @@ export class StyleGuideTypographyComponent implements AfterViewInit, OnDestroy {
       anchor: 'alramStyle',
       desc: '알림 스타일 설명'
     }
-  ]
+  ];
   constructor(
     private translate: TranslateService,
     private router: Router

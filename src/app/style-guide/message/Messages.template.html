@@ -1,10 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #alertMessage>Alert Message</h3>
+    <p> Alert Form 값 Validation Check 시 메세지 등</p>
+    <div class="style-guide-example">
+      <h5>일반</h5>
+      <div class="alert alert-primary" role="alert">
+        A simple primary alert—check it out!
+      </div>
+      <div class="alert alert-secondary" role="alert">
+        A simple secondary alert—check it out!
+      </div>
+      <div class="alert alert-success" role="alert">
+        A simple success alert—check it out!
+      </div>
+      <div class="alert alert-danger" role="alert">
+        A simple danger alert—check it out!
+      </div>
+      <div class="alert alert-warning" role="alert">
+        A simple warning alert—check it out!
+      </div>
+      <div class="alert alert-info" role="alert">
+        A simple info alert—check it out!
+      </div>
+      <div class="alert alert-light" role="alert">
+        A simple light alert—check it out!
+      </div>
+      <div class="alert alert-dark" role="alert">
+        A simple dark alert—check it out!
+      </div>
+      <h5>메세지 내 링크</h5>
+      <div class="alert alert-primary" role="alert">
+        A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+      </div>
+      <h5>추가적인 내용이 있을대</h5>
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Well done!</h4>
+        <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+        <hr>
+        <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+      </div>
+      <h5>아이콘 적용시</h5>
+      <div class="alert alert-danger" role="alert">
+        <i class="fa fa-exclamation-triangle alert-icon"></i>
+        A simple danger alert—check it out!
+      </div>
+      <h5>닫기 버튼</h5>
+      <div class="alert alert-warning alert-dismissible fade"
+           [class.show]="alertActive"
+           role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <button class="btn-close" (click)="alertActive = !alertActive"></button>
+      </div>
+    </div>
 
-</body>
-</html>
+    <h3 #anchor #popupMessage>Popup Message</h3>
+    <p> Popup Message 는 창을 덮어 메세지를 먼저 보여줘야 할때 표시</p>
+    <div class="style-guide-example">
+      <button class="btn btn-outline-success" (click)="openPopup('success')">Success</button>
+      <button class="btn btn-outline-info" (click)="openPopup('info')">Info</button>
+      <button class="btn btn-outline-warning" (click)="openPopup('warning')">Warning</button>
+      <button class="btn btn-outline-danger" (click)="openPopup('error')">Error</button>
+    </div>
+
+    <h3 #anchor #headerToastMessage>Header Toast Message</h3>
+    <p> 상단 알림 메세지</p>
+    <div class="style-guide-example">
+      <button class="btn btn-outline-success" (click)="msgBox('success')">Success</button>
+      <button class="btn btn-outline-info" (click)="msgBox('info')">Info</button>
+      <button class="btn btn-outline-warning" (click)="msgBox('warning')">Warning</button>
+      <button class="btn btn-outline-danger" (click)="msgBox('error')">Error</button>
+    </div>
+
+    <h3 #anchor #toastMessage>Toast Message</h3>
+    <p> API 결과 등 상태 알림 메세지</p>
+    <div class="style-guide-example">
+      <button class="btn btn-outline-success" (click)="msgBox('success')">Success</button>
+      <button class="btn btn-outline-info" (click)="msgBox('info')">Info</button>
+      <button class="btn btn-outline-warning" (click)="msgBox('warning')">Warning</button>
+      <button class="btn btn-outline-danger" (click)="msgBox('error')">Error</button>
+    </div>
+  </div>
+  <div class="aside-menu-right">
+    <ul>
+      <li *ngFor="let menu of buttonMenu; let i=index;" (click)="onAnchor(i)"
+          [class.active]="activeNum === i">
+        {{ menu.title }}
+      </li>
+    </ul>
+  </div>
+</div>

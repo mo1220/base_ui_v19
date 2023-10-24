@@ -1,0 +1,55 @@
+@import "../../../styles-variables";
+
+.popup-message {
+  &-wrap {
+    text-align: center;
+    padding: 30px 25px !important;
+    margin:0;
+  }
+
+  &-icon {
+    margin-bottom: 15px;
+    &.success {
+      color: $success;
+    }
+    &.info {
+      color: $info;
+    }
+    &.warning {
+      color: $warning;
+    }
+    &.error {
+      color: $danger;
+    }
+  }
+
+  &-title {
+    font-size: 24px;
+    color: #333;
+    word-break: keep-all;
+  }
+
+  &-content {
+    color: #999;
+    word-break: keep-all;
+    font-size: 14px;
+  }
+
+  &-btn {
+    padding: 0 !important;
+    display: flex;
+    border-top: 1px solid #CCC;
+    /*min-height: 0;*/
+    .mdc-button {
+      flex:1;
+      border-radius: 0;
+      height: 52px !important;
+      line-height: 52px;
+      margin: 0 !important;
+      font-size: 14px;
+      &:first-child {
+        border-right: 1px solid #DDD;
+      }
+    }
+  }
+}

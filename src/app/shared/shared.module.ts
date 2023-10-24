@@ -48,6 +48,7 @@ import { RouterModule } from '@angular/router';
 import { AsideMenuComponent, AsideMenuItemComponent } from './aside/aside-menu.component'; // Left Menu
 
 import {LaddaModule} from "angular2-ladda";
+import {PopupMessage} from "./popup-message/popup-message";
 
 @NgModule({
   imports: [
@@ -106,7 +107,8 @@ import {LaddaModule} from "angular2-ladda";
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
-    AsideMenuItemComponent // Left Menu Item
+    AsideMenuItemComponent, // Left Menu Item
+    PopupMessage, // Popup Message
   ],
   exports: [
     CommonModule,
@@ -161,7 +163,9 @@ import {LaddaModule} from "angular2-ladda";
     // Shared Component
     AsideMenuComponent,
     AsideMenuItemComponent,
+    PopupMessage,
 
+    //3rd Party
     LaddaModule
   ],
   providers: [],
