@@ -32,7 +32,6 @@ export class StyleGuideButtonComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('contentWrap') contentWrap: ElementRef;
   @ViewChildren('anchor') anchors: QueryList<ElementRef>;
-
   buttonMenu: Array<menuType> = [
     {
       title: 'Basic',

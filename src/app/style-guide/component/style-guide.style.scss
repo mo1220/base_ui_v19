@@ -68,6 +68,11 @@
       margin-bottom: 5px;
       margin-right: 7px !important;
     }
+
+    .chips {
+      margin-bottom: 10px;
+      &:last-child { margin:  0}
+    }
   }
 }
 
