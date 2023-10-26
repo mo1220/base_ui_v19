@@ -50,6 +50,7 @@ ButtonsModule,
 
 // Quill Editor
 @import '~quill/dist/quill.snow.css';
+@import "quill-emoji/dist/quill-emoji.css";
 
 * {
   font-family: $default-font;

@@ -13,6 +13,7 @@ import { EditorChangeContent, EditorChangeSelection } from 'ngx-quill';
 import Quill from 'quill';
 import 'quill-emoji/dist/quill-emoji.js'
 
+// TODO ImageResize type 에러 나는 거 해결
 // import { ImageResize } from 'quill-image-resize-module';
 // Quill.register('modules/imageResize', ImageResize);
 
@@ -40,8 +41,18 @@ export class StyleGuideEditorComponent implements AfterViewInit, OnDestroy {
   editor: any;
   buttonMenu: any = [
     {
-      title: '기본',
+      title: 'Html Editor(Quill)',
       anchor: 'basicHtmlEditor',
+      desc: 'Quill Editor',
+    },
+    {
+      title: 'Html Viewer(Quill)',
+      anchor: 'basicHtmlViewer',
+      desc: 'Quill Editor',
+    },
+    {
+      title: 'Code Editor(Ace Editor)',
+      anchor: 'basicCodeEditor',
       desc: 'Quill Editor',
     }
   ];
@@ -125,9 +136,9 @@ export class StyleGuideEditorComponent implements AfterViewInit, OnDestroy {
 
   focus($event: any) {
     // tslint:disable-next-line:no-console
-    console.log('focus', $event)
-    this.focused = true
-    this.blurred = false
+    console.log('focus', $event);
+    this.focused = true;
+    this.blurred = false;
   }
   nativeFocus($event: any) {
     // tslint:disable-next-line:no-console
@@ -137,12 +148,12 @@ export class StyleGuideEditorComponent implements AfterViewInit, OnDestroy {
   blur($event: any) {
     // tslint:disable-next-line:no-console
     console.log('blur', $event)
-    this.focused = false
-    this.blurred = true
+    this.focused = false;
+    this.blurred = true;
   }
   nativeBlur($event: any) {
     // tslint:disable-next-line:no-console
-    console.log('native-blur', $event)
+    console.log('native-blur', $event);
   }
 
   ngAfterViewInit(): void {
