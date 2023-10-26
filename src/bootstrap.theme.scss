@@ -1,5 +1,18 @@
 @import "styles-variables";
 
+// Alert Message
+$alert-padding-y: .5rem;          //    $spacer; <-- 1rem
+$alert-padding-x: 1rem;          //    $spacer;<-- 1rem
+$alert-margin-bottom:           1rem;
+//$alert-border-radius:           $border-radius;
+//$alert-link-font-weight:        $font-weight-bold;
+//$alert-border-width:            $border-width;
+//$alert-bg-scale:                -80%;
+//$alert-border-scale:            -70%;
+//$alert-color-scale:             40%;
+//$alert-dismissible-padding-r:   $alert-padding-x * 3; // 3x covers width of x plus default padding on either side
+
+
 $btn-primary-color: #FFF !default;
 $btn-font-family: 'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
 $btn-font-size: .75rem !default;
@@ -42,7 +55,27 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
 //$btn-focus-width:             $input-btn-focus-width;
 //$btn-focus-box-shadow:        $input-btn-focus-box-shadow;
 //$btn-disabled-opacity:        .65;
-
+.alert {
+  font-size: 12px;
+  border-left-width: 5px !important;
+  .alert-icon {
+    margin-right: 8px;
+  }
+  .btn-close {
+    top: 3px !important;
+    padding: $btn-padding !important;
+    margin-right: 0 !important;
+    margin-bottom: 0;
+  }
+}
+.alert-dismissible {
+  .btn-close {
+    top: 3px !important;
+    padding: $btn-padding !important;
+    margin-right: 0 !important;
+    margin-bottom: 0;
+  }
+}
 
 .btn {
   border-radius: $border-radius;
@@ -330,7 +363,7 @@ label.btn-split {
   }
 
   &.datepicker {
-    width: 280px;
+    /*width: 280px;*/
     &-range {
       width: 558px;
     }

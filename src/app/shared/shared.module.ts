@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 // Angular Material
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkMenuModule } from '@angular/cdk/menu';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -47,7 +48,11 @@ import { PipesModule } from './pipes/index'; // Pipe
 import { RouterModule } from '@angular/router';
 import { AsideMenuComponent, AsideMenuItemComponent } from './aside/aside-menu.component'; // Left Menu
 
-import {LaddaModule} from "angular2-ladda";
+import { ToastrModule } from 'ngx-toastr';
+import { LaddaModule } from 'angular2-ladda';
+
+import { PopupMessage } from './popup-message/popup-message';
+import { CustomToastComponent } from './toast-message/toast-message.component';
 
 @NgModule({
   imports: [
@@ -58,6 +63,7 @@ import {LaddaModule} from "angular2-ladda";
 
     // Angular Material
     DragDropModule,
+    CdkMenuModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatTabsModule,
@@ -97,16 +103,19 @@ import {LaddaModule} from "angular2-ladda";
 
     PipesModule,
     RouterModule,
+    ToastrModule,
     LaddaModule.forRoot({
       style: 'zoom-out',
       spinnerSize: 20,
       spinnerColor: 'white',
-      spinnerLines: 12
+      spinnerLines: 36
     }),
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
-    AsideMenuItemComponent // Left Menu Item
+    AsideMenuItemComponent, // Left Menu Item
+    PopupMessage, // Popup Message
+    CustomToastComponent,
   ],
   exports: [
     CommonModule,
@@ -116,6 +125,7 @@ import {LaddaModule} from "angular2-ladda";
     TranslateModule,
 
     DragDropModule,
+    CdkMenuModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatMenuModule,
@@ -161,8 +171,12 @@ import {LaddaModule} from "angular2-ladda";
     // Shared Component
     AsideMenuComponent,
     AsideMenuItemComponent,
+    PopupMessage,
+    CustomToastComponent,
 
-    LaddaModule
+    //3rd Party
+    LaddaModule,
+    ToastrModule,
   ],
   providers: [],
 })

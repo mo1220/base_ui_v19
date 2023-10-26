@@ -80,8 +80,7 @@ export class NotificationService {
 
   warn(message: string, classStr?: any) {
     let path = this.location.path();
-    // TODO SK-login 빼기
-    const is_login_page = ['/logindataportal', '/ssoLoginError', '/logout', '/sk-login'].includes(path);
+    const is_login_page = ['/logindataportal', '/ssoLoginError', '/logout'].includes(path);
     let classes = is_login_page ? ['warning-notification-overlay', 'panel-top-mg'] : 'warning-notification-overlay';
     this.show(message, {
       duration: 2500,
@@ -90,6 +89,16 @@ export class NotificationService {
     });
   }
 
+  warning(message: string, classStr?: any) {
+    let path = this.location.path();
+    const is_login_page = ['/logindataportal', '/ssoLoginError', '/logout'].includes(path);
+    let classes = is_login_page ? ['warning-notification-overlay', 'panel-top-mg'] : 'warning-notification-overlay';
+    this.show(message, {
+      duration: 2500,
+      verticalPosition: 'top',
+      panelClass: classStr ? classStr : classes//'warning-notification-overlay'
+    });
+  }
   msgInvertal: any;
   error(message: string, err?: any) {
     let isAuthErr:boolean = false;

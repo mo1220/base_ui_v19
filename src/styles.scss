@@ -36,8 +36,20 @@ CollapseModule,
 ButtonsModule,
 */
 
-@import "node_modules/bootstrap/scss/bootstrap";
-@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/ngx-bootstrap/datepicker/bs-datepicker';
+
+@import 'ngx-toastr/toastr';
+
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+// 부스트랩 5
+@import 'ngx-toastr/toastr-bs5-alert';
+
+
+
 
 * {
   font-family: $default-font;
@@ -833,6 +845,162 @@ input[type="radio"].mgr:checked:before {
   }
 }
 /****************************** EN: Mat-checkbox *************************************************/
+
+/******************************** ST: Toast Message *******************************************/
+#toast-container {
+  .toast {
+    width: 300px;
+    background-position: 21px 18px;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    padding: 15px 15px 15px 80px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  }
+
+  .toast-close-button {
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  .toast-title {
+    font-size: 1rem;
+    text-transform: capitalize;
+  }
+
+  .toast-message {
+    margin-top: 0;
+    font-size: 12px;
+    padding-right: 0;
+    font-family: $default-font;
+    color: rgba(255, 255, 255, .9) !important;
+    /*font: 12px/1 Menlo,Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;*/
+  }
+
+  .toast-error {
+    background-color: $danger;
+    background-image: url('/assets/icons/error_ico.svg');
+    color: rgba(255, 255, 255, .9) !important;
+  }
+
+  .toast-success:hover {
+    background-color: $success;
+  }
+
+  .toast-info {
+    background-color: $info;
+    background-image: url('/assets/icons/info_ico.svg');
+    color: rgba(255, 255, 255, .9) !important;
+  }
+
+  .toast-success {
+    background-color: $success;
+    background-image: url('/assets/icons/success_ico.svg');
+    color: rgba(255, 255, 255, .9) !important;
+  }
+
+  .toast-warning {
+    background-color: $warning;
+    background-image: url('/assets/icons/warning_ico.svg');
+    color: rgba(255, 255, 255, .9) !important;
+  }
+}
+
+.toast-bottom-full-width,
+.toast-bottom-right {
+  bottom: 43px;
+}
+
+.toast-bottom-full-width {
+  .toast-error {
+    display: flex;
+    background-position: 15px 11px !important;
+
+    .toast-title {
+      font-size: 16px !important;
+      text-transform: capitalize;
+      padding-right: 10px !important;
+    }
+
+    .toast-message {
+      margin-top: 7px !important;
+      font-size: 12px !important;
+      padding-right: 0;
+      font: 12px/1 Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    }
+  }
+}
+
+.toast-bootstrap-compatibility-fix {
+  opacity: 1;
+}
+/******************************** EN: Toast Message *******************************************/
+
+
+/********************************* ST: CDK Context Menu *****************************/
+
+.context-menu {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 180px;
+  max-width: 280px;
+  background-color: rgb(255, 255, 255);
+  padding: 6px 0;
+  box-shadow: $box-shadow;
+  hr {
+    margin: 0;
+  }
+  &-item {
+    background-color: transparent;
+    cursor: pointer;
+    border: none !important;
+
+    user-select: none;
+    min-width: 64px;
+    line-height: 30px;
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex: 1;
+    font-size: 12px;
+    position: relative;
+    .mat-icon {
+      position: relative;
+      left: -8px;
+      color: #888;
+    }
+    &.cdk-menu-trigger {
+      &:after {
+        content: '\f0da';
+        font-family: FontAwesome;
+        display: block;
+        position: absolute;
+        top:0;
+        right: 5px;
+        color: #999;
+      }
+    }
+    &:focus-visible {
+      border: none !important;
+      border-image-width: 0 !important;
+      border-width: 0;
+    }
+    &:hover {
+      background-color: rgba(0,0,0, 0.05);
+    }
+    &:active {
+      border: none;
+      background-color: $primary;
+      color: #FFF;
+    }
+  }
+}
+
+
+/********************************* EN: CDK Context Menu *****************************/
 
 /****************************** ST: Mat-chips *************************************************/
 .chips {

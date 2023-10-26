@@ -130,7 +130,7 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
     const url = _.cloneDeep(this._currentUrls);
     url.shift();
     this.currentUrl = '/' + url.join('/');
-    console.log(this.currentUrl);
+    // console.log(this.currentUrl);
   }
 
   label:string = '';
@@ -158,7 +158,7 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
     // }
   }
   selectValue(e: any) {
-    console.log(e);
+    // console.log(e);
     if(e.children && e.children.length > 0) {
       e.active = !e.active;
     } else {

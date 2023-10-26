@@ -1,0 +1,20 @@
+<div mat-dialog-content class="popup-message-wrap"
+     cdkDrag
+     cdkDragRootElement=".cdk-overlay-pane"
+     cdkDragHandle>
+  <mat-icon class="popup-message-icon md-48"
+            [class]="type" cdkFocusInitial>{{icons[type]}}</mat-icon>
+  <h3 class="popup-message-title">{{data.title}}</h3>
+  <div [innerHTML]="data.txt" class="popup-message-content"></div>
+</div>
+<div mat-dialog-actions class="popup-message-btn">
+  <button mat-button
+          (click)="onSubmit()">
+    {{data.confirmTxt ? data.confirmTxt : 'buttons.ok' | translate}}
+  </button>
+  <button *ngIf="!data.access"
+          mat-button
+          (click)="onCancelClick()">
+    {{data.cancelTxt ? data.cancelTxt : 'buttons.cancel' | translate}}
+  </button>
+</div>
