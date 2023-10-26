@@ -1,0 +1,96 @@
+<h1 mat-dialog-title cdkDrag
+    cdkDragRootElement=".cdk-overlay-pane"
+    cdkDragHandle>
+  <mat-icon class="md-18">storage</mat-icon>
+  컬러 설정
+</h1>
+<button class="dialog-close" mat-button (click)="onNoClick()">
+  <mat-icon>clear</mat-icon>
+</button>
+<div mat-dialog-content>
+  <div class="color-set-wrap">
+    <div class="color-set-content">
+      <!--(navChange)="onNavChange($event)"
+      [(activeId)]="active"-->
+      <tabset>
+        <tab heading="표준">
+          <div class="color-set-standard">
+            <div class="color-set-standard-map">
+              <div class="color-set-standard-img">
+                <img [src]="'/assets/images/colormap/img_colormap.gif'" alt="color map" usemap="#colormap" />
+                <map name="colormap" id="colormap">
+                  <ng-container *ngFor="let map of colorMap">
+                    <area style="cursor:pointer" shape="poly"
+                          [alt]="map.color"
+                          (click)="selectColor(map, 'color')"
+                          [coords]="map.coords"/>
+                  </ng-container>
+                </map>
+                <div class="color-active-pointer"
+                     *ngIf="activeColor.type === 'color' && activeColor.enabled"
+                     [style.left]="activeColor.position[1] + 'px'"
+                     [style.top]="activeColor.position[0] + 'px'"></div>
+              </div>
+            </div>
+            <div class="color-set-standard-gray">
+              <div class="color-set-standard-gray-white"
+                   [class.active]="color === '#FFFFFF' || color === '#ffffff'"
+                   (click)="selectColor({ color: '#FFFFFF' }, 'BW')">
+                <div class="color-set-standard-gray-inner"></div>
+              </div>
+              <div class="color-set-standard-img">
+                <img [src]="'/assets/images/colormap/img_graymap.gif'"
+                     alt="gray color map"
+                     usemap="#graycolormap" />
+                <map name="graycolormap" id="graycolormap">
+                  <ng-container *ngFor="let map of grayMap">
+                    <area style="cursor:pointer" shape="poly"
+                          [alt]="map.color"
+                          (click)="selectColor(map, 'gray')"
+                          [coords]="map.coords"/>
+                  </ng-container>
+                </map>
+                <div class="color-active-pointer"
+                     *ngIf="activeColor.type === 'gray' && activeColor.enabled"
+                     [style.left]="activeColor.position[1] + 'px'"
+                     [style.top]="activeColor.position[0] + 'px'"></div>
+              </div>
+              <div class="color-set-standard-gray-black"
+                   [class.active]="color === '#000000'"
+                   (click)="selectColor({ color: '#000000' }, 'BW')">
+                <div class="color-set-standard-gray-inner"></div>
+              </div>
+            </div>
+          </div>
+        </tab>
+        <tab heading="사용자 지정">
+          <div class="color-set-user">
+            <color-chrome [color]="color"
+                          class="dtk-color-picker-full"
+                          (onChangeComplete)="changeColor($event)"></color-chrome>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+    <div class="color-set-view">
+      <span>{{color}}</span>
+      <label>변경 색</label>
+      <div class="color-set-view-preview" [style.background-color]="color"></div>
+      <div class="color-set-view-preview" [style.background-color]="data.currentColor"></div>
+      <label>현재 색</label>
+      <span>{{data.currentColor}}</span>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-secondary btn-labeled"
+          (click)="onNoClick()">
+    <span class="btn-label"><i class="fa fa-times"></i></span>
+    {{'buttons.cancel' | translate}}
+  </button>
+  <button class="btn btn-primary btn-labeled"
+          (click)="onSubmit()">
+    <span class="btn-label"><i class="fa fa-check"></i></span>
+    {{'buttons.ok' | translate}}
+  </button>
+</div>

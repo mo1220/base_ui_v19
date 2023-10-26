@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basicColorInput>Basic Color Picker</h3>
+    <p>컬러피커 기본</p>
+    <div class="style-guide-example">
+      <h5>라벨 Input</h5>
+      <div class="form-group">
+        <label>색상 선택</label>
+        <color-input [(color)]="color"
+                     [type]="'all'"
+                     (colorChange)="colorChange($event)"></color-input>
+      </div>
+      <h5>라벨 Select</h5>
+      <div class="form-group">
+        <label>색상 선택</label>
+        <color-input [(color)]="color"
+                     [type]="'all'"
+                     (colorChange)="colorChange($event)"></color-input>
+      </div>
+      <h5>라벨 Icon</h5>
+      <div class="form-group">
+        <label>색상 선택</label>
+        <color-input [(color)]="color"
+                     [type]="'all'"
+                     (colorChange)="colorChange($event)"></color-input>
+      </div>
+      <h5>라벨 Input</h5>
+      <div class="form-group">
+        <label>색상 선택</label>
+        <color-input [(color)]="color"
+                     [type]="'all'"
+                     (colorChange)="colorChange($event)"></color-input>
+      </div>
+    </div>
+    <h3 #anchor #categoryColor>Category Color</h3>
+    <p>차트 카테고리 컬러 설정시</p>
+    <div class="style-guide-example">
+      <category-colors (changeColors)="changeCategoryColors($event)"
+                       [(colors)]="categoryColors"></category-colors>
+    </div>
 
-</body>
-</html>
+    <h3 #anchor #scaleColor>Scale Color</h3>
+    <p>Heatmap, Scatter 같은 차트에 온도차가 필요할 경우</p>
+    <div class="style-guide-example">
+      <colors-scale [gradient]="scaleColors"
+                    [type]="'min_max'"
+                    (gradientChange)="changeScaleColor($event)"></colors-scale>
+    </div>
+  </div>
+  <aside-menu-right [menu]="buttonMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

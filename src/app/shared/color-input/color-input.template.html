@@ -1,0 +1,38 @@
+<div class="input-group" [style.height]="noInput ? '100%' : 'auto'">
+  <input *ngIf="!noInput " class="form-control form-control-sm"
+         [disabled]="disabled"
+         (click)="lobelPopover.toggle()"
+         [(ngModel)]="_color" />
+  <div class="input-group-append">
+    <ng-template #labelColor>
+      <div style="width: 200px;">
+        <ng-container *ngIf="['sketch', 'all'].includes(type)">
+          <color-chrome [color]="_color"
+                        class="dtk-color-picker"
+                        (onChangeComplete)="changeColor($event)"></color-chrome>
+        </ng-container>
+        <ng-container *ngIf="!['sketch'].includes(type)">
+          <color-swatches [width]="200"
+                          class="dtk-color-swatches"
+                          [color]="_color"
+                          (onChange)="changeColor($event); lobelPopover.hide()"></color-swatches>
+          <button matRipple class="other-color-btn" (click)="setColorDialog();">
+            <mat-icon class="md-14" [style.color]="_color">palette</mat-icon>
+            다른 색
+          </button>
+          <button matRipple class="other-color-btn" (click)="setTransparent();">
+            <mat-icon class="md-14">check_box_outline_blank</mat-icon>
+            색 없음
+          </button>
+        </ng-container>
+      </div>
+    </ng-template>
+    <!-- [autoClose]="'outside'" -->
+    <button class="dtk-preview-color"
+          [disabled]="disabled"
+          [popover]="labelColor"
+          #lobelPopover="bs-popover"
+          [container]="'body'"
+          [style.background]="_color"></button>
+  </div>
+</div>

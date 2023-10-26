@@ -358,3 +358,63 @@ label.btn-split {
   }
 }
 
+/**************************** ST: Color Picker ***************************/
+.dtk-color-picker {
+  .sketch-picker {
+    padding:0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    .sketch-wrap {
+      margin: 0 5px 0 0 !important;
+    }
+    .swatch {
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+  }
+  .chrome-picker {
+    box-shadow: none !important;
+    width: 200px !important;
+    border-radius: 0 !important;
+  }
+}
+
+.dtk-color-picker-full {
+  .chrome-picker {
+    box-shadow: none !important;
+    width: 280px !important;
+    border-radius: 0 !important;
+  }
+}
+
+.dtk-color-swatches {
+  .swatches-picker {
+    height: 170px !important;
+  }
+  .zDepth-1 {
+    box-shadow: none !important;
+  }
+  .swatches-overflow {
+    padding: 0 !important;
+    overflow-y: hidden !important;
+    margin-right: -5px;
+    height: 170px !important;
+  }
+  .swatches-group {
+    width: 15px !important;
+    margin-right: 5.5px !important;
+    .swatch {
+      width: 15px !important;
+      height: 15px !important;
+    }
+  }
+  .swatch-check {
+    margin-left: 0 !important;
+    svg {
+      width: 15px !important;
+      height: 15px !important;
+    }
+  }
+}
+/**************************** EN: Color Picker ***************************/

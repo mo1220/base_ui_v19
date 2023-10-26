@@ -1,0 +1,10 @@
+.dtk-preview-color {
+  display: inline-block;
+  width: 28px;
+  border-radius: 0 3px 3px 0;
+  border: 1px solid #ced4da;
+  &:active {
+    border-color: #89a8e8;
+    box-shadow: 0 0 0 0.2rem rgb(39 93 203 / 25%);
+  }
+}
