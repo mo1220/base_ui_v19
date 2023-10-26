@@ -43,10 +43,15 @@ export class StyleGuideChipsComponent implements AfterViewInit, OnDestroy {
     {
       title: 'Dragable',
       anchor: 'drag',
+    },
+    {
+      title: 'Rounded',
+      anchor: 'round',
     }
   ]
+  basicChips = [{name:'chip1', color: 'default'}];
   chipList = [
-    {name: 'Default', color: ''},
+    // {name: 'Default', color: ''},
     {name: 'Primary', color: 'primary'},
     {name: 'Success', color: 'success'},
     {name: 'Info', color: 'info'},
@@ -72,8 +77,18 @@ export class StyleGuideChipsComponent implements AfterViewInit, OnDestroy {
     moveItemInArray(this.chipList, event.previousIndex, event.currentIndex);
   }
 
-  add(event: MatChipInputEvent): void {
+  add(event: MatChipInputEvent, type?: string): void {
     console.log(event);
+    if(type && type === 'basic') {
+      const value = { name: (event.value || '').trim(), color: (event.value || '').trim() };
+      if (value) {
+        this.basicChips.push(value);
+        // Clear the input value
+        event.chipInput!.clear();
+      }
+      return;
+    }
+
     const value = { name: (event.value || '').trim(), color: (event.value || '').trim() };
 
     // Add our keyword

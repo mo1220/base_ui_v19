@@ -7,7 +7,8 @@ import {
   OnInit,
   Output, QueryList,
   SimpleChanges, ViewChild, ViewChildren,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectorRef
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
@@ -22,18 +23,27 @@ import {menuType} from "../style-guide.models";
 export class AsideMenuRightComponent implements OnInit {
   @Input() anchor: QueryList<ElementRef>;
   @Input() menu: Array<menuType>;
+  _menu: Array<menuType>;
 
   scrolling = false;
   activeNum = 0;
 
   constructor(
-    private translate: TranslateService
+    private translate: TranslateService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
 
   }
 
   ngOnInit() {
+    this._menu = [...this.menu];
+  }
 
+  ngAfterViewInit() : void {
+
+    this.changeDetectorRef.detectChanges();
+  }
+  ngAfterViewChecked(): void {
   }
 
   onAnchor(activeIdx: number){

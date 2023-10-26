@@ -306,8 +306,29 @@ label.btn-split {
 
 
 /**** form ****/
+.form-label {
+  /* form-label min-width min-${size} */
+  @each $size in 10, 20, 30, 40, 50{
+    &.min-#{$size} {
+      min-width: $size + px !important;
+    }
+  }
+}
 .form-control {
-  font-size: 0.76rem !important;
+  //font-size: 0.76rem !important;
+  &-xs {
+    min-height: calc(1.5em + 0.2rem + 2px) !important;
+    padding: 0.15rem 0.35rem !important;
+    font-size: 0.7rem !important;
+    border-radius: 0.1rem !important;
+  }
+  &-xs::file-selector-button, &-xs::-webkit-file-upload-button {
+    padding: 0.15rem 0.35rem;
+    margin: -0.15rem -0.35rem;
+    -webkit-margin-end: 0.35rem;
+    margin-inline-end: 0.35rem;
+  }
+
   &.datepicker {
     width: 280px;
     &-range {

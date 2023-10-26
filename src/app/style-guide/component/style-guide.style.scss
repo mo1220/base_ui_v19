@@ -69,19 +69,13 @@
       margin-right: 7px !important;
     }
 
-    .chips {
-      margin-bottom: 10px;
-      &:last-child { margin:  0}
-    }
+    //.chips {
+    //  margin-bottom: 10px;
+    //  &:last-child { margin:  0}
+    //}
   }
 }
 
-.d-flex {
-  input {
-    margin-left: 20px;
-    &:first-child { margin-left: 0;}
-  }
-}
 .component-wrap {
   flex: 1;
   padding-right: 20px;

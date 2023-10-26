@@ -5,18 +5,18 @@
     </p>
     <div class="style-guide-example">
       <div class="form-control chips">
-        <mat-chip-grid #chipGrid>
-          <mat-chip-row *ngFor="let chip of chipList"
-                        [color]="chip.color || 'default'"
+        <mat-chip-grid #chipGrid1>
+          <mat-chip-row *ngFor="let chip of basicChips"
+                        [color]="chip.color"
                         (removed)="removeChip(chip)">
             {{chip.name}}
             <button matChipRemove><mat-icon>cancel</mat-icon></button>
           </mat-chip-row>
           <input class="form-control"
                  [placeholder]="'placeholder.chips_placeholder' | translate"
-                 [matChipInputFor]="chipGrid"
+                 [matChipInputFor]="chipGrid1"
                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                 (matChipInputTokenEnd)="add($event)"/>
+                 (matChipInputTokenEnd)="add($event, 'basic')"/>
         </mat-chip-grid>
       </div>
     </div>
@@ -24,58 +24,69 @@
     <h3 #anchor #size>Size</h3>
     <p>크기 별 Chips</p>
     <div class="style-guide-example">
-      <div class="form-control chips form-control-sm">
-        <mat-chip-grid #chipGrid>
-          <mat-chip-row *ngFor="let chip of chipList"
-                        [color]="chip.color || 'default'"
-                        (removed)="removeChip(chip)">
-            {{chip.name}}
-            <button matChipRemove><mat-icon>cancel</mat-icon></button>
-          </mat-chip-row>
-          <input class="form-control"
-                 [placeholder]="'small'"
-                 [matChipInputFor]="chipGrid"
-                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                 (matChipInputTokenEnd)="add($event)"/>
-        </mat-chip-grid>
+      <div class="d-flex">
+        <input class="form-control form-control-xs" placeholder="form-control-xs" style="width: 300px;">
+        <div class="form-control chips form-control-xs">
+          <mat-chip-grid #chipGrid2>
+            <mat-chip-row *ngFor="let chip of chipList"
+                          [color]="chip.color"
+                          (removed)="removeChip(chip)">
+              {{chip.name}}
+              <button matChipRemove><mat-icon>cancel</mat-icon></button>
+            </mat-chip-row>
+            <input class="form-control"
+                   [placeholder]="'Xsmall'"
+                   [matChipInputFor]="chipGrid2"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   (matChipInputTokenEnd)="add($event)"/>
+          </mat-chip-grid>
+        </div>
       </div>
-      <div class="form-control chips">
-        <mat-chip-grid #chipGrid>
-          <mat-chip-row *ngFor="let chip of chipList"
-                        [color]="chip.color || 'default'"
-                        (removed)="removeChip(chip)">
-            {{chip.name}}
-            <button matChipRemove><mat-icon>cancel</mat-icon></button>
-          </mat-chip-row>
-          <input class="form-control"
-                 [placeholder]="'default'"
-                 [matChipInputFor]="chipGrid"
-                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                 (matChipInputTokenEnd)="add($event)"/>
-        </mat-chip-grid>
+
+      <div class="d-flex">
+        <input class="form-control form-control-sm" placeholder="form-control-sm" style="width: 300px;">
+        <div class="form-control chips form-control-sm">
+          <mat-chip-grid #chipGrid3>
+            <mat-chip-row *ngFor="let chip of chipList"
+                          [color]="chip.color"
+                          (removed)="removeChip(chip)">
+              {{chip.name}}
+              <button matChipRemove><mat-icon>cancel</mat-icon></button>
+            </mat-chip-row>
+            <input class="form-control"
+                   [placeholder]="'Small'"
+                   [matChipInputFor]="chipGrid3"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   (matChipInputTokenEnd)="add($event)"/>
+          </mat-chip-grid>
+        </div>
       </div>
-      <div class="form-control chips form-control-lg">
-        <mat-chip-grid #chipGrid>
-          <mat-chip-row *ngFor="let chip of chipList"
-                        [color]="chip.color || 'default'"
-                        (removed)="removeChip(chip)">
-            {{chip.name}}
-            <button matChipRemove><mat-icon>cancel</mat-icon></button>
-          </mat-chip-row>
-          <input class="form-control"
-                 [placeholder]="'large'"
-                 [matChipInputFor]="chipGrid"
-                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                 (matChipInputTokenEnd)="add($event)"/>
-        </mat-chip-grid>
+
+      <div class="d-flex">
+        <input class="form-control" placeholder="form-control"  style="width: 300px;">
+        <div class="form-control chips">
+          <mat-chip-grid #chipGrid4>
+            <mat-chip-row *ngFor="let chip of chipList"
+                          [color]="chip.color"
+                          (removed)="removeChip(chip)">
+              {{chip.name}}
+              <button matChipRemove><mat-icon>cancel</mat-icon></button>
+            </mat-chip-row>
+            <input class="form-control"
+                   [placeholder]="'Default'"
+                   [matChipInputFor]="chipGrid4"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   (matChipInputTokenEnd)="add($event)"/>
+          </mat-chip-grid>
+        </div>
       </div>
     </div>
 
     <h3 #anchor #editable>Editable</h3>
     <p>더블클릭 하여 수정 가능</p>
     <div class="style-guide-example">
-      <div class="form-control chips">
-        <mat-chip-grid #chipGrid>
+      <div class="form-control chips form-control-sm">
+        <mat-chip-grid #chipGrid6>
           <mat-chip-row *ngFor="let chip of chipList"
                            [editable]="true"
                            (edited)="edit(chip, $event)"
@@ -84,31 +95,83 @@
             {{chip.name}}
             <button matChipRemove><mat-icon>cancel</mat-icon></button>
           </mat-chip-row>
+          <input class="form-control"
+                 [placeholder]="'placeholder.chips_placeholder' | translate"
+                 [matChipInputFor]="chipGrid6"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 (matChipInputTokenEnd)="add($event)"/>
         </mat-chip-grid>
       </div>
+
+      <code>Chip List = {{chipList | json}}</code>
     </div>
 
     <h3 #anchor #drag>Dragable</h3>
     <p>Drag하여 chip 순서 변경 가능</p>
     <div class="style-guide-example">
-      <div class="form-control chips">
-        <mat-chip-grid #chipGrid
+      <div class="form-control chips form-control-sm">
+        <mat-chip-grid #chipGrid7
                        cdkDropList
                        cdkDropListOrientation="horizontal"
                        (cdkDropListDropped)="drop($event)">
           <mat-chip-row *ngFor="let chip of chipList"
-                        [color]="chip.color || 'default'"
+                        [color]="chip.color"
                         cdkDrag
                         (removed)="removeChip(chip)">
             {{chip.name}}
           </mat-chip-row>
           <input class="form-control"
                  [placeholder]="'placeholder.chips_placeholder' | translate"
-                 [matChipInputFor]="chipGrid"
+                 [matChipInputFor]="chipGrid7"
                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                  (matChipInputTokenEnd)="add($event)"/>
         </mat-chip-grid>
       </div>
+    </div>
+
+    <h3 #anchor #round>Rounded</h3>
+    <p>라운드 chips</p>
+    <div class="form-control chips form-control-sm">
+      <mat-chip-grid #chipGrid8
+                     cdkDropList
+                     cdkDropListOrientation="horizontal"
+                     (cdkDropListDropped)="drop($event)">
+        <mat-chip-row *ngFor="let chip of basicChips"
+                      [editable]="true"
+                      (edited)="edit(chip, $event)"
+                      [color]="chip.color || 'default'"
+                      (removed)="removeChip(chip)"
+                      cdkDrag>
+          {{chip.name}}
+          <button matChipRemove><mat-icon>cancel</mat-icon></button>
+        </mat-chip-row>
+        <input class="form-control"
+               [placeholder]="'placeholder.chips_placeholder' | translate"
+               [matChipInputFor]="chipGrid8"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               (matChipInputTokenEnd)="add($event)"/>
+      </mat-chip-grid>
+    </div>
+    <div class="form-control chips chips-circle form-control-sm">
+      <mat-chip-grid #chipGrid9
+                     cdkDropList
+                     cdkDropListOrientation="horizontal"
+                     (cdkDropListDropped)="drop($event)">
+        <mat-chip-row *ngFor="let chip of basicChips"
+                      [editable]="true"
+                      (edited)="edit(chip, $event)"
+                      [color]="chip.color || 'default'"
+                      (removed)="removeChip(chip)"
+                      cdkDrag>
+          {{chip.name}}
+          <button matChipRemove><mat-icon>cancel</mat-icon></button>
+        </mat-chip-row>
+        <input class="form-control"
+               [placeholder]="'placeholder.chips_placeholder' | translate"
+               [matChipInputFor]="chipGrid9"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               (matChipInputTokenEnd)="add($event, 'basic')"/>
+      </mat-chip-grid>
     </div>
   </div>
 

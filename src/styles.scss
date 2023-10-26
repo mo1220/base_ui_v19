@@ -393,6 +393,10 @@ ul, ol, dl {
   &.alignC {
     align-items: center;
   }
+  & > * {
+    margin: 0 5px 5px 0;
+    &:last-child { margin-right: 0; }
+  }
 }
 .txt-center{
   text-align: center;
@@ -832,6 +836,8 @@ input[type="radio"].mgr:checked:before {
 
 /****************************** ST: Mat-chips *************************************************/
 .chips {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   //mat-chip color
   .mat-primary, .mat-success, .mat-info, .mat-warning, .mat-danger {
     &.mat-mdc-chip.mdc-evolution-chip--with-trailing-action .mat-mdc-chip-action-label, &.mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--trailing, &.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label {
@@ -858,22 +864,69 @@ input[type="radio"].mgr:checked:before {
     box-shadow: none !important;
   }
 
-  &.chips {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+  // rounded
+  .mdc-evolution-chip-set .mdc-evolution-chip {
+    border-radius: 0.25rem;
   }
-  &.form-control.form-control-sm .mdc-evolution-chip-set .mdc-evolution-chip{
-    height: 22px !important;
+  &-circle {
+    .mdc-evolution-chip-set .mdc-evolution-chip {
+      border-radius: 25rem;
+    }
+  }
+
+
+  &.form-control.form-control-xs {
+    .mdc-evolution-chip-set {
+      //min-height: calc(1.5em + 2px) !important;
+      min-height: calc(1.5em + 0.2rem + 2px) !important;
+      .mdc-evolution-chip{
+        height: 18px !important;
+        margin-top: 2px !important;
+        margin-bottom: 2px !important;
+        .mdc-evolution-chip__text-label {
+          font-size: 0.62rem;
+        }
+      }
+    }
+    input {
+      min-height: calc(1.5em + 0.2rem + 2px) !important;
+      padding: 0.15rem 0.35rem !important;
+      font-size: 0.7rem !important;
+      border-radius: 0.1rem !important;
+    }
+
+  }
+  &.form-control.form-control-sm {
+    .mdc-evolution-chip-set {
+      min-height: calc(1.5em + 0.5rem + 2px);
+      .mdc-evolution-chip{
+        height: 22px !important;
+        margin-top: 4px !important;
+        margin-bottom: 4px !important;
+        .mdc-evolution-chip__text-label {
+          font-size: 0.76rem;
+        }
+      }
+    }
+    input {
+      min-height: calc(1.5em + 0.5rem + 2px);
+      padding: 0.25rem 0.5rem;
+      font-size: 0.875rem;
+      border-radius: 0.2rem;
+    }
+
   }
   &.form-control .mdc-evolution-chip-set .mdc-evolution-chip{
     height: 28px !important;
+    background-color: #f0f0f0;
+    border: 1px solid rgba(0,0,0, 0.08);
+    .mdc-evolution-chip__text-label {
+      font-size: 0.98rem;
+    }
   }
-  &.form-control.form-control-lg .mdc-evolution-chip-set .mdc-evolution-chip{
-    height: 32px !important;
-  }
-  .mat-mdc-chip.mdc-evolution-chip--with-trailing-action .mat-mdc-chip-action-label {
-    font-size: 0.7rem;
-  }
+  //.mat-mdc-chip.mdc-evolution-chip--with-trailing-action .mat-mdc-chip-action-label {
+  //  font-size: 0.7rem;
+  //}
 }
 .mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--trailing {
   margin: 0 !important;

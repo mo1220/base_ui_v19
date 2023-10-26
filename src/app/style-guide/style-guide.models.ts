@@ -28,7 +28,7 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Chips',
         link: '/form/chips',
-        desc: `<b>키워드, 목록</b> 등 String Array를 관리하기 위한 Chip Group`
+        desc: `<b>키워드, 목록</b> 등 String Array를 관리하기 위한 Chips<br> input이 없는 경우 mat-chip-set을, input이 있는 경우 mat-chip-grid를 사용함`
       },
       {
         name: 'Color Picker',
