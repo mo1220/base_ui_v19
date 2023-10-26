@@ -163,66 +163,66 @@
           <!-- EN: color defualt -->
           <!-- ST: color split-->
           <div>
-            <button type="button" class="btn btn-primary btn-split">
+            <label role="button" class="btn btn-primary btn-split">
               Primary
               <span class="btn-split-menu" [matMenuTriggerFor]="primary"><i class="fa fa-caret-down"></i></span>
-            </button>
+            </label>
             <mat-menu #primary="matMenu">
               <button mat-menu-item>Item 1</button>
               <button mat-menu-item>Item 2</button>
             </mat-menu>
-            <button type="button" class="btn btn-secondary btn-split">
+            <label role="button" class="btn btn-secondary btn-split">
               Secondary
               <span class="btn-split-menu" [matMenuTriggerFor]="secondary"><i class="fa fa-caret-down"></i></span>
-            </button>
+            </label>
             <mat-menu #secondary="matMenu">
               <button mat-menu-item>Item 1</button>
               <button mat-menu-item>Item 2</button>
             </mat-menu>
-            <button type="button" class="btn btn-success btn-split">
+            <label role="button" class="btn btn-success btn-split">
               Sucess
               <span class="btn-split-menu" [matMenuTriggerFor]="sucess"><i class="fa fa-caret-down"></i></span>
-            </button>
+            </label>
             <mat-menu #sucess="matMenu">
               <button mat-menu-item>Item 1</button>
               <button mat-menu-item>Item 2</button>
             </mat-menu>
-            <button type="button" class="btn btn-info btn-split">
+            <label role="button" class="btn btn-info btn-split">
               Info
               <span class="btn-split-menu" [matMenuTriggerFor]="info"><i class="fa fa-caret-down"></i></span>
-            </button>
+            </label>
             <mat-menu #info="matMenu">
               <button mat-menu-item>Item 1</button>
               <button mat-menu-item>Item 2</button>
             </mat-menu>
-            <button type="button" class="btn btn-warning btn-split">
+            <label role="button" class="btn btn-warning btn-split">
               Warning
               <span class="btn-split-menu" [matMenuTriggerFor]="warning"><i class="fa fa-caret-down"></i></span>
-            </button>
+            </label>
             <mat-menu #warning="matMenu">
               <button mat-menu-item>Item 1</button>
               <button mat-menu-item>Item 2</button>
             </mat-menu>
-            <button type="button" class="btn btn-danger btn-split">
+            <label role="button" class="btn btn-danger btn-split">
               Danger
               <span class="btn-split-menu" [matMenuTriggerFor]="danger"><i class="fa fa-caret-down"></i></span>
-            </button>
+            </label>
             <mat-menu #danger="matMenu">
               <button mat-menu-item>Item 1</button>
               <button mat-menu-item>Item 2</button>
             </mat-menu>
-            <button type="button" class="btn btn-light btn-split">
+            <label role="button" class="btn btn-light btn-split">
               Light
               <span class="btn-split-menu" [matMenuTriggerFor]="light"><i class="fa fa-caret-down"></i></span>
-            </button>
+            </label>
             <mat-menu #light="matMenu">
               <button mat-menu-item>Item 1</button>
               <button mat-menu-item>Item 2</button>
             </mat-menu>
-            <button type="button" class="btn btn-dark btn-split">
+            <label role="button" class="btn btn-dark btn-split">
               Dark
               <span class="btn-split-menu" [matMenuTriggerFor]="dark"><i class="fa fa-caret-down"></i></span>
-            </button>
+            </label>
             <mat-menu #dark="matMenu">
               <button mat-menu-item>Item 1</button>
               <button mat-menu-item>Item 2</button>
@@ -376,7 +376,7 @@
           <!-- ST: 전체 버튼 -->
           <div class="d-flex col">
             <div>
-              <button type="button" class="btn btn-primary btn-split btn-xlg" [matMenuTriggerFor]="xLarge">
+              <button type="button" class="btn btn-primary btn-split btn-xl" [matMenuTriggerFor]="xLarge">
                 X Large
                 <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
               </button>
@@ -408,17 +408,17 @@
                 <button mat-menu-item>Item 1</button>
                 <button mat-menu-item>Item 2</button>
               </mat-menu>
-              <button type="button" class="btn btn-primary btn-split btn-xsm" [matMenuTriggerFor]="xSmall">
+              <button type="button" class="btn btn-primary btn-split btn-xs" [matMenuTriggerFor]="xsall">
                 X Small
                 <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
               </button>
-              <mat-menu #xSmall="matMenu">
+              <mat-menu #xsall="matMenu">
                 <button mat-menu-item>Item 1</button>
                 <button mat-menu-item>Item 2</button>
               </mat-menu>
             </div>
             <div>
-              <button type="button" class="btn btn-outline-primary btn-split btn-xlg" [matMenuTriggerFor]="xLarge">
+              <button type="button" class="btn btn-outline-primary btn-split btn-xl" [matMenuTriggerFor]="xLarge">
                 X Large
                 <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
               </button>
@@ -450,11 +450,11 @@
                 <button mat-menu-item>Item 1</button>
                 <button mat-menu-item>Item 2</button>
               </mat-menu>
-              <button type="button" class="btn btn-outline-primary btn-split btn-xsm" [matMenuTriggerFor]="xSmall">
+              <button type="button" class="btn btn-outline-primary btn-split btn-xs" [matMenuTriggerFor]="xsall">
                 X Small
                 <span class="btn-split-icon"><i class="fa fa-caret-down"></i></span>
               </button>
-              <mat-menu #xSmall="matMenu">
+              <mat-menu #xsall="matMenu">
                 <button mat-menu-item>Item 1</button>
                 <button mat-menu-item>Item 2</button>
               </mat-menu>
@@ -466,7 +466,7 @@
           <div class="d-flex col">
             <!-- ST: defulat -->
             <div>
-              <label role="button" class="btn btn-primary btn-split btn-xlg">
+              <label role="button" class="btn btn-primary btn-split btn-xl">
                 X Large
                 <span class="btn-split-menu" [matMenuTriggerFor]="xLarge"><i class="fa fa-caret-down"></i></span>
               </label>
@@ -498,11 +498,11 @@
                 <button mat-menu-item>Item 1</button>
                 <button mat-menu-item>Item 2</button>
               </mat-menu>
-              <label role="button" class="btn btn-primary btn-split btn-xsm">
+              <label role="button" class="btn btn-primary btn-split btn-xs">
                 X Small
-                <span class="btn-split-menu" [matMenuTriggerFor]="xSmall"><i class="fa fa-caret-down"></i></span>
+                <span class="btn-split-menu" [matMenuTriggerFor]="xsall"><i class="fa fa-caret-down"></i></span>
               </label>
-              <mat-menu #xSmall="matMenu">
+              <mat-menu #xsall="matMenu">
                 <button mat-menu-item>Item 1</button>
                 <button mat-menu-item>Item 2</button>
               </mat-menu>
@@ -510,7 +510,7 @@
             <!-- EN: defulat -->
             <!-- ST: outline -->
             <div>
-              <label role="button" class="btn btn-outline-primary btn-split btn-xlg">
+              <label role="button" class="btn btn-outline-primary btn-split btn-xl">
                 X Large
                 <span class="btn-split-menu" [matMenuTriggerFor]="xLarge"><i class="fa fa-caret-down"></i></span>
               </label>
@@ -542,11 +542,11 @@
                 <button mat-menu-item>Item 1</button>
                 <button mat-menu-item>Item 2</button>
               </mat-menu>
-              <label role="button" class="btn btn-outline-primary btn-split btn-xsm">
+              <label role="button" class="btn btn-outline-primary btn-split btn-xs">
                 X Small
-                <span class="btn-split-menu" [matMenuTriggerFor]="xSmall"><i class="fa fa-caret-down"></i></span>
+                <span class="btn-split-menu" [matMenuTriggerFor]="xsall"><i class="fa fa-caret-down"></i></span>
               </label>
-              <mat-menu #xSmall="matMenu">
+              <mat-menu #xsall="matMenu">
                 <button mat-menu-item>Item 1</button>
                 <button mat-menu-item>Item 2</button>
               </mat-menu>
