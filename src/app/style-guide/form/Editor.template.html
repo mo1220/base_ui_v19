@@ -1,10 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basicHtmlEditor>HTML Editor</h3>
+    <p>확인 기능, Code Highlight 기능, image 추가 기능, 이모티콘 기능, 함수(복잡한 수학 공식) 기능 </p>
+    <div class="style-guide-example">
+      <quill-editor [styles]="{ width: '100%', height: '200px' }"
+                    [(ngModel)]="content"
+                    [modules]="modules"
+                    (onFocus)="focus($event)"
+                    (onNativeFocus)="nativeFocus($event)"
+                    (onEditorChanged)="changedEditor($event)"
+                    (onBlur)="blur($event)"
+                    (onNativeBlur)="nativeBlur($event)"
+                    (onEditorCreated)="created($event)"></quill-editor>
+    </div>
+    <h3 #anchor #basicHtmlViewer>HTML Viewer</h3>
+    <p>확인 기능, Code Highlight 기능, image 추가 기능, </p>
+    <div class="style-guide-example">
+      <quill-view [content]="content" [modules]="modules" theme="snow"></quill-view>
+      <div *ngIf="content === ''" style="display:flex; align-items: center; justify-content: center; height: 200px;">
+        <div>위에 글을 입력해 주세요.</div>
+      </div>
+    </div>
 
-</body>
-</html>
+    <h3 #anchor #basicCodeEditor>Code(SQL) Viewer</h3>
+    <p>확인 기능, Code Highlight 기능, image 추가 기능, </p>
+    <div class="style-guide-example">
+      <ace #aceEditor [config]="config"
+           style="height:200px;"
+           [mode]="'sql'"
+           [theme]="'dracula'"
+           [(value)]="value"></ace>
+      <div>
+        <button class="btn btn-outline-primary" (click)="insertText()">텍스트 삽입 테스트</button>
+      </div>
+    </div>
+  </div>
+  <aside-menu-right [menu]="buttonMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

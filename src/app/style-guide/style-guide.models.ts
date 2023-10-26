@@ -43,7 +43,7 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Editor',
         link: '/form/editor',
-        desc: `Editor 설명 <span></span>`
+        desc: `Html, Code 사용 Editor HTML Editor Quill, Code Ace Editor`
       },
       {
         name: 'Input',

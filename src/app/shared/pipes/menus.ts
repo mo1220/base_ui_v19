@@ -48,6 +48,7 @@ export class KeysPipe implements PipeTransform {
     const keys = [];
     // tslint:disable-next-line:forin
     for (const key in value) {
+      // @ts-ignore
       keys.push({ key, value: value[key], active: false });
     }
     return keys;
@@ -284,10 +285,13 @@ export class FieldTypePipe implements PipeTransform {
   transform(value: any, args: string): any {
     let options = []; // Number
     if (args.toLowerCase().indexOf('date') !== -1) { // date
+      // @ts-ignore
       options = _.filter(value, d => d.type.toLowerCase().indexOf('date') !== -1);
     } else if (args.toLowerCase().indexOf('string') !== -1) { // string
+      // @ts-ignore
       options = _.filter(value, d => d.type.toLowerCase().indexOf('string') !== -1);
     } else {
+      // @ts-ignore
       options = _.filter(value, d => d.type.toLowerCase().indexOf('date') === -1 && d.type.toLowerCase().indexOf('string') === -1);
     }
     return options;

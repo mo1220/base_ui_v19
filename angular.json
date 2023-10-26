@@ -19,7 +19,11 @@
               "chroma-js",
               "numeral",
               "css-element-queries",
-              "@toast-ui/editor"
+              "@toast-ui/editor",
+              "highlight",
+              "katex",
+              "quill",
+              "quill-emoji/dist/quill-emoji.js"
             ],
             "outputPath": "dist/datatree-studio",
             "index": "src/index.html",
@@ -37,7 +41,11 @@
               "src/styles-app-loading.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/highlight/lib/highlight.js",
+              "./node_modules/katex/katex.js",
+              "./node_modules/quill/dist/quill.js"
+            ]
           },
           "configurations": {
             "production": {

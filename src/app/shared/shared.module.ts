@@ -47,13 +47,18 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { PipesModule } from './pipes/index'; // Pipe
 import { RouterModule } from '@angular/router';
 import { AsideMenuComponent, AsideMenuItemComponent } from './aside/aside-menu.component'; // Left Menu
-
-import { ToastrModule } from 'ngx-toastr';
-import { LaddaModule } from 'angular2-ladda';
-
 import { PopupMessage } from './popup-message/popup-message';
 import { CustomToastComponent } from './toast-message/toast-message.component';
 
+// 3rd Party
+import { ToastrModule } from 'ngx-toastr';
+import { LaddaModule } from 'angular2-ladda';
+import { QuillModule } from 'ngx-quill';
+import { AceModule } from 'ngx-ace-wrapper';
+import { ACE_CONFIG } from 'ngx-ace-wrapper';
+import { AceConfigInterface } from 'ngx-ace-wrapper';
+
+const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
 @NgModule({
   imports: [
     CommonModule,
@@ -110,6 +115,8 @@ import { CustomToastComponent } from './toast-message/toast-message.component';
       spinnerColor: 'white',
       spinnerLines: 36
     }),
+    QuillModule.forRoot(),
+    AceModule
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -177,8 +184,12 @@ import { CustomToastComponent } from './toast-message/toast-message.component';
     //3rd Party
     LaddaModule,
     ToastrModule,
+    QuillModule,
+    AceModule
   ],
-  providers: [],
+  providers: [
+    { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }
+  ],
 })
 export class SharedModule {
   // constructor() {}

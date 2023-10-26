@@ -220,6 +220,7 @@ export class ApiService {
         }).subscribe((response) => {
           let dataType = response.type;
           let binaryData = [];
+          // @ts-ignore
           binaryData.push(response);
           let downloadLink = document.createElement('a');
           downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, { type: dataType }));
@@ -335,6 +336,7 @@ export class ApiService {
           // @ts-ignore
           let dataType = response.body.type;
           let binaryData = [];
+          // @ts-ignore
           binaryData.push(response.body);
           let downloadLink = document.createElement('a');
           // @ts-ignore

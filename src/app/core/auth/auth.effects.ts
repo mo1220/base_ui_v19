@@ -147,11 +147,14 @@ export class AuthEffects {
             switchMap((auth: any) => {
               let actions = [];
               if (auth.info) {
+
                 actions.push(
+                  // @ts-ignore
                   actionLoginSuccess({auth}),
                   actionMenusListPermitReq(),
                 );
               } else if (auth.verifyingEmail || auth.isFirst || auth.isExpiredPassword) {
+                // @ts-ignore
                 actions.push(actionLoginSuccess({auth}))
               }
               return actions;
