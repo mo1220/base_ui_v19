@@ -4,8 +4,9 @@
     <color-swatches [width]="200"
                     class="dtk-color-swatches"
                     [color]="active === -1 ? '#FFFFFF' : _colors[active]"
-                    (onChange)="changeColor($event)"></color-swatches>
-    <button matRipple class="other-color-btn" (click)="setColorDialog();">
+                    (onChange)="changeColor($event); lobelPopover.hide()"></color-swatches>
+    <button matRipple class="other-color-btn"
+            (click)="setColorDialog(); lobelPopover.hide()">
       <mat-icon class="md-14" [style.color]="active === -1 ? '#FF0000' : _colors[active]">palette</mat-icon>
       다른 색
     </button>
@@ -13,16 +14,17 @@
 </ng-template>
 
 <div class="category-color">
-  Colors Detail
   <div class="category-color-list" [style.white-space]="type && 'break-spaces'">
     <!--[autoClose]="'outside'"-->
     <div class="category-color-list-item"
          *ngFor="let color of _colors; let i = index;"
          [class.active]='active === i'>
-      <!-- #lobelPopover="ngbPopover" -->
       <span class="category-color-sample"
-            (click)="active = i"
+            (click)="active = i;"
             [popover]="labelColor"
+            (onShown)="popoverShow = true;"
+            (onHidden)="popoverShow = false;"
+            #lobelPopover="bs-popover"
             [container]="'body'"
             [style.background-color]="color"></span>
       <button class="category-color-remove-btn" (click)="removeColor(i)"></button>
@@ -32,9 +34,15 @@
       <span class="category-color-sample"
             (click)="active = -1"
             [popover]="labelColor"
+            (onShown)="popoverShow = true;"
+            (onHidden)="popoverShow = false;"
+            #lobelPopover="bs-popover"
             [container]="'body'">
         <mat-icon class="md-14">add</mat-icon>
       </span>
     </div>
   </div>
 </div>
+<div *ngIf="popoverShow"
+     (click)="lobelPopover.hide();"
+     style="position: fixed; top:0; left:0; right:0; bottom:0; z-index:100;"></div>

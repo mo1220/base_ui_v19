@@ -53,6 +53,15 @@ $dtk-typography: mat.define-typography-config(
   //$body-2: mat.define-typography-level(24px, 32px, 400)	보조 본문 텍스트.
   //$caption: mat.define-typography-level(24px, 32px, 400)	더 작은 본문과 힌트 텍스트.
   //$button	버튼과 앵커.
+  $headline-1: mat.define-typography-level(16px, 45px, 400),
+  $headline-2: mat.define-typography-level(16px, 45px, 400),
+  $headline-3: mat.define-typography-level(16px, 45px, 400),
+  $headline-4: mat.define-typography-level(16px, 45px, 400),
+  $headline-5: mat.define-typography-level(16px, 45px, 400),
+  $headline-6: mat.define-typography-level(16px, 45px, 400),
+  $subtitle-1: mat.define-typography-level(16px, 45px, 400),
+  $subtitle-2: mat.define-typography-level(16px, 45px, 400),
+
   $body-1: mat.define-typography-level(12px, 36px, 400), // 버튼.
   $body-2: mat.define-typography-level(12px, 36px, 400), // 보조 본문 텍스트.
   $button: mat.define-typography-level(12px, 36px, 400, $letter-spacing: 0)
