@@ -95,14 +95,21 @@ $input-focus-width: .2rem !default;
 //$input-focus-color: rgba($primary, .25) !default;
 $input-focus-border-color: rgba($primary, .5) !default;
 //$input-focus-box-shadow: 0 0 0 $input-focus-width $input-focus-color !default;
+$font-size-base: .75rem !default;
+$font-size-sm: 11.5px !default;
+$font-size-lg: 1.2rem !default;
+$font-size-xs: 11.5px !default;
 
 $btn-primary-color: #FFF !default;
 $btn-font-family: 'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
 $btn-font-size: .75rem !default;
 $btn-xl-font-size: 1.2rem;
 $btn-lg-font-size: 1rem;
-$btn-sm-font-size: 11.5px;
-$btn-xs-font-size: 10px;
+$btn-sm-font-size: 11.5px; // TODO 지울것들
+$input-btn-focus-width:         .1rem !default;
+
+$btn-xs-font-size: $font-size-xs;
+
 $border-radius: .25rem;
 $btn-xs-border-radius: 3px;
 $border-radius-left: $border-radius 0 0 $border-radius;
