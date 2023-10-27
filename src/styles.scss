@@ -48,8 +48,9 @@ ButtonsModule,
 // 부스트랩 5
 @import 'ngx-toastr/toastr-bs5-alert';
 
-
-
+// Quill Editor
+@import '~quill/dist/quill.snow.css';
+@import "quill-emoji/dist/quill-emoji.css";
 
 * {
   font-family: $default-font;
@@ -977,6 +978,11 @@ input[type="radio"].mgr:checked:before {
     }
   }
 }
+
+.mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background .mdc-checkbox__mixedmark,
+.mdc-checkbox__native-control[data-indeterminate=true]~.mdc-checkbox__background .mdc-checkbox__mixedmark {
+  transform: scaleX(.7) rotate(0deg) !important;
+}
 /****************************** EN: Mat-checkbox *************************************************/
 
 /****************************** ST: Mat-chips *************************************************/
@@ -1230,3 +1236,12 @@ input[type="radio"].mgr:checked:before {
 
 
 /********************************* EN: CDK Context Menu *****************************/
+
+
+/********************************* ST: Ace Editor ***********************************/
+.ace_editor {
+  * {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  }
+}
+/********************************* EN: Ace Editor *******************************************/

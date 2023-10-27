@@ -1,0 +1,40 @@
+
+<ng-template #labelColor>
+  <div style="width: 200px;">
+    <color-swatches [width]="200"
+                    class="dtk-color-swatches"
+                    [color]="active === -1 ? '#FFFFFF' : _colors[active]"
+                    (onChange)="changeColor($event)"></color-swatches>
+    <button matRipple class="other-color-btn" (click)="setColorDialog();">
+      <mat-icon class="md-14" [style.color]="active === -1 ? '#FF0000' : _colors[active]">palette</mat-icon>
+      다른 색
+    </button>
+  </div>
+</ng-template>
+
+<div class="category-color">
+  Colors Detail
+  <div class="category-color-list" [style.white-space]="type && 'break-spaces'">
+    <!--[autoClose]="'outside'"-->
+    <div class="category-color-list-item"
+         *ngFor="let color of _colors; let i = index;"
+         [class.active]='active === i'>
+      <!-- #lobelPopover="ngbPopover" -->
+      <span class="category-color-sample"
+            (click)="active = i"
+            [popover]="labelColor"
+            [container]="'body'"
+            [style.background-color]="color"></span>
+      <button class="category-color-remove-btn" (click)="removeColor(i)"></button>
+    </div>
+    <div class="category-color-list-item"
+         [matTooltip]="'색상추가'">
+      <span class="category-color-sample"
+            (click)="active = -1"
+            [popover]="labelColor"
+            [container]="'body'">
+        <mat-icon class="md-14">add</mat-icon>
+      </span>
+    </div>
+  </div>
+</div>

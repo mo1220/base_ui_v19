@@ -47,13 +47,25 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { PipesModule } from './pipes/index'; // Pipe
 import { RouterModule } from '@angular/router';
 import { AsideMenuComponent, AsideMenuItemComponent } from './aside/aside-menu.component'; // Left Menu
-
-import { ToastrModule } from 'ngx-toastr';
-import { LaddaModule } from 'angular2-ladda';
-
 import { PopupMessage } from './popup-message/popup-message';
 import { CustomToastComponent } from './toast-message/toast-message.component';
 
+// 3rd Party
+import { ToastrModule } from 'ngx-toastr';
+import { LaddaModule } from 'angular2-ladda';
+import { QuillModule } from 'ngx-quill';
+import { ColorSketchModule } from 'ngx-color/sketch';
+import { ColorSwatchesModule } from 'ngx-color/swatches';
+import { ColorChromeModule } from 'ngx-color/chrome';
+import { AceModule } from 'ngx-ace-wrapper';
+import { ACE_CONFIG } from 'ngx-ace-wrapper';
+import { AceConfigInterface } from 'ngx-ace-wrapper';
+import {CategoryColorsComponent} from "./category-colors/category-colors.component";
+import {ColorDialog} from "./color-dialog/color-dialog";
+import {ColorInputComponent} from "./color-input/color-input.component";
+import {ColorsScaleComponent} from "./colors-scale/colors-scale";
+
+const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
 @NgModule({
   imports: [
     CommonModule,
@@ -110,12 +122,21 @@ import { CustomToastComponent } from './toast-message/toast-message.component';
       spinnerColor: 'white',
       spinnerLines: 36
     }),
+    QuillModule.forRoot(),
+    AceModule,
+    ColorSketchModule,
+    ColorSwatchesModule,
+    ColorChromeModule,
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
     AsideMenuItemComponent, // Left Menu Item
     PopupMessage, // Popup Message
-    CustomToastComponent,
+    CustomToastComponent, // Toast 메세지 에러 표시시 Trace ID 표시용 커스터마이징
+    CategoryColorsComponent, // 카테고리 컬러
+    ColorDialog, // 컬러 다이얼로그
+    ColorInputComponent, // 컬러 인풋
+    ColorsScaleComponent // 스케일 컬러 인풋
   ],
   exports: [
     CommonModule,
@@ -173,12 +194,23 @@ import { CustomToastComponent } from './toast-message/toast-message.component';
     AsideMenuItemComponent,
     PopupMessage,
     CustomToastComponent,
+    CategoryColorsComponent, // 카테고리 컬러
+    ColorDialog, // 컬러 다이얼로그
+    ColorInputComponent, // 컬러 인풋
+    ColorsScaleComponent, // 스케일 컬러 인풋
 
     //3rd Party
     LaddaModule,
     ToastrModule,
+    QuillModule,
+    AceModule,
+    ColorSketchModule,
+    ColorSwatchesModule,
+    ColorChromeModule,
   ],
-  providers: [],
+  providers: [
+    { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }
+  ],
 })
 export class SharedModule {
   // constructor() {}

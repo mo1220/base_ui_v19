@@ -12,8 +12,6 @@ $alert-margin-bottom:           1rem;
 //$alert-color-scale:             40%;
 //$alert-dismissible-padding-r:   $alert-padding-x * 3; // 3x covers width of x plus default padding on either side
 
-// Input
-$input-font-family: 'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
 
 $btn-primary-color: #FFF !default;
 $btn-font-family: 'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
@@ -99,9 +97,9 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
   }
 
   /**** Size Button ****/
-  &.btn-xlg {
-    font-size: $btn-xlg-font-size;
-    padding: $btn-padding-y-xlg $btn-padding-x-xlg;
+  &.btn-xl {
+    font-size: $btn-xl-font-size;
+    padding: $btn-padding-y-xl $btn-padding-x-xl;
   }
 
   &.btn-lg {
@@ -114,10 +112,10 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
     padding: $btn-padding-y-sm $btn-padding-x-sm;
   }
 
-  &.btn-xsm {
-    border-radius: $btn-xsm-border-radius;
-    font-size: $btn-xsm-font-size;
-    padding: $btn-padding-y-xsm $btn-padding-x-xsm;
+  &.btn-xs {
+    border-radius: $btn-xs-border-radius;
+    font-size: $btn-xs-font-size;
+    padding: $btn-padding-y-xs $btn-padding-x-xs;
   }
 
   /**** Block Button ****/
@@ -140,29 +138,31 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
       border-radius: $border-radius-left;
     }
 
-    &.btn-xlg {
+    &.btn-xl {
       span.btn-label {
         left: -20px;
+        padding: 10px 17px;
       }
     }
 
     &.btn-lg {
       span.btn-label {
         left: -16px;
+        padding: 8px 12px;
       }
     }
 
     &.btn-sm {
       span.btn-label {
         left: -9px;
+        padding: 4px 8px;
       }
     }
 
-    &.btn-xsm {
+    &.btn-xs {
       span.btn-label {
-        left: -6px;
-        padding-left: 8px;
-        padding-right: 8px;
+        left: -7px;
+        padding: $btn-padding-y-xs $btn-padding-x-xs;
       }
     }
   }
@@ -185,10 +185,11 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
       height: $btn-font-size;
     }
 
-    &.btn-xlg {
+    &.btn-xl {
+      padding: $btn-padding-xl;
       .fa {
-        width: $btn-xlg-font-size;
-        height: $btn-xlg-font-size;
+        width: $btn-xl-font-size;
+        height: $btn-xl-font-size;
       }
     }
 
@@ -200,18 +201,18 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
     }
 
     &.btn-sm {
-      padding: 0.375rem;
-
+      padding: $btn-padding-sm;
       .fa {
         width: $btn-sm-font-size;
         height: $btn-sm-font-size;
       }
     }
 
-    &.btn-xsm {
+    &.btn-xs {
+      padding: $btn-padding-xs;
       .fa {
-        width: $btn-xsm-font-size;
-        height: $btn-xsm-font-size;
+        width: $btn-xs-font-size;
+        height: $btn-xs-font-size;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -251,7 +252,7 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
       }
     }
 
-    &.btn-xlg {
+    &.btn-xl {
       span.btn-split-menu {
         right: -20px;
       }
@@ -269,7 +270,7 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
       }
     }
 
-    &.btn-xsm {
+    &.btn-xs {
       span.btn-split-menu {
         right: -6px;
         padding-left: 8px;
@@ -378,3 +379,144 @@ label.btn-split {
   }
 }
 
+/**************************** ST: Color Picker ***************************/
+.dtk-color-picker {
+  .sketch-picker {
+    padding:0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    .sketch-wrap {
+      margin: 0 5px 0 0 !important;
+    }
+    .swatch {
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+  }
+  .chrome-picker {
+    box-shadow: none !important;
+    width: 200px !important;
+    border-radius: 0 !important;
+  }
+}
+
+.dtk-color-picker-full {
+  .chrome-picker {
+    box-shadow: none !important;
+    width: 280px !important;
+    border-radius: 0 !important;
+  }
+}
+
+.dtk-color-swatches {
+  .swatches-picker {
+    height: 170px !important;
+  }
+  .zDepth-1 {
+    box-shadow: none !important;
+  }
+  .swatches-overflow {
+    padding: 0 !important;
+    overflow-y: hidden !important;
+    margin-right: -5px;
+    height: 170px !important;
+  }
+  .swatches-group {
+    width: 15px !important;
+    margin-right: 5.5px !important;
+    .swatch {
+      width: 15px !important;
+      height: 15px !important;
+    }
+  }
+  .swatch-check {
+    margin-left: 0 !important;
+    svg {
+      width: 15px !important;
+      height: 15px !important;
+    }
+  }
+}
+/**************************** EN: Color Picker ***************************/
+
+/***** Speed dial *****/
+.speed-dial {
+  position: relative;
+  &-btn {
+    position: absolute;
+    display: inline-block;
+    .btn {
+      transform: rotate(0);
+      transition: transform .2s ease-in-out;
+      &.close{
+        transform: rotate(45deg);
+        transition: transform .2s ease-in-out;
+      }
+    }
+    &.top {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &.right {
+      top: 50%;
+      right: 0;
+      transform: translate(0, -50%);
+    }
+    &.left {
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%);
+    }
+    &.bottom {
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+
+    &.center{
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &-inner{
+    display: inline-flex !important;
+    button.btn {
+      margin: .2rem !important;
+      animation: .2s;
+      animation-name: speed-dial;
+    }
+
+    &.col{
+      flex-direction: column;
+    }
+    &.row-rev{
+      flex-direction: row-reverse;
+    }
+    &.col-rev {
+      flex-direction: column-reverse;
+    }
+    &.-row{
+      flex-direction: row !important;
+    }
+
+    &.speed-dial-circle{
+
+    }
+  }
+}
+
+@keyframes speed-dial {
+  //from {
+  //  margin-bottom: 0;
+  //  //height: 0;
+  //}
+  //
+  //to {
+  //  margin-bottom: 50%;
+  //  z-index: 1;
+  //  //height: 100%;
+  //}
+}

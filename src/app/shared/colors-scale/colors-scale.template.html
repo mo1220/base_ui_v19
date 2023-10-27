@@ -1,0 +1,107 @@
+<div class="input-field">
+  <label style="display: inline-block;">
+    {{ _type === 'threshold' ? '임계치' : '최소/최대' }} 컬러 설정
+  </label>
+  <button
+    style="margin-left: 10px;"
+    class="btn btn-outline-secondary btn-xs"
+    [matTooltip]="_type === 'threshold' ? '임계치 추가' : '컬러 추가'"
+    (click)="addCritical()">
+    <i class="fa fa-plus"></i>
+  </button>
+
+  <button
+    class="btn btn-outline-secondary btn-xs"
+    [matTooltip]="'반전'"
+    (click)="colorReverse()">
+    <i class="fa fa-refresh"></i>
+  </button>
+</div>
+<div class="color-scale-picker">
+  <div class="color-scale-picker-wrap">
+    <div style="height: 15px;">
+      <ng-container *ngIf="_type === 'threshold'">
+        <!-- thresholdPosition(format.value) -->
+        <span
+          *ngFor="let format of _gradient; let i = index;"
+          class="color-bar-threshold"
+          [style.left]="positions[i] + '%'">
+          {{format.value}}
+        </span>
+      </ng-container>
+      <ng-container *ngIf="_type === 'min_max'">
+        <span class="color-bar-threshold" style="left:0">Min</span>
+        <span class="color-bar-threshold" style="left:100%">Max</span>
+      </ng-container>
+    </div>
+    <div class="color-scale-picker-bar"
+         #colorBar
+         (click)="addColor($event)"
+         [style.background]="'linear-gradient(to right, ' + backgrounds + ')'"></div>
+    <div>
+      <ng-container *ngFor="let item of _gradient; let i = index;">
+        <div class="color-scale-picker-item"
+             *ngIf="_type === 'threshold'"
+             [class.active]="activeIndex === i"
+             (click)="activeIndex = i"
+             [style.left]="positions[i] + '%'">
+          <span [style.background-color]="_gradient[i].color"></span>
+          <button class="color-scale-picker-remove-btn" (click)="removeColor(i)"></button>
+        </div>
+        <div class="color-scale-picker-item"
+             *ngIf="_type === 'min_max'"
+             [class.active]="activeIndex === i"
+             (click)="activeIndex = i"
+             [style.left]="((i / (_gradient.length - 1)) * 100) + '%'">
+          <span [style.background-color]="_gradient[i].color"></span>
+          <button class="color-scale-picker-remove-btn" (click)="removeColor(i)"></button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<ng-container *ngIf="activeIndex !== -1">
+  <div class="flex-input">
+    <div class="field" *ngIf="_type === 'threshold'">
+      <label>임계값 변경</label>
+      <input type="number" class="form-control form-control-sm"
+             (ngModelChange)="nextForm()"
+             [(ngModel)]="_gradient[activeIndex].value" />
+    </div>
+    <div class="field">
+      <label>색상 변경</label>
+      <div class="input-group">
+        <input class="form-control form-control-sm"
+               (click)="scaleColorPopover.toggle()"
+               [(ngModel)]="_gradient[activeIndex].color" />
+        <div class="input-group-append">
+          <ng-template #scaleColor>
+            <div style="width: 200px;">
+              <color-chrome [color]="_gradient[activeIndex].color"
+                            class="dtk-color-picker"
+                            (onChangeComplete)="changeColor($event)"></color-chrome>
+              <color-swatches [width]="200"
+                              class="dtk-color-swatches"
+                              [color]="_gradient[activeIndex].color"
+                              (onChange)="changeColor($event); scaleColorPopover.hide()"></color-swatches>
+            </div>
+          </ng-template>
+          <!-- [autoClose]="'outside'" -->
+          <span class="preview-color"
+                style="display: inline-block; width: 28px; border-radius: 0 3px 3px 0;"
+                [popover]="scaleColor"
+                #scaleColorPopover="bs-popover"
+                [container]="'body'"
+                [style.background]="_gradient[activeIndex].color"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="input-field" *ngIf="_type === 'threshold'">
+    <mat-checkbox color="primary"
+                  (change)="nextForm()"
+                  [(ngModel)]="_stepped">
+      스탭 단계로 나누기
+    </mat-checkbox>
+  </div>
+</ng-container>

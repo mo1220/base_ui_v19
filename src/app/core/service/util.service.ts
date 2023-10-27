@@ -423,7 +423,7 @@ export class UtilService {
     parentKey: string = 'parent_id',
     rootId: string = 'root'
   ): Array<any> {
-    let map: any = {}, node, roots = [], i;
+    let map: any = {}, node: any, roots = [], i;
     for (i = 0; i < list.length; i += 1) {
       map[list[i][idKey]] = i; // initialize the map
       list[i].children = []; // initialize the children
@@ -439,6 +439,7 @@ export class UtilService {
         // if you have dangling branches check that map[node.parentId] exists
         list[map[node[parentKey]]].children.push(node);
       } else {
+        // @ts-ignore
         roots.push(node);
       }
     }
