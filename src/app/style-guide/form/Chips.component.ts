@@ -66,6 +66,10 @@ export class StyleGuideChipsComponent implements AfterViewInit, OnDestroy {
     private router: Router
   ) { }
 
+  ngOnInit() : void {
+
+  }
+
   removeChip(chip: any) {
     const index = this.chipList.indexOf(chip);
     if (index >= 0) {
@@ -115,7 +119,9 @@ export class StyleGuideChipsComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+
+  }
 
   ngOnDestroy(): void { }
 

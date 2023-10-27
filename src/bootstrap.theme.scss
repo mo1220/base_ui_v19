@@ -12,6 +12,8 @@ $alert-margin-bottom:           1rem;
 //$alert-color-scale:             40%;
 //$alert-dismissible-padding-r:   $alert-padding-x * 3; // 3x covers width of x plus default padding on either side
 
+// Input
+$input-font-family: 'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
 
 $btn-primary-color: #FFF !default;
 $btn-font-family: 'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
@@ -339,27 +341,23 @@ label.btn-split {
 
 
 /**** form ****/
-.form-label {
-  /* form-label min-width min-${size} */
-  @each $size in 10, 20, 30, 40, 50{
-    &.min-#{$size} {
-      min-width: $size + px !important;
-    }
-  }
-}
 .form-control {
-  //font-size: 0.76rem !important;
+  padding: $btn-padding-y $btn-padding-x !important;
+  font-size: $btn-font-size !important;
+  border-radius: $border-radius !important;
+  &-lg {
+    padding: $btn-padding-y-lg $btn-padding-x-lg !important;
+    font-size: $btn-lg-font-size !important;
+  }
+  &-sm {
+    padding: $btn-padding-y-sm $btn-padding-x-sm !important;
+    font-size: $btn-sm-font-size !important;
+  }
   &-xs {
     min-height: calc(1.5em + 0.2rem + 2px) !important;
-    padding: 0.15rem 0.35rem !important;
-    font-size: 0.7rem !important;
-    border-radius: 0.1rem !important;
-  }
-  &-xs::file-selector-button, &-xs::-webkit-file-upload-button {
-    padding: 0.15rem 0.35rem;
-    margin: -0.15rem -0.35rem;
-    -webkit-margin-end: 0.35rem;
-    margin-inline-end: 0.35rem;
+    padding: $btn-padding-y-xsm $btn-padding-x-xsm !important;
+    font-size: $btn-xsm-font-size + 1px !important;
+    border-radius: $btn-xsm-border-radius !important;
   }
 
   &.datepicker {
@@ -369,6 +367,7 @@ label.btn-split {
     }
   }
 }
+
 /**** checkbox ****/
 .checkbox-group {
   li {

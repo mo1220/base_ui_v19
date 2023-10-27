@@ -34,12 +34,22 @@ export class StyleGuideInputComponent implements AfterViewInit, OnDestroy {
     }
   ]
 
+  keyword:string = '';
+  clearable:Array<string> = ['xsmall','small','default','large'];
+  submitMsg:string = '';
+
   constructor(
     private translate: TranslateService,
     private router: Router
   ) { }
 
   ngAfterViewInit(): void { }
+
+  submit(value:string): void {
+    if(value === '') {
+      this.submitMsg = '키워드를 입력해주세요';
+    }
+  }
 
   ngOnDestroy(): void { }
 }

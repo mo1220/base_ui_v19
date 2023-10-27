@@ -131,47 +131,49 @@
 
     <h3 #anchor #round>Rounded</h3>
     <p>라운드 chips</p>
-    <div class="form-control chips form-control-sm">
-      <mat-chip-grid #chipGrid8
-                     cdkDropList
-                     cdkDropListOrientation="horizontal"
-                     (cdkDropListDropped)="drop($event)">
-        <mat-chip-row *ngFor="let chip of basicChips"
-                      [editable]="true"
-                      (edited)="edit(chip, $event)"
-                      [color]="chip.color || 'default'"
-                      (removed)="removeChip(chip)"
-                      cdkDrag>
-          {{chip.name}}
-          <button matChipRemove><mat-icon>cancel</mat-icon></button>
-        </mat-chip-row>
-        <input class="form-control"
-               [placeholder]="'placeholder.chips_placeholder' | translate"
-               [matChipInputFor]="chipGrid8"
-               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               (matChipInputTokenEnd)="add($event)"/>
-      </mat-chip-grid>
-    </div>
-    <div class="form-control chips chips-circle form-control-sm">
-      <mat-chip-grid #chipGrid9
-                     cdkDropList
-                     cdkDropListOrientation="horizontal"
-                     (cdkDropListDropped)="drop($event)">
-        <mat-chip-row *ngFor="let chip of basicChips"
-                      [editable]="true"
-                      (edited)="edit(chip, $event)"
-                      [color]="chip.color || 'default'"
-                      (removed)="removeChip(chip)"
-                      cdkDrag>
-          {{chip.name}}
-          <button matChipRemove><mat-icon>cancel</mat-icon></button>
-        </mat-chip-row>
-        <input class="form-control"
-               [placeholder]="'placeholder.chips_placeholder' | translate"
-               [matChipInputFor]="chipGrid9"
-               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               (matChipInputTokenEnd)="add($event, 'basic')"/>
-      </mat-chip-grid>
+    <div class="style-guide-example">
+      <div class="form-control chips form-control-sm">
+        <mat-chip-grid #chipGrid8
+                       cdkDropList
+                       cdkDropListOrientation="horizontal"
+                       (cdkDropListDropped)="drop($event)">
+          <mat-chip-row *ngFor="let chip of basicChips"
+                        [editable]="true"
+                        (edited)="edit(chip, $event)"
+                        [color]="chip.color || 'default'"
+                        (removed)="removeChip(chip)"
+                        cdkDrag>
+            {{chip.name}}
+            <button matChipRemove><mat-icon>cancel</mat-icon></button>
+          </mat-chip-row>
+          <input class="form-control"
+                 [placeholder]="'placeholder.chips_placeholder' | translate"
+                 [matChipInputFor]="chipGrid8"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 (matChipInputTokenEnd)="add($event)"/>
+        </mat-chip-grid>
+      </div>
+      <div class="form-control chips chips-circle form-control-sm">
+        <mat-chip-grid #chipGrid9
+                       cdkDropList
+                       cdkDropListOrientation="horizontal"
+                       (cdkDropListDropped)="drop($event)">
+          <mat-chip-row *ngFor="let chip of basicChips"
+                        [editable]="true"
+                        (edited)="edit(chip, $event)"
+                        [color]="chip.color || 'default'"
+                        (removed)="removeChip(chip)"
+                        cdkDrag>
+            {{chip.name}}
+            <button matChipRemove><mat-icon>cancel</mat-icon></button>
+          </mat-chip-row>
+          <input class="form-control"
+                 [placeholder]="'placeholder.chips_placeholder' | translate"
+                 [matChipInputFor]="chipGrid9"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 (matChipInputTokenEnd)="add($event, 'basic')"/>
+        </mat-chip-grid>
+      </div>
     </div>
   </div>
 

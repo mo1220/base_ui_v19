@@ -65,8 +65,8 @@
     }
 
     button{
-      margin-bottom: 5px;
-      margin-right: 7px !important;
+      //margin-bottom: 5px;
+      //margin-right: 7px !important;
     }
     .gnb,
     .dtk-breadcrumb {
@@ -75,10 +75,21 @@
         margin-right: 0 !important;
       }
     }
+
+    & > * {
+      margin-bottom: 15px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 
 .component-wrap {
   flex: 1;
   padding-right: 20px;
+  &.button .style-guide-example button {
+    margin-bottom: 5px;
+    margin-right: 7px !important;
+  }
 }

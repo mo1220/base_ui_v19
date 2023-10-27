@@ -460,6 +460,139 @@ ul, ol, dl {
 }
 /****************************** EN: ngx-datepicker *************************************************/
 
+/****************************** ST: form *************************************************/
+.form {
+
+  &-input { // input + clear-btn + invalid-feedback
+    position: relative;
+    button {
+      margin: 0 0 0 10px !important;
+    }
+
+    input.invalid {
+      border-color: $danger;
+      padding-right: calc(1.5em + 0.75rem);
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right calc(0.375em + 0.1875rem) center;
+      background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+      &:focus {
+        border-color: $danger;
+        box-shadow: 0 0 0 0.2rem rgba($danger, .25);
+      }
+    }
+    .invalid-feedback {
+      margin-top: 0 !important;
+      font-size: 0.72em !important;
+      position: absolute;
+    }
+
+    .clear-btn {
+      position: absolute;
+      color: rgba(0, 0, 0, 0.5);
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      &:hover {
+        color: rgba(0,0,0, 0.7);
+      }
+    }
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      line-height: 17px;
+      font-weight: 600;
+    }
+    &:has(.form-control-xs) {
+      mat-icon {
+        font-size: 12px !important;
+        width: 12px !important;
+        height: 12px !important;
+        line-height: 11px !important;
+      }
+    }
+    &:has(.form-control-sm) {
+      mat-icon {
+        font-size: 15px !important;
+        width: 15px !important;
+        height: 15px !important;
+        line-height: 14px !important;
+      }
+    }
+  }
+
+  &-set {
+    padding: 5px 0;
+    & > * {
+      margin-bottom: 0;
+      margin-right: 10px;
+      &:last-child { margin-right: 0;}
+    }
+    &.flex {
+      display: flex;
+      align-items: center;
+      & > * {
+        margin-bottom: 0;
+        margin-right: 10px;
+        &:last-child { margin-right: 0;}
+      }
+    }
+
+    &:has(.form-control-xs) {
+      font-size: 9px;
+    }
+    &:has(.form-control-sm) {
+      font-size: 10px;
+    }
+    &:has(.form-control-lg) {
+      font-size: 16px;
+    }
+  }
+
+  &-group {
+    & > * {
+      margin-bottom: 10px;
+      &:last-child { margin-bottom: 0; }
+    }
+    &.flex {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      & > * {
+        margin-bottom: 0;
+        margin-right: 10px;
+        &:last-child { margin-right: 0; }
+      }
+      &:has(.form-set.flex){
+        align-items: center;
+      }
+    }
+  }
+}
+
+label {
+  margin: 0 10px 0 0;
+  /* form-label min-width min-${size} */
+  @each $size in 10, 20, 30, 40, 50 {
+    &.min-#{$size} {
+      min-width: $size + px !important;
+    }
+  }
+
+  &.required {
+    &::after {
+      content: "*";
+      color: $danger;
+      font-size: 0.7rem;
+      margin-left: 2px;
+    }
+  }
+
+}
+/****************************** EN: form *************************************************/
+
 /****************************** ST: magic-input checkbox *************************************************/
 .mgc {
   position: relative;
@@ -846,6 +979,102 @@ input[type="radio"].mgr:checked:before {
 }
 /****************************** EN: Mat-checkbox *************************************************/
 
+/****************************** ST: Mat-chips *************************************************/
+.chips {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  //mat-chip color
+  .mat-primary, .mat-success, .mat-info, .mat-warning, .mat-danger {
+    &.mat-mdc-chip.mdc-evolution-chip--with-trailing-action .mat-mdc-chip-action-label, &.mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--trailing, &.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label {
+      color: #fff !important;
+    }
+  }
+  .mat-primary {
+    background-color: $primary !important;
+  }
+  .mat-success {
+    background-color: $success !important;
+  }
+  .mat-info {
+    background-color: $info !important;
+  }
+  .mat-warning {
+    background-color: $warning !important;
+  }
+  .mat-danger {
+    background-color: $danger !important;
+  }
+  input.mat-mdc-chip-input.mat-mdc-input-element.mdc-text-field__input.mat-input-element {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  // rounded
+  .mdc-evolution-chip-set .mdc-evolution-chip {
+    border-radius: 0.25rem;
+  }
+  &-circle {
+    .mdc-evolution-chip-set .mdc-evolution-chip {
+      border-radius: 25rem;
+    }
+  }
+
+
+  &.form-control.form-control-xs {
+    .mdc-evolution-chip-set {
+      //min-height: calc(1.5em + 2px) !important;
+      min-height: calc(1.5em + 0.2rem + 2px) !important;
+      .mdc-evolution-chip{
+        height: 18px !important;
+        margin-top: 2px !important;
+        margin-bottom: 2px !important;
+        .mdc-evolution-chip__text-label {
+          font-size: 0.62rem;
+        }
+      }
+    }
+    input {
+      min-height: calc(1.5em + 0.2rem + 2px) !important;
+      padding: 0.15rem 0.35rem !important;
+      font-size: 0.7rem !important;
+      border-radius: 0.1rem !important;
+    }
+
+  }
+  &.form-control.form-control-sm {
+    .mdc-evolution-chip-set {
+      min-height: calc(1.5em + 0.5rem + 2px);
+      .mdc-evolution-chip{
+        height: 22px !important;
+        margin-top: 4px !important;
+        margin-bottom: 4px !important;
+        .mdc-evolution-chip__text-label {
+          font-size: 0.76rem;
+        }
+      }
+    }
+    input {
+      min-height: calc(1.5em + 0.5rem + 2px);
+      padding: 0.25rem 0.5rem;
+      font-size: 0.875rem;
+      border-radius: 0.2rem;
+    }
+
+  }
+  &.form-control .mdc-evolution-chip-set .mdc-evolution-chip{
+    height: 28px !important;
+    background-color: #f0f0f0;
+    border: 1px solid rgba(0,0,0, 0.08);
+    .mdc-evolution-chip__text-label {
+      font-size: 0.98rem;
+    }
+  }
+}
+.mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--trailing {
+  margin: 0 !important;
+}
+/****************************** EN: Mat-chips *************************************************/
+
 /******************************** ST: Toast Message *******************************************/
 #toast-container {
   .toast {
@@ -1001,103 +1230,3 @@ input[type="radio"].mgr:checked:before {
 
 
 /********************************* EN: CDK Context Menu *****************************/
-
-/****************************** ST: Mat-chips *************************************************/
-.chips {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  //mat-chip color
-  .mat-primary, .mat-success, .mat-info, .mat-warning, .mat-danger {
-    &.mat-mdc-chip.mdc-evolution-chip--with-trailing-action .mat-mdc-chip-action-label, &.mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--trailing, &.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label {
-      color: #fff !important;
-    }
-  }
-  .mat-primary {
-    background-color: $primary !important;
-  }
-  .mat-success {
-    background-color: $success !important;
-  }
-  .mat-info {
-    background-color: $info !important;
-  }
-  .mat-warning {
-    background-color: $warning !important;
-  }
-  .mat-danger {
-    background-color: $danger !important;
-  }
-  input.mat-mdc-chip-input.mat-mdc-input-element.mdc-text-field__input.mat-input-element {
-    border: none !important;
-    box-shadow: none !important;
-  }
-
-  // rounded
-  .mdc-evolution-chip-set .mdc-evolution-chip {
-    border-radius: 0.25rem;
-  }
-  &-circle {
-    .mdc-evolution-chip-set .mdc-evolution-chip {
-      border-radius: 25rem;
-    }
-  }
-
-
-  &.form-control.form-control-xs {
-    .mdc-evolution-chip-set {
-      //min-height: calc(1.5em + 2px) !important;
-      min-height: calc(1.5em + 0.2rem + 2px) !important;
-      .mdc-evolution-chip{
-        height: 18px !important;
-        margin-top: 2px !important;
-        margin-bottom: 2px !important;
-        .mdc-evolution-chip__text-label {
-          font-size: 0.62rem;
-        }
-      }
-    }
-    input {
-      min-height: calc(1.5em + 0.2rem + 2px) !important;
-      padding: 0.15rem 0.35rem !important;
-      font-size: 0.7rem !important;
-      border-radius: 0.1rem !important;
-    }
-
-  }
-  &.form-control.form-control-sm {
-    .mdc-evolution-chip-set {
-      min-height: calc(1.5em + 0.5rem + 2px);
-      .mdc-evolution-chip{
-        height: 22px !important;
-        margin-top: 4px !important;
-        margin-bottom: 4px !important;
-        .mdc-evolution-chip__text-label {
-          font-size: 0.76rem;
-        }
-      }
-    }
-    input {
-      min-height: calc(1.5em + 0.5rem + 2px);
-      padding: 0.25rem 0.5rem;
-      font-size: 0.875rem;
-      border-radius: 0.2rem;
-    }
-
-  }
-  &.form-control .mdc-evolution-chip-set .mdc-evolution-chip{
-    height: 28px !important;
-    background-color: #f0f0f0;
-    border: 1px solid rgba(0,0,0, 0.08);
-    .mdc-evolution-chip__text-label {
-      font-size: 0.98rem;
-    }
-  }
-  //.mat-mdc-chip.mdc-evolution-chip--with-trailing-action .mat-mdc-chip-action-label {
-  //  font-size: 0.7rem;
-  //}
-}
-.mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--trailing {
-  margin: 0 !important;
-}
-
-/****************************** EN: Mat-chips *************************************************/
