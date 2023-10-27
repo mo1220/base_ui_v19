@@ -8,8 +8,8 @@
       <ng-container [ngSwitch]="menu.anchor">
         <!--ST: 베이직 Table -->
         <div class="style-guide-example" *ngSwitchCase="'basic'">
-          <table class="table table-striped">
-            <thead>
+          <table class="table table-striped table-bordered">
+            <thead class="table-light">
             <tr>
               <th scope="col">#</th>
               <th scope="col">Country</th>
@@ -37,36 +37,6 @@
         </div>
         <!--EN: 베이직 Table -->
 
-        <!--ST: Border Table -->
-        <div class="style-guide-example" *ngSwitchCase="'border'">
-          <table class="table table-bordered">
-            <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Country</th>
-              <th scope="col">Area</th>
-              <th scope="col">Population</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let country of countries | slice: 0: 10; index as i">
-              <th scope="row">{{ i + 1 }}</th>
-              <td>
-                <img
-                  [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
-                  class="me-2"
-                  style="width: 20px"
-                />
-                {{ country.name }}
-              </td>
-              <td>{{ country.area | number }}</td>
-              <td>{{ country.population | number }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <!--EN: Border Table -->
-
         <!--ST: Ranking Table -->
         <div class="style-guide-example" *ngSwitchCase="'rank'">
           <table class="rank-table">
@@ -90,6 +60,7 @@
         </div>
         <!--EN: Ranking Table -->
 
+        <!--ST: Notice Table -->
         <div class="style-guide-example" *ngSwitchCase="'notice'">
           <table class="board-table">
             <colgroup>
@@ -139,7 +110,9 @@
             </tbody>
           </table>
         </div>
+        <!--EN: Notice Table -->
 
+        <!-- ST: ag-grid-->
         <div class="style-guide-example" *ngSwitchCase="'ag-grid'">
           <ag-grid-angular style="width: 100%; height: 100%"
                            class="ag-theme-alpine"
@@ -151,6 +124,9 @@
 
           </ag-grid-angular>
         </div>
+        <!-- EN: ag-grid-->
+
+        <!-- ST: ag-grid-border-->
         <div class="style-guide-example" *ngSwitchCase="'ag-grid-boarder'">
           <ag-grid-angular style="width: 100%; height: 100%"
                            class="ag-theme-alpine ag-grid-border"
@@ -162,6 +138,8 @@
 
           </ag-grid-angular>
         </div>
+        <!-- EN: ag-grid-border-->
+
       </ng-container>
     </ng-container>
   </div>

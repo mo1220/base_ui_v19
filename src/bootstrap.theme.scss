@@ -498,6 +498,15 @@ label.btn-split {
   //}
 }
 
+/***** ST: Table *****/
+.table {
+  &.table-bordered { border-top: 2px solid $primary; }
+}
+.table > :not(:last-child) > :last-child > *{
+  //border-bottom-color: #dee2e6 !important;
+}
+/***** EN: Table *****/
+
 /********************** ST: Nav *******************************/
 .nav-tabs {
   .nav-link {
