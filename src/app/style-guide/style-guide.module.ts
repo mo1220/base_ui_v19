@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 
@@ -110,6 +110,9 @@ import {AsideMenuRightComponent} from "./aside-menu-right/aside-menu-right.compo
         StyleGuideRoutingModule,
     ],
   exports: [],
-  providers: []
+  providers: [],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class StyleGuideModule {}

@@ -1,64 +1,5 @@
 @import "styles-variables";
 
-// Alert Message
-$alert-padding-y: .5rem;          //    $spacer; <-- 1rem
-$alert-padding-x: 1rem;          //    $spacer;<-- 1rem
-$alert-margin-bottom:           1rem;
-//$alert-border-radius:           $border-radius;
-//$alert-link-font-weight:        $font-weight-bold;
-//$alert-border-width:            $border-width;
-//$alert-bg-scale:                -80%;
-//$alert-border-scale:            -70%;
-//$alert-color-scale:             40%;
-//$alert-dismissible-padding-r:   $alert-padding-x * 3; // 3x covers width of x plus default padding on either side
-
-
-$btn-primary-color: #FFF !default;
-$btn-font-family: 'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
-$btn-font-size: .75rem !default;
-$btn-xl-font-size: 1.2rem;
-$btn-lg-font-size: 1rem;
-$btn-sm-font-size: 11.5px;
-$btn-xs-font-size: 10px;
-$border-radius: .25rem;
-$btn-xs-border-radius: 3px;
-$border-radius-left: $border-radius 0 0 $border-radius;
-$border-radius-right: 0 $border-radius $border-radius 0;
-$border-radius-round: 1.2rem;
-
-$btn-padding: .5rem !default;
-$btn-padding-xl: 1rem;
-$btn-padding-lg: .75rem ;
-$btn-padding-sm: .375rem;
-$btn-padding-xs: 10px ;
-
-$btn-padding-y: .375rem !default;
-$btn-padding-x: .75rem !default;
-$btn-font-family: $btn-font-family;
-
-// Button Padding
-$btn-padding-y-xl: .75rem;
-$btn-padding-x-xl: 1.2rem;
-
-$btn-padding-y-lg: .55rem;
-$btn-padding-x-lg: 1rem;
-
-$btn-padding-y-sm: .25rem;
-$btn-padding-x-sm: .5rem;
-
-$btn-padding-y-xs: 2px;
-$btn-padding-x-xs: .35rem;
-
-$btn-active-box-shadow: inset 0 3px 5px rgba($black, .125);
-$btn-box-shadow: inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075);
-$btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-//$btn-border-width:            $input-btn-border-width;
-
-//$btn-font-weight:             $font-weight-normal;
-
-//$btn-focus-width:             $input-btn-focus-width;
-//$btn-focus-box-shadow:        $input-btn-focus-box-shadow;
-//$btn-disabled-opacity:        .65;
 .alert {
   font-size: 12px;
   border-left-width: 5px !important;
@@ -154,7 +95,7 @@ $btn-raised-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0,
       left: -12px;
       display: inline-block;
       padding: 6px 12px;
-      background: rgba(0, 0, 0, 0.15);
+      //background: rgba(0, 0, 0, 0.15);
       border-radius: $border-radius-left;
     }
 
@@ -364,7 +305,24 @@ label.btn-split {
 
 /**** form ****/
 .form-control {
-  font-size: 0.76rem !important;
+  //padding: $btn-padding-y $btn-padding-x !important;
+  //font-size: $btn-font-size !important;
+  //border-radius: $border-radius !important;
+  //&-lg {
+  //  padding: $btn-padding-y-lg $btn-padding-x-lg !important;
+  //  font-size: $btn-lg-font-size !important;
+  //}
+  //&-sm {
+  //  padding: $btn-padding-y-sm $btn-padding-x-sm !important;
+  //  font-size: $btn-sm-font-size !important;
+  //}
+  &-xs {
+    min-height: calc(1.5em + 0.2rem + 2px) !important;
+    padding: $btn-padding-y-xs $btn-padding-x-xs !important;
+    font-size: $btn-xs-font-size + 1px !important;
+    border-radius: $btn-xs-border-radius !important;
+  }
+
   &.datepicker {
     /*width: 280px;*/
     &-range {
@@ -372,6 +330,7 @@ label.btn-split {
     }
   }
 }
+
 /**** checkbox ****/
 .checkbox-group {
   li {
@@ -381,6 +340,67 @@ label.btn-split {
     }
   }
 }
+
+/**************************** ST: Color Picker ***************************/
+.dtk-color-picker {
+  .sketch-picker {
+    padding:0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    .sketch-wrap {
+      margin: 0 5px 0 0 !important;
+    }
+    .swatch {
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+  }
+  .chrome-picker {
+    box-shadow: none !important;
+    width: 200px !important;
+    border-radius: 0 !important;
+  }
+}
+
+.dtk-color-picker-full {
+  .chrome-picker {
+    box-shadow: none !important;
+    width: 280px !important;
+    border-radius: 0 !important;
+  }
+}
+
+.dtk-color-swatches {
+  .swatches-picker {
+    height: 170px !important;
+  }
+  .zDepth-1 {
+    box-shadow: none !important;
+  }
+  .swatches-overflow {
+    padding: 0 !important;
+    overflow-y: hidden !important;
+    margin-right: -5px;
+    height: 170px !important;
+  }
+  .swatches-group {
+    width: 15px !important;
+    margin-right: 5.5px !important;
+    .swatch {
+      width: 15px !important;
+      height: 15px !important;
+    }
+  }
+  .swatch-check {
+    margin-left: 0 !important;
+    svg {
+      width: 15px !important;
+      height: 15px !important;
+    }
+  }
+}
+/**************************** EN: Color Picker ***************************/
 
 
 /***** Speed dial *****/

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -57,9 +57,18 @@ import { QuillModule } from 'ngx-quill';
 import { AceModule } from 'ngx-ace-wrapper';
 import { ACE_CONFIG } from 'ngx-ace-wrapper';
 import { AceConfigInterface } from 'ngx-ace-wrapper';
+const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
+
 import {AgGridModule} from "ag-grid-angular";
 
-const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
+import { ColorSketchModule } from 'ngx-color/sketch';
+import { ColorSwatchesModule } from 'ngx-color/swatches';
+import { ColorChromeModule } from 'ngx-color/chrome';
+import {CategoryColorsComponent} from "./category-colors/category-colors.component";
+import {ColorDialog} from "./color-dialog/color-dialog";
+import {ColorInputComponent} from "./color-input/color-input.component";
+import {ColorsScaleComponent} from "./colors-scale/colors-scale";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -107,6 +116,7 @@ const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
     CollapseModule,
     ButtonsModule,
     CdkMenuModule,
+
     PipesModule,
     RouterModule,
     ToastrModule,
@@ -118,13 +128,20 @@ const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
     }),
     QuillModule.forRoot(),
     AceModule,
-    AgGridModule
+    AgGridModule,
+    ColorSketchModule,
+    ColorSwatchesModule,
+    ColorChromeModule,
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
     AsideMenuItemComponent, // Left Menu Item
     PopupMessage, // Popup Message
-    CustomToastComponent,
+    CustomToastComponent, // Toast 메세지 에러 표시시 Trace ID 표시용 커스터마이징
+    CategoryColorsComponent, // 카테고리 컬러
+    ColorDialog, // 컬러 다이얼로그
+    ColorInputComponent, // 컬러 인풋
+    ColorsScaleComponent // 스케일 컬러 인풋
   ],
   exports: [
     CommonModule,
@@ -182,6 +199,10 @@ const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
     AsideMenuItemComponent,
     PopupMessage,
     CustomToastComponent,
+    CategoryColorsComponent, // 카테고리 컬러
+    ColorDialog, // 컬러 다이얼로그
+    ColorInputComponent, // 컬러 인풋
+    ColorsScaleComponent, // 스케일 컬러 인풋
 
     //3rd Party
     LaddaModule,
@@ -189,11 +210,17 @@ const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
     QuillModule,
     AceModule,
     CdkMenuModule,
-    AgGridModule
+    AgGridModule,
+    ColorSketchModule,
+    ColorSwatchesModule,
+    ColorChromeModule,
   ],
   providers: [
     { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }
   ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class SharedModule {
   // constructor() {}
