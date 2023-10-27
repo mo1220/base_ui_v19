@@ -5,9 +5,21 @@
     <div class="style-guide-example">
       <h5>라벨 Input</h5>
       <div class="form-group">
-        <label>색상 선택</label>
+        <label>모두 보이게</label>
         <color-input [(color)]="color"
                      [type]="'all'"
+                     (colorChange)="colorChange($event)"></color-input>
+      </div>
+      <div class="form-group">
+        <label>Swatch(색상 견본)</label>
+        <color-input [(color)]="color"
+                     [type]="'swatch'"
+                     (colorChange)="colorChange($event)"></color-input>
+      </div>
+      <div class="form-group">
+        <label>Sketch()</label>
+        <color-input [(color)]="color"
+                     [type]="'sketch'"
                      (colorChange)="colorChange($event)"></color-input>
       </div>
       <h5>라벨 Select</h5>
@@ -35,6 +47,7 @@
     <h3 #anchor #categoryColor>Category Color</h3>
     <p>차트 카테고리 컬러 설정시</p>
     <div class="style-guide-example">
+      <h5>카테고리 컬러</h5>
       <category-colors (changeColors)="changeCategoryColors($event)"
                        [(colors)]="categoryColors"></category-colors>
     </div>
@@ -42,8 +55,13 @@
     <h3 #anchor #scaleColor>Scale Color</h3>
     <p>Heatmap, Scatter 같은 차트에 온도차가 필요할 경우</p>
     <div class="style-guide-example">
+      <h5>Min Max</h5>
       <colors-scale [gradient]="scaleColors"
                     [type]="'min_max'"
+                    (gradientChange)="changeScaleColor($event)"></colors-scale>
+      <h5>임계치</h5>
+      <colors-scale [gradient]="scaleColors"
+                    [type]="'threshold'"
                     (gradientChange)="changeScaleColor($event)"></colors-scale>
     </div>
   </div>

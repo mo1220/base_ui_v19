@@ -24,7 +24,7 @@ import 'brace';
 import 'brace/mode/sql';
 import 'brace/theme/dracula';
 import { AceConfigInterface } from "ngx-ace-wrapper/lib/ace.interfaces";
-import {AceComponent} from "ngx-ace-wrapper";
+import { AceComponent } from "ngx-ace-wrapper";
 
 /**
  * @class StyleGuideEditorComponent *

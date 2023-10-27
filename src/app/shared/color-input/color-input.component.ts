@@ -10,6 +10,7 @@ import { ColorDialog } from '../color-dialog/color-dialog';
 })
 export class ColorInputComponent {
   toggle: boolean[] = [];
+  @Input() size = ''; // 'xl' | 'lg' | '' | 'sm' | 'xs'
   @Input() type = 'swatch'; // undefined | 'swatch' | 'sketch' | 'all'
   @Input() disabled: any;
   @Input() noInput: boolean; // input 사용/비사용
@@ -23,6 +24,7 @@ export class ColorInputComponent {
     // this.colorChange.emit(this._color);
   }
   @Output() colorChange: EventEmitter<string> = new EventEmitter();
+  popoverShow = false;
   constructor(
     public dialog: MatDialog
   ) { }

@@ -1,10 +1,44 @@
-.dtk-preview-color {
+@import '../../../styles-variables';
+
+.dtk-color-input {
   display: inline-block;
-  width: 28px;
-  border-radius: 0 3px 3px 0;
-  border: 1px solid #ced4da;
-  &:active {
-    border-color: #89a8e8;
-    box-shadow: 0 0 0 0.2rem rgb(39 93 203 / 25%);
+  width: auto;
+  position: relative;
+  .form-control {
+    padding-left: 30px;
+    padding-right: 20px;
+    color: #999;
+    user-select: none;
+    &.active {
+      border-color: $input-focus-border-color;
+      &:after {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+    &:after {
+      content: '\f107';
+      display: inline-block;
+      position: absolute;
+      top:50%;
+      right: 5px;
+      color: #333;
+      font-family: FontAwesome;
+      transform: translateY(-50%);
+    }
+  }
+  .dtk-preview-color {
+    display: inline-block;
+    width: 22px;
+    border: 1px solid #ced4da;
+    height: 22px;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    border-radius: $border-radius;
+    &:active {
+      border-color: #89a8e8;
+      box-shadow: 0 0 0 0.2rem rgb(39 93 203 / 25%);
+    }
   }
 }
