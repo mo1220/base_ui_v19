@@ -1,10 +1,169 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <ng-container *ngFor="let menu of menus;">
+      <h3 #anchors>{{menu.title}}</h3>
+      <p [innerHTML]="menu.desc">
+        {{menu.desc}}
+      </p>
+      <ng-container [ngSwitch]="menu.anchor">
+        <!--ST: 베이직 Table -->
+        <div class="style-guide-example" *ngSwitchCase="'basic'">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Country</th>
+              <th scope="col">Area</th>
+              <th scope="col">Population</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let country of countries| slice: 0: 10; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>
+                <img
+                  [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
+                  class="me-2"
+                  style="width: 20px"
+                />
+                {{ country.name }}
+              </td>
+              <td>{{ country.area | number }}</td>
+              <td>{{ country.population | number }}</td>
+            </tr>
+            </tbody>
+          </table>
 
-</body>
-</html>
+        </div>
+        <!--EN: 베이직 Table -->
+
+        <!--ST: Border Table -->
+        <div class="style-guide-example" *ngSwitchCase="'border'">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Country</th>
+              <th scope="col">Area</th>
+              <th scope="col">Population</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let country of countries | slice: 0: 10; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>
+                <img
+                  [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
+                  class="me-2"
+                  style="width: 20px"
+                />
+                {{ country.name }}
+              </td>
+              <td>{{ country.area | number }}</td>
+              <td>{{ country.population | number }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--EN: Border Table -->
+
+        <!--ST: Ranking Table -->
+        <div class="style-guide-example" *ngSwitchCase="'rank'">
+          <table class="rank-table">
+            <colgroup>
+              <col width="50"/>
+              <col/>
+            </colgroup>
+            <thead>
+            <tr>
+              <th scope="col">Rank</th>
+              <th scope="col">검색어</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let country of countries | slice: 0: 5; index as i">
+              <td class="tx-cn" [style.color]="colors[i]"><b>{{ i + 1 }}</b></td>
+              <td>{{ country.name }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--EN: Ranking Table -->
+
+        <div class="style-guide-example" *ngSwitchCase="'notice'">
+          <table class="board-table">
+            <colgroup>
+              <col width="50"/>
+              <col width="150"/>
+              <col/>
+              <col width="100"/>
+              <col width="100"/>
+              <col width="150"/>
+            </colgroup>
+            <thead>
+            <tr>
+              <th *ngFor="let header of thLabel; let i=index;"
+                  [class.tx-cn]="header.indexOf('file')>-1 || header.indexOf('creator')>-1 || i===0">
+                <ng-container *ngIf="i === 0 else th">
+                  <input type="checkbox" class="mgc mgc-primary mgc-sm mg0"
+                         [checked]="allChecked"
+                         (click)="onClickCheckBoxAll($event)"/>
+                </ng-container>
+                <ng-template #th>
+                  {{ header | translate }} <!--생성일 | 제목 | 작성자 | 첨부파일 | 최종수정일-->
+                </ng-template>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let country of countries | slice: 0: 5; let i=index;">
+                <td class="tx-cn">
+                  <input type="checkbox" class="mgc mgc-primary mgc-sm mg0"
+                                          [checked]="checkMap[country.id]"
+                                          (click)="checkMap[country.id] = !checkMap[country.id]"/>
+                </td>
+                <td>YYYY-MM-dd HH:mm</td> <!--생성일-->
+                <td class="board-table-title">
+                  <img
+                    [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
+                    class="me-2"
+                    style="width: 20px"/>
+                  이미지 : {{ country.flag }}</td> <!-- 제목--->
+                <td class="tx-cn">{{ country.name }}</td> <!-- 작성자--->
+                <td class="tx-cn"><i class="fa fa-floppy-o"
+                       matBadge="1"
+                       matBadgeSize="small"
+                       matBadgePosition="above after"></i></td> <!-- 첨부 파일 -->
+                <td>YYYY-MM-dd HH:mm</td> <!--수정일 -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="style-guide-example" *ngSwitchCase="'ag-grid'">
+          <ag-grid-angular style="width: 100%; height: 100%"
+                           class="ag-theme-alpine"
+                           [defaultColDef]="defaultColDef"
+                           [gridOptions]="gridOptions"
+                           (gridReady)="onGridReady($event)"
+                           [columnDefs]="columnDefs"
+                           [rowData]="countries">
+
+          </ag-grid-angular>
+        </div>
+        <div class="style-guide-example" *ngSwitchCase="'ag-grid-boarder'">
+          <ag-grid-angular style="width: 100%; height: 100%"
+                           class="ag-theme-alpine ag-grid-border"
+                           [defaultColDef]="defaultColDef"
+                           [gridOptions]="gridOptions"
+                           (gridReady)="onGridReady($event)"
+                           [columnDefs]="columnDefs"
+                           [rowData]="countries">
+
+          </ag-grid-angular>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <aside-menu-right [menu]="menus" [anchor]="anchors"></aside-menu-right>
+</div>
