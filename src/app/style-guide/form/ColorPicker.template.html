@@ -27,6 +27,7 @@
         <label>색상 선택</label>
         <color-input [(color)]="color"
                      [type]="'all'"
+                     [noInput]="true"
                      (colorChange)="colorChange($event)"></color-input>
       </div>
       <h5>라벨 Icon</h5>

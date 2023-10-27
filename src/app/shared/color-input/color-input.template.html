@@ -37,7 +37,7 @@
        [popover]="labelColor"
        #lobelPopover="bs-popover"
        [container]="'body'">
-    {{_color}}
+    <span *ngIf="!noInput">{{_color}}</span>
   </div>
   <i class="dtk-preview-color"
      [style.background]="_color"></i>
