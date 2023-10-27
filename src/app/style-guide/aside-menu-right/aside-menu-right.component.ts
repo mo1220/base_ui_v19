@@ -77,3 +77,4 @@ export class AsideMenuRightComponent implements OnInit {
     this.scrolling = false;
   }
 }
+

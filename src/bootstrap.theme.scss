@@ -483,3 +483,12 @@ label.btn-split {
   //  //height: 100%;
   //}
 }
+
+/***** ST: Table *****/
+.table {
+  &.table-bordered { border-top: 2px solid $primary; }
+}
+.table > :not(:last-child) > :last-child > *{
+  //border-bottom-color: #dee2e6 !important;
+}
+/***** EN: Table *****/

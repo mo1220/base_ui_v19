@@ -127,13 +127,8 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
   menus: Array<menuType> = [
     {
       title: 'Basic',
-      desc: '기본 Table  <code class="language-plaintext highlighter-rouge">\n&lt;table class="table table-striped"&gt;&lt;/table&gt;\n</code>',
+      desc: '기본 Table  <code class="language-plaintext highlighter-rouge">\n&lt;table class="table table-striped table-bordered"&gt;&lt;/table&gt;\n</code>',
       anchor: 'basic'
-    },
-    {
-      title: 'Border Table',
-      desc: '상위 Border Primary color Table  <code class="language-plaintext highlighter-rouge">\n&lt;table class="table table-bordered"&gt;&lt;/table&gt;\n</code>',
-      anchor: 'border'
     },
     {
       title: 'Ranking Table',
