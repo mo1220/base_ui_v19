@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   OnDestroy, QueryList,
@@ -33,13 +33,16 @@ export class StyleGuideBreadcrumbComponent implements AfterViewInit, OnDestroy {
   ];
   breadcrumb: any = [ ...BREADCRUMB_SAMPLE ];
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) {
 
   }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   ngOnDestroy(): void { }
 }

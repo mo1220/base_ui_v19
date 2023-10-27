@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   OnDestroy, OnInit,
@@ -170,6 +170,7 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
   gridOptions:GridOptions;
 
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) {
@@ -208,6 +209,7 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
   }
 
   ngAfterViewInit(): void {
+    this.cd.detectChanges();
   }
 
   ngOnDestroy(): void {

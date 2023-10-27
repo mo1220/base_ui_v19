@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef, HostListener, inject,
   OnDestroy, QueryList,
@@ -62,6 +62,7 @@ export class StyleGuideChipsComponent implements AfterViewInit, OnDestroy {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) { }
@@ -120,7 +121,7 @@ export class StyleGuideChipsComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-
+    this.cd.detectChanges();
   }
 
   ngOnDestroy(): void { }

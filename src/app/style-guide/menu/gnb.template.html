@@ -45,6 +45,6 @@
       <!-- EN : GNB -->
     </div>
   </div>
-  <aside-menu-right [menu]="buttonMenu"
+  <aside-menu-right *ngIf="loaded" [menu]="buttonMenu"
                     [anchor]="anchors"></aside-menu-right>
 </div>

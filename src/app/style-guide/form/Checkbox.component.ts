@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -70,6 +70,7 @@ export class StyleGuideCheckboxComponent implements AfterViewInit, OnDestroy {
   }
 
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) { }
@@ -93,7 +94,9 @@ export class StyleGuideCheckboxComponent implements AfterViewInit, OnDestroy {
     this.checkList.sublist.forEach(t => (t.checked = ck));
   }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   ngOnDestroy(): void { }
 }

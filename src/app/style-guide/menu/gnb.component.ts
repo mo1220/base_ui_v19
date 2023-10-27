@@ -1,8 +1,8 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
-  OnDestroy, QueryList,
+  OnDestroy, OnInit, QueryList,
   ViewChild,
   ViewChildren,
   ViewEncapsulation
@@ -34,10 +34,12 @@ export class StyleGuideGnbComponent implements AfterViewInit, OnDestroy {
   menus: any = [ ...MENU ];
   lang = 'kr';
   rippleColor = 'rgba(0,123,255,0.05)';
+  loaded = false;
   constructor(
     private storageService: LocalStorageService,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) {
     this.lang = storageService.getItem('APPS.LANG') ? storageService.getItem('APPS.LANG') : 'kr';
     storageService.setItem('APPS.LANG', this.lang);
@@ -48,7 +50,11 @@ export class StyleGuideGnbComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  ngAfterViewInit(): void { }
+
+  ngAfterViewInit(): void {
+    this.loaded = true;
+    this.cd.detectChanges();
+  }
 
   ngOnDestroy(): void { }
 }
