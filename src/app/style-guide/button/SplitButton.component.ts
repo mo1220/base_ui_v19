@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -66,12 +66,15 @@ export class StyleGuideSplitButtonComponent implements AfterViewInit, OnDestroy 
   @ViewChildren('anchors') anchors: QueryList<ElementRef>;
 
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router,
     private notifiService: NotificationService
   ) { }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   ngOnDestroy(): void { }
 

@@ -4,6 +4,7 @@ import {
   OnDestroy, OnInit,
   QueryList,
   ViewChild,
+  ChangeDetectorRef,
   ViewChildren,
   ViewEncapsulation
 } from '@angular/core';
@@ -50,6 +51,7 @@ export class StyleGuidePaginatorComponent implements AfterViewInit, OnDestroy, O
   @ViewChildren('anchors') anchors: QueryList<ElementRef>;
 
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) { }
@@ -61,7 +63,9 @@ export class StyleGuidePaginatorComponent implements AfterViewInit, OnDestroy, O
     this.returnedArray = this.contentArray.slice(0, this.params.size);
   }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   ngOnDestroy(): void { }
 

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, ViewEncapsulation} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 import { STYLE_GUIDE_MENU } from "../style-guide.models";
@@ -23,7 +23,8 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
   breadcrumb: any = [];
   constructor(
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) {
     router.events.subscribe((event: Event) => {
       switch (true) {
@@ -51,6 +52,7 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
     if(fi !== -1) {
       this.menus[fi].active = true;
     }
+    this.cd.detectChanges();
   }
 
   routeNav(e: any) {

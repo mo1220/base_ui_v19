@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   OnDestroy, QueryList,
@@ -39,11 +39,14 @@ export class StyleGuideInputComponent implements AfterViewInit, OnDestroy {
   submitMsg:string = '';
 
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) { }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   submit(value:string): void {
     if(value === '') {

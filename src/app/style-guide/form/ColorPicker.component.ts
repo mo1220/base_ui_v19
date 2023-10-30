@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   OnDestroy, QueryList,
@@ -69,11 +69,14 @@ export class StyleGuideColorPickerComponent implements AfterViewInit, OnDestroy 
   color = '#932266';
   categoryColors:any = [];
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) { }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   changeScaleColor(e: any) {
     console.log(e);

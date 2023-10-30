@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class PageNotFoundComponent implements AfterViewInit, OnDestroy {
   constructor(
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngAfterViewInit(): void { }

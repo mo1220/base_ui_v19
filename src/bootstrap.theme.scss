@@ -341,6 +341,20 @@ label.btn-split {
   }
 }
 
+/**************************** ST: Popover ***************************/
+.bs-popover-bottom > .popover-arrow, .bs-popover-auto[data-popper-placement^=bottom] > .popover-arrow {
+  top: calc(-0.4rem - 1px);
+}
+
+.bs-popover-end > .popover-arrow, .bs-popover-auto[data-popper-placement^=right] > .popover-arrow {
+  left: calc(-0.4rem - 1px);
+}
+
+.bs-popover-top > .popover-arrow, .bs-popover-auto[data-popper-placement^=top] > .popover-arrow {
+  bottom: calc(-0.4rem - 1px);
+}
+/**************************** EN: Popover ***************************/
+
 /**************************** ST: Color Picker ***************************/
 .dtk-color-picker {
   .sketch-picker {
@@ -492,3 +506,14 @@ label.btn-split {
   //border-bottom-color: #dee2e6 !important;
 }
 /***** EN: Table *****/
+
+/********************** ST: Nav *******************************/
+.nav-tabs {
+  .nav-link {
+    padding: $btn-padding-y $btn-padding-x;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    line-height: 2.1em;
+  }
+}
+/********************** EN: Nav *******************************/

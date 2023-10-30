@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef, HostListener,
   OnDestroy, QueryList,
@@ -47,12 +47,15 @@ export class StyleGuideAutoComplateComponent implements AfterViewInit, OnDestroy
 
   constructor(
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) {
 
   }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   keyupEvent(e: KeyboardEvent): void {
     // this.autoCompleteView = true;

@@ -5,7 +5,8 @@ import {
   OnDestroy,
   QueryList, ViewChild,
   ViewChildren,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectorRef
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
@@ -88,11 +89,13 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
   selectedNode: any;
 
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) { }
 
   ngAfterViewInit(): void {
+    this.cd.detectChanges();
     this.trees.forEach(tree => {
       tree.treeModel.expandAll();
     })
