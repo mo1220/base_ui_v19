@@ -68,6 +68,10 @@ import {CategoryColorsComponent} from "./category-colors/category-colors.compone
 import {ColorDialog} from "./color-dialog/color-dialog";
 import {ColorInputComponent} from "./color-input/color-input.component";
 import {ColorsScaleComponent} from "./colors-scale/colors-scale";
+import { TreeModule } from '@odymaui/angular-tree-component';
+import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
+import {TreeDirComponent} from "./tree-dir-component/tree-dir-component";
+
 
 @NgModule({
   imports: [
@@ -132,6 +136,8 @@ import {ColorsScaleComponent} from "./colors-scale/colors-scale";
     ColorSketchModule,
     ColorSwatchesModule,
     ColorChromeModule,
+    TreeModule,
+    TableVirtualScrollModule,
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -141,7 +147,8 @@ import {ColorsScaleComponent} from "./colors-scale/colors-scale";
     CategoryColorsComponent, // 카테고리 컬러
     ColorDialog, // 컬러 다이얼로그
     ColorInputComponent, // 컬러 인풋
-    ColorsScaleComponent // 스케일 컬러 인풋
+    ColorsScaleComponent, // 스케일 컬러 인풋
+    TreeDirComponent // Tree directory
   ],
   exports: [
     CommonModule,
@@ -214,6 +221,9 @@ import {ColorsScaleComponent} from "./colors-scale/colors-scale";
     ColorSketchModule,
     ColorSwatchesModule,
     ColorChromeModule,
+    TreeModule,
+    TableVirtualScrollModule,
+    TreeDirComponent,
   ],
   providers: [
     { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }

@@ -1,0 +1,68 @@
+<tree-root class="dp-directory" #tree
+           *ngIf="nodes[1]"
+           [(state)]="state"
+           (event)="onEvent($event)"
+           [nodes]="[nodes[1]]"
+           [options]="options">
+  <ng-template #treeNodeWrapperTemplate let-node let-index="index">
+    <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
+      <tree-node-expander [node]="node"></tree-node-expander>
+      <span class="icon-directory">
+                  <img [src]="'/assets/icons/' + ( node.hasChildren ? 'folder_open_Icon.svg' : 'folder_Icon.svg')"
+                       style="width: 20px; vertical-align: initial;"
+                       [alt]="node.hasChildren ? 'Open' : 'Close'"/>
+                </span>
+      <div class="node-content-wrapper"
+           *ngIf="nodes[1]"
+           #categoriesElem
+           [id]="node.data._id"
+           [class.active]="nodeActiveId === node.data.id"
+           [class.drag-over]="dragOverId === node.data._id"
+           [class.node-content-wrapper-active]="node.isActive"
+           [class.node-content-wrapper-focused]="node.isFocused"
+           (click)="node.mouseAction('click', $event)"
+           (dragover)="treeDropDragOver($event)"
+           (contextmenu)="node.mouseAction('contextMenu', $event)"
+           (treeDrop)="node.onDrop($event)"
+           [treeAllowDrop]="node.allowDrop"
+           [treeDrag]="node"
+           [treeDragEnabled]="node.allowDrag()">
+        <tree-node-content [node]="node" [index]="index" *ngIf="!node.isEdit">
+        </tree-node-content>
+        <!-- (blur)="updateNode(node)" -->
+        <input class="form-control tree-input"
+               [id]="'tree_input_' + node.data._id"
+               style="position: relative; z-index:10; user-select: none;"
+               (keyup.enter)="updateNode(node)"
+               *ngIf="node.isEdit"
+               [(ngModel)]="node.data.name"/>
+        <div *ngIf="editMode"
+             (click)="updateNode(node)"
+             style="position: fixed; top:0; left:0; right:0; bottom:0; background-color: rgba(0,0,0, .01); z-index:9; user-select: none;"></div>
+      </div>
+
+      <ng-container *ngIf="!editMode && !mode">
+        <!--하위폴더 추가-->
+        <button mat-button class="btn-tree-item"
+                [matTooltip]="'data-catalog.add-subfolder'|translate"
+                (click)="addChildren($event, node)">
+          <mat-icon class="md-16">add</mat-icon>
+        </button>
+        <!--이름 수정-->
+        <button mat-button class="btn-tree-item"
+                *ngIf="node.level !== 1"
+                [matTooltip]="'buttons.modified_name'|translate"
+                (click)="editName($event, node)">
+          <mat-icon class="md-16">edit</mat-icon>
+        </button>
+        <!--폴더 삭제-->
+        <button mat-button class="btn-tree-item"
+                *ngIf="node.level !== 1"
+                [matTooltip]="'data-catalog.delete-folder'|translate"
+                (click)="deleteMsg($event, node)">
+          <mat-icon class="md-16">delete</mat-icon>
+        </button>
+      </ng-container>
+    </div>
+  </ng-template>
+</tree-root>

@@ -1,10 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <ng-container *ngFor="let menu of menus;">
+      <h3 #anchors>{{ menu.title }}</h3>
+      <p [innerHTML]="menu.desc | safeHtml"></p>
+      <ng-container [ngSwitch]="menu.anchor">
+        <!--ST: 베이직 페이지 네이션 -->
+        <div class="style-guide-example d-flex" *ngSwitchCase="'basic'">
+          <div class="d-flex-1">
+            <h5>기본 접기</h5>
+            <tree-root class="dp-directory"
+                       [nodes]="nodes"></tree-root>
+          </div>
+          <div class="d-flex-1">
+            <h5>기본 펼치기</h5>
+            <tree-root class="dp-directory" #trees
+                       [nodes]="nodes"></tree-root>
+          </div>
+        </div>
+        <!--EN: 베이직 페이지 네이션 -->
+        <!--ST: Checkbox -->
+        <div class="style-guide-example" *ngSwitchCase="'checkbox'">
+          <tree-root class="dp-directory" #trees
+                     [nodes]="nodes"
+                     (initialized)="onUpdate($event)"
+                     (select)="onSelect($event)"
+                     (deselect)="onDeselect($event)"
+                     [options]="options"></tree-root>
 
-</body>
-</html>
+        </div>
+        <!--EN: Checkbox -->
+
+        <!--ST: Icon -->
+        <div class="style-guide-example" *ngSwitchCase="'icon'">
+          <h5 *ngIf="selectedNode">Id: {{ selectedNode.id  }} / Name: {{ selectedNode.name }}</h5>
+          <tree-dir-component-app [nodes]="nodes" [mode]="'select'"
+                                  (nodeActiveChanged)="nodeActiveChanged($event)"></tree-dir-component-app>
+        </div>
+        <!--EN: Icon -->
+
+        <!--ST: Event -->
+        <div class="style-guide-example" *ngSwitchCase="'event'">
+          <div style="width: 250px;">
+            <tree-dir-component-app [nodes]="nodes"></tree-dir-component-app>
+          </div>
+        </div>
+        <!--EN: Event -->
+
+        <!--ST: Event -->
+        <div class="style-guide-example" *ngSwitchCase="'filter'">
+        </div>
+        <!--EN: Event -->
+
+      </ng-container>
+    </ng-container>
+  </div>
+  <aside-menu-right [menu]="menus"
+                    [anchor]="anchors"></aside-menu-right>
+</div>
