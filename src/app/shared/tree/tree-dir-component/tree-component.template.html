@@ -1,6 +1,6 @@
 <tree-root class="dp-directory" #tree
            *ngIf="nodes[1]"
-           [(state)]="state"
+           [(state)]="state[viewType]"
            (event)="onEvent($event)"
            [nodes]="[nodes[1]]"
            [options]="options">
@@ -27,14 +27,12 @@
            [treeAllowDrop]="node.allowDrop"
            [treeDrag]="node"
            [treeDragEnabled]="node.allowDrag()">
-        <tree-node-content [node]="node" [index]="index" *ngIf="!node.isEdit">
-        </tree-node-content>
+        <tree-node-content [node]="node" [index]="index" *ngIf="!node.isEdit"></tree-node-content>
         <!-- (blur)="updateNode(node)" -->
-        <input class="form-control tree-input"
+        <input *ngIf="node.isEdit" class="form-control tree-input"
                [id]="'tree_input_' + node.data._id"
                style="position: relative; z-index:10; user-select: none;"
                (keyup.enter)="updateNode(node)"
-               *ngIf="node.isEdit"
                [(ngModel)]="node.data.name"/>
         <div *ngIf="editMode"
              (click)="updateNode(node)"
@@ -44,8 +42,8 @@
       <ng-container *ngIf="!editMode && !mode">
         <!--하위폴더 추가-->
         <button mat-button class="btn-tree-item"
-                [matTooltip]="'data-catalog.add-subfolder'|translate"
-                (click)="addChildren($event, node)">
+                [matTooltip]="'buttons.add_folder'|translate"
+                (click)="addChildren($event, node.data)">
           <mat-icon class="md-16">add</mat-icon>
         </button>
         <!--이름 수정-->
@@ -58,7 +56,7 @@
         <!--폴더 삭제-->
         <button mat-button class="btn-tree-item"
                 *ngIf="node.level !== 1"
-                [matTooltip]="'data-catalog.delete-folder'|translate"
+                [matTooltip]="'buttons.delete_folder'|translate"
                 (click)="deleteMsg($event, node)">
           <mat-icon class="md-16">delete</mat-icon>
         </button>

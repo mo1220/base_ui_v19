@@ -105,7 +105,9 @@
     "data-cart-add": "데이터 담기",
     "sample-view": "샘플데이터 보기",
     "state": "검토",
-    "move": "이동"
+    "move": "이동",
+    "add_folder": "폴더 추가",
+    "delete_folder": "폴더 삭제"
   },
   "placeholder": {
     "keyword_placeholder": "검색어를 입력하세요",

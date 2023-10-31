@@ -32,24 +32,71 @@
 
         <!--ST: Icon -->
         <div class="style-guide-example" *ngSwitchCase="'icon'">
-          <h5 *ngIf="selectedNode">Id: {{ selectedNode.id  }} / Name: {{ selectedNode.name }}</h5>
-          <tree-dir-component-app [nodes]="nodes" [mode]="'select'"
-                                  (nodeActiveChanged)="nodeActiveChanged($event)"></tree-dir-component-app>
+          <h5 *ngIf="selectedNode.icon">Id: {{ selectedNode.icon.id  }} / Name: {{ selectedNode.icon.name }}</h5>
+          <tree-dir-component-app [nodes]="nodes"
+                                  [mode]="'select'"
+                                  [viewType]="'styleGuide'"
+                                  (nodeActiveChanged)="nodeActiveChanged($event, 'icon')"></tree-dir-component-app>
         </div>
         <!--EN: Icon -->
 
         <!--ST: Event -->
         <div class="style-guide-example" *ngSwitchCase="'event'">
           <div style="width: 250px;">
-            <tree-dir-component-app [nodes]="nodes"></tree-dir-component-app>
+            <tree-dir-component-app [nodes]="nodes2"
+                                    [viewType]="'styleGuide'"
+                                    (nodeActiveChanged)="nodeActiveChanged($event, 'event')"
+                                    (outputNode)="outputNode($event)"></tree-dir-component-app>
           </div>
         </div>
         <!--EN: Event -->
 
-        <!--ST: Event -->
-        <div class="style-guide-example" *ngSwitchCase="'filter'">
+        <!--ST: fiter -->
+        <div class="style-guide-example d-flex" *ngSwitchCase="'filter'">
+          <div class="tree-select-filter" style="width: 250px; height: 200px;">
+            <label>현업 담당자</label>
+            <div class="form-group" style="position: relative; margin-bottom: 0;">
+              <input class="form-control input-team"
+                     placeholder="담당자를 입력하세요."
+                     (focus)="openTree('owner')"
+                     [(ngModel)]="datasetParams.owner_name"/>
+              <span class="expand-icon"
+                    [ngClass]="{'expand-less': filterTeamView.owner, 'expand-more': !filterTeamView.owner}"></span>
+            </div>
+
+            <ng-container *ngIf="filterTeamView.owner">
+              <tree-select-filter [nodes]="deptList"
+                                  [(label)]="datasetParams.owner_name"
+                                  [(value)]="datasetParams.owner"
+                                  [(openState)]="filterTeamView.owner"></tree-select-filter>
+            </ng-container>
+            <div *ngIf="filterTeamView.owner" class="tree-select-filter-bg" (click)="filterTeamView.owner = false"></div>
+          </div>
+          <div class="tree-select-filter" style="width: 250px; height: 200px;">
+            <label>IT 현업 담당자</label>
+            <div class="form-group" style="position: relative; margin-bottom: 0;">
+              <input class="form-control input-team"
+                     placeholder="담당자를 입력하세요."
+                     (focus)="openTree('it_owner')"
+                     [(ngModel)]="datasetParams.it_owner_name"/>
+              <span class="expand-icon"
+                    [ngClass]="{'expand-less': filterTeamView.it_owner, 'expand-more': !filterTeamView.it_owner}"></span>
+            </div>
+            <ng-container *ngIf="filterTeamView.it_owner">
+              <tree-select-filter [nodes]="deptList"
+                                  [(label)]="datasetParams.it_owner_name"
+                                  [(value)]="datasetParams.it_owner"
+                                  [(openState)]="filterTeamView.it_owner"></tree-select-filter>
+            </ng-container>
+            <div *ngIf="filterTeamView.it_owner" class="tree-select-filter-bg" (click)="filterTeamView.it_owner = false"></div>
+          </div>
         </div>
-        <!--EN: Event -->
+        <!--EN: fiter -->
+
+        <!--ST: loading -->
+        <div class="style-guide-example" *ngSwitchCase="'loading'">
+        </div>
+        <!--EN: fiter -->
 
       </ng-container>
     </ng-container>
