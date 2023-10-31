@@ -42,7 +42,8 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
     },
     {
       title: 'skeleton loading Tree',
-      desc: 'Skeleton loading Tree Component',
+      desc: 'Skeleton loading Tree Component <code class="language-plaintext highlighter-rouge"> ' +
+        '\n&lt;ngx-skeleton&gt;&lt;/ngx-skeleton&gt;</code> 사용',
       anchor: 'loading'
     },
     {
@@ -63,38 +64,43 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
       id: 1,
       name: 'root1',
       children: [
-        {id: 2, name: 'child1'},
-        {id: 3, name: 'child2'}
+        {id: 2, name: 'child1-1'},
+        {id: 3, name: 'child1-2'}
       ]
     },
     {
       id: 4,
       name: 'root2',
       children: [
-        {id: 5, name: 'child2.1'},
-        {id: 6, name: 'child2.2', children: [{id: 7, name: 'subsub'}]}
+        {id: 5, name: 'child2-1'},
+        {id: 6, name: 'child2-2', children: [{id: 7, name: 'subsub'}]}
       ]
     }
   ];
+
   nodes2 = [
     {
-      name: 'root1',
+      name: '전체',
       children: [
-        {name: 'child1'},
-        {name: 'child2'}
-      ]
-    },
-    {
-      name: 'root2',
-      children: [
-        {name: 'child2.1'},
         {
-          name: 'child2.2',
+          name: 'root1',
           children: [
-            {name: 'subsub'}
+            {name: 'child1'},
+            {name: 'child2'}
           ]
-        }
-      ]
+        },
+        {
+          name: 'root2',
+          children: [
+            {name: 'child2.1'},
+            {
+              name: 'child2.2',
+              children: [
+                {name: 'subsub'}
+              ]
+            }
+          ]
+        }]
     }
   ];
 
@@ -174,6 +180,12 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
     it_owner: false
   }
 
+
+  loadingContent = Array.from({ length: 7}, (d, i) => (i));
+
+  loading = true;
+  loading2 = false;
+
   options: ITreeOptions = {
     useCheckbox: true
   };
@@ -234,6 +246,12 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
    * @param node: TreeNode
    */
   outputNode({type, node}: any) {
+    this.loading2 = true;
+    // API 성공 시
+    setTimeout(() => {
+      this.loading2 = false;
+    }, 1000);
+
     if (type === 'add') { // 폴더 생성
       // TODO  API 연결
       this.msgs.success({title: '폴더 생성', message: '폴더 생성 성공!'})
@@ -251,7 +269,7 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
    * @param type: 담당자 타입
    */
   openTree(type: string) {
-    if(type ==='owner') {
+    if (type === 'owner') {
       this.filterTeamView.owner = true;
     } else {
       this.filterTeamView.it_owner = true;

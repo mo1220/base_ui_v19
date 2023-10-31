@@ -1,8 +1,7 @@
 <tree-root class="dp-directory" #tree
-           *ngIf="nodes[1]"
            [(state)]="state[viewType]"
            (event)="onEvent($event)"
-           [nodes]="[nodes[1]]"
+           [nodes]="_nodes"
            [options]="options">
   <ng-template #treeNodeWrapperTemplate let-node let-index="index">
     <div class="node-wrapper" [style.padding-left]="node.getNodePadding()">
@@ -13,7 +12,6 @@
                        [alt]="node.hasChildren ? 'Open' : 'Close'"/>
                 </span>
       <div class="node-content-wrapper"
-           *ngIf="nodes[1]"
            #categoriesElem
            [id]="node.data._id"
            [class.active]="nodeActiveId === node.data.id"

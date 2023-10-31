@@ -40,13 +40,70 @@
         </div>
         <!--EN: Icon -->
 
+        <!--ST: loading -->
+        <div class="style-guide-example d-flex" *ngSwitchCase="'loading'">
+          <div class="d-flex-1">
+            <h5>기본 skeleton loading</h5>
+            <div *ngFor="let node of loadingContent let i=index">
+              <div class="tree-renderer">
+                <span class="material-icons" style="font-size: 10px; color: #eee">arrow_forward_ios</span>
+                <ngx-skeleton borderRadius="3px" margin="5px" width="20px" height="20px"></ngx-skeleton>
+                <ngx-skeleton class="tree-renderer-item"  borderRadius="10px" margin="5px 0"  [width]=" i=== 0 ? '20%' : (i==3|| i==5) ? '50%' : '80%'" height="15px"></ngx-skeleton>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex-1">
+            <h5>circle skeleton loading</h5>
+            <div *ngFor="let node of loadingContent let i=index;">
+              <div class="tree-renderer">
+                <span class="material-icons" style="font-size: 10px; color: #eee">arrow_forward_ios</span>
+                <ngx-skeleton variant="circle" margin="5px" width="20px" height="20px"></ngx-skeleton>
+                <ngx-skeleton class="tree-renderer-item"  borderRadius="10px" margin="5px 0" [width]=" i=== 0 ? '20%' : (i==3|| i==5) ? '50%' : '80%'" height="15px"></ngx-skeleton>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex-1">
+            <button type="button" class="btn btn-primary"
+                    [ngClass]="loading ? 'btn-primary' : 'btn-secondary'"
+                    (click)="loading=!loading">Toggle Loading</button>
+            <ng-container *ngIf="loading else content">
+              <div *ngFor="let node of loadingContent; let i=index;">
+                <div class="tree-renderer">
+                  <span class="material-icons" style="font-size: 10px; color: #eee">arrow_forward_ios</span>
+                  <ngx-skeleton borderRadius="3px" margin="5px" width="20px" height="20px"></ngx-skeleton>
+                  <ngx-skeleton class="tree-renderer-item"  borderRadius="10px" margin="5px 0"  [width]=" i=== 0 ? '20%' : (i==3|| i==5) ? '50%' : '80%'" height="15px"></ngx-skeleton>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #content>
+              <tree-dir-component-app [nodes]="nodes"
+                                      [mode]="'select'"
+                                      [viewType]="'styleGuide'"></tree-dir-component-app>
+            </ng-template>
+          </div>
+        </div>
+        <!--EN: fiter -->
+
         <!--ST: Event -->
         <div class="style-guide-example" *ngSwitchCase="'event'">
           <div style="width: 250px;">
-            <tree-dir-component-app [nodes]="nodes2"
-                                    [viewType]="'styleGuide'"
-                                    (nodeActiveChanged)="nodeActiveChanged($event, 'event')"
-                                    (outputNode)="outputNode($event)"></tree-dir-component-app>
+            <ng-container *ngIf="loading2 else content">
+              <div *ngFor="let node of loadingContent; let i=index;">
+                <div class="tree-renderer">
+                  <span class="material-icons" style="font-size: 10px; color: #eee">arrow_forward_ios</span>
+                  <ngx-skeleton borderRadius="3px" margin="5px" width="20px" height="20px"></ngx-skeleton>
+                  <ngx-skeleton class="tree-renderer-item"  borderRadius="10px" margin="5px 0"  [width]=" i=== 0 ? '20%' : (i==3|| i==5) ? '50%' : '80%'" height="15px"></ngx-skeleton>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #content>
+              <tree-dir-component-app [nodes]="nodes2"
+                                      [viewType]="'styleGuide'"
+                                      (nodeActiveChanged)="nodeActiveChanged($event, 'event')"
+                                      (outputNode)="outputNode($event)"></tree-dir-component-app>
+            </ng-template>
           </div>
         </div>
         <!--EN: Event -->
@@ -90,11 +147,6 @@
             </ng-container>
             <div *ngIf="filterTeamView.it_owner" class="tree-select-filter-bg" (click)="filterTeamView.it_owner = false"></div>
           </div>
-        </div>
-        <!--EN: fiter -->
-
-        <!--ST: loading -->
-        <div class="style-guide-example" *ngSwitchCase="'loading'">
         </div>
         <!--EN: fiter -->
 

@@ -80,7 +80,6 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
         actionMapping: {
           mouse: {
             click: (tree: TreeModel, node: TreeNode, e: any) => {
-              if(e.node.isEdit) return; // 이름 수정중일 때에는 클릭 막기
               this.nodeActiveId = node.data.id;
               this.nodeActiveChanged.emit({node});
             }

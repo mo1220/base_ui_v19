@@ -1578,6 +1578,15 @@ input[type="radio"].mgr:checked:before {
 /**** EN: Analysis table ****/
 
 /*********ST: 데이터 포탈 디렉토리 *********/
+.tree-renderer {
+  display: flex;
+  align-items: center;
+
+  &-item {
+    width: 100%;
+  }
+}
+
 .dp-directory {
   tree-node-wrapper{ line-height: 100%; }
   tree-node-expander { order: 0; width: 15px; }

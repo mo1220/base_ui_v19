@@ -72,7 +72,7 @@ import { TreeModule } from '@odymaui/angular-tree-component';
 import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import {TreeDirComponent} from "./tree/tree-dir-component/tree-dir-component";
 import {TreeSelectFilterComponent} from "./tree/tree-filter/tree-select-filter.component";
-
+import { NgxSkeletonModule } from 'ngx-skeleton';
 
 
 
@@ -142,6 +142,7 @@ import {TreeSelectFilterComponent} from "./tree/tree-filter/tree-select-filter.c
     TreeModule,
     TableVirtualScrollModule,
     TreeModule,
+    NgxSkeletonModule
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -227,6 +228,7 @@ import {TreeSelectFilterComponent} from "./tree/tree-filter/tree-select-filter.c
     ColorSwatchesModule,
     ColorChromeModule,
     TreeModule,
+    NgxSkeletonModule,
     TableVirtualScrollModule,
     TreeDirComponent, // 트리 디렉토리 구조
     TreeSelectFilterComponent // 트리 필터
