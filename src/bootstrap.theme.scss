@@ -69,11 +69,11 @@
   }
 
 //  /**** Block Button ****/
-//  &.btn-block {
-//    display: block;
-//    width: 100%;
-//  }
-//
+  &.btn-block {
+    display: block;
+    width: 100%;
+  }
+
   /**** Icon Label Button ****/
   &.btn-labeled {
     padding-top: 0;
@@ -293,10 +293,22 @@ label.btn-split {
 /**** form ****/
 .form-control {
   &-xs {
-    //min-height: calc(1.5em + 0.2rem + 2px) !important;
-    //padding: $btn-padding-y-xs $btn-padding-x-xs !important;
-    //font-size: $font-size-xs + 1px !important;
-    //border-radius: $btn-xs-border-radius !important;
+    min-height: $input-height-xs;
+    padding: $input-btn-padding-y-xs $input-btn-padding-x-xs;
+    @include font-size($font-size-xs);
+    @include border-radius($border-radius-xs);
+
+    &::file-selector-button {
+      padding: $input-btn-padding-y-xs $input-btn-padding-x-xs;
+      margin: (-$input-btn-padding-y-xs) (-$input-btn-padding-x-xs);
+      margin-inline-end: $input-btn-padding-x-xs;
+    }
+
+    &::-webkit-file-upload-button {
+      padding: $input-btn-padding-y-xs $input-btn-padding-x-xs;
+      margin: (-$input-btn-padding-y-xs) (-$input-btn-padding-x-xs);
+      margin-inline-end: $input-btn-padding-x-xs;
+    }
   }
 
   &.datepicker {
