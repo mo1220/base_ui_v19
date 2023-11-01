@@ -12,11 +12,10 @@
                       (onChange)="changeColor($event); lobelPopover.hide()"></color-swatches>
       <button matRipple class="other-color-btn"
               (click)="setColorDialog(); lobelPopover.hide();">
-        <mat-icon class="md-14" [style.color]="_color">palette</mat-icon>
+        <mat-icon class="md-14 fill" [style.color]="_color">palette</mat-icon>
         다른 색
       </button>
-      <button matRipple
-              class="other-color-btn"
+      <button matRipple  class="other-color-btn"
               (click)="setTransparent(); lobelPopover.hide();">
         <mat-icon class="md-14">check_box_outline_blank</mat-icon>
         색 없음
@@ -27,8 +26,10 @@
 <!-- !noInput -->
 <!-- [style.height]="noInput ? '100%' : 'auto'" -->
 <div class="dtk-color-input"
-     [ngClass]="'color-input-' + size">
+     [style.display]="noInput ? 'inline-block' : 'block'"
+     [ngClass]="'dtk-color-input-' + size">
   <div class="form-control"
+       [style.padding-left]="(noInput ? paddingLeft[size][1] : paddingLeft[size][0]) + ' !important'"
        [ngClass]="'form-control-' + size"
        [class.disabled]="disabled"
        [class.active]="popoverShow"
@@ -37,9 +38,11 @@
        [popover]="labelColor"
        #lobelPopover="bs-popover"
        [container]="'body'">
+    <span *ngIf="noInput">&nbsp;</span>
     <span *ngIf="!noInput">{{_color}}</span>
   </div>
   <i class="dtk-preview-color"
+     (click)="lobelPopover.toggle()"
      [style.background]="_color"></i>
 </div>
 <div *ngIf="popoverShow"

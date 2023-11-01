@@ -15,6 +15,20 @@ export class ColorInputComponent {
   @Input() disabled: any;
   @Input() noInput: boolean; // input 사용/비사용
   _color: string;
+  paddingLeft: any = {
+    '': ['32px', '22px'],
+    'xl': ['48px', '38px'],
+    'lg' : ['48px', '38px'],
+    'sm' : ['28px', '22px'],
+    'xs' : ['22px', '14px']
+  };
+  paddingRight = {
+    '': '20px',
+    'xl': '',
+    'lg' : '',
+    'sm' : '',
+    'xs' : ''
+  };
   @Input()
   get color() {
     return this._color;

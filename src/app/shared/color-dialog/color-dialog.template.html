@@ -1,4 +1,5 @@
-<h1 mat-dialog-title cdkDrag
+<h1 class="mat-mdc-dialog-title"
+    cdkDrag
     cdkDragRootElement=".cdk-overlay-pane"
     cdkDragHandle>
   <mat-icon class="md-18">storage</mat-icon>
@@ -83,14 +84,15 @@
   </div>
 </div>
 <div mat-dialog-actions>
-  <button class="btn btn-secondary btn-labeled"
-          (click)="onNoClick()">
-    <span class="btn-label"><i class="fa fa-times"></i></span>
-    {{'buttons.cancel' | translate}}
-  </button>
   <button class="btn btn-primary btn-labeled"
           (click)="onSubmit()">
     <span class="btn-label"><i class="fa fa-check"></i></span>
     {{'buttons.ok' | translate}}
   </button>
+  <button class="btn btn-outline-secondary btn-labeled"
+          (click)="onNoClick()">
+    <span class="btn-label"><i class="fa fa-times"></i></span>
+    {{'buttons.cancel' | translate}}
+  </button>
+
 </div>

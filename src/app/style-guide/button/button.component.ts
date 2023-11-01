@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -86,11 +86,14 @@ export class StyleGuideButtonComponent implements AfterViewInit, OnDestroy {
   ]
 
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) { }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   ngOnDestroy(): void { }
 

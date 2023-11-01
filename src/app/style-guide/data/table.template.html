@@ -8,8 +8,8 @@
       <ng-container [ngSwitch]="menu.anchor">
         <!--ST: 베이직 Table -->
         <div class="style-guide-example" *ngSwitchCase="'basic'">
-          <table class="table table-striped">
-            <thead>
+          <table class="table table-striped table-bordered">
+            <thead class="table-light">
             <tr>
               <th scope="col">#</th>
               <th scope="col">Country</th>
@@ -37,36 +37,6 @@
         </div>
         <!--EN: 베이직 Table -->
 
-        <!--ST: Border Table -->
-        <div class="style-guide-example" *ngSwitchCase="'border'">
-          <table class="table table-bordered">
-            <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Country</th>
-              <th scope="col">Area</th>
-              <th scope="col">Population</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let country of countries | slice: 0: 10; index as i">
-              <th scope="row">{{ i + 1 }}</th>
-              <td>
-                <img
-                  [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
-                  class="me-2"
-                  style="width: 20px"
-                />
-                {{ country.name }}
-              </td>
-              <td>{{ country.area | number }}</td>
-              <td>{{ country.population | number }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <!--EN: Border Table -->
-
         <!--ST: Ranking Table -->
         <div class="style-guide-example" *ngSwitchCase="'rank'">
           <table class="rank-table">
@@ -82,7 +52,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let country of countries | slice: 0: 5; index as i">
-              <td class="tx-cn" [style.color]="colors[i]"><b>{{ i + 1 }}</b></td>
+              <td class="text-center" [style.color]="colors[i]"><b>{{ i + 1 }}</b></td>
               <td>{{ country.name }}</td>
             </tr>
             </tbody>
@@ -90,6 +60,7 @@
         </div>
         <!--EN: Ranking Table -->
 
+        <!--ST: Notice Table -->
         <div class="style-guide-example" *ngSwitchCase="'notice'">
           <table class="board-table">
             <colgroup>
@@ -103,7 +74,7 @@
             <thead>
             <tr>
               <th *ngFor="let header of thLabel; let i=index;"
-                  [class.tx-cn]="header.indexOf('file')>-1 || header.indexOf('creator')>-1 || i===0">
+                  [class.text-center]="header.indexOf('file')>-1 || header.indexOf('creator')>-1 || i===0">
                 <ng-container *ngIf="i === 0 else th">
                   <input type="checkbox" class="mgc mgc-primary mgc-sm mg0"
                          [checked]="allChecked"
@@ -117,7 +88,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let country of countries | slice: 0: 5; let i=index;">
-                <td class="tx-cn">
+                <td class="text-center">
                   <input type="checkbox" class="mgc mgc-primary mgc-sm mg0"
                                           [checked]="checkMap[country.id]"
                                           (click)="checkMap[country.id] = !checkMap[country.id]"/>
@@ -129,8 +100,8 @@
                     class="me-2"
                     style="width: 20px"/>
                   이미지 : {{ country.flag }}</td> <!-- 제목--->
-                <td class="tx-cn">{{ country.name }}</td> <!-- 작성자--->
-                <td class="tx-cn"><i class="fa fa-floppy-o"
+                <td class="text-center">{{ country.name }}</td> <!-- 작성자--->
+                <td class="text-center"><i class="fa fa-floppy-o"
                        matBadge="1"
                        matBadgeSize="small"
                        matBadgePosition="above after"></i></td> <!-- 첨부 파일 -->
@@ -139,7 +110,9 @@
             </tbody>
           </table>
         </div>
+        <!--EN: Notice Table -->
 
+        <!-- ST: ag-grid-->
         <div class="style-guide-example" *ngSwitchCase="'ag-grid'">
           <ag-grid-angular style="width: 100%; height: 100%"
                            class="ag-theme-alpine"
@@ -151,6 +124,9 @@
 
           </ag-grid-angular>
         </div>
+        <!-- EN: ag-grid-->
+
+        <!-- ST: ag-grid-border-->
         <div class="style-guide-example" *ngSwitchCase="'ag-grid-boarder'">
           <ag-grid-angular style="width: 100%; height: 100%"
                            class="ag-theme-alpine ag-grid-border"
@@ -162,6 +138,58 @@
 
           </ag-grid-angular>
         </div>
+        <!-- EN: ag-grid-border-->
+
+        <!-- ST: ag-grid-border-->
+        <div class="style-guide-example" *ngSwitchCase="'analysis'">
+          <div style="max-width: 1000px; height: 600px; overflow: auto;">
+            <cdk-virtual-scroll-viewport  tvsItemSize="100" headerHeight="56" style="height: 100%;">
+              <table mat-table [dataSource]="dataSource"  class="analysis-table">
+                <ng-container matColumnDef="position" [sticky]="isSticky('position')">
+                  <th mat-header-cell *matHeaderCellDef> Position </th>
+                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                  <td mat-footer-cell *matFooterCellDef> Position Footer </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name" [sticky]="isSticky( 'name')">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  <td mat-footer-cell *matFooterCellDef> Name Footer </td>
+                </ng-container>
+
+                <ng-container matColumnDef="weight" [stickyEnd]="isSticky( 'weight')">1
+                  <th mat-header-cell *matHeaderCellDef> Weight </th>
+                  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                  <td mat-footer-cell *matFooterCellDef> Weight Footer </td>
+                </ng-container>
+
+                <ng-container matColumnDef="symbol" [stickyEnd]="isSticky( 'symbol')">
+                  <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                  <td mat-footer-cell *matFooterCellDef> Symbol Footer </td>
+                </ng-container>
+
+                <ng-container matColumnDef="filler">
+                  <th mat-header-cell *matHeaderCellDef> Filler header cell </th>
+                  <td mat-cell *matCellDef="let element"> Filler data cell </td>
+                  <td mat-footer-cell *matFooterCellDef> Filler footer cell </td>
+                </ng-container>
+
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: isSticky('header-1')"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: isSticky('header-2')"></tr>
+
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky( 'footer-1')"></tr>
+                <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky( 'footer-2')"></tr>
+              </table>
+            </cdk-virtual-scroll-viewport>
+          </div>
+        </div>
+        <!-- EN: ag-grid-border-->
+
       </ng-container>
     </ng-container>
   </div>

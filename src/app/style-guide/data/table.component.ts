@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   OnDestroy, OnInit,
@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 import {menuType} from "../style-guide.models";
 import {default_colors} from "../../core/settings/settings.model";
 import {ColDef, GridOptions, GridReadyEvent} from "ag-grid-community";
+import {TableVirtualScrollDataSource} from "ng-table-virtual-scroll";
 
 interface Country {
   name: string;
@@ -19,6 +20,13 @@ interface Country {
   area: number;
   population: number;
   id: number;
+}
+
+interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
 }
 
 const COUNTRIES: Country[] = [
@@ -115,6 +123,27 @@ const COUNTRIES: Country[] = [
   },
 ];
 
+const ELEMENT_DATA: PeriodicElement[] = [
+  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
+  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
+  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
+  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+];
+
+const DATA = Array.from({length: 10000}, (v, i) => ({
+  position: i+1,
+  name: ELEMENT_DATA[(i%10)].name,
+  weight: ELEMENT_DATA[((i%10))].weight,
+  symbol: ELEMENT_DATA[((i%10))].symbol
+}));
+
+
 /**
  * @class StyleGuideButtonComponent *
  * */
@@ -127,13 +156,8 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
   menus: Array<menuType> = [
     {
       title: 'Basic',
-      desc: '기본 Table  <code class="language-plaintext highlighter-rouge">\n&lt;table class="table table-striped"&gt;&lt;/table&gt;\n</code>',
+      desc: '기본 Table  <code class="language-plaintext highlighter-rouge">\n&lt;table class="table table-striped table-bordered"&gt;&lt;/table&gt;\n</code>',
       anchor: 'basic'
-    },
-    {
-      title: 'Border Table',
-      desc: '상위 Border Primary color Table  <code class="language-plaintext highlighter-rouge">\n&lt;table class="table table-bordered"&gt;&lt;/table&gt;\n</code>',
-      anchor: 'border'
     },
     {
       title: 'Ranking Table',
@@ -155,6 +179,11 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
       desc: 'Ag-grid Border Table  <code class="language-plaintext highlighter-rouge">\n&lt;ag-grid-angular class="ag-theme-alpine ag-grid-border"&gt;&lt;/ag-grid-angular&gt;\n</code>',
       anchor: 'ag-grid-boarder'
     },
+    {
+      title: 'Analysis Table',
+      desc: 'Analysis Table\n <code class="language-plaintext highlighter-rouge">Material Table & cdk-virtual-scroll</code>',
+      anchor: 'analysis'
+    },
   ];
   countries = COUNTRIES;
   @ViewChildren('anchors') anchors: QueryList<ElementRef>;
@@ -172,9 +201,15 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
     resizable: true,
     flex: 1
   };
+
   gridOptions:GridOptions;
 
+  displayedColumns: string[] = [];
+  dataSource = new TableVirtualScrollDataSource(DATA);
+  tables = [0];
+
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) {
@@ -185,6 +220,21 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
       suppressPropertyNamesCheck: true, // ag grid console 제거
       overlayNoRowsTemplate: `<div class="no-data"><div class="no-data-content"><img src="/assets/images/icon/no-data.svg" /><p>${translate.instant('content.no_data')}</p></div></div>`
     };
+
+    console.log(this.dataSource);
+    this.displayedColumns.length = 24;
+    this.displayedColumns.fill('filler');
+
+    // The first two columns should be position and name; the last two columns: weight, symbol
+    this.displayedColumns[0] = 'position';
+    this.displayedColumns[1] = 'name';
+    this.displayedColumns[22] = 'weight';
+    this.displayedColumns[23] = 'symbol';
+  }
+
+  /** Whether the button toggle group contains the id as an active value. */
+  isSticky(id: string) {
+    return id === 'position' || id.indexOf('header') > -1;
   }
 
   ngOnInit(): void {
@@ -209,10 +259,11 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
         field: 'population',
         headerName: '인구수'
       },
-    ]
+    ];
   }
 
   ngAfterViewInit(): void {
+    this.cd.detectChanges();
   }
 
   ngOnDestroy(): void {

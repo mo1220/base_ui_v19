@@ -21,10 +21,26 @@ import {menuType} from "../style-guide.models";
   encapsulation: ViewEncapsulation.None
 })
 export class AsideMenuRightComponent implements OnInit {
-  @Input() anchor: QueryList<ElementRef>;
-  @Input() menu: Array<menuType>;
-  _menu: Array<menuType>;
+  _anchor: QueryList<ElementRef>;
+  @Input()
+  get anchor() {
+    return this._anchor;
+  }
+  set anchor(value: QueryList<ElementRef>) {
+    if(value) this._anchor = value;
+  }
+  // anchor: QueryList<ElementRef>;
 
+  // @Input()
+  // anchor: QueryList<ElementRef>;
+  _menu: Array<menuType> = [];
+  @Input()
+  get menu() {
+    return this._menu;
+  }
+  set menu(value: Array<menuType>) {
+    this._menu = value ? value : [];
+  }
   scrolling = false;
   activeNum = 0;
 
@@ -36,11 +52,10 @@ export class AsideMenuRightComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._menu = [...this.menu];
+    // this._menu = [...this.menu];
   }
 
   ngAfterViewInit() : void {
-
     this.changeDetectorRef.detectChanges();
   }
   ngAfterViewChecked(): void {
@@ -49,15 +64,15 @@ export class AsideMenuRightComponent implements OnInit {
   onAnchor(activeIdx: number){
     this.scrolling = true;
     this.activeNum = activeIdx;
-    const targetY = this.anchor.get(activeIdx)?.nativeElement?.offsetTop;
+    const targetY = this._anchor.get(activeIdx)?.nativeElement?.offsetTop;
     window.scrollTo({left: 0, top: targetY, behavior: 'smooth'});
   }
 
   contentScroll(scrollTop: number): void{
     if (!this.scrolling) {
       for(let i=0; i<this.menu.length-1; i++){
-        const from = this.anchor.get(i)?.nativeElement.offsetTop - 50;
-        const to = this.anchor.get(i+1)?.nativeElement.offsetTop - 50;
+        const from = this._anchor.get(i)?.nativeElement.offsetTop - 50;
+        const to = this._anchor.get(i+1)?.nativeElement.offsetTop - 50;
         if(scrollTop < to && scrollTop > from){
           this.activeNum = i;
           break;
@@ -77,3 +92,4 @@ export class AsideMenuRightComponent implements OnInit {
     this.scrolling = false;
   }
 }
+

@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   OnDestroy, QueryList,
@@ -76,6 +76,7 @@ export class StyleGuideEditorComponent implements AfterViewInit, OnDestroy {
     fontSize:12
   };
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) {
@@ -161,6 +162,7 @@ export class StyleGuideEditorComponent implements AfterViewInit, OnDestroy {
     // @ts-ignore
     this.editor = this.componentRef.directiveRef.ace();
     console.log(this.editor);
+    this.cd.detectChanges();
   }
 
   insertText() {

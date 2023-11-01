@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef, HostListener,
   OnDestroy, QueryList,
@@ -89,6 +89,7 @@ export class StyleGuideCalendarComponent implements AfterViewInit, OnDestroy {
 
 
   constructor(
+    private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) {
@@ -98,7 +99,9 @@ export class StyleGuideCalendarComponent implements AfterViewInit, OnDestroy {
     this.maxDate.setDate(this.maxDate.getDate() + 30);
   }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   ngOnDestroy(): void { }
 

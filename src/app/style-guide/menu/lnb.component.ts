@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   OnDestroy, QueryList,
@@ -34,10 +34,13 @@ export class StyleGuideLnbComponent implements AfterViewInit, OnDestroy {
   lang = 'kr';
   constructor(
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) { }
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   ngOnDestroy(): void { }
 }

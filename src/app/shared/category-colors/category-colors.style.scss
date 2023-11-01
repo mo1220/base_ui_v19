@@ -37,11 +37,11 @@
 
       button.category-color-remove-btn {
         position: absolute;
-        top: -2px;
-        right: -2px;
+        top: -5px;
+        right: -5px;
         font-size: 10px;
-        width: 10px;
-        height: 10px;
+        width: 16px;
+        height: 16px;
         background-color: #FFF;
         border-radius: 50%;
         display: none;
@@ -50,11 +50,11 @@
         &:after {
           content: '';
           display: block;
-          width: 7px;
+          width: 9px;
           height: 1px;
           position: absolute;
           top: 50%;
-          left: 2px;
+          left: 4px;
           background-color: #999;
         }
         &:before {

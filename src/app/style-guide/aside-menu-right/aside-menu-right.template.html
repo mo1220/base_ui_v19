@@ -1,4 +1,4 @@
-<div class="aside-menu-right" *ngIf="_menu.length > 0">
+<div class="aside-menu-right" *ngIf="anchor && _menu.length > 0">
   <ul>
     <li *ngFor="let mn of _menu; let i=index;" (click)="onAnchor(i)" [class.active]="activeNum === i">
       {{ mn.title }}

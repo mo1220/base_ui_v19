@@ -25,7 +25,7 @@ export class CategoryColorsComponent implements OnInit {
   toggle: boolean[] = [];
   cnt = 0;
   active = -1;
-
+  popoverShow = false;
   @Input() type:string;
   @Output() colorsChange: EventEmitter<string[]> = new EventEmitter();
   @Input() // colors: string[] = [];
@@ -80,14 +80,18 @@ export class CategoryColorsComponent implements OnInit {
     const dialogRef = this.dialog.open(ColorDialog, {
       width: '450px',
       data: {
-        currentColor: this._colors[this.active]
+        currentColor: this.active === -1 ? '#FFFFFF' : this._colors[this.active]
       }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this._colors[this.active] = result;
+        if(this.active === -1) {
+          this._colors.push(result);
+        } else {
+          this._colors[this.active] = result;
+          this.active = -1;
+        }
         this.changeColors.emit(this._colors);
-        this.active = -1;
       }
     });
   }

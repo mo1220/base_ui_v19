@@ -3,40 +3,117 @@
     <h3 #anchor #basicColorInput>Basic Color Picker</h3>
     <p>컬러피커 기본</p>
     <div class="style-guide-example">
-      <h5>라벨 Input</h5>
-      <div class="form-group">
-        <label>모두 보이게</label>
-        <color-input [(color)]="color"
-                     [type]="'all'"
-                     (colorChange)="colorChange($event)"></color-input>
+      <h5>Type별 Picker</h5>
+      <div class="form-group flex">
+        <div class="form-set">
+          <label>모두 보이게</label>
+          <color-input [(color)]="color"
+                       [type]="'all'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
+        <div class="form-set">
+          <label>Swatch(색상 견본)</label>
+          <color-input [(color)]="color"
+                       [type]="'swatch'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
+        <div class="form-set">
+          <label>Sketch()</label>
+          <color-input [(color)]="color"
+                       [type]="'sketch'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Swatch(색상 견본)</label>
-        <color-input [(color)]="color"
-                     [type]="'swatch'"
-                     (colorChange)="colorChange($event)"></color-input>
-      </div>
-      <div class="form-group">
-        <label>Sketch()</label>
-        <color-input [(color)]="color"
-                     [type]="'sketch'"
-                     (colorChange)="colorChange($event)"></color-input>
-      </div>
-      <h5>라벨 Select</h5>
+      <hr />
+      <h5>컬러코드 안보이게</h5>
       <div class="form-group">
         <label>색상 선택</label>
         <color-input [(color)]="color"
-                     [type]="'all'"
+                     [type]="'swatch'"
                      [noInput]="true"
                      (colorChange)="colorChange($event)"></color-input>
       </div>
-      <h5>라벨 Icon</h5>
-      <div class="form-group">
-        <label>색상 선택</label>
-        <color-input [(color)]="color"
-                     [type]="'all'"
-                     (colorChange)="colorChange($event)"></color-input>
+      <hr />
+      <h5>크기별</h5>
+      <div class="form-group flex">
+        <div class="form-set flex">
+          <label>X Large</label>
+          <color-input [(color)]="color"
+                       [size]="'xl'"
+                       [type]="'all'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
+        <div class="form-set flex">
+          <label>Large</label>
+          <color-input [(color)]="color"
+                       [size]="'lg'"
+                       [type]="'all'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
+        <div class="form-set flex">
+          <label>Default</label>
+          <color-input [(color)]="color"
+                       [type]="'all'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
+        <div class="form-set flex">
+          <label>Small</label>
+          <color-input [(color)]="color"
+                       [size]="'sm'"
+                       [type]="'all'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
+        <div class="form-set flex">
+          <label>X Small</label>
+          <color-input [(color)]="color"
+                       [size]="'xs'"
+                       [type]="'all'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
       </div>
+
+      <div class="form-group flex">
+        <div class="form-set flex">
+          <label>X Large</label>
+          <color-input [(color)]="color"
+                       [size]="'xl'"
+                       [noInput]="true"
+                       [type]="'all'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
+        <div class="form-set flex">
+          <label>Large</label>
+          <color-input [(color)]="color"
+                       [size]="'lg'"
+                       [noInput]="true"
+                       [type]="'all'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
+        <div class="form-set flex">
+          <label>Default</label>
+          <color-input [(color)]="color"
+                       [noInput]="true"
+                       [type]="'all'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
+        <div class="form-set flex">
+          <label>Small</label>
+          <color-input [(color)]="color"
+                       [noInput]="true"
+                       [size]="'sm'"
+                       [type]="'all'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
+        <div class="form-set flex">
+          <label>X Small</label>
+          <color-input [(color)]="color"
+                       [noInput]="true"
+                       [size]="'xs'"
+                       [type]="'all'"
+                       (colorChange)="colorChange($event)"></color-input>
+        </div>
+      </div>
+      <hr />
       <h5>라벨 Input</h5>
       <div class="form-group">
         <label>색상 선택</label>
