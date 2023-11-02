@@ -105,12 +105,17 @@
     "data-cart-add": "데이터 담기",
     "sample-view": "샘플데이터 보기",
     "state": "검토",
-    "move": "이동"
+    "move": "이동",
+    "add_folder": "폴더 추가",
+    "delete_folder": "폴더 삭제"
   },
   "placeholder": {
     "keyword_placeholder": "검색어를 입력하세요",
     "chips_placeholder": "키워드를 입력하세요(enter..)",
     "datepicker_placeholder": "날짜를 선택하세요"
+  },
+  "content": {
+    "no_data": "데이터가 없습니다."
   },
 
   "guide": {

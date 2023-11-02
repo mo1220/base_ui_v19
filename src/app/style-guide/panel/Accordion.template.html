@@ -1,10 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap">
+    <ng-container *ngFor="let menu of menus; let i=index;">
+      <h3 #anchors>{{ menu.title }}</h3>
+      <p [innerHTML]="menu.desc | safeHtml"></p>
+      <ng-container [ngSwitch]="menu.anchor">
+        <!--ST: 베이직 아코디언 -->
+        <div class="style-guide-example" *ngSwitchCase="'basic'">
+          <mat-accordion class="dp-accordion" *ngFor="let data of items; let ii=index;">
+            <mat-expansion-panel class="q-background-color">
+              <!-- ST: panel header-->
+              <mat-expansion-panel-header class="dp-accordion-header">
+                <mat-panel-title class="dp-accordion-header-title">
+                  <span class="q-mark faq-icon">Q</span>
+                </mat-panel-title>
+                <mat-panel-description class="faq-accordion-header-desc">
+                  <span class="q-title">#{{ii + 1}}. {{ data }}</span>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <!-- END: panel header-->
+              <!--ST: panel answer-->
+              <div class="dp-accordion-answer">
+                <span class="a-mark faq-icon">A</span>
+                <div class="answer-content">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
+                  excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis
+                  veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?
+                </div>
 
-</body>
-</html>
+                <div class="dp-accordion-answer-btns">
+                  <button [matMenuTriggerFor]="menu" mat-ripple>
+                    <mat-icon class="md-18">more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item type="button" class="edit-btn">
+                      <mat-icon class="md-16 md-wt-400 fill">edit</mat-icon>
+                      {{'buttons.update' | translate }}
+                    </button>
+                    <button mat-menu-item type="button" class="delete-btn">
+                      <mat-icon class="md-16 md-wt-400 fill">delete</mat-icon>
+                      {{'buttons.delete' | translate }}
+                    </button>
+                  </mat-menu>
+                </div>
+              </div>
+              <!--END: panel answer-->
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+        <!-- EN: 베이직 아코디언-->
+
+        <!--ST: Skeleton 아코디언-->
+        <div class="style-guide-example" *ngSwitchCase="'loading'">
+          <button type="button" class="btn btn-primary"
+                  [ngClass]="loading ? 'btn-primary' : 'btn-secondary'"
+                  (click)="loading=!loading">Toggle Loading
+          </button>
+          <div class="dp-accordion-wrap"><!-- ST: loading -->
+            <ng-container *ngIf="loading else boardContent">
+              <mat-accordion class="dp-accordion" *ngFor="let data of loadingContent; let i=index;">
+                <mat-expansion-panel class="q-background-color">
+                  <!-- ST: panel header-->
+                  <mat-expansion-panel-header class="dp-accordion-header">
+                    <mat-panel-title class="dp-accordion-header-title">
+                      <ngx-skeleton width="70px" height="20px" borderRadius="3px" margin="0 10px"></ngx-skeleton>
+                    </mat-panel-title>
+                    <mat-panel-description class="dp-accordion-header-desc">
+                      <ngx-skeleton width="500px" height="20px" borderRadius="3px"></ngx-skeleton>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <!-- END: panel header-->
+
+                  <!--ST: panel answer-->
+                  <div class="dp-accordion-answer loading">
+                    <ngx-skeleton width="90%" height="18px" margin="0 0 10px 12px" borderRadius="3px"></ngx-skeleton>
+                    <ngx-skeleton width="30%" height="18px" margin="0 0 10px 12px" borderRadius="3px"></ngx-skeleton>
+                    <ngx-skeleton width="50%" height="18px" margin="0 0 10px 12px" borderRadius="3px"></ngx-skeleton>
+                    <ngx-skeleton width="70%" height="18px" margin="0 0 10px 12px" borderRadius="3px"></ngx-skeleton>
+                  </div>
+                  <!--END: panel answer-->
+                </mat-expansion-panel>
+              </mat-accordion>
+            </ng-container>
+            <!-- END: loading -->
+
+            <!-- ST: board -->
+            <ng-template #boardContent>
+              <mat-accordion class="dp-accordion" *ngFor="let data of items; let ii=index;">
+                <mat-expansion-panel class="q-background-color">
+                  <!-- ST: panel header-->
+                  <mat-expansion-panel-header class="dp-accordion-header">
+                    <mat-panel-title class="dp-accordion-header-title">
+                      <span class="q-mark faq-icon">Q</span>
+                    </mat-panel-title>
+
+                    <mat-panel-description class="faq-accordion-header-desc">
+                      <span class="q-title">#{{i + 1}}. {{ data }}</span>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <!-- END: panel header-->
+                  <!--ST: panel answer-->
+                  <div class="dp-accordion-answer">
+                    <span class="a-mark faq-icon">A</span>
+                    <div class="answer-content">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
+                      excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis
+                      veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?
+                    </div>
+
+                    <div class="dp-accordion-answer-btns">
+                      <ng-container>
+                        <button [matMenuTriggerFor]="menu">
+                          <mat-icon class="md-18">more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                          <button mat-menu-item type="button" class="edit-btn">
+                            <mat-icon class="md-16 md-wt-400 fill">edit</mat-icon>
+                            {{'buttons.update' | translate }}
+                          </button>
+                          <button mat-menu-item type="button" class="delete-btn">
+                            <mat-icon class="md-16 md-wt-400 fill">delete</mat-icon>
+                            {{'buttons.delete' | translate }}
+                          </button>
+                        </mat-menu>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <!--END: panel answer-->
+                </mat-expansion-panel>
+              </mat-accordion>
+            </ng-template>
+          </div>
+        </div>
+        <!--EN: Skeleton 아코디언-->
+
+
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <aside-menu-right [menu]="menus"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

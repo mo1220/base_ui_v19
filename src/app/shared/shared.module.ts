@@ -68,7 +68,14 @@ import {CategoryColorsComponent} from "./category-colors/category-colors.compone
 import {ColorDialog} from "./color-dialog/color-dialog";
 import {ColorInputComponent} from "./color-input/color-input.component";
 import {ColorsScaleComponent} from "./colors-scale/colors-scale";
+import { TreeModule } from '@odymaui/angular-tree-component';
+import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
+import {TreeDirComponent} from "./tree/tree-dir-component/tree-dir-component";
+import {TreeSelectFilterComponent} from "./tree/tree-filter/tree-select-filter.component";
+import { NgxSkeletonModule } from 'ngx-skeleton';
 import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
+
+
 
 @NgModule({
   imports: [
@@ -134,6 +141,10 @@ import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
     ColorSwatchesModule,
     ColorChromeModule,
     ResizedEventModule,
+    TreeModule,
+    TableVirtualScrollModule,
+    TreeModule,
+    NgxSkeletonModule
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -143,7 +154,9 @@ import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
     CategoryColorsComponent, // 카테고리 컬러
     ColorDialog, // 컬러 다이얼로그
     ColorInputComponent, // 컬러 인풋
-    ColorsScaleComponent // 스케일 컬러 인풋
+    ColorsScaleComponent, // 스케일 컬러 인풋
+    TreeDirComponent, // Tree directory
+    TreeSelectFilterComponent // Tree Filter
   ],
   exports: [
     CommonModule,
@@ -217,6 +230,11 @@ import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
     ColorSwatchesModule,
     ColorChromeModule,
     ResizedEventModule,
+    TreeModule,
+    NgxSkeletonModule,
+    TableVirtualScrollModule,
+    TreeDirComponent, // 트리 디렉토리 구조
+    TreeSelectFilterComponent // 트리 필터
   ],
   providers: [
     { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }

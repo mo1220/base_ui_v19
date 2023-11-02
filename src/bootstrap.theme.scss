@@ -23,63 +23,52 @@
 }
 
 .btn {
-  border-radius: $border-radius;
-  &.btn-primary,
-  &.btn-secondary,
-  &.btn-success,
-  &.btn-info,
-  &.btn-warning,
-  &.btn-danger,
-  &.btn-light,
-  &.btn-dark {
-    // Split button
-    .btn-split-menu {
-      border-left-width: 1px;
-      border-left-style: solid;
-      border-left-color: #EEEEEE;
-    }
-  }
-
-  &.btn-outline-primary,
-  &.btn-outline-secondary,
-  &.btn-outline-success,
-  &.btn-outline-info,
-  &.btn-outline-warning,
-  &.btn-outline-danger,
-  &.btn-outline-light,
-  &.btn-outline-dark {
-    box-sizing: border-box;
-    // Split button
-    .btn-split-menu {
-      border-left-width: 1px;
-      border-left-style: solid;
-      border-left-color: inherit;
-    }
-  }
-
+//  border-radius: $border-radius;
+//  &.btn-primary,
+//  &.btn-secondary,
+//  &.btn-success,
+//  &.btn-info,
+//  &.btn-warning,
+//  &.btn-danger,
+//  &.btn-light,
+//  &.btn-dark {
+//    // Split button
+//    .btn-split-menu {
+//      border-left-width: 1px;
+//      border-left-style: solid;
+//      border-left-color: #EEEEEE;
+//    }
+//  }
+//
+//  &.btn-outline-primary,
+//  &.btn-outline-secondary,
+//  &.btn-outline-success,
+//  &.btn-outline-info,
+//  &.btn-outline-warning,
+//  &.btn-outline-danger,
+//  &.btn-outline-light,
+//  &.btn-outline-dark {
+//    box-sizing: border-box;
+//    // Split button
+//    .btn-split-menu {
+//      border-left-width: 1px;
+//      border-left-style: solid;
+//      border-left-color: inherit;
+//    }
+//  }
+//
   /**** Size Button ****/
   &.btn-xl {
-    font-size: $btn-xl-font-size;
+    font-size: $font-size-xl;
     padding: $btn-padding-y-xl $btn-padding-x-xl;
   }
-
-  &.btn-lg {
-    font-size: $btn-lg-font-size;
-    padding: $btn-padding-y-lg $btn-padding-x-lg;
-  }
-
-  &.btn-sm {
-    font-size: $btn-sm-font-size;
-    padding: $btn-padding-y-sm $btn-padding-x-sm;
-  }
-
   &.btn-xs {
-    border-radius: $btn-xs-border-radius;
-    font-size: $btn-xs-font-size;
+    border-radius: $border-radius-xs;
+    font-size: $font-size-xs;
     padding: $btn-padding-y-xs $btn-padding-x-xs;
   }
 
-  /**** Block Button ****/
+//  /**** Block Button ****/
   &.btn-block {
     display: block;
     width: 100%;
@@ -128,10 +117,10 @@
     }
   }
 
-  /**** Circle  Button ****/
-  &.btn-circle {
-    border-radius: 50%;
-  }
+//  /**** Circle  Button ****/
+//  &.btn-circle {
+//    border-radius: 50%;
+//  }
 
   /**** Icon Only button ****/
   &.btn-icon {
@@ -142,39 +131,37 @@
     position: relative;
 
     .fa {
-      width: $btn-font-size;
-      height: $btn-font-size;
+      width: $font-size-base;
+      height: $font-size-base;
     }
 
     &.btn-xl {
       padding: $btn-padding-xl;
       .fa {
-        width: $btn-xl-font-size;
-        height: $btn-xl-font-size;
+        width: $font-size-xl;
+        height: $font-size-xl;
       }
     }
 
     &.btn-lg {
-      padding: $btn-padding-lg;
       .fa {
-        width: $btn-lg-font-size;
-        height: $btn-lg-font-size;
+        width: $font-size-lg;
+        height: $font-size-lg;
       }
     }
 
     &.btn-sm {
-      padding: $btn-padding-sm;
       .fa {
-        width: $btn-sm-font-size;
-        height: $btn-sm-font-size;
+        width: $font-size-sm;
+        height: $font-size-sm;
       }
     }
 
     &.btn-xs {
       padding: $btn-padding-xs;
       .fa {
-        width: $btn-xs-font-size;
-        height: $btn-xs-font-size;
+        width: $font-size-xs;
+        height: $font-size-xs;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -305,22 +292,23 @@ label.btn-split {
 
 /**** form ****/
 .form-control {
-  //padding: $btn-padding-y $btn-padding-x !important;
-  //font-size: $btn-font-size !important;
-  //border-radius: $border-radius !important;
-  //&-lg {
-  //  padding: $btn-padding-y-lg $btn-padding-x-lg !important;
-  //  font-size: $btn-lg-font-size !important;
-  //}
-  //&-sm {
-  //  padding: $btn-padding-y-sm $btn-padding-x-sm !important;
-  //  font-size: $btn-sm-font-size !important;
-  //}
   &-xs {
-    min-height: calc(1.5em + 0.2rem + 2px) !important;
-    padding: $btn-padding-y-xs $btn-padding-x-xs !important;
-    font-size: $btn-xs-font-size !important;
-    border-radius: $btn-xs-border-radius !important;
+    min-height: $input-height-xs;
+    padding: $input-btn-padding-y-xs $input-btn-padding-x-xs;
+    @include font-size($font-size-xs);
+    @include border-radius($border-radius-xs);
+
+    &::file-selector-button {
+      padding: $input-btn-padding-y-xs $input-btn-padding-x-xs;
+      margin: (-$input-btn-padding-y-xs) (-$input-btn-padding-x-xs);
+      margin-inline-end: $input-btn-padding-x-xs;
+    }
+
+    &::-webkit-file-upload-button {
+      padding: $input-btn-padding-y-xs $input-btn-padding-x-xs;
+      margin: (-$input-btn-padding-y-xs) (-$input-btn-padding-x-xs);
+      margin-inline-end: $input-btn-padding-x-xs;
+    }
   }
 
   &.datepicker {
@@ -517,3 +505,38 @@ label.btn-split {
   }
 }
 /********************** EN: Nav *******************************/
+
+/******** ST: card **********/
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  border: none;
+  .card-img-top{
+    height: 150px;
+  }
+  &-item {
+    @include card-item(1px, #CCC, $card-border-radius, 8px, 250px, #FFF);
+    flex-direction: column;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &-title {
+    &:hover { text-decoration: underline; }
+  }
+  &-body{
+    border-top:$card-border-width solid $card-border-color;
+  }
+  &-footer{
+    background-color: $card-cap-bg;
+    display: flex;
+    &.flex-end {
+      justify-content: flex-end;
+    }
+  }
+  .text-body-secondary {
+    display: inline-block;
+  }
+}
+/******** EN: card **********/
