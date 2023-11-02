@@ -157,6 +157,7 @@
       margin-right: 5px;
       position: relative;
       padding: 5px 0;
+
       button {
         display: block;
         border: none;
@@ -164,8 +165,10 @@
         font-size: 13px;
         padding: 0 10px;
         line-height: 30px;
+        transition: all .3s ease;
         .mat-icon {
           color:#999;
+          margin: 0 5px 0 0;
         }
         .fa-angle-down {
           margin-left: 8px;
@@ -192,6 +195,9 @@
         button {
           color: $primary;
           background-color: rgba($primary, .05);
+          .mat-icon {
+            color: $primary;
+          }
         }
         & > ul {
           display: block;

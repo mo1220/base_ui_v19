@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 // Angular Material
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkMenuModule } from '@angular/cdk/menu';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -31,7 +32,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
-import { OverlayModule } from '@angular/cdk/overlay';
 
 // ngx-bootstrap
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -73,6 +73,7 @@ import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import {TreeDirComponent} from "./tree/tree-dir-component/tree-dir-component";
 import {TreeSelectFilterComponent} from "./tree/tree-filter/tree-select-filter.component";
 import { NgxSkeletonModule } from 'ngx-skeleton';
+import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
 
 
 
@@ -139,6 +140,7 @@ import { NgxSkeletonModule } from 'ngx-skeleton';
     ColorSketchModule,
     ColorSwatchesModule,
     ColorChromeModule,
+    ResizedEventModule,
     TreeModule,
     TableVirtualScrollModule,
     TreeModule,
@@ -227,6 +229,7 @@ import { NgxSkeletonModule } from 'ngx-skeleton';
     ColorSketchModule,
     ColorSwatchesModule,
     ColorChromeModule,
+    ResizedEventModule,
     TreeModule,
     NgxSkeletonModule,
     TableVirtualScrollModule,

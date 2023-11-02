@@ -46,23 +46,23 @@ export class StyleGuideColorPickerComponent implements AfterViewInit, OnDestroy 
       color: '#000004'
     },
     {
-      value: 20,
+      value: 40,
       color: '#420761'
     },
     {
-      value: 40,
+      value: 80,
       color: '#932266'
     },
     {
-      value: 60,
+      value: 120,
       color: '#dd5130'
     },
     {
-      value: 80,
+      value: 160,
       color: '#fba709'
     },
     {
-      value: 100,
+      value: 200,
       color: '#f9fd9a'
     }
   ];

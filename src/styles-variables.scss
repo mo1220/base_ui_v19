@@ -64,27 +64,13 @@ $header-height: 70px;
 $box-shadow: 0 2px 2px rgba(10,16,20,.24), 0 0 2px rgba(10,16,20,.12);
 $box-shadow-hover: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12);
 $box-shadow-card-list-hover: 0 6px 8px 0 rgba(0, 0, 0, 0.16);
-/*
-h1,h2,h3,h4,h5 {
-  font-weight: 600;
-}
-.text-modi {
-  .mat-checkbox-layout .mat-checkbox-label{
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    word-break: break-all;
-    width: 192px;
-  }
-}
-*/
 
 // Bootstrap Style 재정의
 $font-size-base:              0.75rem !default; // Default Font Size
 $font-size-xs:                $font-size-base * .75 !default; //xs 사이즈 새로 정의
 $font-size-sm:                $font-size-base * .875 !default;
 $font-size-lg:                $font-size-base * 1.25 !default;
-$font-size-xl:                $font-size-base * 1.4 !default;//xl 사이즈 새로 정의
+$font-size-xl:                $font-size-base * 1.4 !default; //xl 사이즈 새로 정의
 
 $border-radius:               .15rem !default; // Default Border Radius
 $border-radius-xs:            $border-radius * .5 !default;

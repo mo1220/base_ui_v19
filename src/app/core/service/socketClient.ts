@@ -1,3 +1,4 @@
+/*
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import io from 'socket.io-client';
@@ -12,7 +13,7 @@ import { LocalStorageService } from '../local-storage/local-storage.service';
 })
 export class ChatService {
   // private url = 'http://192.168.0.190:3003/api/alarmEv/websocket';
-  private socket;
+  @Output() socket: any;
   token: string;
   PATH: string;
   baseUrl: string;
@@ -63,3 +64,4 @@ export class ChatService {
     return observable;
   }
 }
+*/

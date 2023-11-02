@@ -14,6 +14,7 @@
       height: 28px;
       width: 28px;
       vertical-align: middle;
+      transition: box-shadow .5s ease;
 
       &.active {
         background-color: #FFF;
@@ -75,6 +76,7 @@
         // transform: scale(1.2);
         border-color: #666;
         z-index:1;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, .3);
         button.category-color-remove-btn {
           display: block;
         }
