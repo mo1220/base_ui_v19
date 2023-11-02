@@ -46,6 +46,7 @@ import { StyleGuideDividerComponent } from './panel/Divider.component';
 import { StyleGuideSplitterComponent } from './panel/Splitter.component';
 // typography
 import { StyleGuideTypographyComponent } from './typography/typography.component';
+import {StyleGuideGridsterComponent} from "./panel/Gridster.component";
 
 const routes: Routes = [
   {
@@ -177,6 +178,11 @@ const routes: Routes = [
         path: 'panel/splitter',
         component: StyleGuideSplitterComponent,
         data: {title: 'Splitter'}
+      },
+      {
+        path: 'panel/gridster',
+        component: StyleGuideGridsterComponent,
+        data: {title: 'Gridster'}
       },
       {
         path: 'file/upload',

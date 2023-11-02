@@ -159,7 +159,8 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   deleteMsg(e: MouseEvent, node: any) {
-    if (node.data._id !== '') {
+    console.log(node)
+    // if (node.data._id !== '') {
       const dialogRef = this.dialog.open(PopupMessage, {
         width: '400px',
         data: {
@@ -178,7 +179,7 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
           this.tree.treeModel.update();
         }
       })
-    }
+    // }
   }
 
   /**

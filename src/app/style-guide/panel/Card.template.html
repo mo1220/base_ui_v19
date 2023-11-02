@@ -1,10 +1,185 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap">
+    <ng-container *ngFor="let menu of menus; let i=index;">
+      <h3 #anchors>{{ menu.title }}</h3>
+      <p [innerHTML]="menu.desc | safeHtml"></p>
+      <ng-container [ngSwitch]="menu.anchor">
+        <!--ST: 베이직 Card -->
+        <div class="style-guide-example" *ngSwitchCase="'basic'">
+          <div class="card-list">
+            <div class="card-list-item" *ngFor="let list of basicItems; let li=index">
+              <div class="card-list-item-icon">
+                <img [src]="li===0 ? '/assets/icons/glossary.svg' : '/assets/icons/BC-05.svg'"
+                     alt="포탈 데이터 아이콘"/>
+                <p class="card-list-item-icon-name">분류체계#{{li + 1}}</p>
+              </div>
 
-</body>
-</html>
+              <div class="card-list-item-content">
+                <h4 class="card-title">Title {{li + 1}}</h4>
+                <p class="card-list-item-content-desc">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
+                  excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis
+                  veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?
+                </p>
+
+
+                <div class="card-list-item-content-footer" [class.flex-end]="li===0">
+                  <div class="card-list-item-content-footer-l" *ngIf="li > 0">
+                    <ul class="keyword-list">
+                      <li *ngFor="let tag of tags;">
+                        <span class="tag" [title]="tag">{{tag}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-list-item-content-footer-r">
+                    <span class="text-body-secondary"><i class="fa fa-clock-o" aria-hidden="true"></i>YYYY-MM-dd HH:mm:ss</span>
+                    <span class="text-body-secondary"><i class="fa fa-eye"
+                                                         aria-hidden="true"></i>{{(li + 1) * 10}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- EN: 베이직 Card-->
+
+        <!--ST: button Card-->
+        <div class="style-guide-example" *ngSwitchCase="'button'">
+          <button type="button" class="btn btn-primary" (click)="addCard(i)">Add</button>
+          <div class="card-list list">
+            <div class="card-list-item sm" *ngFor="let list of basicItems1; let li=index">
+              <div class="card-list-item-icon sm">
+                <img [src]="li===0 ? '/assets/icons/glossary.svg' : '/assets/icons/BC-05.svg'" alt="포탈 데이터 아이콘"/>
+                <p class="card-list-item-icon-name sm">분류체계#{{li + 1}}</p>
+              </div>
+              <div class="card-list-item-content sm">
+                <h5 class="card-title">
+                  <mat-checkbox class="matcheckbox-sm" color="primary">Title {{li + 1}}</mat-checkbox>
+                  <small>(subtitle)</small>
+                </h5>
+                <p class="card-list-item-content-desc sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+              </div>
+              <button type="button" class="btn btn-outline-secondary btn-circle btn-sm"
+                      (click)="removeCard(i, li)">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!--EN: button Card-->
+
+        <!--ST: Image with Card- -->
+        <div class="style-guide-example" *ngSwitchCase="'image'">
+          <div>
+            <h5>카드형</h5>
+            <div class="card">
+            <div class="card-item" *ngFor="let list of items; let li=index">
+              <img class="card-img-top"
+                   src="https://primefaces.org/cdn/primeng/images/usercard.png"
+                   alt="포탈 데이터 아이콘"/>
+              <div class="card-body">
+                <h4 class="card-title">Title {{li + 1}}</h4>
+                <p class="card-text">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                </p>
+                <!--<div class="card-item-content-footer" [class.flex-end]="li===0">
+                  <div class="card-item-content-footer-l" *ngIf="li > 0">
+                    <ul class="keyword-list">
+                      <li *ngFor="let tag of tags;">
+                        <span class="tag" [title]="tag">{{tag}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-item-content-footer-r">
+                    <span class="text-body-secondary"><i class="fa fa-clock-o" aria-hidden="true"></i>YYYY-MM-dd HH:mm:ss</span>
+                    <span class="text-body-secondary"><i class="fa fa-eye"
+                                                         aria-hidden="true"></i>{{(li + 1) * 10}}</span>
+                  </div>
+                </div>-->
+              </div>
+              <div class="card-footer flex-end">
+                <span class="text-body-secondary">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>YYYY-MM-dd HH:mm:ss</span>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <div>
+            <h5>리스트형</h5>
+            <div class="card-list">
+              <div class="card-list-item" *ngFor="let list of basicItems; let li=index">
+                <div class="card-list-item-icon-img"></div>
+                <div class="card-list-item-content">
+                  <h4 class="card-title">Title {{li + 1}}</h4>
+                  <p class="card-list-item-content-desc">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
+                    excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis
+                    veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?
+                  </p>
+
+
+                  <div class="card-list-item-content-footer flex-end">
+                    <!--<div class="card-list-item-content-footer-l" *ngIf="li > 0">
+                      <ul class="keyword-list">
+                        <li *ngFor="let tag of tags;">
+                          <span class="tag" [title]="tag">{{tag}}</span>
+                        </li>
+                      </ul>
+                    </div>-->
+                    <div class="card-list-item-content-footer-r">
+                      <span class="text-body-secondary"><i class="fa fa-clock-o" aria-hidden="true"></i>YYYY-MM-dd HH:mm:ss</span>
+                      <span class="text-body-secondary"><i class="fa fa-eye"
+                                                           aria-hidden="true"></i>{{(li + 1) * 10}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--EN: Image with Card- -->
+
+        <!--ST: Skeleton Card-->
+        <div class="style-guide-example" *ngSwitchCase="'loading'">
+          <div>
+            <h5>카드형</h5>
+            <div class="card">
+              <div class="card-item" *ngFor="let list of items; let li=index">
+                <ngx-skeleton class="card-img-top" borderRadius="5px 5px 0 0" width="100%" height="150px"></ngx-skeleton>
+                <div class="card-body">
+                  <ngx-skeleton borderRadius="3px" width="80px" height="24px" margin="7px 0"></ngx-skeleton>
+                  <ngx-skeleton borderRadius="3px" width="90%" height="15px" margin="5px 0"></ngx-skeleton>
+                  <ngx-skeleton borderRadius="3px" width="40%" height="15px" margin="5px 0"></ngx-skeleton>
+                  <ngx-skeleton borderRadius="3px" width="70%" height="15px" margin="5px 0"></ngx-skeleton>
+                </div>
+                <div class="card-footer flex-end">
+                  <ngx-skeleton borderRadius="3px" width="100px" height="15px" margin="5px 0"></ngx-skeleton>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h5>리스트형</h5>
+            <div class="card-list">
+              <div class="card-list-item" *ngFor="let list of basicItems; let li=index">
+                <ngx-skeleton class="card-list-item-icon" borderRadius="50%" width="80px" height="80px" margin="0 5px 0 0"></ngx-skeleton>
+                <div class="card-list-item-content">
+                  <ngx-skeleton borderRadius="3px" width="80px" height="24px" margin="7px 0"></ngx-skeleton>
+                  <ngx-skeleton borderRadius="3px" width="90%" height="15px" margin="5px 0"></ngx-skeleton>
+                  <ngx-skeleton borderRadius="3px" width="40%" height="15px" margin="5px 0"></ngx-skeleton>
+                  <ngx-skeleton borderRadius="3px" width="70%" height="15px" margin="5px 0"></ngx-skeleton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--EN: Skeleton Card-->
+
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <aside-menu-right [menu]="menus"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

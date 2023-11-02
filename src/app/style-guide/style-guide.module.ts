@@ -50,6 +50,8 @@ import { StyleGuideSplitterComponent } from './panel/Splitter.component';
 // typography
 import { StyleGuideTypographyComponent } from './typography/typography.component';
 import {AsideMenuRightComponent} from "./aside-menu-right/aside-menu-right.component";
+import {CdkAccordionModule} from "@angular/cdk/accordion";
+import {StyleGuideGridsterComponent} from "./panel/Gridster.component";
 
 
 @NgModule({
@@ -101,13 +103,15 @@ import {AsideMenuRightComponent} from "./aside-menu-right/aside-menu-right.compo
     StyleGuideCardComponent,
     StyleGuideDividerComponent,
     StyleGuideSplitterComponent,
+    StyleGuideGridsterComponent,
     // Typography
-    StyleGuideTypographyComponent
+    StyleGuideTypographyComponent,
   ],
     imports: [
         CommonModule,
         SharedModule,
         StyleGuideRoutingModule,
+        CdkAccordionModule,
     ],
   exports: [],
   providers: [],

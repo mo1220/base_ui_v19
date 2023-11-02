@@ -145,6 +145,11 @@ export const STYLE_GUIDE_MENU = [
         name: 'Splitter',
         link: '/panel/splitter',
         desc: `Splitter 설명 <span></span>`
+      },
+      {
+        name: 'Gridster',
+        link: '/panel/gridster',
+        desc: `Gridster 설명 <span></span>`
       }
     ]
   },
