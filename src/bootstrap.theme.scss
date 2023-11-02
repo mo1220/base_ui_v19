@@ -319,7 +319,7 @@ label.btn-split {
   &-xs {
     min-height: calc(1.5em + 0.2rem + 2px) !important;
     padding: $btn-padding-y-xs $btn-padding-x-xs !important;
-    font-size: $btn-xs-font-size + 1px !important;
+    font-size: $btn-xs-font-size !important;
     border-radius: $btn-xs-border-radius !important;
   }
 

@@ -2,6 +2,8 @@
 @use 'sass:map';
 @use '@angular/material' as mat;
 
+// mat.$theme-ignore-duplication-warnings: true;
+
 @include mat.core();
 
 @import 'styles-variables';
@@ -566,7 +568,7 @@ ul, ol, dl {
     &.flex {
       display: flex;
       flex-wrap: wrap;
-      align-items: end;
+      align-items: flex-end;
       & > * {
         margin-bottom: 0;
         margin-right: 10px;

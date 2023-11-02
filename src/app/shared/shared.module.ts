@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 // Angular Material
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkMenuModule } from '@angular/cdk/menu';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -31,7 +32,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
-import { OverlayModule } from '@angular/cdk/overlay';
 
 // ngx-bootstrap
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -68,6 +68,7 @@ import {CategoryColorsComponent} from "./category-colors/category-colors.compone
 import {ColorDialog} from "./color-dialog/color-dialog";
 import {ColorInputComponent} from "./color-input/color-input.component";
 import {ColorsScaleComponent} from "./colors-scale/colors-scale";
+import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
 
 @NgModule({
   imports: [
@@ -132,6 +133,7 @@ import {ColorsScaleComponent} from "./colors-scale/colors-scale";
     ColorSketchModule,
     ColorSwatchesModule,
     ColorChromeModule,
+    ResizedEventModule,
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -214,6 +216,7 @@ import {ColorsScaleComponent} from "./colors-scale/colors-scale";
     ColorSketchModule,
     ColorSwatchesModule,
     ColorChromeModule,
+    ResizedEventModule,
   ],
   providers: [
     { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }

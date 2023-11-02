@@ -1,13 +1,21 @@
 @import "../../../styles-variables";
 
 .color-scale-picker {
-  padding: 0 8px;
   &-wrap {
     position: relative;
     height: 65px;
   }
   &-bar {
     height: 15px;
+    margin: 0 8px;
+    &-line {
+      position: absolute;
+      top: 10px;
+      width: 1px;
+      height: 25px;
+      background: #000;
+      z-index: 10;
+    }
   }
   .color-bar-threshold {
     display: inline-block;
@@ -17,6 +25,8 @@
     font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
     transform: translateX(-50%);
     top: -5px;
+    padding: 0 5px;
+    line-height: 20px;
   }
 
   &-item {
@@ -30,7 +40,8 @@
     transform: translateX(-50%);
     line-height: 0;
     cursor: pointer;
-    margin-left: -1px;
+    margin-left: -8px;
+    transition: box-shadow .3s ease;
     span {
       display: inline-block;
       width: 10px;
@@ -73,8 +84,6 @@
       width: 0;
       z-index: 1;
     }
-
-
 
     button.color-scale-picker-remove-btn {
       position: absolute;
@@ -125,6 +134,7 @@
 
     &.active {
       border-color: $primary;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, .3);
       &:before {
         border-color: $primary transparent;
       }
@@ -132,7 +142,95 @@
         border-color: $primary;
       }
     }
-
-
   }
 }
+.color-scale-color-chrome {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: #FFF;
+  transform: translateX(-50%);
+  box-shadow: $box-shadow-hover;
+  margin: 10px 0;
+}
+.no-active-item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  .mat-icon {
+    color:#999;
+  }
+}
+/*************** ST: 상세 *******************/
+.dtk-color-scale-detail {
+  display: flex;
+  &-list {
+    max-width: 350px;
+    margin-right: 15px;
+    width: 100%;
+    max-height: 220px;
+    overflow-y: auto;
+    ul {
+      li {
+        display: flex;
+        padding: 3px;
+        align-items: center;
+        border:1px solid transparent;
+        .detail-color-sample {
+          width: 20px;
+          height: 20px;
+          margin-right: 8px;
+          padding: 2px;
+          border-radius: 2px;
+          border:1px solid #CCC;
+          background: #FFF;
+          cursor: pointer;
+          transition: box-shadow .3s ease;
+          span {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .form-control {
+          flex: 1;
+        }
+        .btn-remove {
+          width: 26px;
+          height: 26px;
+          line-height: 26px;
+          margin-left: 5px;
+          color: #999;
+          &:hover {
+            color: #333;
+          }
+        }
+        &.active {
+          background: rgba(0,0,0,.1);
+          border-color: #CCC;
+          .detail-color-sample {
+            border-width: 1px;
+            border-color: #333333;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, .3);
+          }
+        }
+      }
+    }
+  }
+
+  &-sketch {
+    flex: 1;
+    padding: 5px;
+    min-width: 200px;
+    .dtk-color-picker {
+      .chrome-picker {
+        width: 100% !important;
+      }
+      .saturation {
+        padding-bottom: 100px !important;
+      }
+    }
+  }
+}
+/*************** EN: 상세 *******************/
