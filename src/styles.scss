@@ -516,13 +516,31 @@ ul, ol, dl {
 
 /****************************** ST: form *************************************************/
 .form {
-
   &-input { // input + clear-btn + invalid-feedback
     position: relative;
 
     button {
       margin: 0 0 0 10px !important;
     }
+
+    input.valid {
+      border-color: $success;
+      padding-right: calc(1.5em + 0.75rem);
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right calc(0.375em + 0.1875rem) center;
+      background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+      &:focus {
+        border-color: $success;
+        box-shadow: 0 0 0 0.2rem rgba($success, .25);
+      }
+    }
+    .valid-feedback {
+      margin-top: 0 !important;
+      font-size: 0.72em !important;
+      //position: absolute;
+    }
+
 
     input.invalid {
       border-color: $danger;
@@ -541,7 +559,7 @@ ul, ol, dl {
     .invalid-feedback {
       margin-top: 0 !important;
       font-size: 0.72em !important;
-      position: absolute;
+      //position: absolute;
     }
 
     .clear-btn {
@@ -585,8 +603,7 @@ ul, ol, dl {
   }
 
   &-set {
-    padding: 5px 0;
-
+    //padding-bottom: 5px;
     & > * {
       margin-bottom: 0;
       margin-right: 10px;
@@ -601,7 +618,7 @@ ul, ol, dl {
       align-items: center;
 
       & > * {
-        margin-bottom: 0;
+        margin-bottom: 5px;
         margin-right: 10px;
 
         &:last-child {
@@ -625,11 +642,8 @@ ul, ol, dl {
 
   &-group {
     & > * {
-      margin-bottom: 10px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
+      margin-bottom: 5px;
+      //&:last-child { margin-bottom: 0; }
     }
 
     &.flex {
@@ -639,11 +653,8 @@ ul, ol, dl {
 
       & > * {
         margin-bottom: 0;
-        margin-right: 10px;
-
-        &:last-child {
-          margin-right: 0;
-        }
+        margin-right: 5px;
+        &:last-child { margin-right: 0; }
       }
 
       &:has(.form-set.flex) {
