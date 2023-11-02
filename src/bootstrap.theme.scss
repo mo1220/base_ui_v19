@@ -127,13 +127,8 @@
 
   /**** Icon Only button ****/
   &.btn-icon {
+   padding: $btn-padding;
     @include btn-icon($btn-padding);
-    //padding: $btn-padding;
-    //display: inline-flex;
-    //justify-content: center;
-    //align-items: center;
-    //position: relative;
-
     .fa {
       width: $font-size-base;
       height: $font-size-base;
@@ -148,6 +143,7 @@
     }
 
     &.btn-lg {
+      padding: $btn-padding-lg;
       .fa {
         width: $font-size-lg;
         height: $font-size-lg;
@@ -155,9 +151,10 @@
     }
 
     &.btn-sm {
+      padding: $btn-padding-sm;
       .fa {
-        width: $font-size-sm;
-        height: $font-size-sm;
+        width: 10px; //$font-size-sm;
+        height: 10px; //$font-size-sm;
       }
     }
 
@@ -280,7 +277,8 @@ label.btn-split {
   }
 }
 
-.btn-group-toggle {
+.btn-group{
+  label { margin-right: 0; }
   .btn-check:checked + .btn-outline-primary {
     color: $btn-primary-color !important;
   }

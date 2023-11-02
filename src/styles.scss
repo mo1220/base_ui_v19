@@ -18,6 +18,10 @@
 
   .mat-mdc-icon-button.mat-mdc-button-base{
     @include btn-icon($btn-padding);
+    --mdc-icon-button-state-layer-size: #{$btn-mat-width};
+    &.btn-lg{
+      --mdc-icon-button-state-layer-size: #{$btn-mat-width-lg};
+    }
   }
 }
 
@@ -2286,11 +2290,11 @@ input[type="radio"].mgr:checked:before {
     &-btns {
       color: #999 !important;
 
-      .mat-mdc-icon-button {
-        width: 25px !important;
-        height: 25px !important;
-        padding: 0 !important;
-      }
+      //.mat-mdc-icon-button {
+      //  width: 25px !important;
+      //  height: 25px !important;
+      //  padding: 0 !important;
+      //}
 
       button {
         color: inherit !important;

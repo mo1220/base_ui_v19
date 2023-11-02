@@ -75,7 +75,7 @@
       </div>-->
     </div>
 
-    <h3  #anchor #disabled>Disabled State</h3>
+    <h3 #anchor #disabled>Disabled State</h3>
     <p>컬러별 disabled 버튼</p>
     <div class="style-guide-example">
       <div>
@@ -100,7 +100,7 @@
       </div>
     </div>
 
-    <h3  #anchor #iconLabel>Icon Label</h3>
+    <h3 #anchor #iconLabel>Icon Label</h3>
     <p>Icon Label 버튼</p>
     <div class="style-guide-example">
       <div>
@@ -205,23 +205,18 @@
             </button>
           </div>
           <div>
-            <button type="button" class="btn btn-outline-primary btn-icon btn-circle"><i class="fa fa-check"></i></button>
-            <button type="button" class="btn btn-outline-secondary btn-icon btn-circle"><i class="fa fa-times"></i></button>
-            <button type="button" class="btn btn-outline-success btn-icon btn-circle"><i class="fa fa-search"></i></button>
+            <button type="button" class="btn btn-outline-primary btn-icon btn-circle"><i class="fa fa-check"></i>
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-icon btn-circle"><i class="fa fa-times"></i>
+            </button>
+            <button type="button" class="btn btn-outline-success btn-icon btn-circle"><i class="fa fa-search"></i>
+            </button>
             <button type="button" class="btn btn-outline-info btn-icon btn-circle"><i class="fa fa-info-circle"></i>
             </button>
             <button type="button" class="btn btn-outline-warning btn-icon btn-circle"><i class="fa fa-exclamation"></i>
             </button>
-            <button type="button" class="btn btn-outline-danger btn-icon btn-circle"><i class="fa fa-exclamation-triangle"></i></button>
-          </div>
-          <div>
-            <h5>mat-icon-button</h5>
-            <button mat-icon-button>
-              <mat-icon class="md-18">more_vert</mat-icon>
-            </button>
-            <!--<button mat-icon-button>
-              <mat-icon class="md-18">more_vert</mat-icon>
-            </button>-->
+            <button type="button" class="btn btn-outline-danger btn-icon btn-circle"><i
+              class="fa fa-exclamation-triangle"></i></button>
           </div>
         </div>
         <div class="d-flex col">
@@ -241,18 +236,27 @@
             <button type="button" class="btn btn-outline-primary btn-icon btn-xs"><i class="fa fa-check"></i></button>
           </div>
           <div>
-            <button type="button" class="btn btn-primary btn-icon btn-circle btn-xl"><i class="fa fa-check"></i></button>
-            <button type="button" class="btn btn-primary btn-icon btn-circle btn-lg"><i class="fa fa-check"></i></button>
+            <button type="button" class="btn btn-primary btn-icon btn-circle btn-xl"><i class="fa fa-check"></i>
+            </button>
+            <button type="button" class="btn btn-primary btn-icon btn-circle btn-lg"><i class="fa fa-check"></i>
+            </button>
             <button type="button" class="btn btn-primary btn-icon btn-circle"><i class="fa fa-check"></i></button>
-            <button type="button" class="btn btn-primary btn-icon btn-circle btn-sm"><i class="fa fa-check"></i></button>
-            <button type="button" class="btn btn-primary btn-icon btn-circle btn-xs"><i class="fa fa-check"></i></button>
+            <button type="button" class="btn btn-primary btn-icon btn-circle btn-sm"><i class="fa fa-check"></i>
+            </button>
+            <button type="button" class="btn btn-primary btn-icon btn-circle btn-xs"><i class="fa fa-check"></i>
+            </button>
           </div>
           <div>
-            <button type="button" class="btn btn-outline-primary btn-icon btn-circle btn-xl"><i class="fa fa-check"></i></button>
-            <button type="button" class="btn btn-outline-primary btn-icon btn-circle btn-lg"><i class="fa fa-check"></i></button>
-            <button type="button" class="btn btn-outline-primary btn-icon btn-circle"><i class="fa fa-check"></i></button>
-            <button type="button" class="btn btn-outline-primary btn-icon btn-circle btn-sm"><i class="fa fa-check"></i></button>
-            <button type="button" class="btn btn-outline-primary btn-icon btn-circle btn-xs"><i class="fa fa-check"></i></button>
+            <button type="button" class="btn btn-outline-primary btn-icon btn-circle btn-xl"><i class="fa fa-check"></i>
+            </button>
+            <button type="button" class="btn btn-outline-primary btn-icon btn-circle btn-lg"><i class="fa fa-check"></i>
+            </button>
+            <button type="button" class="btn btn-outline-primary btn-icon btn-circle"><i class="fa fa-check"></i>
+            </button>
+            <button type="button" class="btn btn-outline-primary btn-icon btn-circle btn-sm"><i class="fa fa-check"></i>
+            </button>
+            <button type="button" class="btn btn-outline-primary btn-icon btn-circle btn-xs"><i class="fa fa-check"></i>
+            </button>
           </div>
         </div>
         <div class="d-flex col">
@@ -275,13 +279,43 @@
             </button>
             <button type="button" class="btn btn-info btn-icon btn-raised btn-circle"><i class="fa fa-info-circle"></i>
             </button>
-            <button type="button" class="btn btn-warning btn-icon btn-raised btn-circle"><i class="fa fa-exclamation"></i>
+            <button type="button" class="btn btn-warning btn-icon btn-raised btn-circle"><i
+              class="fa fa-exclamation"></i>
             </button>
             <button type="button" class="btn btn-danger btn-icon btn-raised btn-circle"><i
               class="fa fa-exclamation-triangle"></i></button>
           </div>
         </div>
-     </div>
+
+        <div class="d-flex col">
+          <h5>mat-icon-button</h5>
+          <div>
+            <code>기본</code>
+            <button mat-icon-button>
+              <mat-icon class="md-20">more_vert</mat-icon>
+            </button>
+            <button mat-icon-button color="primary">
+              <mat-icon class="md-20">home</mat-icon>
+            </button>
+            <button mat-icon-button color="accent">
+              <mat-icon class="md-20">menu</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+              <mat-icon class="md-20">favorite</mat-icon>
+            </button>
+          </div>
+
+          <div>
+            <code>Size</code>
+            <button mat-icon-button color="warn" class="btn-lg">
+              <mat-icon>favorite</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+              <mat-icon class="md-20">favorite</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <h3 #anchor #progress>Progress Button</h3>
@@ -305,13 +339,14 @@
     <p>라디오 형태 버튼</p>
     <div class="style-guide-example">
       <div>
-        <div class="btn-group " role="group">
+        <div class="btn-group" role="group">
           <ng-container *ngFor="let radio of radioActive; let i=index;">
             <input type="radio" class="btn-check" name="btnradio" autocomplete="off"
                    [id]="'btnradio'+radio"
                    (change)="activeRadio = i;"
                    [checked]="i==activeRadio">
-            <label class="btn btn-outline-secondary" [class.active]="i==activeRadio" [for]="'btnradio'+radio">Radio {{ radio }}</label>
+            <label class="btn btn-outline-secondary" [class.active]="i==activeRadio"
+                   [for]="'btnradio'+radio">Radio {{ radio }}</label>
           </ng-container>
         </div>
       </div>
