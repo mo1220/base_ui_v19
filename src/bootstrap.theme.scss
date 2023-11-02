@@ -57,6 +57,7 @@
 //    }
 //  }
 //
+
   /**** Size Button ****/
   &.btn-xl {
     font-size: $font-size-xl;
@@ -83,7 +84,7 @@
       position: relative;
       left: -12px;
       display: inline-block;
-      padding: 6px 12px;
+      padding: $btn-padding-y 0 $btn-padding-y $btn-padding-x;
       //background: rgba(0, 0, 0, 0.15);
       border-radius: $border-radius-left;
     }
@@ -91,44 +92,47 @@
     &.btn-xl {
       span.btn-label {
         left: -20px;
-        padding: 10px 17px;
+        padding: $btn-padding-y-xl 0 $btn-padding-y-xl $btn-padding-x-xl;
       }
     }
 
     &.btn-lg {
       span.btn-label {
         left: -16px;
-        padding: 8px 12px;
+        //padding: 8px 12px;
+        padding: $btn-padding-y-lg 0 $btn-padding-y-lg $btn-padding-x-lg;
       }
     }
 
     &.btn-sm {
       span.btn-label {
         left: -9px;
-        padding: 4px 8px;
+        padding: $btn-padding-y-sm 0 $btn-padding-y-sm $btn-padding-x-sm;
+        //padding: 4px 8px;
       }
     }
 
     &.btn-xs {
       span.btn-label {
         left: -7px;
-        padding: $btn-padding-y-xs $btn-padding-x-xs;
+        padding: $btn-padding-y-xs 0 $btn-padding-y-xs $btn-padding-x-xs;
       }
     }
   }
 
-//  /**** Circle  Button ****/
-//  &.btn-circle {
-//    border-radius: 50%;
-//  }
+  /**** Circle  Button ****/
+  &.btn-circle {
+    border-radius: 50%;
+  }
 
   /**** Icon Only button ****/
   &.btn-icon {
-    padding: $btn-padding;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+    @include btn-icon($btn-padding);
+    //padding: $btn-padding;
+    //display: inline-flex;
+    //justify-content: center;
+    //align-items: center;
+    //position: relative;
 
     .fa {
       width: $font-size-base;

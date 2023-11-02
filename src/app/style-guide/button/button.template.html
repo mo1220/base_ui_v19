@@ -2,9 +2,9 @@
   <div class="component-wrap button" #contentWrap>
     <h3 #anchor #basic>Basic</h3>
     <p>컬러별 기본 버튼</p>
-    <div class="style-guide-example d-flex col">
-      <div>
-        <h5>Bootstrap button</h5>
+    <div class="style-guide-example d-flex">
+      <div class="d-flex-1">
+        <h5>bootstrap</h5>
         <button type="button" class="btn btn-primary">Primary</button>
         <button type="button" class="btn btn-secondary">Secondary</button>
         <button type="button" class="btn btn-success">Success</button>
@@ -14,8 +14,8 @@
         <button type="button" class="btn btn-light">Light</button>
         <button type="button" class="btn btn-dark">Dark</button>
       </div>
-      <div>
-        <h5>Mat-button</h5>
+      <div class="d-flex-1">
+        <h5>mat-button</h5>
         <button mat-button>Basic</button>
         <button mat-button color="primary">Primary</button>
         <button mat-button color="accent">Accent</button>
@@ -60,12 +60,19 @@
     <h3 #anchor #block>Block</h3>
     <p>Block 버튼</p>
     <div class="style-guide-example">
-      <div>
+      <div class="d-grid gap-1">
+        <button class="btn btn-primary" type="button">Block button</button>
+        <button type="button" class="btn btn-secondary">Block button</button>
+        <button type="button" class="btn btn-outline-primary">Block button</button>
+        <button type="button" class="btn btn-outline-secondary">Block button</button>
+      </div>
+
+      <!--<div>
         <button type="button" class="btn btn-primary btn-block">Block button</button>
         <button type="button" class="btn btn-secondary btn-block">Block button</button>
         <button type="button" class="btn btn-outline-primary btn-block">Block button</button>
         <button type="button" class="btn btn-outline-secondary btn-block">Block button</button>
-      </div>
+      </div>-->
     </div>
 
     <h3  #anchor #disabled>Disabled State</h3>
@@ -205,8 +212,16 @@
             </button>
             <button type="button" class="btn btn-outline-warning btn-icon btn-circle"><i class="fa fa-exclamation"></i>
             </button>
-            <button type="button" class="btn btn-outline-danger btn-icon btn-circle"><i
-              class="fa fa-exclamation-triangle"></i></button>
+            <button type="button" class="btn btn-outline-danger btn-icon btn-circle"><i class="fa fa-exclamation-triangle"></i></button>
+          </div>
+          <div>
+            <h5>mat-icon-button</h5>
+            <button mat-icon-button>
+              <mat-icon class="md-18">more_vert</mat-icon>
+            </button>
+            <!--<button mat-icon-button>
+              <mat-icon class="md-18">more_vert</mat-icon>
+            </button>-->
           </div>
         </div>
         <div class="d-flex col">
@@ -290,7 +305,7 @@
     <p>라디오 형태 버튼</p>
     <div class="style-guide-example">
       <div>
-        <div class="btn-group btn-group-toggle" role="group">
+        <div class="btn-group " role="group">
           <ng-container *ngFor="let radio of radioActive; let i=index;">
             <input type="radio" class="btn-check" name="btnradio" autocomplete="off"
                    [id]="'btnradio'+radio"

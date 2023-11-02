@@ -15,6 +15,10 @@
 
 .default-theme {
   @include mat.all-component-themes($dtk-theme);
+
+  .mat-mdc-icon-button.mat-mdc-button-base{
+    @include btn-icon($btn-padding);
+  }
 }
 
 .dark-theme {
@@ -445,8 +449,11 @@ ul, ol, dl {
     }
   }
 
-  &-1 {
-    flex: 1;
+
+  @each $size in 1, 2, 3 {
+    &-#{$size} {
+     flex: $size
+    }
   }
 
   &.alignC {
@@ -2517,3 +2524,4 @@ input[type="radio"].mgr:checked:before {
   }
 }
 /**** EN: keyword *****/
+
