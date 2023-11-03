@@ -103,12 +103,15 @@ $input-height-border:         $border-width * 2 !default;
 $input-height-xs:             add($line-height-base * 1em, add($input-btn-padding-y-xs * 2, $input-height-border, false)) !default;
 
 
-$btn-padding: .5rem !default;
-$btn-padding-xl: 1rem;
-//$btn-padding-lg: .75rem ;
-//$btn-padding-sm: .375rem;
-$btn-padding-xs: 10px ;
-$input-btn-focus-width:         .12rem !default;
+$btn-padding: .5rem !default; // 기본 icon padding
+$btn-padding-xl: $btn-padding * 1.5;
+$btn-padding-lg: $btn-padding * 1.2;
+$btn-padding-sm: $btn-padding * .8;
+$btn-padding-xs: $btn-padding;
+$input-btn-focus-width: .12rem !default;
+$btn-mat-width: 40px !default; // mat-icon-button 기본 너바
+$btn-mat-width-lg: 48px !default; // mat-icon-button 기본 너바
+
 
 // icon only button style
 @mixin btn-icon($padding){
@@ -145,9 +148,7 @@ $btn-font-family: $font-family-sans-serif;//'Noto Sans KR', 'Roboto', 'Helvetica
 
 $btn-padding-y: .375rem !default;
 $btn-padding-x: .75rem !default;
-//$btn-font-family: $btn-font-family;
 
-// Button Padding
 $btn-padding-y-xl: .75rem;
 $btn-padding-x-xl: 1.2rem;
 
@@ -177,6 +178,7 @@ $card-list-padding-sm: 7px;
 $card-list-icon: 65px;
 $card-list-icon-sm: 45px;
 $card-cap-bg: $white !default;
+$card-inner-border-radius: $border-radius !default;
 
 // mixin card-item
 @mixin card-item($border-width:1px, $border-color:#CCC, $border-radius, $margin-right, $width, $bg-color) {

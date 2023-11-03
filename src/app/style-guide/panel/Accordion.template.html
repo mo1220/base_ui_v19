@@ -28,8 +28,8 @@
                 </div>
 
                 <div class="dp-accordion-answer-btns">
-                  <button [matMenuTriggerFor]="menu" mat-ripple>
-                    <mat-icon class="md-18">more_vert</mat-icon>
+                  <button [matMenuTriggerFor]="menu" mat-icon-button>
+                    <mat-icon class="md-20">more_vert</mat-icon>
                   </button>
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item type="button" class="edit-btn">
@@ -109,8 +109,8 @@
 
                     <div class="dp-accordion-answer-btns">
                       <ng-container>
-                        <button [matMenuTriggerFor]="menu">
-                          <mat-icon class="md-18">more_vert</mat-icon>
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                          <mat-icon class="md-20">more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
                           <button mat-menu-item type="button" class="edit-btn">
