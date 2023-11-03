@@ -18,15 +18,35 @@
     }
   }
   .color-bar-threshold {
-    display: inline-block;
-    position: absolute;
-    font-size: 10px;
-    text-align: center;
-    font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
-    transform: translateX(-50%);
-    top: -5px;
-    padding: 0 5px;
-    line-height: 20px;
+    &-input {
+      display: inline-block;
+      position: absolute;
+      font-size: 10px;
+      text-align: center;
+      font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
+      transform: translateX(-50%);
+      top: -5px;
+      padding: 0 5px;
+      line-height: 20px;
+      opacity: 0;
+      background: #FFF;
+      z-index: 100;
+      &:focus {
+        opacity: 1;
+      }
+    }
+
+    &-value {
+      display: inline-block;
+      position: absolute;
+      font-size: 10px;
+      text-align: center;
+      font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
+      transform: translateX(-50%);
+      top: -5px;
+      padding: 0 5px;
+      line-height: 20px;
+    }
   }
 
   &-item {
@@ -202,6 +222,7 @@
           line-height: 26px;
           margin-left: 5px;
           color: #999;
+          border-radius: 3px;
           &:hover {
             color: #333;
           }

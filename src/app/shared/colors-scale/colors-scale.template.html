@@ -30,21 +30,23 @@
             TODO 키입력시 임계치 변경 이벤트 추가
             (keydown)="checkNumber($event, i)"
             (blur)="changeValue($event, i)"
-
-            기존 방식
-            [style.left]="positions[i] + '%'"
           -->
-          <span
-            *ngFor="let format of positions; let i = index;"
-            [attr.contenteditable]="true"
-            [textContent]="format.value"
-            [style.transform]="'translate3d(' + positions[i].left + 'px, 0px, 0px) translateX(-50%)'"
-            class="color-bar-threshold">
-          </span>
+          <ng-container *ngFor="let format of positions; let i = index;">
+            <span
+              [attr.contenteditable]="true"
+              [textContent]="format.value"
+              (keydown)="checkNumber($event, i)"
+              (blur)="changeValue($event, i)"
+              [style.transform]="'translate3d(' + positions[i].left + 'px, 0px, 0px) translateX(-50%)'"
+              class="color-bar-threshold-input">
+            </span>
+            <span [style.transform]="'translate3d(' + positions[i].left + 'px, 0px, 0px) translateX(-50%)'"
+              class="color-bar-threshold-value">{{format.value | thresholdFormat: '0.00a'}}</span>
+          </ng-container>
         </ng-container>
         <ng-container *ngIf="_type === 'min_max'">
-          <span class="color-bar-threshold" style="left:0">Min</span>
-          <span class="color-bar-threshold" style="left:100%">Max</span>
+          <span class="color-bar-threshold-value" style="left: 8px">Min</span>
+          <span class="color-bar-threshold-value" style="left: calc(100% - 8px)">Max</span>
         </ng-container>
       </div>
       <div class="color-scale-picker-bar"
@@ -53,11 +55,7 @@
            (mouseenter)="mouseEnter($event)"
            (mousemove)="mouseMove($event)"
            (click)="addColor($event)"
-           [style.background]="'linear-gradient(to right, ' + backgrounds + ')'">
-        <!--  *ngIf="mouseEntered" -->
-        <!--<div class="color-scale-picker-bar-line"
-             [style.left]="lineX + 'px'"
-             ></div>-->
+           [style.background]="setBackgrounds()">
       </div>
       <div>
         <ng-container *ngFor="let item of positions; let i = index;">
@@ -69,11 +67,9 @@
                (cdkDragEnded)="dragEnded($event, i)"
                (cdkDragMoved)="dragMoved($event, i)"
                [class.active]="activeIndex === i"
+               (click)="toggleOpen(i)"
                [style.transform]="'translate3d(' + positions[i].left + 'px, 0px, 0px)'">
-            <!-- (click)="activeIndex = i;"
-               [style.left]="positions[i] + '%'" -->
             <span [style.background-color]="positions[i].color"
-                  (click)="toggleOpen(i)"
                   cdkOverlayOrigin
                   #trigger="cdkOverlayOrigin"></span>
             <button class="color-scale-picker-remove-btn" (click)="removeColor(i)"></button>
@@ -83,11 +79,11 @@
               [cdkConnectedOverlayHasBackdrop]="true"
               (backdropClick)="isOpen = -1"
               [cdkConnectedOverlayOrigin]="trigger"
-              [cdkConnectedOverlayOpen]="isOpen === i"
-            >
+              [cdkConnectedOverlayOpen]="isOpen === i">
               <div class="color-scale-color-chrome">
                 <!-- (onChangeComplete)="changeColor($event)" -->
                 <color-chrome [color]="positions[i].color"
+                              (onChangeComplete)="changeColor($event)"
                               class="dtk-color-picker"></color-chrome>
               </div>
             </ng-template>
@@ -100,11 +96,10 @@
                (cdkDragEnded)="dragEnded($event, i)"
                (cdkDragMoved)="dragMoved($event, i)"
                [class.active]="activeIndex === i"
-               [style.transform]="'translate3d(' + positions[i].left + 'px, 0px, 0px)'"
-               (click)="activeIndex = i">
+               (click)="toggleOpen(i)"
+               [style.transform]="'translate3d(' + positions[i].left + 'px, 0px, 0px)'">
             <!-- [style.left]="((i / (_gradient.length - 1)) * 100) + '%'" -->
             <span [style.background-color]="positions[i].color"
-                  (click)="toggleOpen(i)"
                   cdkOverlayOrigin
                   #trigger="cdkOverlayOrigin"></span>
             <button class="color-scale-picker-remove-btn" (click)="removeColor(i)"></button>
@@ -114,11 +109,11 @@
               [cdkConnectedOverlayHasBackdrop]="true"
               (backdropClick)="isOpen = -1"
               [cdkConnectedOverlayOrigin]="trigger"
-              [cdkConnectedOverlayOpen]="isOpen === i"
-            >
+              [cdkConnectedOverlayOpen]="isOpen === i">
               <div class="color-scale-color-chrome">
                 <!-- (onChangeComplete)="changeColor($event)" -->
                 <color-chrome [color]="positions[i].color"
+                              (onChangeComplete)="changeColor($event)"
                               class="dtk-color-picker"></color-chrome>
               </div>
             </ng-template>
@@ -145,13 +140,16 @@
           <div class="detail-color-sample">
             <span [style.background]="item.color"></span>
           </div>
-          <input class="form-control form-control-sm"
+          <input type="number"
+                 (keyup)="inputKeyup($event, i)"
+                 (blur)="changeInputValue()"
+                 class="form-control form-control-sm"
                  [(ngModel)]="positions[i].value" />
           <button matRipple
                   class="btn-remove"
                   [matTooltip]="'buttons.delete' | translate"
                   (click)="removeColor(i)">
-            <i class="fa fa-trash"></i>
+            <mat-icon class="md-14">close</mat-icon>
           </button>
         </li>
       </ul>
@@ -176,48 +174,8 @@
   <mat-checkbox class="matcheckbox-sm"
                 style="margin:0;"
                 [color]="'primary'"
-                (change)="nextForm()"
+                (change)="getMinMax()"
                 [(ngModel)]="_stepped">
     스탭 단계로 분할
   </mat-checkbox>
 </div>
-
-<ng-container *ngIf="activeIndex !== -1">
-  <!--<div class="flex-input">
-    <div class="field" *ngIf="_type === 'threshold'">
-      <label>임계값 변경</label>
-      <input type="number" class="form-control form-control-sm"
-             (ngModelChange)="nextForm()"
-             [(ngModel)]="_gradient[activeIndex].value" />
-    </div>
-    <div class="field">
-      <label>색상 변경</label>
-      <div class="input-group">
-        <input class="form-control form-control-sm"
-               (click)="scaleColorPopover.toggle()"
-               [(ngModel)]="_gradient[activeIndex].color" />
-        <div class="input-group-append">
-          <ng-template #scaleColor>
-            <div style="width: 200px;">
-              <color-chrome [color]="_gradient[activeIndex].color"
-                            class="dtk-color-picker"
-                            (onChangeComplete)="changeColor($event)"></color-chrome>
-              <color-swatches [width]="200"
-                              class="dtk-color-swatches"
-                              [color]="_gradient[activeIndex].color"
-                              (onChange)="changeColor($event); scaleColorPopover.hide()"></color-swatches>
-            </div>
-          </ng-template>
-          &lt;!&ndash; [autoClose]="'outside'" &ndash;&gt;
-          <span class="preview-color"
-                style="display: inline-block; width: 28px; border-radius: 0 3px 3px 0;"
-                [popover]="scaleColor"
-                #scaleColorPopover="bs-popover"
-                [container]="'body'"
-                [style.background]="_gradient[activeIndex].color"></span>
-        </div>
-      </div>
-    </div>
-  </div>-->
-
-</ng-container>
