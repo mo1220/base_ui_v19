@@ -180,8 +180,6 @@
   &.btn-split {
     padding-top: 0;
     padding-bottom: 0;
-    margin-right: 7px;
-
     span {
       cursor: pointer;
       position: relative;
@@ -191,11 +189,11 @@
       border-radius: $border-radius-right;
 
       &.btn-split-menu {
-        &-border {
+        //&-border {
           border-left-width: 1px;
           border-left-style: solid;
-          border-left-color: #EEEEEE;
-        }
+          border-left-color: inherit;
+        //}
         &:hover {
           background-color: rgba(0, 0, 0, .2);
         }
@@ -535,6 +533,16 @@ label.btn-split {
     display: flex;
     &.flex-end {
       justify-content: flex-end;
+    }
+    .fa {
+      margin-right: 3px;
+      color: #999;
+    }
+    span {
+      margin-right: 10px;
+      &:last-of-type {
+        margin-right: 0;
+      }
     }
   }
   .text-body-secondary {

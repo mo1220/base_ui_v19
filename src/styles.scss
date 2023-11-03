@@ -1787,6 +1787,31 @@ input[type="radio"].mgr:checked:before {
 /* EN : Dialog */
 
 /**** ST: Analysis table ****/
+.analysis-table{
+  table th {
+    position: relative;
+  }
+
+  table th:hover .resize-handle {
+    opacity: 1;
+    transition: .3s ease-in-out;
+  }
+
+  .resize-handle {
+    display: inline-block;
+    border-right: 2px solid lightgray;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    cursor: col-resize;
+    opacity: 0;
+  }
+
+  .resize-handle:hover {
+    width: 20px;
+  }
+}
 .mat-mdc-table-sticky {
   background: #eee !important;
   opacity: 1;
@@ -1822,6 +1847,8 @@ input[type="radio"].mgr:checked:before {
 .mat-mdc-table-sticky-border-elem-left {
   border-right: 2px solid midnightblue;
 }
+
+
 
 /**** EN: Analysis table ****/
 
@@ -2352,136 +2379,138 @@ input[type="radio"].mgr:checked:before {
 /***** EN: Accordion *****/
 
 /**** ST: Card *****/
-.card-list {
-  display: flex;
-  flex-direction: column; // 기본 리스트형
-  &-item {
-    @include card-item(1px, #CCC, $card-border-radius, 0, auto, #FFF);
-    &.sm {
-      &>button{
-        position: absolute;
-        right: -7px;
-        top: -10px;
-        background-color: #FFF;
-        &:hover{
-          color: #eee;
-          background-color: $gray;
-        }
-      }
-    }
-    &-icon {
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 120px;
-      text-align: center;
-      padding: $card-list-padding 0 $card-list-padding $card-list-padding;
+.card{
+  &-list {
+    display: flex;
+    flex-direction: column; // 기본 리스트형
+    &-item {
+      @include card-item(1px, #CCC, $card-border-radius, 0, auto, #FFF);
       &.sm {
-        padding: $card-list-padding-sm 0 $card-list-padding-sm $card-list-padding-sm;
-        img {
-          height: $card-list-icon-sm;
-        }
-      }
-
-      img {
-        width: auto;
-        height: $card-list-icon;
-      }
-
-      &-img {
-        background: url('https://primefaces.org/cdn/primeng/images/usercard.png') no-repeat center;
-        background-size: cover;
-        width: 200px;
-        position: relative;
-        &::after{
-          content: '';
-          display: block;
-          width: 100%;
-          height: 100%;
+        &>button{
           position: absolute;
-          top: 0;
-          left: 0;
-          opacity: .15;
-          background: linear-gradient(to top, #999,  #FFF);
+          right: -7px;
+          top: -10px;
+          background-color: #FFF;
+          &:hover{
+            color: #eee;
+            background-color: $gray;
+          }
         }
       }
-
-      &-name {
+      &-icon {
         margin: 0;
-        font-weight: bold;
-        //&.sm {
-        //  margin: 0;
-        //}
-      }
-    }
-
-    &-content {
-      flex: 1;
-      position: relative;
-      padding: $card-list-padding $card-list-padding $card-list-padding $card-list-padding-sm;
-      &.sm {
-        padding: $card-list-padding-sm $card-list-padding-sm $card-list-padding-sm 0;
-        mat-checkbox { margin-left: 0; }
-        h5.card-title {
-          font-weight: bold;
-          small{
-            max-width: 100px;
-            color: #999;
-            display: inline-block;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            vertical-align: middle;
-            margin-left: 0.2rem;
-          }
-          & * {
-            font-weight: inherit;
-          }
-        }
-      }
-      .card-title {
-        cursor: pointer;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      &-desc {
-        font-size: 12px;
-        max-height: 40px;
-        color: #666;
-        line-height: 1.5em;
-        margin-top: 10px;
-        overflow: hidden;
-        padding-right: 110px;
-        word-break: break-word;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 2;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        &.sm {
-          margin-top: 5px;
-        }
-      }
-
-      &-footer {
         display: flex;
-        justify-content: space-between;
-        &.flex-end {
-          justify-content: flex-end;
-        }
-        &-r {
-          .fa {
-            margin-right: 3px;
-            color: #999;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 120px;
+        text-align: center;
+        padding: $card-list-padding 0 $card-list-padding $card-list-padding;
+        &.sm {
+          padding: $card-list-padding-sm 0 $card-list-padding-sm $card-list-padding-sm;
+          img {
+            height: $card-list-icon-sm;
           }
+        }
 
-          span {
-            margin-right: 10px;
-            &:last-of-type {
-              margin-right: 0;
+        img {
+          width: auto;
+          height: $card-list-icon;
+        }
+
+        &-img {
+          background: url('https://primefaces.org/cdn/primeng/images/usercard.png') no-repeat center;
+          background-size: cover;
+          width: 200px;
+          position: relative;
+          &::after{
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: .15;
+            background: linear-gradient(to top, #999,  #FFF);
+          }
+        }
+
+        &-name {
+          margin: 0;
+          font-weight: bold;
+          //&.sm {
+          //  margin: 0;
+          //}
+        }
+      }
+
+      &-content {
+        flex: 1;
+        position: relative;
+        padding: $card-list-padding $card-list-padding $card-list-padding $card-list-padding-sm;
+        &.sm {
+          padding: $card-list-padding-sm $card-list-padding-sm $card-list-padding-sm 0;
+          mat-checkbox { margin-left: 0; }
+          h5.card-title {
+            font-weight: bold;
+            small{
+              max-width: 100px;
+              color: #999;
+              display: inline-block;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              vertical-align: middle;
+              margin-left: 0.2rem;
+            }
+            & * {
+              font-weight: inherit;
+            }
+          }
+        }
+        .card-title {
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        &-desc {
+          font-size: 12px;
+          max-height: 40px;
+          color: #666;
+          line-height: 1.5em;
+          margin-top: 10px;
+          overflow: hidden;
+          padding-right: 110px;
+          word-break: break-word;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 2;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          &.sm {
+            margin-top: 5px;
+          }
+        }
+
+        &-footer {
+          display: flex;
+          justify-content: space-between;
+          &.flex-end {
+            justify-content: flex-end;
+          }
+          &-r {
+            .fa {
+              margin-right: 3px;
+              color: #999;
+            }
+
+            span {
+              margin-right: 10px;
+              &:last-of-type {
+                margin-right: 0;
+              }
             }
           }
         }

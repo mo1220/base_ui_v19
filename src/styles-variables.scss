@@ -178,6 +178,7 @@ $card-list-padding-sm: 7px;
 $card-list-icon: 65px;
 $card-list-icon-sm: 45px;
 $card-cap-bg: $white !default;
+$card-inner-border-radius: $border-radius !default;
 
 // mixin card-item
 @mixin card-item($border-width:1px, $border-color:#CCC, $border-radius, $margin-right, $width, $bg-color) {
