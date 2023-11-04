@@ -73,7 +73,9 @@ import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import {TreeDirComponent} from "./tree/tree-dir-component/tree-dir-component";
 import {TreeSelectFilterComponent} from "./tree/tree-filter/tree-select-filter.component";
 import { NgxSkeletonModule } from 'ngx-skeleton';
-import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
+import { NgxSliderModule } from 'ngx-slider-v2';
+import { ResizedEventModule } from './resized-event/angular-resized-event.module';
+
 
 
 
@@ -144,7 +146,8 @@ import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
     TreeModule,
     TableVirtualScrollModule,
     TreeModule,
-    NgxSkeletonModule
+    NgxSkeletonModule,
+    NgxSliderModule
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -234,7 +237,8 @@ import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
     NgxSkeletonModule,
     TableVirtualScrollModule,
     TreeDirComponent, // 트리 디렉토리 구조
-    TreeSelectFilterComponent // 트리 필터
+    TreeSelectFilterComponent, // 트리 필터
+    NgxSliderModule, // Slider Module
   ],
   providers: [
     { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }

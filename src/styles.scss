@@ -2558,3 +2558,52 @@ input[type="radio"].mgr:checked:before {
 }
 /**** EN: keyword *****/
 
+
+/********* ST: ngx-slider *************************/
+.ngx-slider {
+  .ngx-slider-selection {
+    background: $primary !important;
+  }
+
+  .ngx-slider-pointer {
+    background-color: $primary !important;
+  }
+
+  .ngx-slider-span {
+    &.ngx-slider-bubble {
+      font-size: 10px !important;
+    }
+  }
+
+  &-pointer {
+    width: 16px !important;
+    height: 16px !important;
+    top: -6px !important;
+
+    &:after {
+      width: 6px !important;
+      height: 6px !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &.linear-filter {
+    margin: 15px 0 15px;
+
+    .ngx-slider-span {
+      &.ngx-slider-bubble {
+        display: none !important;
+        font-size: 10px !important;
+      }
+
+      &.ngx-slider-limit,
+      &.ngx-slider-model-high,
+      &.ngx-slider-model-value {
+        display: none !important;
+      }
+    }
+  }
+}
+/********* EN: ngx-slider *************************/

@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <ng-container *ngFor="let slider of sliders; index as i">
+      <h3 #anchor>{{buttonMenu[i].title}}</h3>
+      <p>{{buttonMenu[i].desc}}</p>
+      <div class="style-guide-example">
+        <ngx-slider [(value)]="slider.value"
+                    [(highValue)]="slider.highValue"
+                    [options]="sliderOptions(slider)"></ngx-slider>
+      </div>
+    </ng-container>
+  </div>
+  <aside-menu-right [menu]="buttonMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>
