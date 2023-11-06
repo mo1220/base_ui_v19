@@ -3,23 +3,27 @@
     <h3 #anchor #basic>Basic</h3>
     <p>기본 checkbox</p>
     <div class="style-guide-example d-flex alignC">
-      <code>Magic Input</code>
-      <input type="checkbox" class="mgc" checked/> Default
-      <input type="checkbox" class="mgc mgc-primary" checked /> Primary
-      <input type="checkbox" class="mgc mgc-success" checked /> Success
-      <input type="checkbox" class="mgc mgc-info" checked /> Info
-      <input type="checkbox" class="mgc mgc-warning" checked /> Warning
-      <input type="checkbox" class="mgc mgc-danger" checked /> Danger
+      <code style="width: 70px">Magic Input</code>
+      <div class="form-group flex">
+        <input id="default" type="checkbox" class="mgc" checked/> <label for="default">Default</label>
+        <input id="primary" type="checkbox" class="mgc mgc-primary" checked /> <label for="primary">Primary</label>
+        <input id="success" type="checkbox" class="mgc mgc-success" checked /> <label for="success">Success</label>
+        <input id="info" type="checkbox" class="mgc mgc-info" checked /> <label for="info">Info</label>
+        <input id="warning" type="checkbox" class="mgc mgc-warning" checked /> <label for="warning">Warning</label>
+        <input id="danger" type="checkbox" class="mgc mgc-danger" checked /> <label for="danger">Danger</label>
+      </div>
     </div>
     <div class="style-guide-example d-flex alignC">
-      <code>Material</code>
-      <mat-checkbox class="matcheckbox"
-                    *ngFor="let item of checkList.sublist"
-                    [(ngModel)]="item.checked"
-                    [color]="item.color"
-                    (ngModelChange)="updateAllComplete()">
-        {{item.name}}
-      </mat-checkbox>
+      <code style="width: 70px">Material</code>
+      <div class="form-group flex">
+        <mat-checkbox class="matcheckbox"
+                      *ngFor="let item of checkList.sublist"
+                      [(ngModel)]="item.checked"
+                      [color]="item.color"
+                      (ngModelChange)="updateAllComplete()">
+          {{item.name}}
+        </mat-checkbox>
+      </div>
     </div>
 
     <h3 #anchor #size>Size</h3>
@@ -27,37 +31,40 @@
     <div class="style-guide-example d-flex alignC">
       <div style="flex:1">
         <code>magic input</code>
-        <input type="checkbox" class="mgc mgc-sm mgc-primary" checked />
-        <label>small</label>
-        <input type="checkbox" class="mgc mgc-primary" checked />
-        <label>default</label>
-        <input type="checkbox" class="mgc mgc-lg mgc-primary" checked />
-        <label>large</label>
+        <div class="form-group flex" style="align-items: center">
+          <input id="small-size" type="checkbox" class="mgc mgc-sm mgc-primary" checked />
+          <label for="small-size">small</label>
+          <input id="default-size" type="checkbox" class="mgc mgc-primary" checked />
+          <label for="default-size">default</label>
+          <input id="large-size" type="checkbox" class="mgc mgc-lg mgc-primary" checked />
+          <label for="large-size">large</label>
+        </div>
       </div>
       <div style="flex: 1">
         <code>material</code>
-        <mat-checkbox class="matcheckbox-sm" [color]="'primary'">
-          small</mat-checkbox>
-        <mat-checkbox class="matcheckbox" [color]="'primary'">
-          default</mat-checkbox>
-        <mat-checkbox class="matcheckbox-lg" [color]="'primary'">
-          large</mat-checkbox>
+        <div class="form-group flex">
+          <mat-checkbox class="matcheckbox-sm" [color]="'primary'">small</mat-checkbox>
+          <mat-checkbox class="matcheckbox" [color]="'primary'">default</mat-checkbox>
+          <mat-checkbox class="matcheckbox-lg" [color]="'primary'">large</mat-checkbox>
+        </div>
       </div>
     </div>
 
     <h3 #anchor #round>Rounded</h3>
     <p>라운드 checkbox</p>
     <div class="style-guide-example d-flex alignC">
-      <code>Magic Input</code>
-      <input type="checkbox" class="mgc mgc-circle" checked/> Default
-      <input type="checkbox" class="mgc mgc-circle mgc-primary" checked /> Primary
-      <input type="checkbox" class="mgc mgc-circle mgc-success" checked /> Success
-      <input type="checkbox" class="mgc mgc-circle mgc-info" checked /> Info
-      <input type="checkbox" class="mgc mgc-circle mgc-warning" checked /> Warning
-      <input type="checkbox" class="mgc mgc-circle mgc-danger" checked /> Danger
+      <code style="width: 70px">Magic Input</code>
+      <div class="form-group flex">
+        <input id="default-r" type="checkbox" class="mgc mgc-circle" checked/> <label for="default-r">Default</label>
+        <input id="primary-r" type="checkbox" class="mgc mgc-circle mgc-primary" checked /> <label for="primary-r">Primary</label>
+        <input id="success-r" type="checkbox" class="mgc mgc-circle mgc-success" checked /> <label for="success-r">Success</label>
+        <input id="info-r" type="checkbox" class="mgc mgc-circle mgc-info" checked /> <label for="info-r">Info</label>
+        <input id="warning-r" type="checkbox" class="mgc mgc-circle mgc-warning" checked /> <label for="warning-r">Warning</label>
+        <input id="danger-r" type="checkbox" class="mgc mgc-circle mgc-danger" checked /> <label for="danger-r">Danger</label>
+      </div>
     </div>
     <div class="style-guide-example d-flex alignC">
-      <code>Material</code>
+      <code style="width: 70px">Material</code>
       <mat-checkbox class="matcheckbox matcheckbox-rounded"
                     *ngFor="let item of checkList.sublist"
                     [(ngModel)]="item.checked"
@@ -96,23 +103,58 @@
     <h3 #anchor #disabled>Disabled State</h3>
     <p>disabled checkbox</p>
     <div class="style-guide-example d-flex alignC">
-      <code>Magic Input</code>
-      <input type="checkbox" class="mgc mgc-circle" checked [disabled]="true"/> Default
-      <input type="checkbox" class="mgc mgc-circle mgc-primary" checked [disabled]="true" /> Primary
-      <input type="checkbox" class="mgc mgc-circle mgc-success" checked [disabled]="true" /> Success
-      <input type="checkbox" class="mgc mgc-circle mgc-info" checked [disabled]="true" /> Info
-      <input type="checkbox" class="mgc mgc-circle mgc-warning" checked [disabled]="true" /> Warning
-      <input type="checkbox" class="mgc mgc-circle mgc-danger" checked [disabled]="true" /> Danger
+      <code style="width: 70px">Magic Input</code>
+      <div class="form-group flex">
+        <input type="checkbox" class="mgc mgc-circle" checked [disabled]="true"/> <label>Default</label>
+        <input type="checkbox" class="mgc mgc-circle mgc-primary" checked [disabled]="true" /> <label>Primary</label>
+        <input type="checkbox" class="mgc mgc-circle mgc-success" checked [disabled]="true" /> <label>Success</label>
+        <input type="checkbox" class="mgc mgc-circle mgc-info" checked [disabled]="true" /> <label>Info</label>
+        <input type="checkbox" class="mgc mgc-circle mgc-warning" checked [disabled]="true" /> <label>Warning</label>
+        <input type="checkbox" class="mgc mgc-circle mgc-danger" checked [disabled]="true" /> <label>Danger</label>
+      </div>
     </div>
     <div class="style-guide-example d-flex alignC">
-      <code>Material</code>
-      <mat-checkbox class="matcheckbox matcheckbox-rounded"
-                    *ngFor="let item of checkList.sublist"
-                    [(ngModel)]="item.checked"
-                    [color]="item.color"
-                    [disabled]="true">
-        {{item.name}}
-      </mat-checkbox>
+      <code style="width: 70px">Material</code>
+      <div class="form-group flex">
+        <mat-checkbox class="matcheckbox matcheckbox-rounded"
+                      *ngFor="let item of checkList.sublist"
+                      [(ngModel)]="item.checked"
+                      [color]="item.color"
+                      [disabled]="true">
+          {{item.name}}
+        </mat-checkbox>
+      </div>
+    </div>
+
+    <h3 #anchor #switch>Switch</h3>
+    <p>switch style checkbox</p>
+    <div class="style-guide-example d-flex alignC">
+      <div style="flex:1">
+        <code>magic input</code>
+        <div class="form-group flex" style="align-items: center">
+          <input id="small-switch" type="checkbox" class="mgc-switch mgc-sm mgc-primary" checked />
+          <label for="small-switch">small</label>
+          <input id="default-switch" type="checkbox" class="mgc-switch mgc-primary" checked />
+          <label for="default-switch">default</label>
+          <input id="large-switch" type="checkbox" class="mgc-switch mgc-lg mgc-primary" checked />
+          <label for="large-switch">large</label>
+        </div>
+      </div>
+      <div style="flex: 1">
+        <code>material</code>
+        <div class="form-group flex">
+          <mat-slide-toggle
+            class="mat-slide-toggle"
+            [color]="'primary'"
+            [checked]="'checked'"
+            [disabled]="false">
+            Slide me!
+          </mat-slide-toggle>
+<!--          <mat-checkbox class="matcheckbox-sm" [color]="'primary'">small</mat-checkbox>-->
+<!--          <mat-checkbox class="matcheckbox" [color]="'primary'">default</mat-checkbox>-->
+<!--          <mat-checkbox class="matcheckbox-lg" [color]="'primary'">large</mat-checkbox>-->
+        </div>
+      </div>
     </div>
   </div>
 

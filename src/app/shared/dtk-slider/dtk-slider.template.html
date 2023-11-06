@@ -1,0 +1,55 @@
+<div class="form-group dtk-slider">
+  <label>{{label}}</label>
+  <ng-container *ngIf="_mode !== 'range'">
+    <div class="dtk-slider-value">
+      <div class="dtk-slider-value-item from">
+        <div class="linear-value-input">
+          <span class="linear-input"
+                [attr.contenteditable]="!_disabled"
+                [textContent]="_value"
+                (keydown)="checkNumber($event, 'value')"
+                (blur)="changeValue($event, 'value')">
+          </span>
+          <span class="linear-value">
+            {{ _value | numeralFormat: format}} {{unit}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <ngx-slider [(value)]="_value"
+                (valueChange)="valueChanged()"
+                class="linear-filter"
+                [options]="options"></ngx-slider>
+  </ng-container>
+  <ng-container *ngIf="_mode === 'range'">
+    <div class="linear-value-range">
+      <div class="linear-value-range-item from">
+        <div class="linear-value-input">
+          <span [attr.contenteditable]="!_disabled"
+                [textContent]="_value"
+                (keydown)="checkNumber($event, 'value')"
+                (blur)="changeValue($event, 'value')">
+          </span>
+          <span style="display:inline-block; color:#999; margin-left: 5px;">
+            {{ _value | numeralFormat: format}} {{unit}}
+          </span>
+        </div>
+      </div>
+      <div class="linear-value-range-item to">
+        <div class="linear-value-input">
+          <span [attr.contenteditable]="!_disabled"
+                [textContent]="_highValue"
+                (blur)="changeValue($event, 'highValue')"
+                (keydown)="checkNumber($event, 'highValue')">
+          </span>
+          <span style="display:inline-block; color:#999; margin-left: 5px;">{{unit}}</span>
+        </div>
+      </div>
+    </div>
+    <ngx-slider [(value)]="_value"
+                (userChangeEnd)="onUserChangeEnd($event)"
+                class="linear-filter"
+                [(highValue)]="_highValue"
+                [options]="options"></ngx-slider>
+  </ng-container>
+</div>

@@ -73,6 +73,13 @@ import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
 import {TreeDirComponent} from "./tree/tree-dir-component/tree-dir-component";
 import {TreeSelectFilterComponent} from "./tree/tree-filter/tree-select-filter.component";
 import { NgxSkeletonModule } from 'ngx-skeleton';
+import { NgxSliderModule } from 'ngx-slider-v2';
+import { ResizedEventModule } from './resized-event/angular-resized-event.module';
+import {DtkSliderComponent} from "./dtk-slider/dtk-slider";
+import {DtkMatSliderComponent} from "./dtk-mat-slider/dtk-mat-slider";
+
+
+
 import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
 import 'ag-grid-enterprise';
 
@@ -143,7 +150,8 @@ import 'ag-grid-enterprise';
     TreeModule,
     TableVirtualScrollModule,
     TreeModule,
-    NgxSkeletonModule
+    NgxSkeletonModule,
+    NgxSliderModule
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -155,7 +163,9 @@ import 'ag-grid-enterprise';
     ColorInputComponent, // 컬러 인풋
     ColorsScaleComponent, // 스케일 컬러 인풋
     TreeDirComponent, // Tree directory
-    TreeSelectFilterComponent // Tree Filter
+    TreeSelectFilterComponent, // Tree Filter
+    DtkSliderComponent, // Slider Component
+    DtkMatSliderComponent, // Slider Material Component
   ],
   exports: [
     CommonModule,
@@ -217,6 +227,10 @@ import 'ag-grid-enterprise';
     ColorDialog, // 컬러 다이얼로그
     ColorInputComponent, // 컬러 인풋
     ColorsScaleComponent, // 스케일 컬러 인풋
+    DtkSliderComponent, // Slider Component
+    DtkMatSliderComponent, // Slider Material Component
+    TreeDirComponent, // 트리 디렉토리 구조
+    TreeSelectFilterComponent, // 트리 필터
 
     //3rd Party
     LaddaModule,
@@ -233,7 +247,8 @@ import 'ag-grid-enterprise';
     NgxSkeletonModule,
     TableVirtualScrollModule,
     TreeDirComponent, // 트리 디렉토리 구조
-    TreeSelectFilterComponent // 트리 필터
+    TreeSelectFilterComponent, // 트리 필터
+    NgxSliderModule, // Slider Module
   ],
   providers: [
     { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }

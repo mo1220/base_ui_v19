@@ -45,7 +45,7 @@ import {
   groupDepthPipe,
   timeDisabledPipe,
   CustomFilterList,
-  NumeralFormatPipe,
+
   DuplicationNamePipe,
   TextCamelCasePipe,
   indexColorPipe,
@@ -55,10 +55,24 @@ import {
   FindFieldPipe,
   ComparisonTypePipe,
   FindTypePipe,
-  GetFieldTypeofPipe, SplitTraceIdPipe, GradientColorsPipe, LegendIconPipe, UsedLengthPipe,SliderTrans
+  GetFieldTypeofPipe,
+  SplitTraceIdPipe,
+  GradientColorsPipe,
+  LegendIconPipe,
+  UsedLengthPipe,
+  SliderTrans,
+
 } from './menus';
-import {ListFilterPipe, SafeHtmlPipe} from './filter';
+import {
+  ListFilterPipe,
+  SafeHtmlPipe
+} from './filter';
 import {SafePipe} from './safe';
+
+import {
+  NumeralFormatPipe,
+  ThresholdFormatPipe
+} from './number';
 
 export const PIPES = [
   MenusPipe,
@@ -124,7 +138,8 @@ export const PIPES = [
   GradientColorsPipe,
   LegendIconPipe,
   UsedLengthPipe,
-  SliderTrans
+  SliderTrans,
+  ThresholdFormatPipe
 ];
 
 @NgModule({

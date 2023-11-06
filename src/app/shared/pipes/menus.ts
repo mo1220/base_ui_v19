@@ -314,13 +314,6 @@ export class SetTimePipe implements PipeTransform {
   }
 }
 
-@Pipe({ name: 'numeralFormat' })
-export class NumeralFormatPipe implements PipeTransform {
-  transform(value: any, ags: any): any {
-    const format = ags ? ags : '0,0';
-    return numeral(value).format(format);
-  }
-}
 
 @Pipe({ name: 'typeOperator' })
 export class TypeOperatorPipe implements PipeTransform {

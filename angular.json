@@ -23,6 +23,7 @@
               "highlight",
               "katex",
               "quill",
+              "brace",
               "quill-emoji/dist/quill-emoji.js"
             ],
             "outputPath": "dist/datatree-studio",

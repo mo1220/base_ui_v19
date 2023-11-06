@@ -10,6 +10,7 @@ import * as chroma from 'chroma-js';
 import * as _ from 'lodash';
 import * as d3 from 'd3';
 import { MatDialog } from '@angular/material/dialog';
+import {MessagesService} from "../../core/toast-message/messages.service";
 
 export interface colorScaleType {
   value: number; // 값
@@ -34,7 +35,7 @@ export class ColorsScaleComponent implements OnInit {
   loaded: boolean = false;
   isInteger: boolean = true; // 정수인지 실수인지 체크
   isOpen: number = -1;
-
+  isFirst:boolean = true;
   toggleDetail: boolean = false;
   @Input()
   get type() {
@@ -70,16 +71,27 @@ export class ColorsScaleComponent implements OnInit {
       }, 1);
       return;
     }
-    if(this._type === 'threshold' && this._stepped) {
-      const add = {
-        ...this._gradient[this._gradient.length - 1],
-        value: this._gradient[this._gradient.length - 1].value + (this._gradient[this._gradient.length - 1].value - this._gradient[this._gradient.length - 2].value)
-      };
-      this._gradient.push(add);
+
+    if(this.isFirst && this._type !== 'threshold') {
+      this._gradient = _.map(this._gradient, (d:any, i:number) => {
+        const { color } = d;
+        const step = (100 / (this._gradient.length - 1)) * i;
+        const value = step;
+        const val = { color, value };
+        return { ...val }
+      });
+      this.isFirst = false;
     }
-    console.log(this._gradient);
+
+    // if(this._type === 'threshold' && this._stepped) {
+    //   const add = {
+    //     ...this._gradient[this._gradient.length - 1],
+    //     value: this._gradient[this._gradient.length - 1].value + (this._gradient[this._gradient.length - 1].value - this._gradient[this._gradient.length - 2].value)
+    //   };
+    //   this._gradient.push(add);
+    // }
     // @ts-ignore
-    this.max = this._type === 'threshold' ? _.maxBy(this._gradient, 'value').value : this._gradient.length - 1;
+    this.max = this._type === 'threshold' ? _.maxBy(this._gradient, 'value').value : 100;
     // @ts-ignore
     this.min = this._type === 'threshold' ? _.minBy(this._gradient, 'value').value : 0;
     this.scale.domain([this.min, this.max]);
@@ -102,9 +114,9 @@ export class ColorsScaleComponent implements OnInit {
   @ViewChild('colorBar') colorBar: ElementRef;
   elementWidth: number = 0;
   constructor(
+    private msgs: MessagesService,
     public dialog: MatDialog
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
 
@@ -133,6 +145,7 @@ export class ColorsScaleComponent implements OnInit {
    * */
   changeColor(e: any) {
     this._gradient[this.activeIndex].color = e.color.hex;
+    this.positions[this.activeIndex].color = e.color.hex;
     this.nextForm();
   }
 
@@ -144,7 +157,10 @@ export class ColorsScaleComponent implements OnInit {
     colors = colors.reverse();
     _.forEach(colors, (v, k) => {
       this._gradient[k].color = v;
+      // @ts-ignore
+      this.positions[k].color = v;
     });
+
     this.nextForm();
   }
 
@@ -153,7 +169,6 @@ export class ColorsScaleComponent implements OnInit {
    * @param e: Mouse Event
    * */
   addColor(e: any) {
-    console.log(e);
     const left = e.offsetX + 8; // 클릭한 위치
     const pw = this.elementWidth; // 바 길이
     const percent = (left / pw) * 100; // 위치 퍼센트
@@ -163,11 +178,11 @@ export class ColorsScaleComponent implements OnInit {
     const val = { value, percent, left, color };
     positions.push(val);
     this.positions = _.sortBy(positions, 'value');
-    this.setBackgrounds();
+    // this.setBackgrounds();
   }
 
   toggleOpen(i:number) {
-    this.activeIndex = this.activeIndex === i ? -1 : i;
+    this.activeIndex = i; // this.activeIndex === i ? -1 :
     this.isOpen = this.isOpen === i ? -1 : this.toggleDetail ? -1 : i;
   }
 
@@ -178,7 +193,7 @@ export class ColorsScaleComponent implements OnInit {
     this.steppedChange.emit(this._stepped);
     const val = this.valueType === 'string' ? this._gradient.map((d:any) => d.color) : this._gradient;
     this.gradientChange.emit(val);
-    this.setBackgrounds();
+    // this.setPosition();
   }
 
   /**
@@ -234,10 +249,9 @@ export class ColorsScaleComponent implements OnInit {
       return;
     }
     this.positions = [];
-    const vl = _.cloneDeep(this._gradient);
     this.positions = _.map(this._gradient, (d:any, i:number) => {
       const { color } = d;
-      const value = this._type === 'threshold' ? d.value : i;
+      const value = d.value;
       const percent = ((value - this.min) * 100) / (this.max - this.min);
       const val = {
         color, percent, value,
@@ -245,24 +259,32 @@ export class ColorsScaleComponent implements OnInit {
       }
       return { ...val }
     });
-    this.setBackgrounds();
+    // if(this._type === 'threshold' && this._stepped) this.positions.shift();
+    this.loaded = true;
   }
 
-  setBackgrounds() {
+  setBackgrounds(): string {
     const pos = _.sortBy(this.positions, 'value');
+    if(this._type === 'threshold' && this._stepped) {
+      const add = {
+        ...pos[pos.length - 1],
+        percent: 100,
+        color: pos[pos.length - 1].color,
+        value: pos[pos.length - 1].value + (pos[pos.length - 1].value - pos[pos.length - 2].value)
+      };
+      pos.push(add);
+    }
     const backgrounds: any = _.map(pos, (d:any, i:number) => {
       let val = '';
-      if(this._type === 'threshold' && this._stepped && i > 0) {
-        val = this.positions[i - 1].color + ' ' + d.percent + '%';
-        val = d.color + ' ' + d.percent + '%';
-      } else {
-        val = d.color + ' ' + d.percent + '%';
+      val = d.color + ' ' + d.percent + '%';
+      if(this._type === 'threshold' && this._stepped) {
+        if(this.positions[i + 1]) {
+          val = val + ', ' + this.positions[i + 1].color + ' ' + d.percent + '%';
+        }
       }
       return val;
     });
-    if(this._type === 'threshold' && this._stepped) this.positions.shift();
-    this.backgrounds = backgrounds.join(', ');
-    this.loaded = true;
+    return 'linear-gradient(to right, ' + backgrounds.join(', ') + ')';
   }
 
   mouseEntered = false;
@@ -279,16 +301,33 @@ export class ColorsScaleComponent implements OnInit {
     this.mouseEntered = false;
   }
 
-  checkNumber(e:any) {
+  getIndex(value: number): number {
+    if(this.max < value) return this._gradient.length;
+    if(this.min < value) return 0;
+    let index = 0;
+    const values = this._gradient.map((d: any) => d.value);
+    let i = 0;
+    while(i < values.length) {
+      if(values[i] > value) {
+        index = i;
+        break;
+      }
+      i++;
+    }
+    return index;
+  }
+  checkNumber(e:any, i:number) {
     // Enter
     if(e.key === 'Enter') { // 한글 기타 문자열
-      const txt = e.target.innerText;
-      // this.changeValue(e);
+      this.changeValue(e, i);
     }
     // 한글
     if(e.key === 'Process') { // 한글 기타 문자열
       const koreanExp = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;
-      // this[key] = e.target.innerText.replace(koreanExp, '');
+      const value = Number(e.target.innerText.replace(koreanExp, ''));
+      // if(this._type === '')
+      this.positions[i].value = value;
+      this._gradient[i].value = value;
       e.preventDefault();
     }
     // 허용키
@@ -305,20 +344,19 @@ export class ColorsScaleComponent implements OnInit {
         }
       }
     }
+    console.log(this.positions[i]);
   }
 
   dragEnded(e:any, i:number) {
-    console.log(e);
     // 8은 Margin 값
     const x = e.event.layerX;
     const per = (x / this.elementWidth) * 100;
     if(this._type === 'threshold') {
 
     } else {
-      this._gradient[i].value = Math.round(per > 100 ? 100 : per);
+      // this._gradient[i].value = Math.round(per > 100 ? 100 : per);
     }
-    console.log(this._type);
-    this.setBackgrounds();
+    // this.setBackgrounds();
   }
 
   dragMoved(e:any, i:number) {
@@ -326,13 +364,10 @@ export class ColorsScaleComponent implements OnInit {
     const { layerX } = e.event;
     // layerX가 0보다 작을땐 0, ElementWidth 보다 클땐 ElementWidth
     const x = layerX < 0 ? 0 : layerX > this.elementWidth ? this.elementWidth : layerX;
-    console.log(x, this.scale.invert(x), this.scale(x));
     this.positions[i].value = Math.round(this.scale.invert(x));
     this.positions[i].left = x;
     this.positions[i].percent = (x / this.elementWidth) * 100;
-    this.setBackgrounds();
-    // console.log('Drag Moved Offset', x < 0 ? 0 : x);
-    // console.log('Drag Moved Offset', e.source.element.nativeElement.offsetLeft + 8);
+    // this.setBackgrounds();
   }
 
   onResized(e: any) {
@@ -381,4 +416,43 @@ export class ColorsScaleComponent implements OnInit {
     this.toggle.splice(i, 1);
     this.changeColors.emit(this._colors);
   }*/
+  changeValue($event: FocusEvent, i: number) {
+    // @ts-ignore
+    const txt = $event.target.innerText;
+    const koreanExp = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g; // 한글 정규식
+    const txt2 = txt.replace(koreanExp, ''); // 한글 제외
+    const value = Number(txt2); // 숫자로 변환
+    this.positions[i].value = value;
+    this._gradient[i].value = value;
+    this.positions = _.sortBy(this.positions, 'value');
+    this._gradient = _.sortBy(this._gradient, 'value');
+    this.getMinMax();
+  }
+
+  inputKeyup(e:any, i: number) {
+    const val = _.clone(this.positions[i].value);
+    if(this._type === 'min_max') {
+      if(val < 0) {
+        this.positions[i].value = 0;
+        this.msgs.warning({message: '최소값은 0이하일 수 없습니다.', title: '최소값 확인'});
+      }
+
+      if(val > 100) {
+        this.positions[i].value = 100;
+        this.msgs.warning({message: '최대값은 100이상일 수 없습니다.', title: '최대값 확인'});
+      }
+
+    }
+    this._gradient[i].value = _.clone(this.positions[i].value);
+    if(e.key === 'Enter') { // 한글 기타 문자열
+      this.changeInputValue();
+      return;
+    }
+  }
+
+  changeInputValue() {
+    this.positions = _.sortBy(this.positions, 'value');
+    this._gradient = _.sortBy(this._gradient, 'value');
+    this.getMinMax();
+  }
 }
