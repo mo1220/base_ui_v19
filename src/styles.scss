@@ -2561,12 +2561,34 @@ input[type="radio"].mgr:checked:before {
 
 /********* ST: ngx-slider *************************/
 .ngx-slider {
+  .ngx-slider-bar-wrapper {
+    /* Bar BG */
+    &.ngx-slider-full-bar {
+      padding-top: 17px;
+      .ngx-slider-bar {
+        height: 2px !important;
+      }
+    }
+    /* Selection Bar */
+    &.ngx-slider-selection-bar {
+      .ngx-slider-bar {
+        height: 4px !important;
+      }
+    }
+
+  }
   .ngx-slider-selection {
     background: $primary !important;
   }
 
   .ngx-slider-pointer {
     background-color: $primary !important;
+    &:after {
+      background: $primary !important;
+    }
+    &:focus-visible {
+      outline: none;
+    }
   }
 
   .ngx-slider-span {
@@ -2576,16 +2598,28 @@ input[type="radio"].mgr:checked:before {
   }
 
   &-pointer {
+    border-radius: 8px !important;
     width: 16px !important;
     height: 16px !important;
     top: -6px !important;
 
     &:after {
-      width: 6px !important;
-      height: 6px !important;
+      width: 26px !important;
+      height: 26px !important;
       top: 50% !important;
       left: 50% !important;
       transform: translate(-50%, -50%);
+      border-radius: 13px !important;
+      opacity: 0;
+    }
+
+    &:active,
+    &:focus,
+    &:focus-visible,
+    &:hover {
+      &:after {
+        opacity: .2;
+      }
     }
   }
 

@@ -4,9 +4,15 @@
       <h3 #anchor>{{buttonMenu[i].title}}</h3>
       <p>{{buttonMenu[i].desc}}</p>
       <div class="style-guide-example">
-        <ngx-slider [(value)]="slider.value"
-                    [(highValue)]="slider.highValue"
-                    [options]="sliderOptions(slider)"></ngx-slider>
+        <ng-container *ngIf="singleValue.includes(buttonMenu[i].anchor)">
+          <ngx-slider [(value)]="slider.value"
+                      [options]="sliderOptions(slider)"></ngx-slider>
+        </ng-container>
+        <ng-container *ngIf="!singleValue.includes(buttonMenu[i].anchor)">
+          <ngx-slider [(value)]="slider.value"
+                      [(highValue)]="slider.highValue"
+                      [options]="sliderOptions(slider)"></ngx-slider>
+        </ng-container>
       </div>
     </ng-container>
   </div>
