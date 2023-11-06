@@ -74,8 +74,7 @@ import {TreeDirComponent} from "./tree/tree-dir-component/tree-dir-component";
 import {TreeSelectFilterComponent} from "./tree/tree-filter/tree-select-filter.component";
 import { NgxSkeletonModule } from 'ngx-skeleton';
 import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
-
-
+import 'ag-grid-enterprise';
 
 @NgModule({
   imports: [
