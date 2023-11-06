@@ -163,9 +163,9 @@
                  [ngClass]="{'valid': keyword == 'success'}"
                  [(ngModel)]="keyword">
           <span class="clear-btn"
-                *ngIf="keyword !== 'success'"
+                *ngIf="keyword !== 'success' && keyword !== ''"
                 (click)="keyword = ''">
-            <i class="fa fa-times-circle"></i>
+          <mat-icon class="mat-icon">close</mat-icon>
           </span>
           <span class="valid-feedback"
                 [style.display]="keyword == 'success' ? 'block': 'none'">검증 완료</span>
@@ -180,9 +180,9 @@
                    [ngClass]="{'valid': keyword == 'success'}"
                    [(ngModel)]="keyword">
             <span class="clear-btn"
-                  *ngIf="keyword !== 'success'"
+                  *ngIf="keyword !== 'success' && keyword !== ''"
                   (click)="keyword = ''">
-              <i class="fa fa-times-circle"></i>
+          <mat-icon class="mat-icon">close</mat-icon>
             </span>
             <span class="valid-feedback"
                   [style.display]="keyword == 'success' ? 'block': 'none'">검증 완료</span>
@@ -199,7 +199,7 @@
           <span class="clear-btn"
                 *ngIf="keyword !== ''"
                 (click)="keyword = ''">
-            <i class="fa fa-times-circle"></i>
+          <mat-icon class="mat-icon">close</mat-icon>
           </span>
           <span class="invalid-feedback"
                 [style.display]="keyword == '' ? 'block': 'none'">필수 입력입니다</span>
@@ -216,7 +216,7 @@
             <span class="clear-btn"
                   *ngIf="keyword !== ''"
                   (click)="keyword = ''">
-              <i class="fa fa-times-circle"></i>
+          <mat-icon class="mat-icon">close</mat-icon>
             </span>
             <span class="invalid-feedback"
                   [style.display]="keyword == '' ? 'block': 'none'">필수 입력입니다</span>

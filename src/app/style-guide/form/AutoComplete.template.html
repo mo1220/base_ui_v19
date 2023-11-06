@@ -4,17 +4,52 @@
     <p>클릭 시 자동완성 열림</p>
     <div class="style-guide-example">
       <input type="text" class="form-control form-control-sm"
+             #searchInput
              [placeholder]="'placeholder.keyword_placeholder' | translate"
-             [(ngModel)]="keyword[0]"
+             (focus)="onFocus()"
+             [(ngModel)]="searchKeyword"
              (keyup)="keyupEvent($event)"
              [matAutocomplete]="auto"/>
-      <mat-autocomplete #auto="matAutocomplete">
-        <ng-container><!-- *ngIf="autoCompleteView"-->
-          <mat-option *ngFor="let item of completeList;" [value]="item">
-            {{item}}
-          </mat-option>
-        </ng-container>
-      </mat-autocomplete>
+      <div class="auto_complete-wrap">
+        <mat-autocomplete #auto="matAutocomplete"
+                          class="search-auto-complete"
+                          (closed)="onFocusout()" (opened)="onFocus()">
+          <ng-container *ngIf="focused">
+            <ng-container *ngIf="(keywordLoading || filteredList.length === 0) else content">
+              <ng-container *ngIf="keywordLoading else noData">
+                <div class="loading-content" *ngFor="let item of loadingList;">
+                  <ngx-skeleton width="95%" height="18px" margin="10px"></ngx-skeleton>
+                </div>
+              </ng-container>
+              <ng-template #noData>
+                <div class="autocomplete-box-no">
+                  <img src="/assets/images/icon/no-data.svg" alt="no data image" style="width: 50px;"/>
+                  <p>최근검색어/인기검색어 내력이 없습니다.</p>
+                </div>
+              </ng-template>
+            </ng-container>
+
+            <ng-template #content>
+              <!-- ST:  검색어 자동 완성 -->
+              <div class="autocomplete-box">
+                <mat-optgroup *ngFor="let list of filteredList" [label]="list">
+                  <ng-container *ngIf="list.length === 0 else keywordList">
+                    <div class="autocomplete-box-no">검색어 내력이 없습니다.</div>
+                  </ng-container>
+                  <ng-template #keywordList>
+                    <mat-option [value]="list">
+                      <mat-icon class="md-14">search</mat-icon>
+                      <span [innerHTML]="list"></span>
+<!--                      <span class="autocomplete-box-date" *ngIf="list.group === 'history'">{{ word.logtime | timeForToday: 'YYYY-MM-DD HH:mm'}}</span>-->
+                    </mat-option>
+                  </ng-template>
+                </mat-optgroup>
+              </div>
+            </ng-template>
+          </ng-container>
+          <!-- END: 검색어 자동 완성 -->
+        </mat-autocomplete>
+      </div>
     </div>
 
     <h3 #anchor #reactive>Group Autocompl</h3>
@@ -22,16 +57,9 @@
     <div class="style-guide-example">
       <input type="text" class="form-control"
              [placeholder]="'placeholder.keyword_placeholder' | translate"
-             [(ngModel)]="keyword[1]"
+             [(ngModel)]="searchKeyword"
              [formControl]="control"
              [matAutocomplete]="auto"/>
-      <mat-autocomplete #auto="matAutocomplete">
-        <ng-container *ngIf="autoCompleteView">
-          <mat-option *ngFor="let item of filteredList | async;" [value]="item">
-            {{item}}a
-          </mat-option>
-        </ng-container>
-      </mat-autocomplete>
     </div>
   </div>
 

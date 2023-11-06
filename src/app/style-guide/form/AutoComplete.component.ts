@@ -11,9 +11,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import * as events from "events";
 import {FormControl} from "@angular/forms";
-import {Observable, startWith} from "rxjs";
-import {map} from "rxjs/operators";
+import {Observable, startWith, Subject} from "rxjs";
+import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
 import {menuType} from "../style-guide.models";
+import {MatAutocompleteTrigger} from "@angular/material/autocomplete";
 
 /**
  * @class StyleGuideButtonComponent *
@@ -38,12 +39,22 @@ export class StyleGuideAutoComplateComponent implements AfterViewInit, OnDestroy
     }
   ]
 
-  keyword: Array<string> = ['',''];
+  search$: Subject<string> = new Subject<string>();
+  searchKeyword: string = '';
+
+  focused: boolean = false;
+
+  keywordLoading = true;
+
   completeList: Array<string> = ['apple','ace','banana','bulls','cat','city','strong'];
-  filteredList: Observable<string[]>;
+  filteredList: Array<string> = [];
+  loadingList = Array.from({length: 5}).map((_, i) => i);
   control = new FormControl('');
   autoCompleteView: boolean = false;
 
+
+  @ViewChild('searchInput') searchInput: ElementRef;
+  @ViewChild(MatAutocompleteTrigger) autoComplete: MatAutocompleteTrigger;
 
   constructor(
     private translate: TranslateService,
@@ -59,17 +70,38 @@ export class StyleGuideAutoComplateComponent implements AfterViewInit, OnDestroy
 
   keyupEvent(e: KeyboardEvent): void {
     // this.autoCompleteView = true;
-    this.filteredList = this.control.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
+    e.preventDefault();
+    if (e.key === 'Enter') {
+      // search Event here
+      this.search$.next(this.searchKeyword);
 
+      this.searchInput.nativeElement.blur();
+      this.focused = false;
+      this.autoComplete.closePanel();
+    }else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      this.searchKeyword = this.autoComplete.activeOption?.value;
+    } else {
+      this.search$.next(this.searchKeyword);
+    }
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+  ngOnInit(): void {
+    this.search$.pipe(
+      debounceTime(100),
+      distinctUntilChanged(),
+    ).subscribe((keyword) => {
+      this.filteredList = this.completeList.filter(d => d.includes(keyword));
+    });
+  }
 
-    return this.completeList.filter(option => option.toLowerCase().includes(filterValue));
+
+  onFocus() {
+    this.search$.next('');
+    this.focused = true;
+  }
+  onFocusout() {
+    this.focused = false;
+    this.searchInput.nativeElement.blur();
   }
 
   ngOnDestroy(): void { }
