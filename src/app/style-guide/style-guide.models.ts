@@ -73,7 +73,8 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Slider',
         link: '/form/slider',
-        desc: `Slider 설명 <span></span>`
+        desc: `Slider 설명
+                <div class="msg warning">Tick 개수가 많아지면 느려지는 현상이 있어 주의가 필요<br />Tick 개수가 커지면 Material Slider로 구현</div>`
       }
     ]
   },

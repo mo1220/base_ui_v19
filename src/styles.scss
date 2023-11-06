@@ -1415,6 +1415,7 @@ input[type="radio"].mgr:checked:before {
     flex: 1;
     font-size: 12px;
     position: relative;
+    outline: none;
 
     .mat-icon {
       position: relative;
@@ -1448,10 +1449,12 @@ input[type="radio"].mgr:checked:before {
       border: none;
       background-color: $primary;
       color: #FFF;
+      .mat-icon {
+        color: #FFF;
+      }
     }
   }
 }
-
 
 /********************************* EN: CDK Context Menu *****************************/
 
@@ -2641,3 +2644,80 @@ input[type="radio"].mgr:checked:before {
   }
 }
 /********* EN: ngx-slider *************************/
+
+/********* ST: Material Slider **************************/
+.dtk-slider {
+  --mdc-slider-inactive-track-height: 2px;
+  --mdc-slider-active-track-height: 4px;
+  --mdc-slider-handle-height: 16px;
+  --mdc-slider-handle-width: 16px;
+  --mdc-slider-inactive-track-shape: 20px;
+  --mdc-slider-label-label-text-line-height: 1em;
+  --mdc-slider-label-label-text-font: $code-font-family;
+  --mdc-slider-label-label-text-size: 10px;
+}
+.mdc-slider .mdc-slider__thumb {
+  width: 26px !important;
+  height: 26px !important;
+  left: -13px !important;
+}
+.mdc-slider .mdc-slider__track {
+  top: 13px !important;
+}
+.mat-mdc-slider-visual-thumb .mat-ripple {
+  border-radius: 50%;;
+}
+.mat-mdc-slider .mdc-slider__value-indicator-text {
+  font-family: $code-font-family !important;
+  line-height: 1em !important;
+  font-size: 10px !important;
+  white-space: nowrap;
+}
+
+.mat-mdc-slider {
+  margin: 0 !important;
+}
+
+.mdc-slider .mdc-slider__value-indicator {
+  height: 22px !important;
+  padding: 0 8px !important;
+}
+/********* EN: Material Slider **************************/
+/********* ST: Slider Component *************************************/
+.dtk-slider-link {
+  position: relative;
+  &-row {
+    display:flex;
+    .dtk-slider-link-item {
+      &:first-child {
+        margin-right: 25px;
+      }
+      &:last-child {
+        margin-left: 25px;
+      }
+    }
+  }
+  &-item {
+    flex: 1;
+    position: relative;
+    label {
+      font-size: 11px;
+    }
+  }
+
+  &-value {
+    position: absolute;
+    top:0;
+    right:0;
+    font-size: 10px;
+    font-family: $code-font-family;
+  }
+
+  &-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+/********* EN: Slider Component *************************************/

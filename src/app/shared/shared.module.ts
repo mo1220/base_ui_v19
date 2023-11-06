@@ -75,6 +75,8 @@ import {TreeSelectFilterComponent} from "./tree/tree-filter/tree-select-filter.c
 import { NgxSkeletonModule } from 'ngx-skeleton';
 import { NgxSliderModule } from 'ngx-slider-v2';
 import { ResizedEventModule } from './resized-event/angular-resized-event.module';
+import {DtkSliderComponent} from "./dtk-slider/dtk-slider";
+import {DtkMatSliderComponent} from "./dtk-mat-slider/dtk-mat-slider";
 
 
 
@@ -159,7 +161,9 @@ import { ResizedEventModule } from './resized-event/angular-resized-event.module
     ColorInputComponent, // 컬러 인풋
     ColorsScaleComponent, // 스케일 컬러 인풋
     TreeDirComponent, // Tree directory
-    TreeSelectFilterComponent // Tree Filter
+    TreeSelectFilterComponent, // Tree Filter
+    DtkSliderComponent, // Slider Component
+    DtkMatSliderComponent, // Slider Material Component
   ],
   exports: [
     CommonModule,
@@ -221,6 +225,10 @@ import { ResizedEventModule } from './resized-event/angular-resized-event.module
     ColorDialog, // 컬러 다이얼로그
     ColorInputComponent, // 컬러 인풋
     ColorsScaleComponent, // 스케일 컬러 인풋
+    DtkSliderComponent, // Slider Component
+    DtkMatSliderComponent, // Slider Material Component
+    TreeDirComponent, // 트리 디렉토리 구조
+    TreeSelectFilterComponent, // 트리 필터
 
     //3rd Party
     LaddaModule,
@@ -236,8 +244,6 @@ import { ResizedEventModule } from './resized-event/angular-resized-event.module
     TreeModule,
     NgxSkeletonModule,
     TableVirtualScrollModule,
-    TreeDirComponent, // 트리 디렉토리 구조
-    TreeSelectFilterComponent, // 트리 필터
     NgxSliderModule, // Slider Module
   ],
   providers: [

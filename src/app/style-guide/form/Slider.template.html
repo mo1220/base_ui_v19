@@ -13,8 +13,107 @@
                       [(highValue)]="slider.highValue"
                       [options]="sliderOptions(slider)"></ngx-slider>
         </ng-container>
+        <ng-container *ngIf="buttonMenu[i].anchor === 'sliderDate'">
+          <h4>Material Slider</h4>
+          <p>Angular Material Slider</p>
+          <mat-slider class="dtk-slider" [min]="sliders[i].floor"
+                      [discrete]="true"
+                      [step]="sliders[i].step"
+                      [displayWith]="formatLabel"
+                      [max]="sliders[i].ceil" style="width:100%;">
+            <input [value]="sliders[i].value" matSliderStartThumb>
+            <input [value]="sliders[i].highValue" matSliderEndThumb>
+          </mat-slider>
+        </ng-container>
       </div>
     </ng-container>
+
+    <h3>Slider Component</h3>
+    <p>기존에 사용된 컴포넌트 텍스트 입력이 가능하도록 처리 됨</p>
+    <div class="style-guide-example">
+      <div class="dtk-slider-link">
+        <div class="dtk-slider-link-row">
+          <dtk-slider class="dtk-slider-link-item"
+                      [label]="'ngx-slider-v2'"
+                      [unit]="'px'"
+                      [format]="'0.0a'"
+                      [min]="0"
+                      [max]="100"
+                      [mode]="'less'"
+                      [(value)]="values.less"></dtk-slider>
+
+          <dtk-mat-slider class="dtk-slider-link-item"
+                      [label]="'Angular Material'"
+                      [min]="0"
+                      [max]="100"
+                      [mode]="'less'"
+                      [(value)]="values.less"></dtk-mat-slider>
+        </div>
+      </div>
+      <!--<dtk-slider [label]="'위'" [(value)]="margins.top"></dtk-slider>
+      <dtk-mat-slider></dtk-mat-slider>-->
+    </div>
+
+    <h3>Slider Link</h3>
+    <p>대시보드, 차트에 마진 값 통일등 사용</p>
+    <div class="style-guide-example">
+      <div class="dtk-slider-link">
+        <div class="dtk-slider-link-row">
+          <div class="dtk-slider-link-item">
+            <label>위</label>
+            <span class="dtk-slider-link-value">{{margins.top}}</span>
+            <mat-slider class="dtk-slider"
+                        [min]="0"
+                        [max]="30"
+                        [step]="1"
+                        style="width:100%;">
+              <input [(ngModel)]="margins.top" matSliderThumb>
+            </mat-slider>
+          </div>
+          <div class="dtk-slider-link-item">
+            <label>아래</label>
+            <span class="dtk-slider-link-value">{{margins.bottom}}</span>
+            <mat-slider class="dtk-slider"
+                        [min]="0"
+                        [max]="30"
+                        [step]="1"
+                        style="width:100%;">
+              <input [(ngModel)]="margins.bottom" matSliderThumb>
+            </mat-slider>
+          </div>
+        </div>
+        <div class="dtk-slider-link-row">
+          <div class="dtk-slider-link-item">
+            <label>왼쪽</label>
+            <span class="dtk-slider-link-value">{{margins.left}}</span>
+            <mat-slider class="dtk-slider"
+                        [min]="0"
+                        [max]="30"
+                        [step]="1"
+                        style="width:100%;">
+              <input [(ngModel)]="margins.left" matSliderThumb>
+            </mat-slider>
+          </div>
+          <div class="dtk-slider-link-item">
+            <label>오른쪽</label>
+            <span class="dtk-slider-link-value">{{margins.right}}</span>
+            <mat-slider class="dtk-slider"
+                        [min]="0"
+                        [max]="30"
+                        [step]="1"
+                        style="width:100%;">
+              <input [(ngModel)]="margins.right" matSliderThumb>
+            </mat-slider>
+          </div>
+        </div>
+        <div class="dtk-slider-link-btn">
+          <button class="btn btn-outline-secondary btn-sm"
+                  (click)="link = !link">
+            <i class="fa" [ngClass]="link ? 'fa-link' : 'fa-unlink'"></i>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
   <aside-menu-right [menu]="buttonMenu"
                     [anchor]="anchors"></aside-menu-right>

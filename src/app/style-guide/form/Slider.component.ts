@@ -59,7 +59,7 @@ export class StyleGuideSliderComponent implements AfterViewInit, OnDestroy {
     {
       title: 'Slider 날짜',
       anchor: 'sliderDate',
-      desc: 'Slider 날짜',
+      desc: 'Slider 날짜 Tick이 많아지면 느려지는 현상이 있음 사용시 주의',
     }
   ];
   singleValue = ['basicSlider', 'sliderStep', 'sliderLess', 'sliderGreater'];
@@ -117,12 +117,25 @@ export class StyleGuideSliderComponent implements AfterViewInit, OnDestroy {
       highValue: Number(moment().format('x')),
       floor: Number(moment().subtract(1, 'months').format('x')),
       ceil: Number(moment().format('x')),
-      step: 1000 * 60 * 60, // 최소 분 기준
+      step: 1000 * 60 * 60, // 한달 기준 최소 시간 기준
       translate: (value: number): string => {
         return moment(value).format('YYYY.MM.DD hh:mm');
       }
     }
   ];
+  margins = {
+    top: 5,
+    bottom: 5,
+    left: 5,
+    right: 5
+  };
+
+  values = {
+    less: 5
+  }
+
+  link = false;
+
   constructor(
     private cd: ChangeDetectorRef,
     private translate: TranslateService,
@@ -131,6 +144,10 @@ export class StyleGuideSliderComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.cd.detectChanges();
+  }
+
+  formatLabel(value: number): string {
+    return moment(value).format('YY.MM.DD hh:mm');
   }
 
   sliderOptions(slider: any): Options {
