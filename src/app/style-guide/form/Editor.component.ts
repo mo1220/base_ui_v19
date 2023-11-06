@@ -26,6 +26,11 @@ import 'brace/theme/dracula';
 import { AceConfigInterface } from "ngx-ace-wrapper/lib/ace.interfaces";
 import { AceComponent } from "ngx-ace-wrapper";
 
+import hljs from 'highlight.js'
+hljs.configure({
+  languages: ['javascript', 'python', 'sql', 'xml', 'html', 'java']
+})
+
 /**
  * @class StyleGuideEditorComponent *
  * */
@@ -86,7 +91,9 @@ export class StyleGuideEditorComponent implements AfterViewInit, OnDestroy {
       'emoji-toolbar': true,
       formula: true,
       // imageResize: {},
-      syntax: true,
+      syntax: {
+        highlight: (text: any) => hljs.highlightAuto(text).value,
+      },
       toolbar: [
         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
         ['blockquote', 'code-block'],
