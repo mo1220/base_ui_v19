@@ -575,14 +575,14 @@ ul, ol, dl {
 
     .clear-btn {
       position: absolute;
-      color: rgba(0, 0, 0, 0.5);
+      color: rgba(0, 0, 0, 0.35);
       right: 8px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
 
       &:hover {
-        color: rgba(0, 0, 0, 0.7);
+        color: rgba(0, 0, 0, 0.45);
       }
     }
 
@@ -630,7 +630,7 @@ ul, ol, dl {
 
       & > * {
         margin-bottom: 5px;
-        margin-right: 10px;
+        margin-right: 5px;
 
         &:last-child {
           margin-right: 0;
@@ -670,15 +670,21 @@ ul, ol, dl {
 
       &:has(.form-set.flex) {
         align-items: center;
+        & > * {
+          margin-right: 10px;
+          &:last-child { margin-right: 0; }
+        }
       }
     }
   }
 }
 
+
 label {
   margin: 0 10px 0 0;
+
   /* form-label min-width min-${size} */
-  @each $size in 10, 20, 30, 40, 50 {
+  @each $size in 10, 20, 30, 40, 50, 60, 70, 80 {
     &.min-#{$size} {
       min-width: $size + px !important;
     }
@@ -693,6 +699,19 @@ label {
     }
   }
 
+}
+
+// autocomplete
+.mat-autocomplete-panel {
+  min-height: 70px !important;
+  position: absolute;
+  border-top: 1px solid #d0d0d0;
+  //top: 2px;
+  border-radius: 0 0 10px 10px;
+
+  &.visibility {
+    visibility: visible !important;
+  }
 }
 
 /****************************** EN: form *************************************************/
@@ -984,8 +1003,8 @@ input[type="radio"].mgr:checked:before {
   -moz-appearance: none;
   appearance: none;
   position: relative;
-  width: 41px;
-  height: 24px;
+  width: 36px;
+  height: 19px;
   border: 1px solid #dfdfdf;
   outline: 0;
   border-radius: 16px;
@@ -1004,21 +1023,41 @@ input[type="radio"].mgr:checked:before {
 }
 
 .mgc-switch:before {
-  width: 39px;
-  height: 22px;
+  width: 34px;
+  height: 17px;
   background-color: #fdfdfd;
 }
 
 .mgc-switch:after {
-  width: 22px;
-  height: 22px;
+  width: 17px;
+  height: 17px;
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .mgc-switch:checked {
-  border-color: #04be02;
-  background-color: #04be02;
+  //border-color: #04be02;
+  //background-color: #04be02;
+  &:has(.mgc-primary) {
+    border-color: $primary;
+    background-color: $primary;
+  }
+  &:has(.mgc-success) {
+    border-color: $success;
+    background-color: $success;
+  }
+  &:has(.mgc-info) {
+    border-color: $info;
+    background-color: $info;
+  }
+  &:has(.mgc-warning) {
+    border-color: $warning;
+    background-color: $warning;
+  }
+  &:has(.mgc-danger) {
+    border-color: $danger;
+    background-color: $danger;
+  }
 }
 
 .mgc-switch:checked:before {
@@ -1034,18 +1073,18 @@ input[type="radio"].mgr:checked:before {
 }
 
 .mgc-sm.mgc-switch {
-  height: 20px;
-  width: 32px;
+  height: 10px;
+  width: 22px;
 }
 
 .mgc-sm.mgc-switch:before {
-  height: 18px;
-  width: 30px;
+  height: 8px;
+  width: 20px;
 }
 
 .mgc-sm.mgc-switch:after {
-  width: 18px;
-  height: 18px;
+  width: 8px;
+  height: 8px;
 }
 
 .mgc-sm.mgc-switch:checked:after {
@@ -1055,18 +1094,18 @@ input[type="radio"].mgr:checked:before {
 }
 
 .mgc-lg.mgc-switch {
-  height: 32px;
-  width: 52px;
+  height: 25px;
+  width: 45px;
 }
 
 .mgc-lg.mgc-switch:before {
-  height: 30px;
-  width: 50px;
+  height: 23px;
+  width: 43px;
 }
 
 .mgc-lg.mgc-switch:after {
-  width: 30px;
-  height: 30px;
+  width: 23px;
+  height: 23px;
 }
 
 .mgc-lg.mgc-switch:checked:after {
@@ -1115,6 +1154,11 @@ input[type="radio"].mgr:checked:before {
 
   .mdc-checkbox {
     padding: 0.4rem !important
+  }
+
+  .mdc-checkbox__native-control {
+    width: 100%;
+    height: 100%;
   }
 
   .mdc-checkbox__background {
@@ -1235,7 +1279,7 @@ input[type="radio"].mgr:checked:before {
         margin-bottom: 2px !important;
 
         .mdc-evolution-chip__text-label {
-          font-size: 0.62rem;
+          font-size: $font-size-xs;
         }
       }
     }
@@ -1243,7 +1287,7 @@ input[type="radio"].mgr:checked:before {
     input {
       min-height: calc(1.5em + 0.2rem + 2px) !important;
       padding: 0.15rem 0.35rem !important;
-      font-size: 0.7rem !important;
+      font-size: $font-size-xs !important;
       border-radius: 0.1rem !important;
     }
 
@@ -1259,7 +1303,7 @@ input[type="radio"].mgr:checked:before {
         margin-bottom: 4px !important;
 
         .mdc-evolution-chip__text-label {
-          font-size: 0.76rem;
+          font-size: $font-size-sm;
         }
       }
     }
@@ -1267,7 +1311,7 @@ input[type="radio"].mgr:checked:before {
     input {
       min-height: calc(1.5em + 0.5rem + 2px);
       padding: 0.25rem 0.5rem;
-      font-size: 0.875rem;
+      font-size: $font-size-sm;
       border-radius: 0.2rem;
     }
 
@@ -1279,8 +1323,7 @@ input[type="radio"].mgr:checked:before {
     border: 1px solid rgba(0, 0, 0, 0.08);
 
     .mdc-evolution-chip__text-label {
-      font-size: 0.98rem;
-      font-size: 0.98rem;
+      font-size: $font-size-base;
     }
   }
 }
