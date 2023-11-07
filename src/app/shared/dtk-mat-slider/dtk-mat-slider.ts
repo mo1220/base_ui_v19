@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import {ChangeContext, Options} from 'ngx-slider-v2';
+import * as moment from "moment/moment";
+import * as numeral from "numeral";
 
 @Component({
   selector: 'dtk-mat-slider',
@@ -19,7 +21,7 @@ export class DtkMatSliderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   options: Options = {}; // 슬라이더 옵션
   unsubscribe$: Subject<void> = new Subject<void>();
-
+  @Input() format: any;
   _mode = 'less'; // 'less' || 'greater' || 'range'
   @Input()
   get mode() {
@@ -202,6 +204,12 @@ export class DtkMatSliderComponent implements OnInit, AfterViewInit, OnDestroy {
   highValueChanged() {
     this.highValueChange.emit(this._highValue);
   }
+
+  formatLabel(value: number): string {
+    // const format = this.format ? this.format : '0,0';
+    return this.format ? numeral(value).format(this.format) : value + '';
+  }
+
 
   ngOnDestroy() {
 

@@ -629,7 +629,7 @@ ul, ol, dl {
       align-items: center;
 
       & > * {
-        margin-bottom: 5px;
+        // margin-bottom: 5px;
         margin-right: 5px;
 
         &:last-child {
@@ -2698,6 +2698,16 @@ input[type="radio"].mgr:checked:before {
   --mdc-slider-label-label-text-line-height: 1em;
   --mdc-slider-label-label-text-font: $code-font-family;
   --mdc-slider-label-label-text-size: 10px;
+}
+.mdc-slider {
+  height: 26px !important;
+  .mdc-slider__value-indicator-container {
+    bottom: 26px !important;
+  }
+}
+
+.mdc-slider__input {
+  height: 26px !important;
 }
 .mdc-slider .mdc-slider__thumb {
   width: 26px !important;

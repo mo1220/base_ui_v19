@@ -31,23 +31,47 @@
     <h3>Slider Component</h3>
     <p>기존에 사용된 컴포넌트 텍스트 입력이 가능하도록 처리 됨</p>
     <div class="style-guide-example">
+      <h4>기본값 이하</h4>
+      <p>기본 슬라이더 인풋 값을 변경할 수 있음 <code>[unit]="'px'"</code></p>
       <div class="dtk-slider-link">
         <div class="dtk-slider-link-row">
           <dtk-slider class="dtk-slider-link-item"
-                      [label]="'ngx-slider-v2'"
+                      [label]="'ngx-slider Label'"
                       [unit]="'px'"
-                      [format]="'0.0a'"
                       [min]="0"
                       [max]="100"
                       [mode]="'less'"
                       [(value)]="values.less"></dtk-slider>
 
           <dtk-mat-slider class="dtk-slider-link-item"
-                      [label]="'Angular Material'"
+                      [label]="'Angular Material Label'"
                       [min]="0"
                       [max]="100"
                       [mode]="'less'"
-                      [(value)]="values.less"></dtk-mat-slider>
+                      [(value)]="values.matLess"></dtk-mat-slider>
+        </div>
+      </div>
+      <h4>범위</h4>
+      <p>기본 슬라이더 인풋 값을 변경할 수 있음</p>
+      <div class="dtk-slider-link">
+        <div class="dtk-slider-link-row">
+          <dtk-slider class="dtk-slider-link-item"
+                      [label]="'ngx-slider Label'"
+                      [unit]="'px'"
+                      [min]="0"
+                      [max]="100"
+                      [mode]="'range'"
+                      [(highValue)]="values.range.to"
+                      [(value)]="values.range.from"></dtk-slider>
+
+          <dtk-mat-slider class="dtk-slider-link-item"
+                          [label]="'ngx-slider Label'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="100"
+                          [mode]="'range'"
+                          [(highValue)]="values.matRange.to"
+                          [(value)]="values.matRange.from"></dtk-mat-slider>
         </div>
       </div>
       <!--<dtk-slider [label]="'위'" [(value)]="margins.top"></dtk-slider>

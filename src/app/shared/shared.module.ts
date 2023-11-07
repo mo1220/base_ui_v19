@@ -75,12 +75,8 @@ import {TreeSelectFilterComponent} from "./tree/tree-filter/tree-select-filter.c
 import { NgxSkeletonModule } from 'ngx-skeleton';
 import { NgxSliderModule } from 'ngx-slider-v2';
 import { ResizedEventModule } from './resized-event/angular-resized-event.module';
-import {DtkSliderComponent} from "./dtk-slider/dtk-slider";
-import {DtkMatSliderComponent} from "./dtk-mat-slider/dtk-mat-slider";
-
-
-
-import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
+import { DtkSliderComponent } from "./dtk-slider/dtk-slider";
+import { DtkMatSliderComponent } from "./dtk-mat-slider/dtk-mat-slider";
 import 'ag-grid-enterprise';
 
 @NgModule({
@@ -108,6 +104,7 @@ import 'ag-grid-enterprise';
     MatSnackBarModule,
     MatSlideToggleModule,
     MatDividerModule,
+    MatSliderModule,
     MatRippleModule,
     MatRadioModule,
     MatTreeModule,
@@ -118,6 +115,7 @@ import 'ag-grid-enterprise';
     MatToolbarModule,
     MatExpansionModule,
     MatCardModule,
+
     OverlayModule,
 
     // ngx-bootstrap

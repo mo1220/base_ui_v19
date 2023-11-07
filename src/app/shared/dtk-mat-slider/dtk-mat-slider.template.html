@@ -3,7 +3,7 @@
   <div class="dtk-slider-value">
     <div class="dtk-slider-value-item from">
       <div class="linear-value-input">
-        <span [attr.contelinear-value-inputnteditable]="!_disabled"
+        <span [attr.contenteditable]="!_disabled"
               [textContent]="_value"
               (keydown)="checkNumber($event, 'value')"
               (blur)="changeValue($event, 'value')">
@@ -12,10 +12,18 @@
       </div>
     </div>
   </div>
-  <ngx-slider [(value)]="_value"
+  <mat-slider class="dtk-slider"
+              [min]="_min"
+              [discrete]="true"
+              [step]="_step"
+              [displayWith]="formatLabel"
+              [max]="_max" style="width:100%;">
+    <input [(ngModel)]="_value" matSliderThumb />
+  </mat-slider>
+  <!--<ngx-slider [(value)]="_value"
               (valueChange)="valueChanged()"
               class="linear-filter"
-              [options]="options"></ngx-slider>
+              [options]="options"></ngx-slider>-->
 </ng-container>
 <ng-container *ngIf="_mode === 'range'">
   <div class="linear-value-range">
