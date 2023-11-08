@@ -196,62 +196,52 @@
     <p>대시보드, 차트에 마진 값 통일등 사용</p>
     <div class="style-guide-example">
 
-      <!--<div class="dtk-slider-link">
+      <div class="dtk-slider-link">
         <div class="dtk-slider-link-row">
-          <div class="dtk-slider-link-item">
-            <label>위</label>
-            <span class="dtk-slider-link-value">{{margins.top}}</span>
-            <mat-slider class="dtk-slider"
-                        [min]="0"
-                        [max]="30"
-                        [step]="1"
-                        style="width:100%;">
-              <input [(ngModel)]="margins.top" matSliderThumb>
-            </mat-slider>
-          </div>
-          <div class="dtk-slider-link-item">
-            <label>아래</label>
-            <span class="dtk-slider-link-value">{{margins.bottom}}</span>
-            <mat-slider class="dtk-slider"
-                        [min]="0"
-                        [max]="30"
-                        [step]="1"
-                        style="width:100%;">
-              <input [(ngModel)]="margins.bottom" matSliderThumb>
-            </mat-slider>
-          </div>
+          <dtk-mat-slider class="dtk-slider-link-item dtk-slider-sm dtk-slider-flex"
+                          [label]="'위'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="50"
+                          [mode]="'less'"
+                          (valueChange)="changeLinkValue($event, 'top')"
+                          [(value)]="margins.top"></dtk-mat-slider>
+          <dtk-mat-slider class="dtk-slider-link-item dtk-slider-sm dtk-slider-flex"
+                          [label]="'아래'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="50"
+                          [mode]="'less'"
+                          (valueChange)="changeLinkValue($event, 'bottom')"
+                          [(value)]="margins.bottom"></dtk-mat-slider>
         </div>
         <div class="dtk-slider-link-row">
-          <div class="dtk-slider-link-item">
-            <label>왼쪽</label>
-            <span class="dtk-slider-link-value">{{margins.left}}</span>
-            <mat-slider class="dtk-slider"
-                        [min]="0"
-                        [max]="30"
-                        [step]="1"
-                        style="width:100%;">
-              <input [(ngModel)]="margins.left" matSliderThumb>
-            </mat-slider>
-          </div>
-          <div class="dtk-slider-link-item">
-            <label>오른쪽</label>
-            <span class="dtk-slider-link-value">{{margins.right}}</span>
-            <mat-slider class="dtk-slider"
-                        [min]="0"
-                        [max]="30"
-                        [step]="1"
-                        style="width:100%;">
-              <input [(ngModel)]="margins.right" matSliderThumb>
-            </mat-slider>
-          </div>
+          <dtk-mat-slider class="dtk-slider-link-item dtk-slider-sm dtk-slider-flex"
+                          [label]="'왼쪽'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="50"
+                          [mode]="'less'"
+                          (valueChange)="changeLinkValue($event, 'left')"
+                          [(value)]="margins.left"></dtk-mat-slider>
+          <dtk-mat-slider class="dtk-slider-link-item dtk-slider-sm dtk-slider-flex"
+                          [label]="'오른쪽'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="50"
+                          [mode]="'less'"
+                          (valueChange)="changeLinkValue($event, 'right')"
+                          [(value)]="margins.right"></dtk-mat-slider>
         </div>
         <div class="dtk-slider-link-btn">
           <button class="btn btn-outline-secondary btn-sm"
-                  (click)="link = !link">
+                  [class.active]="link"
+                  [matTooltip]="'연결'"
+                  (click)="changeLink()">
             <i class="fa" [ngClass]="link ? 'fa-link' : 'fa-unlink'"></i>
           </button>
         </div>
-      </div>-->
+      </div>
     </div>
   </div>
   <aside-menu-right [menu]="buttonMenu"

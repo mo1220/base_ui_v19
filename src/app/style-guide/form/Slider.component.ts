@@ -13,6 +13,8 @@ import { Options } from 'ngx-slider-v2';
 import * as moment from 'moment';
 import * as numeral from 'numeral';
 import * as _ from 'lodash';
+import {Subject} from "rxjs";
+import {debounceTime} from "rxjs/operators";
 
 /**
  * @class StyleGuideButtonComponent *
@@ -23,6 +25,7 @@ import * as _ from 'lodash';
   encapsulation: ViewEncapsulation.None
 })
 export class StyleGuideSliderComponent implements AfterViewInit, OnDestroy {
+  linkValue$: Subject<any> = new Subject<any>();
   @ViewChild('contentWrap') contentWrap: ElementRef;
   @ViewChildren('anchor') anchors: QueryList<ElementRef>;
   buttonMenu: any = [
@@ -123,7 +126,7 @@ export class StyleGuideSliderComponent implements AfterViewInit, OnDestroy {
       }
     }
   ];
-  margins = {
+  margins: any = {
     top: 5,
     bottom: 5,
     left: 5,
@@ -149,7 +152,13 @@ export class StyleGuideSliderComponent implements AfterViewInit, OnDestroy {
     private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
-  ) { }
+  ) {
+    // this.linkValue$.pipe(
+    //   debounceTime(200)
+    // ).subscribe(res => {
+    //   this.margins.
+    // })
+  }
 
   ngAfterViewInit(): void {
     this.cd.detectChanges();
@@ -166,6 +175,29 @@ export class StyleGuideSliderComponent implements AfterViewInit, OnDestroy {
     return {
       ...option
     };
+  }
+
+  /**
+  * @function changeLinkValue 링크 벨류
+  * */
+  changeLinkValue(e: any, key: string) {
+    if(this.link) {
+      const arr = _.filter(['top', 'bottom', 'left', 'right'], d => d !== key);
+      _.forEach(arr, (v: any, k) => {
+        this.margins[v] =e;
+      });
+    }
+  }
+
+  changeLink() {
+    this.link = !this.link;
+    if(this.link) {
+      const max = _.max(_.values(this.margins));
+      const arr = ['top', 'bottom', 'left', 'right'];
+      _.forEach(arr, (v: any, k) => {
+        this.margins[v] = max;
+      });
+    }
   }
   ngOnDestroy(): void { }
 }
