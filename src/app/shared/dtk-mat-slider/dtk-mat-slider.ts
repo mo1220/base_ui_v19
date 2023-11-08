@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import {ChangeContext, Options} from 'ngx-slider-v2';
+import * as moment from "moment/moment";
+import * as numeral from "numeral";
 
 @Component({
   selector: 'dtk-mat-slider',
@@ -19,7 +21,7 @@ export class DtkMatSliderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   options: Options = {}; // 슬라이더 옵션
   unsubscribe$: Subject<void> = new Subject<void>();
-
+  @Input() format: any;
   _mode = 'less'; // 'less' || 'greater' || 'range'
   @Input()
   get mode() {
@@ -27,11 +29,6 @@ export class DtkMatSliderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   set mode(value) {
     this._mode = value ? value : 'less';
-    this.options = {
-      ...this.options,
-      showSelectionBar: this._mode.indexOf('less') > -1,
-      showSelectionBarEnd: this._mode.indexOf('less') == -1,
-    };
   }
 
   @Input() label = 'name';
@@ -44,10 +41,6 @@ export class DtkMatSliderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   set step(value) {
     this._step = value ? value : 1;
-    this.options = {
-      ...this.options,
-      step: this._step
-    };
   }
 
   _min = 0;
@@ -59,10 +52,6 @@ export class DtkMatSliderComponent implements OnInit, AfterViewInit, OnDestroy {
     // TODO 다룬곳에서 받아오는지 확인 필요
     // this._min = value ? this._min < value ? this._min : value : 0;
     this._min = value ? value: 0;
-    this.options = {
-      ...this.options,
-      floor: this._min
-    };
   }
 
   _max = 0;
@@ -71,13 +60,9 @@ export class DtkMatSliderComponent implements OnInit, AfterViewInit, OnDestroy {
     return this._max;
   }
   set max(value) {
-    // TODO 다룬곳에서 받아오는지 확인 필요
+    // TODO 다른곳에서 받아오는지 확인 필요
     // this._max = value ? this._max < value ? value : this._max : 1;
     this._max = value ? value : 1;
-    this.options = {
-      ...this.options,
-      ceil: this._max
-    };
   }
 
   _value = 0;
@@ -87,6 +72,12 @@ export class DtkMatSliderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   set value(value) {
     this._value = value ? value : 0;
+    setTimeout(() => {
+      // 최소 보다 작을때 옵션 변경
+      if(this._min > value) this._min = value;
+      // 시작값이 최대보다 컸을때
+      if(this._max < value) this._max = value;
+    }, 1);
   }
   @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
 
@@ -172,21 +163,9 @@ export class DtkMatSliderComponent implements OnInit, AfterViewInit, OnDestroy {
       };
     }
     // 최소 보다 작을때 옵션 변경
-    if(this._min > value) {
-      console.log('-----------------------1');
-      this.options = {
-        ...this.options,
-        floor: value
-      };
-    }
+    if(this._min > value) this._min = value;
     // 시작값이 최대보다 컸을때
-    if(this._max < value) {
-      console.log('-----------------------2');
-      this.options = {
-        ...this.options,
-        ceil: value
-      };
-    }
+    if(this._max < value) this._max = value;
 
     if(['.', '-'].indexOf(last) === -1) {
       // @ts-ignore
@@ -201,6 +180,10 @@ export class DtkMatSliderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   highValueChanged() {
     this.highValueChange.emit(this._highValue);
+  }
+
+  formatLabel(value: number): string {
+    return this.format ? numeral(value).format(this.format) : value + '';
   }
 
   ngOnDestroy() {

@@ -31,33 +31,172 @@
     <h3>Slider Component</h3>
     <p>기존에 사용된 컴포넌트 텍스트 입력이 가능하도록 처리 됨</p>
     <div class="style-guide-example">
+      <h4>기본값 이하(크기별)</h4>
+      <p>기본 슬라이더 인풋 값을 변경할 수 있음 <code>[unit]="'px'"</code></p>
       <div class="dtk-slider-link">
         <div class="dtk-slider-link-row">
-          <dtk-slider class="dtk-slider-link-item"
-                      [label]="'ngx-slider-v2'"
+          <dtk-slider class="dtk-slider-link-item dtk-slider-xl"
+                      [label]="'ngx-slider Label XLarge'"
                       [unit]="'px'"
-                      [format]="'0.0a'"
+                      [min]="0"
+                      [max]="100"
+                      [mode]="'less'"
+                      [(value)]="values.less"></dtk-slider>
+
+          <dtk-mat-slider class="dtk-slider-link-item dtk-slider-xl"
+                          [label]="'Angular Material Label XLarge'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="100"
+                          [mode]="'less'"
+                          [(value)]="values.matLess"></dtk-mat-slider>
+        </div>
+        <div class="dtk-slider-link-row">
+          <dtk-slider class="dtk-slider-link-item dtk-slider-lg"
+                      [label]="'ngx-slider Label Large'"
+                      [unit]="'px'"
+                      [min]="0"
+                      [max]="100"
+                      [mode]="'less'"
+                      [(value)]="values.less"></dtk-slider>
+
+          <dtk-mat-slider class="dtk-slider-link-item dtk-slider-lg"
+                      [label]="'Angular Material Label Large'"
+                      [unit]="'px'"
+                      [min]="0"
+                      [max]="100"
+                      [mode]="'less'"
+                      [(value)]="values.matLess"></dtk-mat-slider>
+        </div>
+        <div class="dtk-slider-link-row">
+          <dtk-slider class="dtk-slider-link-item"
+                      [label]="'ngx-slider Label Default'"
+                      [unit]="'px'"
                       [min]="0"
                       [max]="100"
                       [mode]="'less'"
                       [(value)]="values.less"></dtk-slider>
 
           <dtk-mat-slider class="dtk-slider-link-item"
-                      [label]="'Angular Material'"
+                          [label]="'Angular Material Label Default'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="100"
+                          [mode]="'less'"
+                          [(value)]="values.matLess"></dtk-mat-slider>
+        </div>
+        <div class="dtk-slider-link-row">
+          <dtk-slider class="dtk-slider-link-item dtk-slider-sm"
+                      [label]="'ngx-slider Label Small'"
+                      [unit]="'px'"
                       [min]="0"
                       [max]="100"
                       [mode]="'less'"
-                      [(value)]="values.less"></dtk-mat-slider>
+                      [(value)]="values.less"></dtk-slider>
+
+          <dtk-mat-slider class="dtk-slider-link-item dtk-slider-sm"
+                          [label]="'Angular Material Label Small'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="100"
+                          [mode]="'less'"
+                          [(value)]="values.matLess"></dtk-mat-slider>
+        </div>
+        <div class="dtk-slider-link-row">
+          <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                      [label]="'ngx-slider Label XSmall'"
+                      [unit]="'px'"
+                      [min]="0"
+                      [max]="100"
+                      [mode]="'less'"
+                      [(value)]="values.less"></dtk-slider>
+
+          <dtk-mat-slider class="dtk-slider-link-item dtk-slider-xs"
+                          [label]="'Angular Material Label XSmall'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="100"
+                          [mode]="'less'"
+                          [(value)]="values.matLess"></dtk-mat-slider>
+        </div>
+      </div>
+
+      <h4>Inline(flex)</h4>
+      <p>한줄로 옆으로 나열시 <code>class="dtk-slider-flex"</code> class 추가</p>
+      <div class="dtk-slider-link">
+        <div class="dtk-slider-link-row">
+          <dtk-slider class="dtk-slider-link-item dtk-slider-sm dtk-slider-flex"
+                      [label]="'ngx-slider Label'"
+                      [unit]="'px'"
+                      [min]="0"
+                      [max]="100"
+                      [mode]="'less'"
+                      [(value)]="values.less"></dtk-slider>
+
+          <dtk-mat-slider class="dtk-slider-link-item dtk-slider-sm dtk-slider-flex"
+                          [label]="'Angular Material Label'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="100"
+                          [mode]="'less'"
+                          [(value)]="values.matLess"></dtk-mat-slider>
+        </div>
+      </div>
+      <h4>범위</h4>
+      <p>기본 슬라이더 인풋 값을 변경할 수 있음</p>
+      <div class="dtk-slider-link">
+        <div class="dtk-slider-link-row">
+          <dtk-slider class="dtk-slider-link-item dtk-slider-sm"
+                      [label]="'ngx-slider Label'"
+                      [format]="'0 px'"
+                      [unit]="'px'"
+                      [min]="0"
+                      [max]="100"
+                      [mode]="'range'"
+                      [(highValue)]="values.range.to"
+                      [(value)]="values.range.from"></dtk-slider>
+
+          <dtk-mat-slider class="dtk-slider-link-item dtk-slider-sm"
+                          [label]="'ngx-slider Label'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="100"
+                          [mode]="'range'"
+                          [(highValue)]="values.matRange.to"
+                          [(value)]="values.matRange.from"></dtk-mat-slider>
+        </div>
+        <div class="dtk-slider-link-row">
+          <dtk-slider class="dtk-slider-link-item dtk-slider-sm dtk-slider-flex"
+                      [label]="'ngx-slider Label'"
+                      [format]="'0 px'"
+                      [unit]="'px'"
+                      [min]="0"
+                      [max]="100"
+                      [mode]="'range'"
+                      [(highValue)]="values.range.to"
+                      [(value)]="values.range.from"></dtk-slider>
+
+          <dtk-mat-slider class="dtk-slider-link-item dtk-slider-sm dtk-slider-flex"
+                          [label]="'Material slider Label'"
+                          [unit]="'px'"
+                          [min]="0"
+                          [max]="100"
+                          [mode]="'range'"
+                          [(highValue)]="values.matRange.to"
+                          [(value)]="values.matRange.from"></dtk-mat-slider>
         </div>
       </div>
       <!--<dtk-slider [label]="'위'" [(value)]="margins.top"></dtk-slider>
       <dtk-mat-slider></dtk-mat-slider>-->
+
     </div>
+
 
     <h3>Slider Link</h3>
     <p>대시보드, 차트에 마진 값 통일등 사용</p>
     <div class="style-guide-example">
-      <div class="dtk-slider-link">
+
+      <!--<div class="dtk-slider-link">
         <div class="dtk-slider-link-row">
           <div class="dtk-slider-link-item">
             <label>위</label>
@@ -112,7 +251,7 @@
             <i class="fa" [ngClass]="link ? 'fa-link' : 'fa-unlink'"></i>
           </button>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
   <aside-menu-right [menu]="buttonMenu"

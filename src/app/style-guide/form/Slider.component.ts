@@ -131,7 +131,16 @@ export class StyleGuideSliderComponent implements AfterViewInit, OnDestroy {
   };
 
   values = {
-    less: 5
+    less: 5,
+    matLess: 5,
+    range: {
+      from: 5,
+      to: 50
+    },
+    matRange: {
+      from: 5,
+      to: 50
+    }
   }
 
   link = false;
