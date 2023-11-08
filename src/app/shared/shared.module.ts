@@ -78,9 +78,6 @@ import { ResizedEventModule } from './resized-event/angular-resized-event.module
 import {DtkSliderComponent} from "./dtk-slider/dtk-slider";
 import {DtkMatSliderComponent} from "./dtk-mat-slider/dtk-mat-slider";
 
-
-
-import {ResizedEventModule} from "./resized-event/angular-resized-event.module";
 import 'ag-grid-enterprise';
 
 @NgModule({
