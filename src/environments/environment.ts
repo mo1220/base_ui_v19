@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  appName: 'Data Workspace', // K water - Data workspace
+  appName: 'QBig Studio', // K water - Data workspace
   envName: 'DEV',
   test: false,
-  appFullName: 'DataTreeKorea DTK Web Portal',
+  appFullName: 'QBig Data Studio',
   copyright: 'DataTreeKorea Co., Ltd',
   icon: 'dtk',
   i18nPrefix: ''

@@ -103,6 +103,7 @@ import 'ag-grid-enterprise';
     MatTooltipModule,
     MatSnackBarModule,
     MatSlideToggleModule,
+    MatSliderModule,
     MatDividerModule,
     MatRippleModule,
     MatRadioModule,
