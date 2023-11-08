@@ -104,7 +104,6 @@ import 'ag-grid-enterprise';
     MatSnackBarModule,
     MatSlideToggleModule,
     MatDividerModule,
-    MatSliderModule,
     MatRippleModule,
     MatRadioModule,
     MatTreeModule,
@@ -115,7 +114,6 @@ import 'ag-grid-enterprise';
     MatToolbarModule,
     MatExpansionModule,
     MatCardModule,
-
     OverlayModule,
 
     // ngx-bootstrap
