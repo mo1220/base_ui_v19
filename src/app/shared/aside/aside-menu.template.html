@@ -1,6 +1,8 @@
 <nav class="aside-menu">
     <aside-menu-item [items]="items"
                      [root]="true"
+                     [depth]="0"
+                     [parentIndex]="0"
                      [selectItem]="selectItem"
                      [currentUrls]="currentUrls"
                      (selected)="selectedEvent($event)"

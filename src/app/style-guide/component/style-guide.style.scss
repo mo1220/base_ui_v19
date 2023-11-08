@@ -10,6 +10,28 @@
   &-nav {
     flex: 1;
     overflow-y: auto;
+    /* width */
+    &::-webkit-scrollbar {
+      width: 10px;
+      border-radius: 20px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #E6E7EB;
+      border-radius: 20px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #a8a8a8;
+      border-radius: 20px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(#666, .7);
+    }
   }
   &-aside {
     position: fixed;

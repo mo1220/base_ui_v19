@@ -2944,7 +2944,7 @@ input[type="radio"].mgr:checked:before {
     top: 50%;
     left: 1px;
     width: 2px;
-    height: 20px;
+    height: 24px;
     background: #AAA;
     transform: translateY(-50%);
 
@@ -2958,5 +2958,8 @@ input[type="radio"].mgr:checked:before {
   }
   &:active {
     background: rgba($primary, .5);
+    &:before {
+      background: $primary;
+    }
   }
 }

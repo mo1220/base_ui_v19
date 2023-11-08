@@ -111,13 +111,14 @@ export class AsideMenuComponent implements OnInit {
   encapsulation: ViewEncapsulation.None
 })
 export class AsideMenuItemComponent implements OnInit, OnChanges {
-
+  @Input() depth: number = 0;
   @Input() items: any = [];
   @Input() bindLabel:string = '';
   @Input() bindValue:string = '';
   @Input() root:boolean | any = false;
   @Output() selected:EventEmitter<any> = new EventEmitter();
   @Input() selectItem:any;
+  @Input() parentIndex:number;
 
   currentUrl = '';
   _currentUrls: any = [];
@@ -130,12 +131,10 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
     const url = _.cloneDeep(this._currentUrls);
     url.shift();
     this.currentUrl = '/' + url.join('/');
-    // console.log(this.currentUrl);
   }
 
   label:string = '';
   value:string = '';
-  // data:any = [];
   constructor(
     private translate: TranslateService
   ) {
@@ -147,15 +146,7 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges | any) {
-    // if(changes.items && changes.items.currentValue) {
-    //   console.log(changes.items.currentValue);
-    //   this.data = _.map(changes.items.currentValue, d => {
-    //     return {
-    //       ...d,
-    //       active: d.active ? d.active : false
-    //     }
-    //   })
-    // }
+
   }
   selectValue(e: any) {
     // console.log(e);

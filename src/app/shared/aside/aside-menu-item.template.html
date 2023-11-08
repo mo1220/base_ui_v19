@@ -10,13 +10,15 @@
       <mat-icon *ngIf="menu.icon && menu.icon !== ''"
                 class="menu-icon md-20">{{menu.icon}}</mat-icon>
       <div class="menu-title">
-        {{menu[bindLabel]}}
+        {{menu[bindLabel]}} {{depth}}, {{parentIndex}}, {{i}}
       </div>
       <div class="arrow" *ngIf="menu.children && menu.children.length > 0"></div>
     </div>
     <div class="sub-menu-list"
          *ngIf="menu.children && menu.children.length > 0">
       <aside-menu-item
+        [depth]="depth + 1"
+        [parentIndex]="i"
         [bindLabel]="bindLabel"
         [currentUrls]="currentUrls"
         [bindValue]="bindValue"

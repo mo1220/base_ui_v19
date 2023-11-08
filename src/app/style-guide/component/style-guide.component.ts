@@ -22,11 +22,20 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
   currentUrls = [];
   breadcrumb: any = [];
   left: number = 200;
+  menuActiveIndex: number[] =[];
   constructor(
     private translate: TranslateService,
     private router: Router,
     private cd: ChangeDetectorRef
   ) {
+    // Menu Depth length 값을 구함
+    function getDepth(array: any) {
+      return 1 + Math.max(0, ...array.map(({ children = [] }) => getDepth(children)));
+    }
+    const depthLength = getDepth(this.menus) - 1;
+    // Menu Length를 기반으로 Active Index 관리
+    this.menuActiveIndex = new Array(depthLength).fill(-1);
+
     router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
@@ -90,7 +99,6 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
   }
 
   onResize(e:any) {
-    console.log(e);
     this.left = e.size.width;
   }
   ngOnDestroy(): void { }
