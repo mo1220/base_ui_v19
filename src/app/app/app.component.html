@@ -1,6 +1,8 @@
 <div class="app-wrap default-theme">
-  <header class="app-header">
-    <h1>Data Tree Studio</h1>
+  <header class="app-header" *ngIf="!isNoFrame">
+    <h1>
+      <img [src]="'/assets/images/common/Qbig-logo-h.svg'" [alt]="env.appName" />
+    </h1>
     <div class="gnb">
       <nav>
         <ul>
@@ -72,12 +74,18 @@
       </mat-menu>
     </div>
   </header>
-  <div class="app-container">
+  <div class="app-container"
+       [style.padding]="isNoFrame ? '0 0 0 0' : '50px 0 30px 0'">
+    <div class="route-loading">
+      <mat-progress-bar *ngIf="loading"
+                        [style.top]="isNoFrame ? '0' : '50px'"
+                        [mode]="'indeterminate'"></mat-progress-bar>
+    </div>
     <div class="app-content">
       <router-outlet></router-outlet>
     </div>
   </div>
-  <footer class="app-footer">
+  <footer class="app-footer" *ngIf="!isNoFrame">
     <div class="footer-tab">
       <mat-tab-group mat-stretch-tabs="false"
                      cdkDropList

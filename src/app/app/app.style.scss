@@ -147,6 +147,14 @@
   /* EN: Dark Theme **************************************************/
 }
 
+.route-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
 .gnb {
   flex: 1;
   display: flex;

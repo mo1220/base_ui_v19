@@ -527,12 +527,13 @@ ul, ol, dl {
 
 /****************************** ST: form *************************************************/
 .form {
+  &-group,
   &-input { // input + clear-btn + invalid-feedback
     position: relative;
 
-    button {
+    /*button {
       margin: 0 0 0 10px !important;
-    }
+    }*/
 
     input.valid {
       border-color: $success;
@@ -627,7 +628,9 @@ ul, ol, dl {
     &.flex {
       display: flex;
       align-items: center;
-
+      button {
+        margin: 0 0 0 10px;
+      }
       & > * {
         // margin-bottom: 5px;
         margin-right: 5px;

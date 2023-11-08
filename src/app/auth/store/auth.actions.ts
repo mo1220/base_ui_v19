@@ -1,6 +1,6 @@
 import {createAction, createActionGroup, props} from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
-import {Auth, User, PwchParams, UserInfo, Dashboard} from './auth.models';
+import { Auth, User, PwchParams, UserInfo, Dashboard } from './auth.models';
 
 export const authLogin = createAction('[Auth] Login');
 export const authLogout = createAction('[Auth] Logout');
