@@ -21,6 +21,7 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
   desc = ''; // 설명
   currentUrls = [];
   breadcrumb: any = [];
+  left: number = 200;
   constructor(
     private translate: TranslateService,
     private router: Router,
@@ -86,6 +87,11 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
       }
       return r;
     }, []);
+  }
+
+  onResize(e:any) {
+    console.log(e);
+    this.left = e.size.width;
   }
   ngOnDestroy(): void { }
 }

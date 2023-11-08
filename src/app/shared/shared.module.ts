@@ -78,6 +78,7 @@ import { ResizedEventModule } from './resized-event/angular-resized-event.module
 import { DtkSliderComponent } from "./dtk-slider/dtk-slider";
 import { DtkMatSliderComponent } from "./dtk-mat-slider/dtk-mat-slider";
 import 'ag-grid-enterprise';
+import { AngularDraggableModule } from 'angular2-draggable'; // Drag 하여 사이즈 변경시 사용
 
 @NgModule({
   imports: [
@@ -148,7 +149,8 @@ import 'ag-grid-enterprise';
     TableVirtualScrollModule,
     TreeModule,
     NgxSkeletonModule,
-    NgxSliderModule
+    NgxSliderModule,
+    AngularDraggableModule
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -246,6 +248,7 @@ import 'ag-grid-enterprise';
     TreeDirComponent, // 트리 디렉토리 구조
     TreeSelectFilterComponent, // 트리 필터
     NgxSliderModule, // Slider Module
+    AngularDraggableModule, // Element Resize 모듈
   ],
   providers: [
     { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }

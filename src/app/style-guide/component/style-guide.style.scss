@@ -4,11 +4,22 @@
   &-wrap {
     display: flex;
     flex: 1;
+    padding-left: 200px;
   }
 
+  &-nav {
+    flex: 1;
+    overflow-y: auto;
+  }
   &-aside {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    bottom: 30px;
     width: 200px;
-    border-right: 1px solid #CCC;
+    display:flex;
+    flex-direction: column;
+    //border-right: 1px solid #CCC;
     font-size: 12px;
     user-select: none;
     h2.aside-title {
