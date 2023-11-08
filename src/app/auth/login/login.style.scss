@@ -11,8 +11,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('/assets/images/bg/orange-and-purple-background-with-wavy-shapes.jpg') center center no-repeat;
-    //background: url('/assets/images/bg/login-bg.jpg') center center no-repeat;
+    //background: url('/assets/images/bg/orange-and-purple-background-with-wavy-shapes.jpg') center center no-repeat;
+    background: url('/assets/images/bg/login-bg.jpg') center center no-repeat;
     background-size: cover;
   }
   &-container {
@@ -45,6 +45,16 @@
     img {
       width: 80px;
       height: auto;
+    }
+  }
+
+  &-util {
+    display:flex;
+    margin:15px 0 22px 0;
+    .checkbox {
+      +.checkbox {
+        margin-left:56px;
+      }
     }
   }
 

@@ -59,5 +59,18 @@
     "req_fail_code_1": "数据请求失败。联系负责人",
     "req_fail_code_2": "请求系统中没有付款行信息。联系负责人",
     "file_retention_per" : "文件保存期限为7天"
+  },
+  "login": {
+    "login": "登录",
+    "id": "ID",
+    "password": "Password",
+    "login_check": "自动登录",
+    "id_check": "记住ID",
+    "find_pw": "忘记密码",
+    "id_placeholder": "请输入您的ID.",
+    "pw_placeholder": "请输入密码.",
+    "id_invalid": "需要身份证件.",
+    "pw_invalid": "密码是必需的.",
+    "desc": "需要登录才能使用系统."
   }
 }

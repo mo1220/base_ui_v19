@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnDestroy, ViewEncapsulation } from '@angular
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { environment as env } from '../../../environments/environment';
+import {LocalStorageService} from "../../core/local-storage/local-storage.service";
 
 @Component({
   selector: 'login-component',
@@ -20,13 +21,24 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     id: '',
     pw: ''
   };
+
+  emailRemember = false;
   loading = false;
   constructor(
     private translate: TranslateService,
     private router: Router,
+    private localStorageService: LocalStorageService,
   ) { }
 
   ngAfterViewInit(): void { }
+
+  /**
+   * @function emailUsed 이메일 기억하기
+   * @param event: boolean
+   * */
+  emailUsed(e: any) {
+    this.localStorageService.setItem('AUTH.EMAILUSED', e);
+  }
 
   login() {
     this.messages = { id: '', pw: '' };
@@ -40,5 +52,7 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     }
     this.loading = true;
   }
+
+
   ngOnDestroy(): void { }
 }
