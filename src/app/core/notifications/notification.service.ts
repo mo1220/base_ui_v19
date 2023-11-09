@@ -1,7 +1,7 @@
 import { Component, Inject, Injectable, Injector, NgZone } from '@angular/core';
 import { MAT_SNACK_BAR_DATA, MatSnackBar, MatSnackBarConfig, MatSnackBarRef } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { actionAuthClear } from '../auth/auth.actions';
+import { actionAuthClear } from '../../auth/store/auth.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../core.state';
 import { LocalStorageService } from "../local-storage/local-storage.service";

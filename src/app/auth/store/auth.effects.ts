@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {ofType, createEffect, Actions} from '@ngrx/effects';
-import {LocalStorageService} from '../local-storage/local-storage.service';
+import {LocalStorageService} from '../../core/local-storage/local-storage.service';
 import {of} from 'rxjs';
 import {catchError, debounceTime, map, switchMap, tap} from 'rxjs/operators';
 import {
@@ -30,8 +30,8 @@ import {
   actionMenusListPermitSuccess, actionMenusListPermitFail
 } from './auth.actions';
 import { AuthGuardService } from './auth-guard.service';
-import { ApiService } from "../service/commons";
-import { NotificationService } from "../notifications/notification.service";
+import { ApiService } from "../../core/service/commons";
+import { NotificationService } from "../../core/notifications/notification.service";
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from "@ngrx/store";
 export const AUTH_KEY = 'AUTH';

@@ -1,0 +1,36 @@
+@import '../../../styles-variables';
+
+.session-out {
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url('/assets/images/bg/login-bg.jpg') center center no-repeat;
+  background-size: cover;
+  &-wrap {
+    h3 {
+      font-size: 24px;
+      font-weight: 200;
+      color: $primary;
+    }
+    p {
+      font-size: 14px;
+      color: #666;
+      b {
+        color: $primary;
+      }
+    }
+  }
+
+  &-img {
+    margin-bottom: 20px;
+    img {
+      height: 150px;
+    }
+  }
+}

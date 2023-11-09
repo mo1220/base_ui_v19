@@ -48,7 +48,7 @@ export class AppComponent {
   loading = false;
   url = '';
   noFramePages = ['auth', 'logindataportal', 'logout', 'ssoLoginError', 'noexist', 'init-login', 'system-check-info', 'expire-info', 'sk-login'];
-  isNoFrame = false;
+  isNoFrame = true;
   isMainPage = false;
   isSearchPage = false;
   isAdminPage = false;
