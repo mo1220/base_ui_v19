@@ -217,11 +217,6 @@ export const STYLE_GUIDE_MENU = [
         name: 'Messages',
         link: '/messages/messages',
         desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
-      },
-      {
-        name: 'Toast',
-        link: '/messages/toast',
-        desc: `Toast 설명 <span></span>`
       }
     ]
   },

@@ -41,6 +41,8 @@
     width: 200px;
     display:flex;
     flex-direction: column;
+    min-width: 90px;
+    max-width: 400px;
     //border-right: 1px solid #CCC;
     font-size: 12px;
     user-select: none;
@@ -48,6 +50,9 @@
       font-size: 14px;
       padding: 0 10px;
       line-height: 50px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       .aside-title-icon {
         color:$primary;
         display: inline-block;
