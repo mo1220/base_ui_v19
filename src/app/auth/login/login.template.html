@@ -1,0 +1,62 @@
+<div class="login-wrap">
+  <div class="login-container">
+    <div class="login-symbol">
+      <img [src]="'/assets/images/common/QBig-symbol.png'"
+           [alt]="env.appName"/>
+    </div>
+    <h2>
+      Welcome
+      <span>{{env.appName}}</span>
+    </h2>
+    <h3>{{ 'login.login' | translate }}</h3>
+    <p>{{ 'login.desc' | translate }}</p>
+    <div class="login-form">
+      <div class="form-group">
+        <mat-icon class="md-18">person</mat-icon>
+        <input class="form-control form-control-lg"
+               [disabled]="loading"
+               [class.invalid]="messages.id !== ''"
+               [(ngModel)]="form.id"
+               [placeholder]="'login.id_placeholder' | translate" />
+        <span class="invalid-feedback"
+              [style.display]="messages.id !== '' ? 'block': 'none'">{{messages.id}}</span>
+      </div>
+      <div class="form-group">
+        <mat-icon class="md-18">lock</mat-icon>
+        <input type="password"
+               [disabled]="loading"
+               [class.invalid]="messages.pw !== ''"
+               [(ngModel)]="form.password"
+               class="form-control form-control-lg"
+               [placeholder]="'login.pw_placeholder' | translate" />
+        <span class="invalid-feedback"
+              [style.display]="messages.pw !== '' ? 'block': 'none'">{{messages.pw}}</span>
+      </div>
+
+      <div class="login-util">
+        <span class="checkbox">
+          <input type="checkbox" class="mgc mgc-primary" id="loginChk" />
+          <label for="loginChk">{{ 'login.login_check' | translate }}</label>
+        </span>
+        <span class="checkbox">
+          <input type="checkbox" [(ngModel)]="emailRemember"
+                 class="mgc mgc-primary"
+                 id="idChk"
+                 (ngModelChange)="emailUsed($event)"/>
+          <label for="idChk">{{ 'login.id_check' | translate }}</label>
+        </span>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary btn-lg btn-block"
+                [ladda]="loading"
+                (click)="login()">
+          {{'login.login' | translate}}
+        </button>
+      </div>
+    </div>
+    <div class="login-copyright">
+      {{env.copyright}}
+    </div>
+  </div>
+</div>

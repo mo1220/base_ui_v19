@@ -15,6 +15,7 @@ export class AsideMenuComponent implements OnInit {
   @Input() bindValue:string = '';
   @Input() placeholder:string = '';
   @Input() currentUrls:any = [];
+  @Input() activeIndex: number[] = [];
   @Output() search: EventEmitter<any> = new EventEmitter();
 
   val: string = '';
@@ -111,13 +112,16 @@ export class AsideMenuComponent implements OnInit {
   encapsulation: ViewEncapsulation.None
 })
 export class AsideMenuItemComponent implements OnInit, OnChanges {
-
+  @Input() depth: number = 0;
   @Input() items: any = [];
   @Input() bindLabel:string = '';
   @Input() bindValue:string = '';
   @Input() root:boolean | any = false;
   @Output() selected:EventEmitter<any> = new EventEmitter();
   @Input() selectItem:any;
+  @Input() parentIndex:number;
+  @Input() activeIndex: number[] = [];
+  @Input() currentIndex:number[] = [];
 
   currentUrl = '';
   _currentUrls: any = [];
@@ -130,12 +134,10 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
     const url = _.cloneDeep(this._currentUrls);
     url.shift();
     this.currentUrl = '/' + url.join('/');
-    // console.log(this.currentUrl);
   }
 
   label:string = '';
   value:string = '';
-  // data:any = [];
   constructor(
     private translate: TranslateService
   ) {
@@ -147,25 +149,27 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges | any) {
-    // if(changes.items && changes.items.currentValue) {
-    //   console.log(changes.items.currentValue);
-    //   this.data = _.map(changes.items.currentValue, d => {
-    //     return {
-    //       ...d,
-    //       active: d.active ? d.active : false
-    //     }
-    //   })
-    // }
+
   }
-  selectValue(e: any) {
-    // console.log(e);
+  selectValue(e: any, i: number) {
+    this.activeIndex[this.depth] = i;
     if(e.children && e.children.length > 0) {
-      e.active = !e.active;
+      this.activeIndex = this.activeIndex.map((d, i) => {
+        return i > this.depth ? -1 : d;
+      });
     } else {
       this.selected.emit(e);
     }
   }
 
+  getIndex(i:number) {
+    return [ ...this.currentIndex, i ];
+  }
+
+  compairIndex(i: number) {
+    const activeIndex = _.clone(this.activeIndex);
+    return _.isEqual(this.getIndex(i), activeIndex.slice(0, this.depth + 1));
+  }
   selectedEmit(e: any) {
     this.selected.emit(e);
   }

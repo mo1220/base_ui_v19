@@ -1,10 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class='page-not-found'>
+  <div class='page-not-found-wrap'>
+    <div class='page-not-found-img'>
+      <!--<img [src]="'/assets/images/guide/session_icon.svg'" alt="세션만료"/>-->
+      <div class="error">
+        <div class="number">4</div>
+        <div class="illustration">
+          <div class="circle"></div>
+          <div class="clip">
+            <div class="paper">
+              <div class="face">
+                <div class="eyes">
+                  <div class="eye eye-left"></div>
+                  <div class="eye eye-right"></div>
+                </div>
+                <div class="rosyCheeks rosyCheeks-left"></div>
+                <div class="rosyCheeks rosyCheeks-right"></div>
+                <div class="mouth"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="number">4</div>
+      </div>
+    </div>
+    <h3>
+      페이지를 찾을 수 없습니다.
+    </h3>
+    <p>
+      페이지를 찾을 수 없습니다. <br />
+      <a [routerLink]="['/main']">Main 페이지</a>로 돌아가거나 검색을 활용해 보세요.
+    </p>
+    <div style="margin-top: 15px;">
+      <button mat-button [routerLink]="['/main']">
+        메인 페이지로 이동
+        <mat-icon class="md-14">arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

@@ -169,5 +169,18 @@
     "req_fail_code_1": "The data request has failed. Contact the person in charge",
     "req_fail_code_2": "There is no payment line information in the request system. Contact the person in charge",
     "file_retention_per" : "The file retention period is 7 days."
+  },
+  "login": {
+    "login": "LOGIN",
+    "id": "ID",
+    "password": "Password",
+    "login_check": "Auto-Login",
+    "id_check": "Remember ID",
+    "find_pw": "lost password",
+    "id_placeholder": "Please enter your ID.",
+    "pw_placeholder": "Please enter a password.",
+    "id_invalid": "ID is required.",
+    "pw_invalid": "Password is required.",
+    "desc": "Login is required to use the system."
   }
 }

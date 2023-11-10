@@ -530,12 +530,13 @@ ul, ol, dl {
 
 /****************************** ST: form *************************************************/
 .form {
+  &-group,
   &-input { // input + clear-btn + invalid-feedback
     position: relative;
 
-    button {
+    /*button {
       margin: 0 0 0 10px !important;
-    }
+    }*/
 
     input.valid {
       border-color: $success;
@@ -630,7 +631,9 @@ ul, ol, dl {
     &.flex {
       display: flex;
       align-items: center;
-
+      button {
+        margin: 0 0 0 10px;
+      }
       & > * {
         // margin-bottom: 5px;
         margin-right: 5px;
@@ -3073,4 +3076,37 @@ input[type="radio"].mgr:checked:before {
 /********* ST: Quill Editor ***********************************************************/
 .ql-snow .ql-editor pre.ql-syntax * {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+
+/********* ST: Splitter Resized *****************************************************/
+.ng-resizable-handle.ng-resizable-e {
+  background: #CCC6;
+  width: 4px;
+  right: -2px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 1px;
+    width: 2px;
+    height: 24px;
+    background: #AAA;
+    transform: translateY(-50%);
+
+  }
+
+  &:hover {
+    background: rgba($primary, .2);
+    &:before {
+      background: $primary;
+    }
+  }
+  &:active {
+    background: rgba($primary, .5);
+    &:before {
+      background: $primary;
+    }
+  }
 }

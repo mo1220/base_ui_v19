@@ -41,10 +41,10 @@ import {
   metaReducers,
   selectRouterState
 } from './core.state';
-import { AuthEffects } from './auth/auth.effects';
-import { selectIsAuthenticated, selectAuth } from './auth/auth.selectors';
-import { authLogin, authLogout } from './auth/auth.actions';
-import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthEffects } from '../auth/store/auth.effects';
+import { selectIsAuthenticated, selectAuth } from '../auth/store/auth.selectors';
+import { authLogin, authLogout } from '../auth/store/auth.actions';
+import { AuthGuardService } from '../auth/store/auth-guard.service';
 import { TitleService } from './title/title.service';
 import { MatIconModule } from "@angular/material/icon";
 import { ToastrModule } from 'ngx-toastr';

@@ -4,17 +4,55 @@
   &-wrap {
     display: flex;
     flex: 1;
+    padding-left: 200px;
   }
 
+  &-nav {
+    flex: 1;
+    overflow-y: auto;
+    /* width */
+    &::-webkit-scrollbar {
+      width: 10px;
+      border-radius: 20px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #E6E7EB;
+      border-radius: 20px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #a8a8a8;
+      border-radius: 20px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(#666, .7);
+    }
+  }
   &-aside {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    bottom: 30px;
     width: 200px;
-    border-right: 1px solid #CCC;
+    display:flex;
+    flex-direction: column;
+    min-width: 90px;
+    max-width: 400px;
+    //border-right: 1px solid #CCC;
     font-size: 12px;
     user-select: none;
     h2.aside-title {
       font-size: 14px;
       padding: 0 10px;
       line-height: 50px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       .aside-title-icon {
         color:$primary;
         display: inline-block;

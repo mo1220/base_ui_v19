@@ -4,6 +4,7 @@ import { Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStar
 import { STYLE_GUIDE_MENU } from "../style-guide.models";
 import { routeAnimations } from "../../core/core.module";
 import * as _ from 'lodash';
+import {ruLocale} from "ngx-bootstrap/chronos";
 /**
  * @class StyleGuideComponent UI 스타일 가이드 *
  * */
@@ -21,11 +22,15 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
   desc = ''; // 설명
   currentUrls = [];
   breadcrumb: any = [];
+  left: number = 200;
+  menuActiveIndex: number[] =[];
   constructor(
     private translate: TranslateService,
     private router: Router,
     private cd: ChangeDetectorRef
   ) {
+    // Menu Depth length 값을 구함
+    this.getDpeth();
     router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
@@ -47,11 +52,46 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  ngAfterViewInit(): void {
-    const fi = _.findIndex(this.menus, (d:any) => d.link === ('/' + this.currentUrls[1]));
-    if(fi !== -1) {
-      this.menus[fi].active = true;
+  getDpeth() {
+    function getDepth(array: any) {
+      return 1 + Math.max(0, ...array.map(({ children = [] }) => getDepth(children)));
     }
+    const depthLength = getDepth(this.menus) - 1;
+    // Menu Depth Length 를 기반으로 Active Index 관리
+    this.menuActiveIndex = new Array(depthLength).fill(-1);
+  }
+
+  ngAfterViewInit(): void {
+
+    let url: string[] = _.clone(this.currentUrls);
+    url[0] = ''; // style-guide 를 빈문자열로
+    // style-guide 를 뺀 현재 URL 'link' 값을 기준으로 메뉴 구조에서 찾기 위한 값
+    const currentUrl = url.join('/');
+
+    const urls: any = {}; // 부모와 자식 Mapping
+    const index: any = {}; // Link 값별 index
+    function buildUrl(value:string | boolean, children: any[], key:string) {
+      for(let i in children) {
+        urls[children[i][key]] = value;
+        buildUrl(children[i][key], children[i].children, key);
+      }
+    }
+    function buildIndex(value:string | boolean, children: any[], key:string) {
+      for(let i in children) {
+        index[children[i][key]] = i;
+        buildIndex(children[i][key], children[i].children, key);
+      }
+    }
+    buildUrl(false, this.menus, 'link');
+    buildIndex(false, this.menus, 'link');
+    function getPath(value: string): any {
+      return urls[value] ? getPath(urls[value]).concat([value]) : [value];
+    }
+    const depth = getPath(currentUrl);
+    depth.map((d: string, i:number) => {
+      this.menuActiveIndex[i] = Number(index[d]);
+      return Number(index[d]);
+    });
     this.cd.detectChanges();
   }
 
@@ -86,6 +126,11 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
       }
       return r;
     }, []);
+  }
+
+  onResize(e:any) {
+    const width = e.size.width > 400 ? 400 : e.size.width < 90 ? 90 : e.size.width;
+    this.left = width;
   }
   ngOnDestroy(): void { }
 }

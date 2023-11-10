@@ -1,0 +1,20 @@
+<div class='session-out'>
+  <div class='session-out-wrap'>
+    <div class='session-out-img'>
+      <img [src]="'/assets/images/guide/session_icon.svg'" alt="세션만료"/>
+    </div>
+    <h3>
+      {{env.appName}} 세션 만료
+    </h3>
+    <p>
+      세션 허용 시간이 만료 되었습니다. <br />
+      <!--창을 닫고--> <b>로그인</b>을 통해 다시 접속해 주시기 바랍니다.
+    </p>
+    <div style="margin-top: 15px;">
+      <button mat-button [routerLink]="['/auth/login']">
+        로그인 페이지로 이동
+        <mat-icon class="md-14">arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

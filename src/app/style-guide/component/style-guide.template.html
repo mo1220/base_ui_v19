@@ -1,5 +1,9 @@
-<div class="style-guide-wrap">
-  <div class="style-guide-aside">
+<div class="style-guide-wrap" [style.padding-left]="left + 'px'">
+  <div class="style-guide-aside"
+       ngResizable
+       [rzHandles]="'e'"
+       (rzStop)="onResize($event)"
+       (rzResizing)="onResize($event)">
     <h2 class="aside-title">
       <span class="aside-title-icon">
         <mat-icon class="md-16">draw</mat-icon>
@@ -8,6 +12,7 @@
     </h2>
     <div class="style-guide-nav">
       <aside-menu [items]="menus"
+                  [activeIndex]="menuActiveIndex"
                   [currentUrls]="currentUrls"
                   (valueChange)="routeNav($event)"
                   [bindLabel]="'name'">

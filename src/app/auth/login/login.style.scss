@@ -1,0 +1,98 @@
+@import '../../../styles-variables';
+
+/* ST: Login Style */
+.login {
+  &-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //background: url('/assets/images/bg/orange-and-purple-background-with-wavy-shapes.jpg') center center no-repeat;
+    background: url('/assets/images/bg/login-bg.jpg') center center no-repeat;
+    background-size: cover;
+  }
+  &-container {
+    width: 350px;
+    background-color: rgba(255,255,255, .8);
+    backdrop-filter: blur(3.5px);
+    -webkit-backdrop-filter: blur(3.5px);
+    border-radius: 15px;
+    min-height: 300px;
+    box-shadow: $box-shadow-hover;
+    text-align: center;
+    padding: 30px 40px;
+    h2 {
+      font-weight: 400;
+      color: lighten($primary, 20);
+      span {
+        color: $primary;
+        display: block;
+        font-weight: 600;
+      }
+    }
+    h3 {
+      margin-top: 30px;
+      font-weight: 400;
+    }
+  }
+
+  &-symbol {
+    margin-bottom: 15px;
+    img {
+      width: 80px;
+      height: auto;
+    }
+  }
+
+  &-util {
+    display:flex;
+    margin:15px 0 22px 0;
+    .checkbox {
+      +.checkbox {
+        margin-left:56px;
+      }
+    }
+  }
+
+  &-form {
+    margin-top: 20px;
+    .form-group {
+      margin-bottom: 10px;
+      position: relative;
+      .mat-icon {
+        position: absolute;
+        top: 12px;
+        left: 10px;
+        color: #999;
+      }
+      .invalid-feedback {
+        text-align: left;
+      }
+      input.form-control {
+        padding-left: 35px;
+      }
+      &:has( input.form-control:focus ) {
+        .mat-icon {
+          color: $primary;
+        }
+      }
+
+      &:has( input.form-control.invalid ) {
+        .mat-icon {
+          color: $danger;
+        }
+      }
+    }
+  }
+
+  &-copyright {
+    font-size: 11px;
+    margin-top: 20px;
+    color: #666;
+  }
+}
+/* EN: Login Style */
