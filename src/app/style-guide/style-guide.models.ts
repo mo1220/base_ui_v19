@@ -48,12 +48,7 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Input',
         link: '/form/input',
-        desc: `기본 입력용 Input<br>
-              <code> [group 순서]<br>
-                div class="form-group"<br>
-                    div class="form-set"<br>
-                      input class="form-control"<br>
-              </code>`
+        desc: `기본 입력용 Input`
       },
       {
         name: 'Knob',

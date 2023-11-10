@@ -289,10 +289,9 @@ label.btn-split {
   color: $btn-primary-color !important;
 }
 
-
-/**** form ****/
+/****************************** ST: form *************************************************/
 .form-control {
-  &-xs {
+  &-xs { // form-control-xs 새로 정의
     min-height: $input-height-xs;
     padding: $input-btn-padding-y-xs $input-btn-padding-x-xs;
     @include font-size($font-size-xs);
@@ -318,6 +317,265 @@ label.btn-split {
     }
   }
 }
+
+
+.form-set { // form-label + form-control을 포함하는 그룹
+}
+
+.form-group { // form-control + clear-btn을 포함하는 그룹
+  height: 100%;
+  position: relative;
+  .clear-btn {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.35);
+    right: 8px;
+    cursor: pointer;
+    &:hover {
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+  &:has(.clear-btn) {
+    .form-control {
+      padding-right: calc(1.5em + 0.75rem);
+    }
+  }
+  .was-validated .form-control:valid, .form-control.is-valid, .was-validated .form-control:invalid, .form-control.is-invalid {
+    margin-bottom: 0;
+  }
+  .valid-feedback, .invalid-feedback {
+    margin: 0;
+  }
+
+  &:has(.form-control.form-control-xs) {
+    label {
+      @include font-size($font-size-xs);
+      padding: $input-btn-padding-y-xs*0.5 0;
+    }
+    .clear-btn {
+      bottom: 1px;
+      mat-icon {
+        font-size: 12px !important;
+        width: 12px !important;
+        height: 12px !important;
+        line-height: 11px !important;
+      }
+    }
+    .is-valid, .is-invalid {
+      background-size: 10px;
+    }
+    .valid-feedback, .invalid-feedback {
+      @include font-size($font-size-xs);
+      padding: $input-btn-padding-y-xs*0.5 1px;
+    }
+  }
+  &:has(.form-control.form-control-sm) {
+    label {
+      @include font-size($font-size-sm);
+      padding: $input-btn-padding-y-sm*0.5 0;
+    }
+    .clear-btn {
+      bottom: 4px;
+      mat-icon {
+        font-size: 15px !important;
+        width: 15px !important;
+        height: 15px !important;
+        line-height: 14px !important;
+      }
+    }
+    .is-valid, .is-invalid {
+      background-size: 13px;
+    }
+    .valid-feedback, .invalid-feedback {
+      @include font-size($font-size-sm);
+      padding: $input-btn-padding-y-sm*0.5 1px;
+    }
+  }
+  &:has(.form-control) {
+    label {
+      @include font-size($font-size-base);
+      padding: $input-btn-padding-y*0.5 0;
+    }
+    .clear-btn {
+      bottom: 6px;
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        line-height: 17px;
+        font-weight: 600;
+      }
+    }
+    .is-valid, .is-invalid {
+      background-size: 16px;
+    }
+    .valid-feedback, .invalid-feedback {
+      @include font-size($font-size-base);
+      padding: $input-btn-padding-y*0.5 1px;
+    }
+  }
+  &:has(.form-control.form-control-lg) {
+    label {
+      @include font-size($font-size-lg);
+      padding: $input-btn-padding-y-lg*0.5 0;
+    }
+    .clear-btn {
+      bottom: 10px;
+      mat-icon {
+        font-size: 22px !important;
+        width: 22px !important;
+        height: 22px !important;
+        line-height: 22px !important;
+      }
+    }
+    .is-valid, .is-invalid {
+      background-size: 20px;
+    }
+    .valid-feedback, .invalid-feedback {
+      @include font-size($font-size-lg);
+      padding: $input-btn-padding-y-lg*0.5 1px;
+    }
+  }
+}
+
+
+.form {
+  //&-group,
+  //&-input { // input + clear-btn + invalid-feedback
+  //  position: relative;
+  //
+  //  /*button {
+  //    margin: 0 0 0 10px !important;
+  //  }*/
+  //
+  //  input.valid {
+  //    border-color: $success;
+  //    padding-right: calc(1.5em + 0.75rem);
+  //    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  //    background-repeat: no-repeat;
+  //    background-position: right calc(0.375em + 0.1875rem) center;
+  //    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  //    &:focus {
+  //      border-color: $success;
+  //      box-shadow: 0 0 0 0.2rem rgba($success, .25);
+  //    }
+  //  }
+  //  .valid-feedback {
+  //    margin-top: 0 !important;
+  //    font-size: 0.72em !important;
+  //    //position: absolute;
+  //  }
+  //
+  //
+  //  input.invalid {
+  //    border-color: $danger;
+  //    padding-right: calc(1.5em + 0.75rem);
+  //    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+  //    background-repeat: no-repeat;
+  //    background-position: right calc(0.375em + 0.1875rem) center;
+  //    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  //
+  //    &:focus {
+  //      border-color: $danger;
+  //      box-shadow: 0 0 0 0.2rem rgba($danger, .25);
+  //    }
+  //  }
+  //
+  //
+  //
+  //
+  //  mat-icon {
+  //    font-size: 18px;
+  //    width: 18px;
+  //    height: 18px;
+  //    line-height: 17px;
+  //    font-weight: 600;
+  //  }
+  //
+  //  &:has(.form-control-xs) {
+  //    mat-icon {
+  //      font-size: 12px !important;
+  //      width: 12px !important;
+  //      height: 12px !important;
+  //      line-height: 11px !important;
+  //    }
+  //  }
+  //
+  //  &:has(.form-control-sm) {
+  //    mat-icon {
+  //      font-size: 15px !important;
+  //      width: 15px !important;
+  //      height: 15px !important;
+  //      line-height: 14px !important;
+  //    }
+  //  }
+  //}
+
+
+  &-group {
+    & > * {
+      margin-bottom: 5px;
+      //&:last-child { margin-bottom: 0; }
+    }
+
+    &.flex {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+
+      & > * {
+        margin-bottom: 0;
+        margin-right: 5px;
+        &:last-child { margin-right: 0; }
+      }
+
+      &:has(.form-set.flex) {
+        align-items: center;
+        & > * {
+          margin-right: 10px;
+          &:last-child { margin-right: 0; }
+        }
+      }
+    }
+  }
+}
+
+
+label {
+  margin: 0 !important;
+  //height: 100%;
+  /* form-label min-width min-${size} */
+  @each $size in 10, 20, 30, 40, 50, 60, 70, 80 {
+    &.min-#{$size} {
+      min-width: $size + px !important;
+    }
+  }
+
+  &.required {
+    &::after {
+      content: "*";
+      color: $danger;
+      font-size: 0.7rem;
+      margin-left: 2px;
+    }
+  }
+
+}
+
+// autocomplete
+.mat-autocomplete-panel {
+  min-height: 70px !important;
+  position: absolute;
+  border-top: 1px solid #d0d0d0;
+  //top: 2px;
+  border-radius: 0 0 10px 10px;
+
+  &.visibility {
+    visibility: visible !important;
+  }
+}
+
+/****************************** EN: form *************************************************/
+
 
 /**** checkbox ****/
 .checkbox-group {

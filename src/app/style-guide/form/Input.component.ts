@@ -35,6 +35,8 @@ export class StyleGuideInputComponent implements AfterViewInit, OnDestroy {
   ]
 
   keyword:string = '';
+  valid:string = '';
+  invalid:string = '';
   clearable:Array<string> = ['xsmall','small','default','large'];
   submitMsg:string = '';
 

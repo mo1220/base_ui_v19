@@ -1,20 +1,32 @@
 <div class="d-flex">
   <div class="component-wrap" #contentWrap>
     <h3 #anchor #basic>Basic</h3>
-    <p>기본 입력용 input<br>
-      <code>label과 input을 포함하는 div.form-set</code>
-    </p>
+    <p>기본 입력용 input</p>
     <div class="style-guide-example">
-      <div class="form-set">
-        <label for="input-basic" class="form-label">Basic Input</label>
+      <div class="form-group">
+        <label for="input-basic">Basic Input</label>
         <input id="input-basic" class="form-control" [placeholder]="'placeholder.keyword_placeholder' | translate">
       </div>
-      <div class="form-set">
-        <label for="input-basic-disalbed" class="form-label">Basic Input Disabled</label>
+      <div class="form-group">
+        <label for="input-basic-disalbed">Basic Input Disabled</label>
         <input id="input-basic-disalbed" class="form-control" [disabled]="true" [placeholder]="'placeholder.keyword_placeholder' | translate">
       </div>
-      <div class="form-set">
-        <label for="input-basic-readonly" class="form-label">Basic Input Readonly</label>
+      <div class="form-group">
+        <label for="input-basic-readonly">Basic Input Readonly</label>
+        <input id="input-basic-readonly" class="form-control" [readonly]="true" [placeholder]="'placeholder.keyword_placeholder' | translate">
+      </div>
+    </div>
+    <div class="style-guide-example">
+      <div class="form-group d-flex">
+        <label for="input-basic">Basic Input</label>
+        <input id="input-basic" class="form-control" [placeholder]="'placeholder.keyword_placeholder' | translate">
+      </div>
+      <div class="form-group">
+        <label for="input-basic-disalbed">Basic Input Disabled</label>
+        <input id="input-basic-disalbed" class="form-control" [disabled]="true" [placeholder]="'placeholder.keyword_placeholder' | translate">
+      </div>
+      <div class="form-group">
+        <label for="input-basic-readonly">Basic Input Readonly</label>
         <input id="input-basic-readonly" class="form-control" [readonly]="true" [placeholder]="'placeholder.keyword_placeholder' | translate">
       </div>
     </div>
@@ -22,70 +34,185 @@
     <h3 #anchor #size>Size</h3>
     <p>크기 별 input</p>
     <div class="style-guide-example">
-      <div class="form-group">
-        <div class="form-set flex">
-          <label for="input-xs" class="form-label min-50">XSmall</label>
-          <input id="input-xs" class="form-control form-control-xs" placeholder="form-control-xs">
-          <button type="button" class="btn btn-primary btn-xs">XSmall</button>
-        </div>
-        <div class="form-set flex">
-          <label for="input-sm" class="form-label min-50">Small</label>
-          <input id="input-sm" class="form-control form-control-sm" placeholder="form-control-sm">
-          <button type="button" class="btn btn-primary btn-sm">Small</button>
-        </div>
-        <div class="form-set flex">
-          <label for="input-default" class="form-label min-50">Default</label>
-          <input id="input-default" class="form-control" placeholder="form-control">
-          <button type="button" class="btn btn-primary">Default</button>
-        </div>
-        <div class="form-set flex">
-          <label for="input-large" class="form-label min-50">Large</label>
-          <input id="input-large" class="form-control form-control-lg" placeholder="form-control-lg">
-          <button type="button" class="btn btn-primary btn-lg">Large</button>
-        </div>
+      <div class="form-group d-flex">
+        <label for="input-xs" class="min-50">XSmall</label>
+        <input id="input-xs" class="form-control form-control-xs" placeholder="form-control-xs">
+        <button type="button" class="btn btn-primary btn-xs">XSmall</button>
+      </div>
+      <div class="form-group d-flex">
+        <label for="input-sm" class="min-50">Small</label>
+        <input id="input-sm" class="form-control form-control-sm" placeholder="form-control-sm">
+        <button type="button" class="btn btn-primary btn-sm">Small</button>
+      </div>
+      <div class="form-group d-flex">
+        <label for="input-default" class="min-50">Default</label>
+        <input id="input-default" class="form-control" placeholder="form-control">
+        <button type="button" class="btn btn-primary">Default</button>
+      </div>
+      <div class="form-group d-flex">
+        <label for="input-large" class="min-50">Large</label>
+        <input id="input-large" class="form-control form-control-lg" placeholder="form-control-lg">
+        <button type="button" class="btn btn-primary btn-lg">Large</button>
       </div>
     </div>
 
     <h3 #anchor #clear>Clearable</h3>
     <p>입력받은 keyword가 있을 경우 클리어가 가능한 input<br>
-    div.form-input으로 input과 span.clear-btn을 묶어야함</p>
-    <div class="style-guide-example">
-      <div class="form-group flex" style="align-items: center">
-        <div class="form-input">
-          <input id="input-clear-xs" class="form-control form-control-xs" [(ngModel)]="clearable[0]">
-          <span class="clear-btn"
-                *ngIf="clearable[0].trim() !== ''"
-                (click)="clearable[0] = ''">
+      <code><b>[group 순서]</b>
+        div.form-group > input.form-control + span.clear-btn
+      </code>
+    </p>
+    <div class="msg info">clear-btn과 input을 반드시 form-group으로 묶어야 함</div>
+    <div class="style-guide-example d-flex col-center">
+      <div class="form-group">
+        <input id="input-clear-xs" class="form-control form-control-xs" [(ngModel)]="clearable[0]">
+        <span class="clear-btn"
+              *ngIf="clearable[0].trim() !== ''"
+              (click)="clearable[0] = ''">
           <mat-icon class="mat-icon">close</mat-icon>
         </span>
-        </div>
+      </div>
+      <div class="form-group">
+        <input id="input-clear-sm" class="form-control form-control-sm" [(ngModel)]="clearable[1]">
+        <span class="clear-btn"
+              *ngIf="clearable[1].trim() !== ''"
+              (click)="clearable[1] = ''">
+          <mat-icon class="mat-icon">close</mat-icon>
+        </span>
+      </div>
+      <div class="form-group">
+        <input id="input-clear-default" class="form-control" [(ngModel)]="clearable[2]">
+        <span class="clear-btn"
+              *ngIf="clearable[2].trim() !== ''"
+              (click)="clearable[2] = ''">
+          <mat-icon class="mat-icon">close</mat-icon>
+        </span>
+      </div>
+      <div class="form-group">
+        <input id="input-clear-lg" class="form-control form-control-lg" [(ngModel)]="clearable[3]">
+        <span class="clear-btn"
+              *ngIf="clearable[3].trim() !== ''"
+              (click)="clearable[3] = ''">
+          <mat-icon class="mat-icon">close</mat-icon>
+        </span>
+      </div>
+    </div>
 
-        <div class="form-input">
-          <input id="input-clear-sm" class="form-control form-control-sm" [(ngModel)]="clearable[1]">
-          <span class="clear-btn"
-                *ngIf="clearable[1].trim() !== ''"
-                (click)="clearable[1] = ''">
+    <h3 #anchor #validation>Validation</h3>
+    <p>필수 입력 input validation check<br>
+      <code><b>[group 순서]</b>
+        div.form-group > input.form-control + span.valid-feedback(invalid-feedback)
+      </code>
+    </p>
+    <div class="msg info">'success'입력 시 is-valid 클래스 추가 (clear-btn 조건과 valid 조건이 충돌하지 않게 주의)</div>
+    <div class="style-guide-example d-flex col-center">
+      <div class="form-group">
+        <label class="required">Xsmall</label>
+        <input class="form-control form-control-xs" placeholder="success 입력 시 valid"
+               [ngClass]="{'is-valid': valid == 'success'}"
+               [(ngModel)]="valid">
+        <span class="clear-btn"
+              *ngIf="valid !== 'success' && valid !== ''"
+              (click)="valid = ''">
           <mat-icon class="mat-icon">close</mat-icon>
-        </span>
-        </div>
+          </span>
+        <span class="valid-feedback"
+              [style.display]="valid == 'success' ? 'block': 'none'">검증 완료</span>
+      </div>
+      <div class="form-group">
+        <label class="required">small</label>
+        <input class="form-control form-control-sm" placeholder="success 입력 시 valid"
+               [ngClass]="{'is-valid': valid == 'success'}"
+               [(ngModel)]="valid">
+        <span class="clear-btn"
+              *ngIf="valid !== 'success' && valid !== ''"
+              (click)="valid = ''">
+          <mat-icon class="mat-icon">close</mat-icon>
+          </span>
+        <span class="valid-feedback"
+              [style.display]="valid == 'success' ? 'block': 'none'">검증 완료</span>
+      </div>
+      <div class="form-group">
+        <label class="required">Default</label>
+        <input class="form-control" placeholder="success 입력 시 valid"
+               [ngClass]="{'is-valid': valid == 'success'}"
+               [(ngModel)]="valid">
+        <span class="clear-btn"
+              *ngIf="valid !== 'success' && valid !== ''"
+              (click)="valid = ''">
+          <mat-icon class="mat-icon">close</mat-icon>
+          </span>
+        <span class="valid-feedback"
+              [style.display]="valid == 'success' ? 'block': 'none'">검증 완료</span>
+      </div>
+      <div class="form-group">
+        <label class="required">Large</label>
+        <input class="form-control form-control-lg" placeholder="success 입력 시 valid"
+               [ngClass]="{'is-valid': valid == 'success'}"
+               [(ngModel)]="valid">
+        <span class="clear-btn"
+              *ngIf="valid !== 'success' && valid !== ''"
+              (click)="valid = ''">
+          <mat-icon class="mat-icon">close</mat-icon>
+          </span>
+        <span class="valid-feedback"
+              [style.display]="valid == 'success' ? 'block': 'none'">검증 완료</span>
+      </div>
+    </div>
 
-        <div class="form-input">
-          <input id="input-clear-default" class="form-control" [(ngModel)]="clearable[2]">
-          <span class="clear-btn"
-                *ngIf="clearable[2].trim() !== ''"
-                (click)="clearable[2] = ''">
+    <div class="msg info">입력 없을 시 is-invalid 클래스 추가</div>
+    <div class="style-guide-example d-flex col-center">
+      <div class="form-group">
+        <label class="required">Xsmall</label>
+        <input class="form-control form-control-xs" placeholder="키워드 입력 시 사라짐"
+               [ngClass]="{'is-invalid': invalid == ''}"
+               [(ngModel)]="invalid">
+        <span class="clear-btn"
+              *ngIf="invalid !== ''"
+              (click)="invalid = ''">
           <mat-icon class="mat-icon">close</mat-icon>
-        </span>
-        </div>
-
-        <div class="form-input">
-          <input id="input-clear-lg" class="form-control form-control-lg" [(ngModel)]="clearable[3]">
-          <span class="clear-btn"
-                *ngIf="clearable[3].trim() !== ''"
-                (click)="clearable[3] = ''">
+          </span>
+        <span class="invalid-feedback"
+              [style.display]="invalid == '' ? 'block': 'none'">필수 입력입니다</span>
+      </div>
+      <div class="form-group">
+        <label class="required">Small</label>
+        <input class="form-control form-control-sm" placeholder="키워드 입력 시 사라짐"
+               [ngClass]="{'is-invalid': invalid == ''}"
+               [(ngModel)]="invalid">
+        <span class="clear-btn"
+              *ngIf="invalid !== ''"
+              (click)="invalid = ''">
           <mat-icon class="mat-icon">close</mat-icon>
-        </span>
-        </div>
+          </span>
+        <span class="invalid-feedback"
+              [style.display]="invalid == '' ? 'block': 'none'">필수 입력입니다</span>
+      </div>
+      <div class="form-group">
+        <label class="required">Default</label>
+        <input class="form-control" placeholder="키워드 입력 시 사라짐"
+               [ngClass]="{'is-invalid': invalid == ''}"
+               [(ngModel)]="invalid">
+        <span class="clear-btn"
+              *ngIf="invalid !== ''"
+              (click)="invalid = ''">
+          <mat-icon class="mat-icon">close</mat-icon>
+          </span>
+        <span class="invalid-feedback"
+              [style.display]="invalid == '' ? 'block': 'none'">필수 입력입니다</span>
+      </div>
+      <div class="form-group">
+        <label class="required">Large</label>
+        <input class="form-control form-control-lg" placeholder="키워드 입력 시 사라짐"
+               [ngClass]="{'is-invalid': invalid == ''}"
+               [(ngModel)]="invalid">
+        <span class="clear-btn"
+              *ngIf="invalid !== ''"
+              (click)="invalid = ''">
+          <mat-icon class="mat-icon">close</mat-icon>
+          </span>
+        <span class="invalid-feedback"
+              [style.display]="invalid == '' ? 'block': 'none'">필수 입력입니다</span>
       </div>
     </div>
 
@@ -152,79 +279,6 @@
 
     </div>
 
-    <h3 #anchor #validation>Validation</h3>
-    <p>필수 입력 input validation check<br>
-      div.form-input으로 input과 span.invalid-feedback을 묶어야함</p>
-    <div class="style-guide-example">
-      <div class="form-group">
-        <label class="required">label</label>
-        <div class="form-input">
-          <input class="form-control" placeholder="success 입력 시 valid"
-                 [ngClass]="{'valid': keyword == 'success'}"
-                 [(ngModel)]="keyword">
-          <span class="clear-btn"
-                *ngIf="keyword !== 'success' && keyword !== ''"
-                (click)="keyword = ''">
-          <mat-icon class="mat-icon">close</mat-icon>
-          </span>
-          <span class="valid-feedback"
-                [style.display]="keyword == 'success' ? 'block': 'none'">검증 완료</span>
-        </div>
-      </div>
-
-      <div class="form-group flex">
-        <div class="form-set flex">
-          <label class="required">label</label>
-          <div class="form-input">
-            <input class="form-control" placeholder="success 입력 시 valid"
-                   [ngClass]="{'valid': keyword == 'success'}"
-                   [(ngModel)]="keyword">
-            <span class="clear-btn"
-                  *ngIf="keyword !== 'success' && keyword !== ''"
-                  (click)="keyword = ''">
-          <mat-icon class="mat-icon">close</mat-icon>
-            </span>
-            <span class="valid-feedback"
-                  [style.display]="keyword == 'success' ? 'block': 'none'">검증 완료</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="required">label</label>
-        <div class="form-input">
-          <input class="form-control" placeholder="키워드 입력 시 사라짐"
-                 [ngClass]="{'invalid': keyword == ''}"
-                 [(ngModel)]="keyword">
-          <span class="clear-btn"
-                *ngIf="keyword !== ''"
-                (click)="keyword = ''">
-          <mat-icon class="mat-icon">close</mat-icon>
-          </span>
-          <span class="invalid-feedback"
-                [style.display]="keyword == '' ? 'block': 'none'">필수 입력입니다</span>
-        </div>
-      </div>
-
-      <div class="form-group flex">
-        <div class="form-set flex">
-          <label class="required">label</label>
-          <div class="form-input">
-            <input class="form-control" placeholder="키워드 입력 시 사라짐"
-                   [ngClass]="{'invalid': keyword == ''}"
-                   [(ngModel)]="keyword">
-            <span class="clear-btn"
-                  *ngIf="keyword !== ''"
-                  (click)="keyword = ''">
-          <mat-icon class="mat-icon">close</mat-icon>
-            </span>
-            <span class="invalid-feedback"
-                  [style.display]="keyword == '' ? 'block': 'none'">필수 입력입니다</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
   </div>
   <aside-menu-right [menu]="inputMenu"
                     [anchor]="anchors"></aside-menu-right>
