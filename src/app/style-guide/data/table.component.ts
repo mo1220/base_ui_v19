@@ -1,9 +1,9 @@
 import {
   AfterViewInit, ChangeDetectorRef,
   Component,
-  ElementRef,
+  ElementRef, HostListener,
   OnDestroy, OnInit,
-  QueryList,
+  QueryList, Renderer2, ViewChild,
   ViewChildren,
   ViewEncapsulation
 } from '@angular/core';
@@ -13,6 +13,7 @@ import {menuType} from "../style-guide.models";
 import {default_colors} from "../../core/settings/settings.model";
 import {ColDef, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {TableVirtualScrollDataSource} from "ng-table-virtual-scroll";
+import {MatTable} from "@angular/material/table";
 
 interface Country {
   name: string;
@@ -27,6 +28,7 @@ interface PeriodicElement {
   position: number;
   weight: number;
   symbol: string;
+  filler?: number;
 }
 
 const COUNTRIES: Country[] = [
@@ -124,23 +126,32 @@ const COUNTRIES: Country[] = [
 ];
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H',   filler: 20,},
+  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He',   filler: 20,},
+  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li',   filler: 20,},
+  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be',   filler: 20,},
+  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B',   filler: 20,},
+  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C',   filler: 20,},
+  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N',  filler: 20,},
+  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O',  filler: 20,},
+  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F',  filler: 20,},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne',  filler: 20,},
 ];
 
 const DATA = Array.from({length: 10000}, (v, i) => ({
   position: i+1,
   name: ELEMENT_DATA[(i%10)].name,
   weight: ELEMENT_DATA[((i%10))].weight,
-  symbol: ELEMENT_DATA[((i%10))].symbol
+  symbol: ELEMENT_DATA[((i%10))].symbol,
+  filler: ELEMENT_DATA[((i%10))].filler,
+}));
+
+const DATA2 = Array.from({length: 10000}, (v, i) => ({
+  position: i+1,
+  name: ELEMENT_DATA[(i%10)].name,
+  weight: ELEMENT_DATA[((i%10))].weight,
+  symbol: ELEMENT_DATA[((i%10))].symbol,
+  filler: ELEMENT_DATA[((i%10))].filler,
 }));
 
 
@@ -184,6 +195,11 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
       desc: 'Analysis Table\n <code class="language-plaintext highlighter-rouge">Material Table & cdk-virtual-scroll</code>',
       anchor: 'analysis'
     },
+    {
+      title: 'Analysis Resize Table',
+      desc: 'Analysis Table\n <code class="language-plaintext highlighter-rouge">Material Table & cdk-virtual-scroll</code>',
+      anchor: 'resize'
+    },
   ];
   countries = COUNTRIES;
   @ViewChildren('anchors') anchors: QueryList<ElementRef>;
@@ -206,12 +222,22 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
 
   displayedColumns: string[] = [];
   dataSource = new TableVirtualScrollDataSource(DATA);
+  dataSource2 = new TableVirtualScrollDataSource(DATA2);
   tables = [0];
+  columns: any[] = [
+    { field: 'position', width: 20,},
+    { field: 'name', width: 20,},
+    {field: 'filler', width: 20},
+    { field: 'weight', width: 20,},
+    { field: 'symbol', width: 20,}
+  ]
+  @ViewChild(MatTable, {read: ElementRef} ) private matTableRef: ElementRef;
 
   constructor(
     private cd: ChangeDetectorRef,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) {
     this.gridOptions = <GridOptions>{
       rowHeight: 30,
@@ -220,8 +246,6 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
       suppressPropertyNamesCheck: true, // ag grid console 제거
       overlayNoRowsTemplate: `<div class="no-data"><div class="no-data-content"><img src="/assets/images/icon/no-data.svg" /><p>${translate.instant('content.no_data')}</p></div></div>`
     };
-
-    console.log(this.dataSource);
     this.displayedColumns.length = 24;
     this.displayedColumns.fill('filler');
 
@@ -260,23 +284,124 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
         headerName: '인구수'
       },
     ];
+
+    this.columns.forEach(( column: any, index: number) => {
+      column.index = index;
+      this.displayedColumns[index] = column.field;
+    });
   }
 
   ngAfterViewInit(): void {
     this.cd.detectChanges();
+    console.log(this.displayedColumns)
+    this.setTableResize(this.matTableRef.nativeElement.clientWidth);
   }
 
   ngOnDestroy(): void {
   }
 
   onClickCheckBoxAll(e: any) {
-    console.log(e.target.checked);
     for (let k of this.countries) {
       this.checkMap[k.id] = e.target.checked;
     }
   }
 
-  onGridReady(params: GridReadyEvent){
+  onGridReady(params: GridReadyEvent){}
 
+  setTableResize(tableWidth: number){
+    let totWidth: number | undefined = 0;
+    this.columns.forEach(( column: any) => {
+      totWidth += column.width;
+    });
+    const padding = 5;
+    const scale = (tableWidth - padding) / totWidth;
+    this.columns.forEach(( column: any) => {
+      column.width *= scale;
+      this.setColumnWidth(column);
+    });
+  }
+
+  setColumnWidth(column: any) {
+    const columnEls = Array.from( document.getElementsByClassName('mat-column-' + column.field) );
+    columnEls.forEach(( el: any ) => {
+      el.style.width = column.width + 'px';
+    });
+  }
+
+  pressed = false;
+  currentResizeIndex: number;
+  startX: number;
+  startWidth: number;
+  isResizingRight: boolean;
+  resizableMousemove: () => void;
+  resizableMouseup: () => void;
+
+  private getCellData(index: number) {
+    const headerRow = this.matTableRef.nativeElement.children[0].querySelector('tr');
+    const cell = headerRow.children[index];
+    return cell.getBoundingClientRect();
+  }
+
+  private checkResizing(event: any, index: number) {
+    const cellData = this.getCellData(index);
+    console.log(event)
+    if ( ( index === 0 ) || ( Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&  index !== this.columns.length - 1 ) ) {
+      this.isResizingRight = true;
+    } else {
+      this.isResizingRight = false;
+    }
+  }
+
+  onResizeColumn(e: any, index?: any){
+    console.log(e.target.parentElement);
+    this.checkResizing(e, index);
+    this.currentResizeIndex = index;
+    this.pressed = true;
+    this.startX = e.pageX;
+    this.startWidth = e.target.parentElement.clientWidth;
+    e.preventDefault();
+    this.mouseMove(index);
+  }
+
+  setColumnWidthChanges(index: number, width: number) {
+    const orgWidth = this.columns[index].width;
+    const dx = width - orgWidth;
+    if ( dx !== 0 ) {
+      const j = ( this.isResizingRight ) ? index + 1 : index - 1;
+      const newWidth = this.columns[j].width - dx;
+      if ( newWidth > 50 ) {
+        this.columns[index].width = width;
+        this.setColumnWidth(this.columns[index]);
+        this.columns[j].width = newWidth;
+        this.setColumnWidth(this.columns[j]);
+      }
+    }
+  }
+
+  mouseMove(index:number){
+    this.resizableMousemove = this.renderer.listen('document', 'mousemove', (event) => {
+      console.log(event)
+      if (this.pressed && event.buttons ) {
+        const dx = (this.isResizingRight) ? (event.pageX - this.startX) : (-event.pageX + this.startX);
+        const width = this.startWidth + dx;
+        if ( this.currentResizeIndex === index && width > 50 ) {
+          this.setColumnWidthChanges(index, width);
+        }
+      }
+    });
+    this.resizableMouseup = this.renderer.listen('document', 'mouseup', (event) => {
+      if (this.pressed) {
+        this.pressed = false;
+        this.currentResizeIndex = -1;
+        this.resizableMousemove();
+        this.resizableMouseup();
+      }
+    });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.setTableResize(this.matTableRef.nativeElement.clientWidth);
   }
 }
+

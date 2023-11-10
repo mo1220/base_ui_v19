@@ -133,6 +133,7 @@
                            [defaultColDef]="defaultColDef"
                            [gridOptions]="gridOptions"
                            (gridReady)="onGridReady($event)"
+                           [enableRangeSelection]="true"
                            [columnDefs]="columnDefs"
                            [rowData]="countries">
 
@@ -145,45 +146,72 @@
           <div style="max-width: 1000px; height: 600px; overflow: auto;">
             <cdk-virtual-scroll-viewport  tvsItemSize="100" headerHeight="56" style="height: 100%;">
               <table mat-table [dataSource]="dataSource"  class="analysis-table">
-                <ng-container matColumnDef="position" [sticky]="isSticky('position')">
-                  <th mat-header-cell *matHeaderCellDef> Position </th>
+                <ng-container matColumnDef="position" [sticky]="isSticky( 'position')">
+                  <th mat-header-cell *matHeaderCellDef> Position</th>
                   <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-                  <td mat-footer-cell *matFooterCellDef> Position Footer </td>
+                  <!--<td mat-footer-cell *matFooterCellDef> Name Footer </td>-->
                 </ng-container>
 
                 <ng-container matColumnDef="name" [sticky]="isSticky( 'name')">
-                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <th mat-header-cell *matHeaderCellDef> Name</th>
                   <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                  <td mat-footer-cell *matFooterCellDef> Name Footer </td>
+                  <!--<td mat-footer-cell *matFooterCellDef> Name Footer </td>-->
                 </ng-container>
 
-                <ng-container matColumnDef="weight" [stickyEnd]="isSticky( 'weight')">1
+                <ng-container matColumnDef="weight" [stickyEnd]="isSticky( 'weight')">
                   <th mat-header-cell *matHeaderCellDef> Weight </th>
                   <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-                  <td mat-footer-cell *matFooterCellDef> Weight Footer </td>
+                  <!--<td mat-footer-cell *matFooterCellDef> Weight Footer </td>-->
                 </ng-container>
 
                 <ng-container matColumnDef="symbol" [stickyEnd]="isSticky( 'symbol')">
                   <th mat-header-cell *matHeaderCellDef> Symbol </th>
                   <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-                  <td mat-footer-cell *matFooterCellDef> Symbol Footer </td>
+                  <!--<td mat-footer-cell *matFooterCellDef> Symbol Footer </td>-->
                 </ng-container>
 
                 <ng-container matColumnDef="filler">
                   <th mat-header-cell *matHeaderCellDef> Filler header cell </th>
                   <td mat-cell *matCellDef="let element"> Filler data cell </td>
-                  <td mat-footer-cell *matFooterCellDef> Filler footer cell </td>
+                  <!--<td mat-footer-cell *matFooterCellDef> Filler footer cell </td>-->
                 </ng-container>
-
-
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: isSticky('header-1')"></tr>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: isSticky('header-2')"></tr>
 
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-                <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky( 'footer-1')"></tr>
-                <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky( 'footer-2')"></tr>
+                <!--<tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky( 'footer-1')"></tr>
+                <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky( 'footer-2')"></tr>-->
+              </table>
+            </cdk-virtual-scroll-viewport>
+          </div>
+        </div>
+        <!-- EN: ag-grid-border-->
+
+        <!-- ST: ag-grid-border-->
+        <div class="style-guide-example" *ngSwitchCase="'resize'">
+          <div style="height: 600px; overflow: auto;">
+            <cdk-virtual-scroll-viewport  tvsItemSize="50" headerHeight="56" style="height: 100%;">
+              <table mat-table [dataSource]="dataSource2"  class="analysis-table">
+                <ng-container *ngFor="let col of columns; let i=index;"
+                              [matColumnDef]="col.field"
+                              [sticky]="isSticky(col.field)">
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ col.field}}
+                    <span class="resize-handle" (mousedown)="onResizeColumn($event, i)"></span>
+                  </th>
+
+
+                  <td mat-cell *matCellDef="let element" > {{element[ col.field ]}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: isSticky('header-1')"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: isSticky('header-2')"></tr>
+
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <!--<tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky( 'footer-1')"></tr>
+                <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky( 'footer-2')"></tr>-->
               </table>
             </cdk-virtual-scroll-viewport>
           </div>
