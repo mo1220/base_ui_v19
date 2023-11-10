@@ -51,6 +51,10 @@ export class StyleGuideCheckboxComponent implements AfterViewInit, OnDestroy {
     {
       title: 'Disabled State',
       anchor: 'disabled',
+    },
+    {
+      title: 'Switch',
+      anchor: 'switch',
     }
   ]
 

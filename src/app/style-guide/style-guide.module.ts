@@ -52,6 +52,7 @@ import { StyleGuideTypographyComponent } from './typography/typography.component
 import {AsideMenuRightComponent} from "./aside-menu-right/aside-menu-right.component";
 import {CdkAccordionModule} from "@angular/cdk/accordion";
 import {StyleGuideGridsterComponent} from "./panel/Gridster.component";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({

@@ -45,20 +45,23 @@
 
   &-xl {
     .dtk-preview-color {
-
+      width: 36px;
+      height: 36px;
     }
     .form-control {
       padding-right: 20px;
+      font-size: $font-size-xl;
     }
   }
 
   &-lg {
     .dtk-preview-color {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
     }
     .form-control {
       padding-right: 25px;
+      font-size: $font-size-lg;
     }
   }
 
@@ -70,6 +73,7 @@
     }
     .form-control {
       padding-right: 15px;
+      font-size: $font-size-sm;
     }
   }
 
@@ -80,8 +84,9 @@
       left: 3px;
     }
     .form-control {
-      font-size: 10px !important;
+      //font-size: 10px !important;
       padding-right: 15px !important;
+      font-size: $font-size-xs;
     }
   }
 }

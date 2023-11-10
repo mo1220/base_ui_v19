@@ -1,10 +1,234 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basic>Basic Select</h3>
+    <p>기본 셀렉트박스</p>
+    <div class="msg info">옵션 검색 가능</div>
+    <div class="style-guide-example d-flex">
+      <div class="form-group" style="flex: 1">
+        <ng-select class="ng-select-default"
+                   [items]="defaultBindingsList"
+                   [(ngModel)]="selectedCity">
+        </ng-select>
+        <code>Selected city object: {{selectedCity | json}}</code>
+      </div>
+      <div class="form-group" style="flex: 1">
+        <ng-select class="ng-select-default"
+                   [items]="defaultBindingsList"
+                   bindLabel="label"
+                   bindValue="value"
+                   [(ngModel)]="selectedCity2">
+        </ng-select>
+        <code>Selected city object (Bind Value): {{selectedCity2 | json}}</code>
+      </div>
+    </div>
 
-</body>
-</html>
+    <h3 #anchor #size>Size</h3>
+    <p>크기 별 select</p>
+    <div class="style-guide-example">
+      <div class="form-group">
+        <div class="form-set flex">
+          <label for="input-xs" class="form-label min-50">XSmall</label>
+          <input id="input-xs" class="form-control form-control-xs" placeholder="form-control-xs" style="width: 200px">
+          <ng-select class="ng-select-xs"
+                     [placeholder]="'ng-select-xs'"
+                     [items]="defaultBindingsList" style="flex: 1;"
+                     bindLabel="label"
+                     bindValue="value"
+                     [(ngModel)]="selectedCity2">
+          </ng-select>
+        </div>
+        <div class="form-set flex">
+          <label for="input-sm" class="form-label min-50">Small</label>
+          <input id="input-sm" class="form-control form-control-sm" placeholder="form-control-sm" style="width: 200px">
+          <ng-select class="ng-select-sm"
+                     [placeholder]="'ng-select-sm'"
+                     [items]="defaultBindingsList" style="flex: 1;"
+                     bindLabel="label"
+                     bindValue="value"
+                     [(ngModel)]="selectedCity2">
+          </ng-select>
+        </div>
+        <div class="form-set flex">
+          <label for="input-default" class="form-label min-50">Default</label>
+          <input id="input-default" class="form-control" placeholder="form-control" style="width: 200px">
+          <ng-select class="ng-select-default"
+                     [placeholder]="'ng-select-default'"
+                     [items]="defaultBindingsList" style="flex: 1;"
+                     bindLabel="label"
+                     bindValue="value"
+                     [(ngModel)]="selectedCity2">
+          </ng-select>
+        </div>
+        <div class="form-set flex">
+          <label for="input-large" class="form-label min-50">Large</label>
+          <input id="input-large" class="form-control form-control-lg" placeholder="form-control-lg" style="width: 200px">
+          <ng-select class="ng-select-lg"
+                     [placeholder]="'ng-select-lg'"
+                     [items]="defaultBindingsList" style="flex: 1;"
+                     bindLabel="label"
+                     bindValue="value"
+                     [(ngModel)]="selectedCity2">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <h3 #anchor #multiple>Multiple Select</h3>
+    <p>멀티 셀렉트</p>
+    <div class="style-guide-example">
+      <div class="form-group">
+        <div class="form-set flex">
+          <label for="input-xs" class="form-label min-50">XSmall</label>
+          <div class="form-control chips form-control-xs" style="width: 200px;">
+            <mat-chip-grid #chipGrid2>
+              <mat-chip-row *ngFor="let chip of chipList"
+                            [color]="'default'"
+                            (removed)="removeChip(chip)">
+                {{chip.name}}
+                <button matChipRemove><mat-icon>close</mat-icon></button>
+              </mat-chip-row>
+            </mat-chip-grid>
+          </div>
+          <ng-select class="ng-select-xs"
+                     [multiple]="true"
+                     [placeholder]="'ng-select-xs'"
+                     [items]="people" style="flex: 1;"
+                     bindLabel="label"
+                     bindValue="value"
+                     groupBy="group"
+                     [selectableGroup]="true"
+                     [selectableGroupAsModel]="false"
+                     [closeOnSelect]="false"
+                     [(ngModel)]="selectedPeople">
+            <ng-template ng-header-tmp>
+              <button class="btn btn-link"
+                      (click)="selectAll()">Select All</button>
+              <button class="btn btn-link"
+                      (click)="unselectAll()">Clear All</button>
+            </ng-template>
+            <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.group | uppercase}}
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.label}}
+            </ng-template>
+          </ng-select>
+        </div>
+        <div class="form-set flex">
+          <label for="input-sm" class="form-label min-50">Small</label>
+          <div class="form-control chips form-control-sm" style="width: 200px;">
+            <mat-chip-grid #chipGrid2>
+              <mat-chip-row *ngFor="let chip of chipList"
+                            [color]="'default'"
+                            (removed)="removeChip(chip)">
+                {{chip.name}}
+                <button matChipRemove><mat-icon>close</mat-icon></button>
+              </mat-chip-row>
+            </mat-chip-grid>
+          </div>
+          <ng-select class="ng-select-sm"
+                     [multiple]="true"
+                     [placeholder]="'ng-select-sm'"
+                     [items]="people" style="flex: 1;"
+                     bindLabel="label"
+                     bindValue="value"
+                     groupBy="group"
+                     [selectableGroup]="true"
+                     [selectableGroupAsModel]="false"
+                     [closeOnSelect]="false"
+                     [(ngModel)]="selectedPeople">
+            <ng-template ng-header-tmp>
+              <button class="btn btn-link"
+                      (click)="selectAll()">Select All</button>
+              <button class="btn btn-link"
+                      (click)="unselectAll()">Clear All</button>
+            </ng-template>
+            <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.group | uppercase}}
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.label}}
+            </ng-template>
+          </ng-select>
+        </div>
+        <div class="form-set flex">
+          <label for="input-default" class="form-label min-50">Default</label>
+          <div class="form-control chips" style="width: 200px;">
+            <mat-chip-grid #chipGrid2>
+              <mat-chip-row *ngFor="let chip of chipList"
+                            [color]="'default'"
+                            (removed)="removeChip(chip)">
+                {{chip.name}}
+                <button matChipRemove><mat-icon>close</mat-icon></button>
+              </mat-chip-row>
+            </mat-chip-grid>
+          </div>
+          <ng-select class="ng-select-default"
+                     [multiple]="true"
+                     [placeholder]="'ng-select-default'"
+                     [items]="people" style="flex: 1;"
+                     bindLabel="label"
+                     bindValue="value"
+                     groupBy="group"
+                     [selectableGroup]="true"
+                     [selectableGroupAsModel]="false"
+                     [closeOnSelect]="false"
+                     [(ngModel)]="selectedPeople">
+            <ng-template ng-header-tmp>
+              <button class="btn btn-link"
+                      (click)="selectAll()">Select All</button>
+              <button class="btn btn-link"
+                      (click)="unselectAll()">Clear All</button>
+            </ng-template>
+            <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.group | uppercase}}
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.label}}
+            </ng-template>
+          </ng-select>
+        </div>
+        <div class="form-set flex">
+          <label for="input-large" class="form-label min-50">Large</label>
+          <div class="form-control chips form-control-lg" style="width: 200px;">
+            <mat-chip-grid #chipGrid2>
+              <mat-chip-row *ngFor="let chip of chipList"
+                            [color]="'default'"
+                            (removed)="removeChip(chip)">
+                {{chip.name}}
+                <button matChipRemove><mat-icon>close</mat-icon></button>
+              </mat-chip-row>
+            </mat-chip-grid>
+          </div>
+          <ng-select class="ng-select-lg"
+                     [multiple]="true"
+                     [placeholder]="'ng-select-lg'"
+                     [items]="people" style="flex: 1;"
+                     bindLabel="label"
+                     bindValue="value"
+                     groupBy="group"
+                     [selectableGroup]="true"
+                     [selectableGroupAsModel]="false"
+                     [closeOnSelect]="false"
+                     [(ngModel)]="selectedPeople">
+            <ng-template ng-header-tmp>
+              <button class="btn btn-link"
+                      (click)="selectAll()">Select All</button>
+              <button class="btn btn-link"
+                      (click)="unselectAll()">Clear All</button>
+            </ng-template>
+            <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.group | uppercase}}
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.label}}
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside-menu-right [menu]="selectMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

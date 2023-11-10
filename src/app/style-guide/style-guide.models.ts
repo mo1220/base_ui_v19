@@ -48,7 +48,12 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Input',
         link: '/form/input',
-        desc: `Input 설명 <span></span>`
+        desc: `기본 입력용 Input<br>
+              <code> [group 순서]<br>
+                div class="form-group"<br>
+                    div class="form-set"<br>
+                      input class="form-control"<br>
+              </code>`
       },
       {
         name: 'Knob',
@@ -58,7 +63,7 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Select',
         link: '/form/select',
-        desc: `Select 설명 <span></span>`
+        desc: `옵션 중 select할 수 있는 ng-select <span></span>`
       },
       {
         name: 'Radio',

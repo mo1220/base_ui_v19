@@ -18,7 +18,7 @@
         &:before{
           content: '';
           display: block;
-          border-left: 3px solid #007bff;
+          border-left: 3px solid $primary;
           position: absolute;
           left: -16px;
           top: 0;

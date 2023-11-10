@@ -69,6 +69,9 @@ ButtonsModule,
 // angular-tree-component
 @import '~@circlon/angular-tree-component/css/angular-tree-component.css';
 
+// Ng-select
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 * {
   font-family: $default-font;
 }
@@ -1219,6 +1222,150 @@ input[type="radio"].mgr:checked:before {
 }
 
 /****************************** EN: Mat-checkbox *************************************************/
+
+/****************************** ST: Ng-select *************************************************/
+.form-group {
+
+}
+.ng-select {
+  margin-bottom: 0;
+  &.ng-select-default {
+    .ng-clear-wrapper {
+      .ng-clear {
+        @include font-size($font-size-base);
+      }
+    }
+  }
+
+  .ng-select-container {
+    min-height: 0;
+    height: 30px !important;
+    box-sizing: content-box;
+    @include font-size($font-size-base);
+    @include border-radius($border-radius);
+    .ng-value-container {
+      padding-left: $input-btn-padding-x;
+    }
+  }
+
+  .ng-clear-wrapper {
+    width: 16px !important;
+    .ng-clear {
+      @include font-size($font-size-base);
+      color: rgba(0,0,0, 0.35) !important;
+    }
+    &:hover .ng-clear {
+      color: rgba(0,0,0, 0.45) !important;
+    }
+  }
+
+  &.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+    border-color: $input-focus-border-color;
+    box-shadow: $input-btn-focus-box-shadow;
+  }
+  .ng-dropdown-panel .ng-dropdown-panel-items {
+    .ng-option, .ng-optgroup {
+      padding: $input-btn-padding-y $input-btn-padding-x
+    }
+    .ng-option.ng-option-child {
+      padding-left: $input-btn-padding-x * 2.2;
+    }
+    .ng-option.ng-option-marked, .ng-optgroup.ng-option-marked, .ng-optgroup.ng-option-selected.ng-option-marked {
+      background-color: rgba($primary, 0.1);
+    }
+    .ng-option.ng-option-selected, .ng-optgroup.ng-option-selected {
+      background-color: rgba($primary, 0.06);
+    }
+  }
+
+  &.ng-select-xs {
+    .ng-select-container {
+      height: 19px !important;
+      @include font-size($font-size-xs);
+      @include border-radius($border-radius-xs);
+      .ng-value-container {
+        padding-left: $input-btn-padding-x-xs;
+      }
+    }
+    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
+      padding: $input-btn-padding-y-xs $input-btn-padding-x-xs;
+    }
+    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-child {
+      padding-left: $input-btn-padding-x-xs * 3;
+    }
+    .ng-clear-wrapper {
+      width: 12px !important;
+      .ng-clear {
+        @include font-size($font-size-xs);
+      }
+    }
+  }
+  &.ng-select-sm {
+    .ng-select-container {
+      height: 24px !important;
+      @include font-size($font-size-sm);
+      @include border-radius($border-radius-sm);
+      .ng-value-container {
+        padding-left: $input-btn-padding-x-sm;
+      }
+    }
+    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
+      padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
+    }
+    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-child {
+      padding-left: $input-btn-padding-x-sm * 2.5;
+    }
+    .ng-clear-wrapper {
+      width: 14px !important;
+      .ng-clear {
+        @include font-size($font-size-sm);
+      }
+    }
+  }
+  &.ng-select-lg {
+    .ng-select-container {
+      height: 39px !important;
+      @include font-size($font-size-lg);
+      @include border-radius($border-radius-lg);
+      .ng-value-container {
+        padding-left: $input-btn-padding-x-lg;
+      }
+    }
+    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
+      padding: $input-btn-padding-y-lg $input-btn-padding-x-lg;
+    }
+    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-child {
+      padding-left: $input-btn-padding-x-lg * 2;
+    }
+    .ng-clear-wrapper {
+      width: 18px !important;
+      .ng-clear {
+        @include font-size($font-size-lg);
+      }
+    }
+  }
+
+  .ng-select-bottom {
+    button {
+      margin-right: 5px;
+    }
+  }
+  &-multiple {
+    .ng-select-container .ng-value-container .ng-value {
+      background-color: rgba(0,0,0, 0.08) !important;
+      .ng-value-icon {
+        &.left {
+          border-right: 1px solid rgba(0,0,0, 0.1) !important;
+        }
+        &:hover {
+          background-color: rgba(0,0,0, 0.1) !important;
+        }
+      }
+    }
+  }
+}
+
+/****************************** EN: Ng-select *************************************************/
 
 /****************************** ST: Mat-chips *************************************************/
 .chips {
