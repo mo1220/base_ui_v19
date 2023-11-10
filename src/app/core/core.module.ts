@@ -30,8 +30,7 @@ import { NotificationService, ErrNotificationComponent } from './notifications/n
 import { SettingsEffects } from './settings/settings.effects';
 import {
   selectSettingsLanguage,
-  selectEffectiveTheme,
-  selectSettingsStickyHeader
+  selectEffectiveTheme
 } from './settings/settings.selectors';
 import { COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
@@ -65,9 +64,7 @@ export {
   NotificationService,
   selectEffectiveTheme,
   selectSettingsLanguage,
-  selectSettingsStickyHeader
 };
-
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(
     http,
@@ -77,70 +74,70 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-    imports: [
-      // angular
-      CommonModule,
-      HttpClientModule,
-      FormsModule,
-      MatSnackBarModule,
-      MatIconModule,
-      ToastrModule.forRoot({
-          // closeButton: true,
-          timeOut: 8000,
-          extendedTimeOut: 1500,
-          positionClass: 'toast-bottom-right',
-          preventDuplicates: true,
-          progressBar: true,
-          closeButton: true,
-          toastClass: 'toast toast-bootstrap-compatibility-fix'
+  imports: [
+    // angular
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    MatSnackBarModule,
+    MatIconModule,
+    ToastrModule.forRoot({
+      // closeButton: true,
+      timeOut: 8000,
+      extendedTimeOut: 1500,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      progressBar: true,
+      closeButton: true,
+      toastClass: 'toast toast-bootstrap-compatibility-fix'
+    }),
+    // ngrx
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreRouterConnectingModule.forRoot(),
+    EffectsModule.forRoot([
+      AuthEffects,
+      SettingsEffects
+    ]),
+    environment.production
+      ? []
+      : StoreDevtoolsModule.instrument({
+        name: 'ENCORE DP'
       }),
-      // ngrx
-      StoreModule.forRoot(reducers, { metaReducers }),
-      StoreRouterConnectingModule.forRoot(),
-      EffectsModule.forRoot([
-          AuthEffects,
-          SettingsEffects
-      ]),
-      environment.production
-          ? []
-          : StoreDevtoolsModule.instrument({
-              name: 'ENCORE DP'
-          }),
-      // 3rd party
-      TranslateModule.forRoot({
-          loader: {
-              provide: TranslateLoader,
-              useFactory: HttpLoaderFactory,
-              deps: [HttpClient]
-          }
-      })
-    ],
-    declarations: [
-      ErrNotificationComponent
-    ],
-    providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
-        { provide: ErrorHandler, useClass: AppErrorHandler },
-        { provide: RouterStateSerializer, useClass: CustomSerializer },
-        { provide: COMPOSITION_BUFFER_MODE, useValue: false }
-    ],
-    exports: [
-      // angular
-      FormsModule,
-      // material
-      MatSnackBarModule,
-      MatIconModule,
-      // 3rd party
-      TranslateModule,
-      ToastrModule,
-      ErrNotificationComponent
-    ]
+    // 3rd party
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
+  ],
+  declarations: [
+    ErrNotificationComponent
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    { provide: ErrorHandler, useClass: AppErrorHandler },
+    { provide: RouterStateSerializer, useClass: CustomSerializer },
+    { provide: COMPOSITION_BUFFER_MODE, useValue: false }
+  ],
+  exports: [
+    // angular
+    FormsModule,
+    // material
+    MatSnackBarModule,
+    MatIconModule,
+    // 3rd party
+    TranslateModule,
+    ToastrModule,
+    ErrNotificationComponent
+  ]
 })
 export class CoreModule {
   constructor(
     @Optional()
     @SkipSelf()
-    parentModule: CoreModule
+      parentModule: CoreModule
   ) {
     if (parentModule) {
       throw new Error('CoreModule is already loaded. Import only in AppModule');

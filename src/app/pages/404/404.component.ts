@@ -1,18 +1,12 @@
-import { AfterViewInit, Component, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
+import { Component, ViewEncapsulation} from '@angular/core';
+import { environment as env } from '../../../environments/environment';
+
 @Component({
-  selector: '404',
+  selector: 'page-not-found',
   templateUrl: './404.template.html',
+  styleUrls: ['./404.style.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PageNotFoundComponent implements AfterViewInit, OnDestroy {
-  constructor(
-    private translate: TranslateService,
-    private router: Router,
-  ) { }
-
-  ngAfterViewInit(): void { }
-
-  ngOnDestroy(): void { }
+export class PageNotFoundComponent {
+  env = env;
 }

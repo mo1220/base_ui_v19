@@ -68,7 +68,8 @@ ButtonsModule,
 
 // angular-tree-component
 @import '~@circlon/angular-tree-component/css/angular-tree-component.css';
-
+// angular2-draggable
+@import 'node_modules/angular2-draggable/css/resizable.min.css';
 // Ng-select
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
@@ -2889,7 +2890,7 @@ input[type="radio"].mgr:checked:before {
 .ng-resizable-handle.ng-resizable-e {
   background: #CCC6;
   width: 4px;
-  right: -2px;
+  right: 0;
 
   &:before {
     content: '';
@@ -2900,19 +2901,18 @@ input[type="radio"].mgr:checked:before {
     height: 24px;
     background: #AAA;
     transform: translateY(-50%);
-
   }
 
   &:hover {
-    background: rgba($primary, .2);
+    background: rgba($gray-dark, .2);
     &:before {
-      background: $primary;
+      background: $gray-dark;
     }
   }
   &:active {
-    background: rgba($primary, .5);
+    background: rgba($gray-dark, .5);
     &:before {
-      background: $primary;
+      background: $gray-dark;
     }
   }
 }
