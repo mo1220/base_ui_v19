@@ -97,8 +97,10 @@ $input-btn-padding-x-lg:      1rem !default;
 
 //$input-line-height:           $line-height-base !default;
 $line-height-base:            1.5 !default;
+$line-height-xs:              1.0 !default;
 $line-height-sm:              1.25 !default;
 $line-height-lg:              2 !default;
+$line-height-xl:              2.5 !default;
 
 $border-width:                1px !default;
 $input-height-border:         $border-width * 2 !default;
@@ -111,7 +113,7 @@ $btn-padding: .5rem !default; // 기본 icon padding
 $btn-padding-xl: $btn-padding * 1.5;
 $btn-padding-lg: $btn-padding * 1.2;
 $btn-padding-sm: $btn-padding * .8;
-$btn-padding-xs: $btn-padding;
+$btn-padding-xs: $btn-padding * .7;
 $input-btn-focus-width: .12rem !default;
 $btn-mat-width: 40px !default; // mat-icon-button 기본 너바
 $btn-mat-width-lg: 48px !default; // mat-icon-button 기본 너바
