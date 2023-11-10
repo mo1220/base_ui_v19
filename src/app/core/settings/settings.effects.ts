@@ -4,7 +4,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
-import { combineLatest, interval, merge, of } from 'rxjs';
+import { interval, merge, of } from 'rxjs';
 import {
   tap,
   withLatestFrom,
@@ -13,33 +13,20 @@ import {
   mapTo,
   filter
 } from 'rxjs/operators';
-
 import { selectSettingsState } from '../core.state';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { AnimationsService } from '../animations/animations.service';
 import { TitleService } from '../title/title.service';
-
-import {
-  actionSettingsChangeAnimationsElements,
-  actionSettingsChangeAnimationsPage,
-  actionSettingsChangeAnimationsPageDisabled,
-  actionSettingsChangeAutoNightMode,
-  actionSettingsChangeLanguage,
-  actionSettingsChangeTheme,
-  actionSettingsChangeStickyHeader,
-  actionSettingsChangeHour, actionGotoTop
-} from './settings.actions';
+import { SettingActions } from './settings.actions';
 import {
   selectEffectiveTheme,
-  selectSettingsLanguage,
-  selectPageAnimations,
-  selectElementsAnimations
+  selectSettingsLanguage
 } from './settings.selectors';
 import { State } from './settings.model';
 
 export const SETTINGS_KEY = 'SETTINGS';
 
-const INIT = of('anms-init-effect-trigger');
+const INIT = of('dtk-init-effect-trigger');
 
 @Injectable()
 export class SettingsEffects {
@@ -53,27 +40,21 @@ export class SettingsEffects {
     private animationsService: AnimationsService,
     private translateService: TranslateService
   ) {}
-
   changeHour = createEffect(() =>
     interval(60_000).pipe(
       mapTo(new Date().getHours()),
       distinctUntilChanged(),
-      map(hour => actionSettingsChangeHour({ hour }))
+      map(hour => SettingActions.hour({ hour }))
     )
   );
-
   persistSettings = createEffect(
     () =>
       this.actions$.pipe(
         ofType(
-          actionSettingsChangeAnimationsElements,
-          actionSettingsChangeAnimationsPage,
-          actionSettingsChangeAnimationsPageDisabled,
-          actionSettingsChangeAutoNightMode,
-          actionSettingsChangeLanguage,
-          actionSettingsChangeStickyHeader,
-          actionSettingsChangeTheme,
-          actionGotoTop
+          SettingActions.autoNightMode,
+          SettingActions.language,
+          SettingActions.theme,
+          SettingActions.goToTop,
         ),
         withLatestFrom(this.store.pipe(select(selectSettingsState))),
         tap(([action, settings]) =>
@@ -82,37 +63,9 @@ export class SettingsEffects {
       ),
     { dispatch: false }
   );
-
-  updateRouteAnimationType = createEffect(
-    () =>
-      merge(
-        INIT,
-        this.actions$.pipe(
-          ofType(
-            actionSettingsChangeAnimationsElements,
-            actionSettingsChangeAnimationsPage
-          )
-        )
-      ).pipe(
-        withLatestFrom(
-          combineLatest([
-            this.store.pipe(select(selectPageAnimations)),
-            this.store.pipe(select(selectElementsAnimations))
-          ])
-        ),
-        tap(([action, [pageAnimations, elementsAnimations]]) =>
-          this.animationsService.updateRouteAnimationType(
-            pageAnimations,
-            elementsAnimations
-          )
-        )
-      ),
-    { dispatch: false }
-  );
-
   updateTheme = createEffect(
     () =>
-      merge(INIT, this.actions$.pipe(ofType(actionSettingsChangeTheme))).pipe(
+      merge(INIT, this.actions$.pipe(ofType(SettingActions.theme))).pipe(
         withLatestFrom(this.store.pipe(select(selectEffectiveTheme))),
         tap(([action, effectiveTheme]) => {
           const classList = this.overlayContainer.getContainerElement()
@@ -142,7 +95,7 @@ export class SettingsEffects {
   setTitle = createEffect(
     () =>
       merge(
-        this.actions$.pipe(ofType(actionSettingsChangeLanguage)),
+        this.actions$.pipe(ofType(SettingActions.language)),
         this.router.events.pipe(filter(event => event instanceof ActivationEnd))
       ).pipe(
         tap(() => {
