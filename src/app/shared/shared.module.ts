@@ -79,7 +79,8 @@ import { ResizedEventModule } from './resized-event/angular-resized-event.module
 import { DtkSliderComponent } from "./dtk-slider/dtk-slider";
 import { DtkMatSliderComponent } from "./dtk-mat-slider/dtk-mat-slider";
 import 'ag-grid-enterprise';
-import { AngularDraggableModule } from 'angular2-draggable'; // Drag 하여 사이즈 변경시 사용
+import { AngularDraggableModule } from 'angular2-draggable';
+import {GnbComponent, GnbItemComponent} from "./gnb/gnb.component"; // Drag 하여 사이즈 변경시 사용
 
 @NgModule({
   imports: [
@@ -167,6 +168,8 @@ import { AngularDraggableModule } from 'angular2-draggable'; // Drag 하여 사�
     TreeSelectFilterComponent, // Tree Filter
     DtkSliderComponent, // Slider Component
     DtkMatSliderComponent, // Slider Material Component
+    GnbComponent, // Global Navigation
+    GnbItemComponent, // Global Navigation Item
   ],
   exports: [
     CommonModule,
@@ -232,6 +235,8 @@ import { AngularDraggableModule } from 'angular2-draggable'; // Drag 하여 사�
     DtkMatSliderComponent, // Slider Material Component
     TreeDirComponent, // 트리 디렉토리 구조
     TreeSelectFilterComponent, // 트리 필터
+    GnbComponent, // Global Navigation
+    GnbItemComponent, // Global Navigation Item
 
     //3rd Party
     LaddaModule,

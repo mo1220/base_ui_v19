@@ -3,19 +3,18 @@ import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'aside-menu',
-  templateUrl: './aside-menu.template.html',
-  styleUrls: ['./aside-menu.style.scss'],
+  selector: 'gnb',
+  templateUrl: './gnb.template.html',
+  styleUrls: ['./gnb.style.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsideMenuComponent implements OnInit {
+export class GnbComponent implements OnInit {
 
   @Input() items:any = [];
   @Input() bindLabel:string = '';
   @Input() bindValue:string = '';
   @Input() currentUrls:any = [];
   @Input() activeIndex: number[] = [];
-  @Output() search: EventEmitter<any> = new EventEmitter();
 
   val: string = '';
   @Input()
@@ -31,30 +30,30 @@ export class AsideMenuComponent implements OnInit {
   active:boolean = false;
 
   label:string = '';
-  constructor() {}
-
+  constructor( private translate: TranslateService) {}
   ngOnInit() {
     this.bindLabel = this.bindLabel ? this.bindLabel : 'name';
     this.label = this.selectItem ? this.selectItem[this.bindLabel] : '';
   }
-
   valueChanged (e: any) {
     this.val = e;
     this.valueChange.emit(this.value);
   }
 
   selectedEvent(e: any) {
-    this.valueChanged(e);
+    const value = this.selectItem ? this.bindValue && this.bindValue !== '' ? this.selectItem[this.bindValue] : this.selectItem : '';
+    this.valueChanged(value);
   }
 }
 
+
 @Component({
-  selector: 'aside-menu-item',
-  templateUrl: './aside-menu-item.template.html',
-  styleUrls: ['./aside-menu.style.scss'],
+  selector: 'gnb-item',
+  templateUrl: './gnb-item.template.html',
+  styleUrls: ['./gnb.style.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsideMenuItemComponent implements OnInit, OnChanges {
+export class GnbItemComponent implements OnInit, OnChanges {
   @Input() depth: number = 0;
   @Input() items: any = [];
   @Input() bindLabel:string = '';
@@ -65,6 +64,8 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
   @Input() parentIndex:number;
   @Input() activeIndex: number[] = [];
   @Input() currentIndex:number[] = [];
+
+  rippleColor = 'rgba(0,123,255,0.05)';
   currentUrl = '';
   _currentUrls: any = [];
   @Input()
@@ -77,13 +78,20 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
     url.shift();
     this.currentUrl = '/' + url.join('/');
   }
+
   label:string = '';
   value:string = '';
-  constructor(private translate: TranslateService) { }
+  lang = 'kr';
+  constructor(
+    private translate: TranslateService
+  ) {
+
+  }
   ngOnInit() {
     this.label = this.bindLabel;
     this.value = this.bindValue;
   }
+
   ngOnChanges(changes: SimpleChanges | any) {
 
   }
@@ -97,6 +105,7 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
       this.selected.emit(e);
     }
   }
+
   getIndex(i:number) {
     return [ ...this.currentIndex, i ];
   }

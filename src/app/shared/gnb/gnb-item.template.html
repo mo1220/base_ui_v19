@@ -1,0 +1,28 @@
+<ul>
+  <li *ngFor="let menu of items; index as i;">
+    <button matRipple [matRippleColor]="rippleColor">
+      <mat-icon class="md-16" *ngIf="menu.icon && menu.icon !== ''">
+        {{menu.icon}}
+      </mat-icon>
+      {{menu[lang]}}
+      <i class="fa"
+         [class.fa-angle-down]="root"
+         [class.fa-caret-right]="!root"
+         *ngIf="menu.children && menu.children.length > 0"></i>
+    </button>
+    <ng-container *ngIf="menu.children && menu.children.length > 0">
+      <gnb-item class="gnb-submenu"
+                [depth]="depth + 1"
+                [currentIndex]="getIndex(i)"
+                [activeIndex]="activeIndex"
+                [parentIndex]="i"
+                [bindLabel]="bindLabel"
+                [currentUrls]="currentUrls"
+                [bindValue]="bindValue"
+                [selectItem]="selectItem"
+                [items]="menu.children"
+                [root]="false"
+                (selected)="selectedEmit($event)"></gnb-item>
+    </ng-container>
+  </li>
+</ul>
