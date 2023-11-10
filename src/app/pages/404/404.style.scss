@@ -20,6 +20,7 @@ $bg: #daf6fe;
   text-align: center;
   background: url('/assets/images/bg/login-bg.jpg') center center no-repeat;
   background-size: cover;
+  user-select: none;
   &-wrap {
     h3 {
       font-size: 24px;
@@ -40,8 +41,6 @@ $bg: #daf6fe;
     /*img {
       height: 150px;
     }*/
-
-
     .error {
       display: flex;
       flex-direction: row;
@@ -53,7 +52,7 @@ $bg: #daf6fe;
       font-weight: 900;
       font-size: 15rem;
       line-height: 1;
-      color: $gray-dark;
+      color: $blue;
     }
 
     .illustration {
@@ -69,7 +68,7 @@ $bg: #daf6fe;
       width: 12.2rem;
       height: 11.4rem;
       border-radius: 50%;
-      background-color: $gray-dark;
+      background-color: $blue;
     }
 
     .clip {
@@ -90,7 +89,7 @@ $bg: #daf6fe;
       transform: translateX(-50%);
       width: 9.2rem;
       height: 12.4rem;
-      border: 0.3rem solid $gray-dark;
+      border: 0.3rem solid $blue;
       background-color: $white;
       border-radius: 0.8rem;
 
@@ -102,7 +101,7 @@ $bg: #daf6fe;
         width: 1.4rem;
         height: 1rem;
         background-color: $bg;
-        border-bottom: 0.3rem solid $gray-dark;
+        border-bottom: 0.3rem solid $blue;
         transform: rotate(45deg);
       }
     }
@@ -115,7 +114,7 @@ $bg: #daf6fe;
     .eyes {
       position: absolute;
       top: 0;
-      left: 2.1rem;
+      left: 2rem;
       width: 4.6rem;
       height: 0.8rem;
     }
@@ -126,7 +125,7 @@ $bg: #daf6fe;
       width: 0.8rem;
       height: 0.8rem;
       border-radius: 50%;
-      background-color: $gray-dark;
+      background-color: $blue;
       animation-name: eye;
       animation-duration: 4s;
       animation-iteration-count: infinite;
@@ -165,7 +164,7 @@ $bg: #daf6fe;
       height: 0.2rem;
       border-radius: 0.1rem;
       transform: translateX(-50%);
-      background-color: $gray-dark;
+      background-color: $blue;
     }
   }
 }

@@ -1,52 +1,19 @@
-import { createAction, props } from '@ngrx/store';
-
+import { createActionGroup, props } from '@ngrx/store';
 import { Language } from './settings.model';
+// language: string; // 언어 선택
+// theme: string; // 테마 선택
+// autoNightMode: boolean; // 나이트 모드 여부 (나이트 모드시 18:00 이후엔 다크 모드)
+// nightTheme: string; // 나이트 테마
+// hour: number; // 시간
+// gotoTop?: boolean;  // 내부 페이지 Scroll Top 으로 이동시
 
-export const actionSettingsChangeLanguage = createAction(
-  '[Settings] Change Language',
-  props<{ language: Language }>()
-);
-
-export const actionSettingsChangeTheme = createAction(
-  '[Settings] Change Theme',
-  props<{ theme: string }>()
-);
-export const actionSettingsChangeAutoNightMode = createAction(
-  '[Settings] Change Auto Night Mode',
-  props<{ autoNightMode: boolean }>()
-);
-
-export const actionSettingsChangeStickyHeader = createAction(
-  '[Settings] Change Sticky Header',
-  props<{ stickyHeader: boolean }>()
-);
-
-export const actionSettingsChangeAnimationsPage = createAction(
-  '[Settings] Change Animations Page',
-  props<{ pageAnimations: boolean }>()
-);
-
-export const actionSettingsChangeAnimationsPageDisabled = createAction(
-  '[Settings] Change Animations Page Disabled',
-  props<{ pageAnimationsDisabled: boolean }>()
-);
-
-export const actionSettingsChangeAnimationsElements = createAction(
-  '[Settings] Change Animations Elements',
-  props<{ elementsAnimations: boolean }>()
-);
-export const actionSettingsChangeHour = createAction(
-  '[Settings] Change Hours',
-  props<{ hour: number }>()
-);
-
-export const actionSettingScrollTop = createAction(
-  '[Settings] Scroll Top',
-  props<{ scrollTop: number }>()
-);
-export const actionGotoTop = createAction(
-  '[Settings] Go To Top',
-  props<{ gotoTop: boolean }>()
-);
-
-
+export const SettingActions = createActionGroup({
+  source: 'Settings',
+  events: {
+    'Language': props<{ language: Language }>(),
+    'Theme': props<{ theme: string }>(),
+    'Auto Night Mode': props<{ autoNightMode: boolean }>(),
+    'Hour': props<{ hour: number }>(),
+    'Go To Top': props<{ gotoTop: boolean }>()
+  },
+});

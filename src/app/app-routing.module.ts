@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import {PageNotFoundComponent} from "./pages/404/404.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'pages/blank',
+    redirectTo: 'main',
     pathMatch: 'full'
   },
   {
@@ -112,7 +113,7 @@ const routes: Routes = [
   // },  // 초기 로그인
   {
     path: '**',
-    redirectTo: 'pages/404'
+    component: PageNotFoundComponent
   }
 ];
 
