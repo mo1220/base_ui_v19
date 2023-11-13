@@ -318,11 +318,7 @@ label.btn-split {
   }
 }
 
-
-.form-set { // form-label + form-control을 포함하는 그룹
-}
-
-.form-group { // form-control + clear-btn을 포함하는 그룹
+.form-group {
   height: 100%;
   position: relative;
   .clear-btn {
@@ -435,6 +431,63 @@ label.btn-split {
       padding: $input-btn-padding-y-lg*0.5 1px;
     }
   }
+
+  &.flex {
+    display: flex;
+    label {
+      margin-right: 8px;
+    }
+    input {
+      display: inline-block;
+      flex: 1;
+    }
+  }
+}
+
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  &:has(.form-group) {
+    align-items: end;
+  }
+  &:has(.form-group.flex) {
+    align-items: center;
+    .form-group.flex, button {
+      margin-bottom: 5px;
+    }
+    .form-group.flex {
+      &:has(.form-control.form-control-xs) {
+        padding-right: 8px;
+      }
+      &:has(.form-control.form-control-sm) {
+        padding-right: 10px;
+      }
+      &:has(.form-control) {
+        padding-right: 12px;
+      }
+      &:has(.form-control.form-control-lg) {
+        padding-right: 14px;
+      }
+    }
+  }
+
+  .form-group {
+    &:has(.form-control.form-control-xs) {
+      padding-right: 3px;
+    }
+    &:has(.form-control.form-control-sm) {
+      padding-right: 4px;
+    }
+    &:has(.form-control) {
+      padding-right: 6px;
+    }
+    &:has(.form-control.form-control-lg) {
+      padding-right: 8px;
+    }
+    button {
+      height: 100%;
+    }
+  }
 }
 
 
@@ -511,40 +564,40 @@ label.btn-split {
   //}
 
 
-  &-group {
-    & > * {
-      margin-bottom: 5px;
-      //&:last-child { margin-bottom: 0; }
-    }
-
-    &.flex {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: end;
-
-      & > * {
-        margin-bottom: 0;
-        margin-right: 5px;
-        &:last-child { margin-right: 0; }
-      }
-
-      &:has(.form-set.flex) {
-        align-items: center;
-        & > * {
-          margin-right: 10px;
-          &:last-child { margin-right: 0; }
-        }
-      }
-    }
-  }
+  //&-group {
+  //  & > * {
+  //    margin-bottom: 5px;
+  //    //&:last-child { margin-bottom: 0; }
+  //  }
+  //
+  //  &.flex {
+  //    display: flex;
+  //    flex-wrap: wrap;
+  //    align-items: end;
+  //
+  //    & > * {
+  //      margin-bottom: 0;
+  //      margin-right: 5px;
+  //      &:last-child { margin-right: 0; }
+  //    }
+  //
+  //    &:has(.form-set.flex) {
+  //      align-items: center;
+  //      & > * {
+  //        margin-right: 10px;
+  //        &:last-child { margin-right: 0; }
+  //      }
+  //    }
+  //  }
+  //}
 }
 
 
 label {
-  margin: 0 !important;
+  margin: 0;
   //height: 100%;
   /* form-label min-width min-${size} */
-  @each $size in 10, 20, 30, 40, 50, 60, 70, 80 {
+  @each $size in 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200 {
     &.min-#{$size} {
       min-width: $size + px !important;
     }
