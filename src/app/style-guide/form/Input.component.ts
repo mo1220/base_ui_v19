@@ -40,6 +40,29 @@ export class StyleGuideInputComponent implements AfterViewInit, OnDestroy {
   clearable:Array<string> = ['xsmall','small','default','large'];
   submitMsg:string = '';
 
+  sizeList = [ // 사이즈별 반복용
+    {
+      label: 'Xsmall',
+      class: 'form-control-xs',
+      buttonClass: 'btn-xs'
+    },
+    {
+      label: 'Small',
+      class: 'form-control-sm',
+      buttonClass: 'btn-sm'
+    },
+    {
+      label: 'Default',
+      class: '',
+      buttonClass: ''
+    },
+    {
+      label: 'Large',
+      class: 'form-control-lg',
+      buttonClass: 'btn-lg'
+    },
+  ]
+
   constructor(
     private cd: ChangeDetectorRef,
     private translate: TranslateService,

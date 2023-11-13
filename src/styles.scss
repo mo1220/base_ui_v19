@@ -445,6 +445,7 @@ ul, ol, dl {
 /****************************** EN: Breadcrumb *************************************************/
 .d-flex {
   //display: flex;
+  white-space: nowrap;
   &.row {
     flex-direction: row;
   }
@@ -1034,9 +1035,6 @@ input[type="radio"].mgr:checked:before {
 /****************************** EN: Mat-checkbox *************************************************/
 
 /****************************** ST: Ng-select *************************************************/
-.form-group {
-
-}
 .ng-select {
   margin-bottom: 0;
   &.ng-select-default {

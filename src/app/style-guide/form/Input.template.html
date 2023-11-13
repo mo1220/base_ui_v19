@@ -5,110 +5,113 @@
     <div class="style-guide-example">
       <div class="form-group">
         <label for="input-basic">Basic Input</label>
-        <input id="input-basic" class="form-control" [placeholder]="'placeholder.keyword_placeholder' | translate">
+        <input id="input-basic" class="form-control"
+               [placeholder]="'placeholder.keyword_placeholder' | translate">
       </div>
       <div class="form-group">
         <label for="input-basic-disalbed">Basic Input Disabled</label>
-        <input id="input-basic-disalbed" class="form-control" [disabled]="true" [placeholder]="'placeholder.keyword_placeholder' | translate">
+        <input id="input-basic-disalbed" class="form-control"
+               [disabled]="true"
+               [placeholder]="'placeholder.keyword_placeholder' | translate">
       </div>
       <div class="form-group">
         <label for="input-basic-readonly">Basic Input Readonly</label>
-        <input id="input-basic-readonly" class="form-control" [readonly]="true" [placeholder]="'placeholder.keyword_placeholder' | translate">
+        <input id="input-basic-readonly" class="form-control"
+               [readonly]="true"
+               [placeholder]="'placeholder.keyword_placeholder' | translate">
       </div>
     </div>
     <div class="style-guide-example">
       <div class="form-group d-flex">
-        <label for="input-basic">Basic Input</label>
-        <input id="input-basic" class="form-control" [placeholder]="'placeholder.keyword_placeholder' | translate">
+        <label for="input-basic" class="min-150">Basic Input</label>
+        <input id="input-basic" class="form-control"
+               [placeholder]="'placeholder.keyword_placeholder' | translate">
       </div>
-      <div class="form-group">
-        <label for="input-basic-disalbed">Basic Input Disabled</label>
-        <input id="input-basic-disalbed" class="form-control" [disabled]="true" [placeholder]="'placeholder.keyword_placeholder' | translate">
+      <div class="form-group d-flex">
+        <label for="input-basic-disalbed" class="min-150">Basic Input Disabled</label>
+        <input id="input-basic-disalbed" class="form-control"
+               [disabled]="true"
+               [placeholder]="'placeholder.keyword_placeholder' | translate">
       </div>
-      <div class="form-group">
-        <label for="input-basic-readonly">Basic Input Readonly</label>
-        <input id="input-basic-readonly" class="form-control" [readonly]="true" [placeholder]="'placeholder.keyword_placeholder' | translate">
+      <div class="form-group d-flex">
+        <label for="input-basic-readonly" class="min-150">Basic Input Readonly</label>
+        <input id="input-basic-readonly" class="form-control"
+               [readonly]="true"
+               [placeholder]="'placeholder.keyword_placeholder' | translate">
       </div>
     </div>
 
     <h3 #anchor #size>Size</h3>
     <p>크기 별 input</p>
     <div class="style-guide-example">
-      <div class="form-group d-flex">
-        <label for="input-xs" class="min-50">XSmall</label>
-        <input id="input-xs" class="form-control form-control-xs" placeholder="form-control-xs">
-        <button type="button" class="btn btn-primary btn-xs">XSmall</button>
+      <div class="form-group d-flex" *ngFor="let size of sizeList">
+        <label class="min-50">{{size.label}}</label>
+        <input class="form-control"
+               [ngClass]="size.class"
+               [placeholder]="size.class || 'form-control-default'">
+        <button type="button" class="btn btn-primary"
+                [ngClass]="size.buttonClass">
+          {{size.label}}
+        </button>
       </div>
-      <div class="form-group d-flex">
-        <label for="input-sm" class="min-50">Small</label>
-        <input id="input-sm" class="form-control form-control-sm" placeholder="form-control-sm">
-        <button type="button" class="btn btn-primary btn-sm">Small</button>
-      </div>
-      <div class="form-group d-flex">
-        <label for="input-default" class="min-50">Default</label>
-        <input id="input-default" class="form-control" placeholder="form-control">
-        <button type="button" class="btn btn-primary">Default</button>
-      </div>
-      <div class="form-group d-flex">
-        <label for="input-large" class="min-50">Large</label>
-        <input id="input-large" class="form-control form-control-lg" placeholder="form-control-lg">
-        <button type="button" class="btn btn-primary btn-lg">Large</button>
-      </div>
+      <!--복붙용
+        <div class="form-group d-flex">
+          <label class="min-50">Label</label>
+          <input class="form-control form-control-sm"
+                 placeholder="입력해주세요.">
+          <button type="button" class="btn btn-primary btn-sm">Button</button>
+        </div>
+      -->
     </div>
 
     <h3 #anchor #clear>Clearable</h3>
     <p>입력받은 keyword가 있을 경우 클리어가 가능한 input<br>
+      div.form-group으로 묶으면 안에 있는 form-control의 size에 따라 clear-btn 사이즈 자동 변환<br>
       <code><b>[group 순서]</b>
         div.form-group > input.form-control + span.clear-btn
       </code>
     </p>
     <div class="msg info">clear-btn과 input을 반드시 form-group으로 묶어야 함</div>
     <div class="style-guide-example d-flex col-center">
-      <div class="form-group">
-        <input id="input-clear-xs" class="form-control form-control-xs" [(ngModel)]="clearable[0]">
+      <div class="form-group" *ngFor="let size of sizeList; let i = index">
+        <input class="form-control"
+               [ngClass]="size.class"
+               [placeholder]="size.class || 'form-control-default'"
+               [(ngModel)]="clearable[i]">
         <span class="clear-btn"
-              *ngIf="clearable[0].trim() !== ''"
-              (click)="clearable[0] = ''">
+              *ngIf="clearable[i].trim() !== ''"
+              (click)="clearable[i] = ''">
           <mat-icon class="mat-icon">close</mat-icon>
         </span>
       </div>
+      <!--복붙용
       <div class="form-group">
-        <input id="input-clear-sm" class="form-control form-control-sm" [(ngModel)]="clearable[1]">
+        <input class="form-control form-control-sm"
+               placeholder="입력해주세요.
+               [(ngModel)]="keyword">
         <span class="clear-btn"
-              *ngIf="clearable[1].trim() !== ''"
-              (click)="clearable[1] = ''">
+              *ngIf="keyword.trim() !== ''"
+              (click)="keyword = ''">
           <mat-icon class="mat-icon">close</mat-icon>
         </span>
       </div>
-      <div class="form-group">
-        <input id="input-clear-default" class="form-control" [(ngModel)]="clearable[2]">
-        <span class="clear-btn"
-              *ngIf="clearable[2].trim() !== ''"
-              (click)="clearable[2] = ''">
-          <mat-icon class="mat-icon">close</mat-icon>
-        </span>
-      </div>
-      <div class="form-group">
-        <input id="input-clear-lg" class="form-control form-control-lg" [(ngModel)]="clearable[3]">
-        <span class="clear-btn"
-              *ngIf="clearable[3].trim() !== ''"
-              (click)="clearable[3] = ''">
-          <mat-icon class="mat-icon">close</mat-icon>
-        </span>
-      </div>
+      -->
     </div>
 
     <h3 #anchor #validation>Validation</h3>
     <p>필수 입력 input validation check<br>
+      div.form-group으로 묶으면 안에 있는 form-control의 size에 따라 valid-feedback 사이즈 자동 변환<br>
       <code><b>[group 순서]</b>
         div.form-group > input.form-control + span.valid-feedback(invalid-feedback)
       </code>
     </p>
     <div class="msg info">'success'입력 시 is-valid 클래스 추가 (clear-btn 조건과 valid 조건이 충돌하지 않게 주의)</div>
     <div class="style-guide-example d-flex col-center">
-      <div class="form-group">
-        <label class="required">Xsmall</label>
-        <input class="form-control form-control-xs" placeholder="success 입력 시 valid"
+      <div class="form-group" *ngFor="let size of sizeList; let i = index">
+        <label class="required">{{size.label}}</label>
+        <input class="form-control"
+               placeholder="success 입력 시 valid"
+               [className]="size.class"
                [ngClass]="{'is-valid': valid == 'success'}"
                [(ngModel)]="valid">
         <span class="clear-btn"
@@ -119,164 +122,164 @@
         <span class="valid-feedback"
               [style.display]="valid == 'success' ? 'block': 'none'">검증 완료</span>
       </div>
+      <!--복붙용
       <div class="form-group">
-        <label class="required">small</label>
-        <input class="form-control form-control-sm" placeholder="success 입력 시 valid"
-               [ngClass]="{'is-valid': valid == 'success'}"
-               [(ngModel)]="valid">
+        <label class="required">Label</label>
+        <input class="form-control form-control-sm"
+               placeholder="success 입력 시 valid"
+               [ngClass]="{'is-valid': keyword == 'success'}"
+               [(ngModel)]="keyword">
         <span class="clear-btn"
-              *ngIf="valid !== 'success' && valid !== ''"
-              (click)="valid = ''">
+              *ngIf="keyword !== 'success' && keyword !== ''"
+              (click)="keyword = ''">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
         <span class="valid-feedback"
-              [style.display]="valid == 'success' ? 'block': 'none'">검증 완료</span>
+              [style.display]="keyword == 'success' ? 'block': 'none'">검증 완료</span>
       </div>
-      <div class="form-group">
-        <label class="required">Default</label>
-        <input class="form-control" placeholder="success 입력 시 valid"
-               [ngClass]="{'is-valid': valid == 'success'}"
-               [(ngModel)]="valid">
-        <span class="clear-btn"
-              *ngIf="valid !== 'success' && valid !== ''"
-              (click)="valid = ''">
-          <mat-icon class="mat-icon">close</mat-icon>
-          </span>
-        <span class="valid-feedback"
-              [style.display]="valid == 'success' ? 'block': 'none'">검증 완료</span>
-      </div>
-      <div class="form-group">
-        <label class="required">Large</label>
-        <input class="form-control form-control-lg" placeholder="success 입력 시 valid"
-               [ngClass]="{'is-valid': valid == 'success'}"
-               [(ngModel)]="valid">
-        <span class="clear-btn"
-              *ngIf="valid !== 'success' && valid !== ''"
-              (click)="valid = ''">
-          <mat-icon class="mat-icon">close</mat-icon>
-          </span>
-        <span class="valid-feedback"
-              [style.display]="valid == 'success' ? 'block': 'none'">검증 완료</span>
-      </div>
+      -->
     </div>
 
     <div class="msg info">입력 없을 시 is-invalid 클래스 추가</div>
     <div class="style-guide-example d-flex col-center">
-      <div class="form-group">
-        <label class="required">Xsmall</label>
-        <input class="form-control form-control-xs" placeholder="키워드 입력 시 사라짐"
+      <div class="form-group" *ngFor="let size of sizeList; let i = index">
+        <label class="required">{{size.label}}</label>
+        <input class="form-control"
+               placeholder="키워드 입력 시 사라짐"
+               [className]="size.class"
                [ngClass]="{'is-invalid': invalid == ''}"
                [(ngModel)]="invalid">
         <span class="clear-btn"
-              *ngIf="invalid !== ''"
+              *ngIf="invalid !== 'success' && invalid !== ''"
               (click)="invalid = ''">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
         <span class="invalid-feedback"
-              [style.display]="invalid == '' ? 'block': 'none'">필수 입력입니다</span>
+              [style.display]="invalid == '' ? 'block': 'none'">필수 입력</span>
       </div>
+      <!--복붙용
       <div class="form-group">
-        <label class="required">Small</label>
-        <input class="form-control form-control-sm" placeholder="키워드 입력 시 사라짐"
-               [ngClass]="{'is-invalid': invalid == ''}"
-               [(ngModel)]="invalid">
+        <label class="required">Label</label>
+        <input class="form-control form-control-sm"
+               placeholder="success 입력 시 valid"
+               [ngClass]="{'is-valid': keyword == 'success'}"
+               [(ngModel)]="keyword">
         <span class="clear-btn"
-              *ngIf="invalid !== ''"
-              (click)="invalid = ''">
+              *ngIf="keyword !== 'success' && keyword !== ''"
+              (click)="keyword = ''">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
-        <span class="invalid-feedback"
-              [style.display]="invalid == '' ? 'block': 'none'">필수 입력입니다</span>
+        <span class="valid-feedback"
+              [style.display]="keyword == 'success' ? 'block': 'none'">검증 완료</span>
       </div>
-      <div class="form-group">
-        <label class="required">Default</label>
-        <input class="form-control" placeholder="키워드 입력 시 사라짐"
-               [ngClass]="{'is-invalid': invalid == ''}"
-               [(ngModel)]="invalid">
-        <span class="clear-btn"
-              *ngIf="invalid !== ''"
-              (click)="invalid = ''">
-          <mat-icon class="mat-icon">close</mat-icon>
-          </span>
-        <span class="invalid-feedback"
-              [style.display]="invalid == '' ? 'block': 'none'">필수 입력입니다</span>
-      </div>
-      <div class="form-group">
-        <label class="required">Large</label>
-        <input class="form-control form-control-lg" placeholder="키워드 입력 시 사라짐"
-               [ngClass]="{'is-invalid': invalid == ''}"
-               [(ngModel)]="invalid">
-        <span class="clear-btn"
-              *ngIf="invalid !== ''"
-              (click)="invalid = ''">
-          <mat-icon class="mat-icon">close</mat-icon>
-          </span>
-        <span class="invalid-feedback"
-              [style.display]="invalid == '' ? 'block': 'none'">필수 입력입니다</span>
-      </div>
+      -->
     </div>
 
     <h3 #anchor #group>Group</h3>
-    <p>다수의 input group</p>
+    <p>다수의 input group의 layout</p>
+    <div class="msg info">margin-bottom 추가 시 클래스에 mb-1, mb-2, mb-3 추가</div>
     <div class="style-guide-example">
-      <div class="form-group" style="margin-bottom: 20px">
-        <div class="form-set">
-          <label>label1</label>
-          <input class="form-control form-control-sm" placeholder="input">
-        </div>
-        <div class="form-set">
-          <label>label2</label>
-          <input class="form-control form-control-sm" placeholder="input">
-        </div>
-        <div class="form-set">
-          <label>label3</label>
-          <input class="form-control form-control-sm" placeholder="input">
-        </div>
-        <button type="button" class="btn btn-sm btn-primary btn-block">Default</button>
+      <div class="form-group mb-1">
+        <label>label1</label>
+        <input class="form-control form-control-sm" placeholder="[mb-1] margin-bottom: 0.25rem !important">
       </div>
-
-      <div class="form-group" style="margin-bottom: 20px">
-        <div class="form-set flex">
-          <label>label1</label>
-          <input class="form-control form-control-sm" placeholder="input">
-        </div>
-        <div class="form-set flex">
-          <label>label2</label>
-          <input class="form-control form-control-sm" placeholder="input">
-        </div>
-        <div class="form-set flex">
-          <label>label3</label>
-          <input class="form-control form-control-sm" placeholder="input">
-        </div>
-        <button type="button" class="btn btn-sm btn-primary btn-block">Default</button>
+      <div class="form-group mb-1">
+        <label>label2</label>
+        <input class="form-control form-control-sm" placeholder="[mb-1] margin-bottom: 0.25rem !important">
       </div>
+      <div class="form-group mb-1">
+        <label>label3</label>
+        <input class="form-control form-control-sm" placeholder="[mb-1] margin-bottom: 0.25rem !important">
+      </div>
+      <button type="button" class="btn btn-sm btn-primary btn-block">Default</button>
+    </div>
 
-      <div class="form-group flex" style="margin-bottom: 20px">
-        <div class="form-set">
+    <div class="msg info">label과 input을 가로로 정렬 시 div.form-group에 flex 클래스 추가</div>
+    <div class="style-guide-example">
+      <div class="form-group flex mb-2">
+        <label>label1</label>
+        <input class="form-control form-control-sm" placeholder="[mb-2] margin-bottom: 0.5rem !important">
+      </div>
+      <div class="form-group flex mb-2">
+        <label>label2</label>
+        <input class="form-control form-control-sm" placeholder="[mb-2] margin-bottom: 0.5rem !important">
+      </div>
+      <div class="form-group flex mb-2">
+        <label>label3</label>
+        <input class="form-control form-control-sm" placeholder="[mb-2] margin-bottom: 0.5rem !important">
+      </div>
+      <button type="button" class="btn btn-sm btn-primary btn-block">Default</button>
+    </div>
+
+    <div class="msg info">form-group을 가로로 정렬 시 div.form-grid로 묶기</div>
+    <div class="style-guide-example">
+      <div class="form-grid mb-3" *ngFor="let size of sizeList">
+        <div class="form-group">
           <label>label1</label>
-          <input class="form-control form-control-sm" placeholder="input">
+          <input class="form-control"
+                 [ngClass]="size.class"
+                 [placeholder]="size.label">
         </div>
-
-        <div class="form-set" *ngFor="let i of [2,3,4,5,6,7,8]"> <!--반복용-->
+        <div class="form-group" *ngFor="let i of [2,3,4,5,6]"> <!--반복용-->
           <label>label{{i}}</label>
-          <input class="form-control form-control-sm" placeholder="input">
+          <input class="form-control"
+                 [ngClass]="size.class"
+                 [placeholder]="size.label">
         </div>
-        <button type="button" class="btn btn-sm btn-primary">Default</button>
+        <button type="button" class="btn btn-primary" [ngClass]="size.buttonClass">{{size.label}}</button>
       </div>
+    </div>
 
-      <div class="form-group flex">
-        <div class="form-set flex">
+    <div class="msg info">form-group.flex를 가로로 정렬 시 div.form-grid로 묶기</div>
+    <div class="msg info">form-grid에서 각 form-group의 가로 사이즈 설정 시<br>
+      div.form-group에 col-md-N(12,6,4,3,2,1) 클래스를 추가<br>
+      * md뒤 숫자 N은 width: N/12를 뜻함</div>
+    <div class="style-guide-example">
+      <div class="form-grid mb-3" *ngFor="let size of sizeList">
+        <div class="form-group flex col-md-12">
           <label>label1</label>
-          <input class="form-control form-control-sm" placeholder="input">
+          <input class="form-control"
+                 [ngClass]="size.class"
+                 [placeholder]="'col-md-12 (100%)'">
         </div>
-        <div class="form-set flex" *ngFor="let i of [2,2,1,1,1,3]"> <!--반복용-->
-          <label>label{{i}}</label>
-          <input class="form-control form-control-sm" placeholder="input" [style.width]="i*100 + 'px'">
-
+        <div class="form-group flex col-md-6">
+          <label>label2</label>
+          <input class="form-control"
+                 [ngClass]="size.class"
+                 [placeholder]="'col-md-6 (50%)'">
         </div>
-        <button type="button" class="btn btn-sm btn-primary">Default</button>
+        <div class="form-group flex col-md-6">
+          <label>label3</label>
+          <input class="form-control"
+                 [ngClass]="size.class"
+                 [placeholder]="'col-md-6 (50%)'">
+        </div>
+        <div class="form-group flex col-md-4">
+          <label>label4</label>
+          <input class="form-control"
+                 [ngClass]="size.class"
+                 [placeholder]="'col-md-4 (33.33%)'">
+        </div>
+        <div class="form-group flex col-md-3">
+          <label>label5</label>
+          <input class="form-control"
+                 [ngClass]="size.class"
+                 [placeholder]="'col-md-3 (25%)'">
+        </div>
+        <div class="form-group flex col-md-2">
+          <label>label6</label>
+          <input class="form-control"
+                 [ngClass]="size.class"
+                 [placeholder]="'col-md-2 (16.66%)'">
+        </div>
+        <div class="form-group flex col-md-1">
+          <label>label7</label>
+          <input class="form-control"
+                 [ngClass]="size.class"
+                 [placeholder]="'col-md-1 (8.33%)'">
+        </div>
+        <button type="button" class="btn btn-primary" [ngClass]="size.buttonClass">{{size.label}}</button>
       </div>
-
     </div>
 
   </div>
