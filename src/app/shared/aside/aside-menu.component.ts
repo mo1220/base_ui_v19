@@ -56,7 +56,18 @@ export class AsideMenuComponent implements OnInit {
 })
 export class AsideMenuItemComponent implements OnInit, OnChanges {
   @Input() depth: number = 0;
-  @Input() items: any = [];
+  _items: any = [];
+  @Input()
+  get items(): any {
+    return this._items;
+  }
+  set items(value:any) {
+    this._items = value.map((d:any, i:number) => {
+      return {
+
+      }
+    });
+  }
   @Input() bindLabel:string = '';
   @Input() bindValue:string = '';
   @Input() root:boolean | any = false;
