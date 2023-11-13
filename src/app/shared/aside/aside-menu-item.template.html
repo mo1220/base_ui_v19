@@ -4,6 +4,7 @@
       class="aside-menu-item sub-menu"
       [class.open]="compairIndex(i)">
     <div class="aside-item"
+         [style.padding-left]="depth === 0 ? '10px' : (depth * 25) + 'px'"
          [class.active]="compairIndex(i)"
          matRipple
          (click)="selectValue(menu, i)">
@@ -17,7 +18,7 @@
     <div class="sub-menu-list"
          *ngIf="menu.children && menu.children.length > 0">
       <aside-menu-item [depth]="depth + 1"
-                       [currentIndex]="getIndex(i)"
+                       [currentIndex]="menu.idx"
                        [activeIndex]="activeIndex"
                        [parentIndex]="i"
                        [bindLabel]="bindLabel"

@@ -216,7 +216,68 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Messages',
         link: '/messages/messages',
-        desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
+        desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+        children: [
+          {
+            name: 'Messages',
+            link: '/messages/messages',
+            desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+            children: [
+              {
+                name: 'Messages',
+                link: '/messages/messages',
+                desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+                children: [
+                  {
+                    name: 'Messages',
+                    link: '/messages/messages',
+                    desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+                    children: [
+                      {
+                        name: 'Messages',
+                        link: '/messages/messages',
+                        desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: 'Messages2',
+        link: '/messages/messages2',
+        desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+        children: [
+          {
+            name: 'Messages',
+            link: '/messages/messages2',
+            desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+            children: [
+              {
+                name: 'Messages',
+                link: '/messages/messages2',
+                desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+                children: [
+                  {
+                    name: 'Messages',
+                    link: '/messages/messages2',
+                    desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+                    children: [
+                      {
+                        name: 'Messages',
+                        link: '/messages/messages2',
+                        desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   },

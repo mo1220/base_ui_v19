@@ -1,0 +1,13 @@
+<nav class="gnb-component">
+  <gnb-item [items]="items"
+            [root]="true"
+            [depth]="0"
+            [activeIndex]="activeIndex"
+            [parentIndex]="0"
+            [selectItem]="selectItem"
+            [currentIndex]="[]"
+            [currentUrls]="currentUrls"
+            (selected)="selectedEvent($event)"
+            [bindValue]="bindValue"
+            [bindLabel]="bindLabel"></gnb-item>
+</nav>
