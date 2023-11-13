@@ -64,7 +64,8 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
   set items(value:any) {
     this._items = value.map((d:any, i:number) => {
       return {
-
+        ...d,
+        idx: [ ...this.currentIndex, i]
       }
     });
   }
@@ -108,13 +109,10 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
       this.selected.emit(e);
     }
   }
-  getIndex(i:number) {
-    return [ ...this.currentIndex, i ];
-  }
 
   compairIndex(i: number) {
     const activeIndex = _.clone(this.activeIndex);
-    return _.isEqual(this.getIndex(i), activeIndex.slice(0, this.depth + 1));
+    return _.isEqual(this._items[i].idx, activeIndex.slice(0, this.depth + 1));
   }
   selectedEmit(e: any) {
     this.selected.emit(e);

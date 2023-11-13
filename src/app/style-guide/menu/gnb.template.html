@@ -44,6 +44,17 @@
       </div>
       <!-- EN : GNB -->
     </div>
+
+
+    <h3 #anchor #GnbComponent>GNB Component</h3>
+    <p>솔루션에 적용하여 보다 유연한 Depth 표현이 가능하도록 설계</p>
+    <div class="style-guide-example">
+      <!-- ST : GNB -->
+      <div class="gnb">
+        <gnb [items]="menus"></gnb>
+      </div>
+      <!-- EN : GNB -->
+    </div>
   </div>
   <aside-menu-right *ngIf="loaded" [menu]="buttonMenu"
                     [anchor]="anchors"></aside-menu-right>
