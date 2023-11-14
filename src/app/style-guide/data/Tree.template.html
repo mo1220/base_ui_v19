@@ -110,15 +110,18 @@
 
         <!--ST: fiter -->
         <div class="style-guide-example d-flex" *ngSwitchCase="'filter'">
-          <div class="tree-select-filter" style="width: 250px; height: 200px;">
-            <label>현업 담당자</label>
-            <div class="form-group" style="position: relative; margin-bottom: 0;">
+          <div class="tree-select-filter">
+            <div class="form-group">
+              <label>현업 담당자</label>
               <input class="form-control input-team"
                      placeholder="담당자를 입력하세요."
                      (focus)="openTree('owner')"
                      [(ngModel)]="datasetParams.owner_name"/>
-              <span class="expand-icon"
-                    [ngClass]="{'expand-less': filterTeamView.owner, 'expand-more': !filterTeamView.owner}"></span>
+
+              <span class="expand-icon">
+                <i class="fa" [ngClass]="{'fa-angle-down': !filterTeamView.owner, 'fa-angle-up': filterTeamView.owner}"
+                   aria-hidden="true"></i>
+              </span>
             </div>
 
             <ng-container *ngIf="filterTeamView.owner">
@@ -129,15 +132,17 @@
             </ng-container>
             <div *ngIf="filterTeamView.owner" class="tree-select-filter-bg" (click)="filterTeamView.owner = false"></div>
           </div>
-          <div class="tree-select-filter" style="width: 250px; height: 200px;">
-            <label>IT 현업 담당자</label>
-            <div class="form-group" style="position: relative; margin-bottom: 0;">
+          <div class="tree-select-filter">
+            <div class="form-group">
+              <label>IT 현업 담당자</label>
               <input class="form-control input-team"
                      placeholder="담당자를 입력하세요."
                      (focus)="openTree('it_owner')"
                      [(ngModel)]="datasetParams.it_owner_name"/>
-              <span class="expand-icon"
-                    [ngClass]="{'expand-less': filterTeamView.it_owner, 'expand-more': !filterTeamView.it_owner}"></span>
+              <span class="expand-icon">
+                <i class="fa" [ngClass]="{'fa-angle-down': !filterTeamView.it_owner, 'fa-angle-up': filterTeamView.it_owner}"
+                   aria-hidden="true"></i>
+              </span>
             </div>
             <ng-container *ngIf="filterTeamView.it_owner">
               <tree-select-filter [nodes]="deptList"
