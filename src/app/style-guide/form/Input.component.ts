@@ -29,8 +29,20 @@ export class StyleGuideInputComponent implements AfterViewInit, OnDestroy {
       anchor: 'basic',
     },
     {
-      title: 'Reactive',
-      anchor: 'reactive',
+      title: 'Size',
+      anchor: 'size',
+    },
+    {
+      title: 'Clearable',
+      anchor: 'clear',
+    },
+    {
+      title: 'Validation',
+      anchor: 'validation',
+    },
+    {
+      title: 'Group',
+      anchor: 'group',
     }
   ]
 
