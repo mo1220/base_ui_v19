@@ -24,6 +24,7 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
   breadcrumb: any = [];
   left: number = 200;
   menuActiveIndex: number[] =[];
+  minimize:boolean = false; // Aside Menu 최소화 여부
   constructor(
     private translate: TranslateService,
     private router: Router,
@@ -128,7 +129,18 @@ export class StyleGuideComponent implements AfterViewInit, OnDestroy {
     }, []);
   }
 
+  toggleMinimize() {
+    this.minimize = !this.minimize;
+    this.left = this.minimize ? 50 : 200;
+  }
   onResize(e:any) {
+    if(this.minimize) return; // 최소화 되었을 경우는 아무것도 안함
+    if(e.size.width < 90) {
+      // 최소값이하 일 경우 minimize
+      this.minimize = true;
+      this.left = 50;
+      return;
+    }
     const width = e.size.width > 400 ? 400 : e.size.width < 90 ? 90 : e.size.width;
     this.left = width;
   }

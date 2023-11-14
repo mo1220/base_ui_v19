@@ -1,4 +1,15 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output, QueryList,
+  SimpleChanges,
+  ViewChildren,
+  ViewEncapsulation
+} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
 
@@ -10,11 +21,14 @@ import * as _ from 'lodash';
 })
 export class AsideMenuComponent implements OnInit {
 
+  @Input() minimize: boolean = false;
   @Input() items:any = [];
   @Input() bindLabel:string = '';
   @Input() bindValue:string = '';
   @Input() currentUrls:any = [];
   @Input() activeIndex: number[] = [];
+  @Output() activeIndexChange: EventEmitter<number[]> = new EventEmitter();
+
   @Output() search: EventEmitter<any> = new EventEmitter();
 
   val: string = '';
@@ -55,6 +69,7 @@ export class AsideMenuComponent implements OnInit {
   encapsulation: ViewEncapsulation.None
 })
 export class AsideMenuItemComponent implements OnInit, OnChanges {
+  @Input() minimize:boolean = false;
   @Input() depth: number = 0;
   _items: any = [];
   @Input()
@@ -76,9 +91,12 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
   @Input() selectItem:any;
   @Input() parentIndex:number;
   @Input() activeIndex: number[] = [];
+  @Output() activeIndexChange: EventEmitter<number[]> = new EventEmitter();
   @Input() currentIndex:number[] = [];
   currentUrl = '';
   _currentUrls: any = [];
+  top: number = 0;
+
   @Input()
   get currentUrls() : string {
     return this._currentUrls;
@@ -100,12 +118,12 @@ export class AsideMenuItemComponent implements OnInit, OnChanges {
 
   }
   selectValue(e: any, i: number) {
-    this.activeIndex[this.depth] = i;
-    if(e.children && e.children.length > 0) {
-      this.activeIndex = this.activeIndex.map((d, i) => {
-        return i > this.depth ? -1 : d;
-      });
-    } else {
+    const { idx } = this._items[i];
+    this.activeIndex = this.activeIndex.map((d, i) => {
+      return idx[i] !== undefined ? idx[i] : -1;
+    });
+    this.activeIndexChange.emit(this.activeIndex);
+    if(!e.children || e.children.length === 0) {
       this.selected.emit(e);
     }
   }
