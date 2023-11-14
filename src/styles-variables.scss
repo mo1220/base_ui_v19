@@ -121,11 +121,11 @@ $btn-mat-width-lg: 48px !default; // mat-icon-button 기본 너바
 
 // icon only button style
 @mixin btn-icon($padding){
-  padding: $padding;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  padding: $padding !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  position: relative !important;
 }
 
 // Alert Message

@@ -4,7 +4,11 @@
     <p>컬러별 기본 버튼</p>
     <div class="style-guide-example d-flex">
       <div class="d-flex-1">
-        <h5>bootstrap</h5>
+        <h5>Bootstrap button
+          <code>
+            &lt;button type="button" class="btn btn-primary" &gt;&lt;/button&gt;
+          </code>
+        </h5>
         <button type="button" class="btn btn-primary">Primary</button>
         <button type="button" class="btn btn-secondary">Secondary</button>
         <button type="button" class="btn btn-success">Success</button>
@@ -15,12 +19,17 @@
         <button type="button" class="btn btn-dark">Dark</button>
       </div>
       <div class="d-flex-1">
-        <h5>mat-button</h5>
-        <button mat-button>Basic</button>
-        <button mat-button color="primary">Primary</button>
-        <button mat-button color="accent">Accent</button>
-        <button mat-button color="warn">Warn</button>
-        <button mat-button disabled>Disabled</button>
+        <h5>Material button
+          <code>
+          &lt;button mat-button color="primary" class="mat-btn"&gt;&lt;/button&gt;
+        </code>
+        </h5>
+        <div>
+          <button mat-button class="mat-btn">Basic</button>
+          <button mat-button color="primary" class="mat-btn">Primary</button>
+          <button mat-button color="accent" class="mat-btn">Accent</button>
+          <button mat-button color="warn" class="mat-btn">Warn</button>
+        </div>
       </div>
     </div>
 
@@ -41,19 +50,29 @@
     <p>사이즈별 버튼</p>
     <div class="style-guide-example">
       <div>
-        <button type="button" class="btn btn-primary btn-xl">X Large Button</button>
+        <h5>Bootstrap button</h5>
+        <button type="button" class="btn btn-primary btn-xl">XLarge Button</button>
         <button type="button" class="btn btn-primary btn-lg ">Large Button</button>
         <button type="button" class="btn btn-primary">Default Button</button>
         <button type="button" class="btn btn-primary btn-sm">Small Button</button>
-        <button type="button" class="btn btn-primary btn-xs">X Small Button</button>
+        <button type="button" class="btn btn-primary btn-xs">XSmall Button</button>
       </div>
 
       <div>
-        <button type="button" class="btn btn-outline-primary btn-xl">X Large Button</button>
+        <button type="button" class="btn btn-outline-primary btn-xl">XLarge Button</button>
         <button type="button" class="btn btn-outline-primary btn-lg ">Large Button</button>
         <button type="button" class="btn btn-outline-primary">Default Button</button>
         <button type="button" class="btn btn-outline-primary btn-sm">Small Button</button>
-        <button type="button" class="btn btn-outline-primary btn-xs">X Small Button</button>
+        <button type="button" class="btn btn-outline-primary btn-xs">XSmall Button</button>
+      </div>
+
+      <div class="mt-4">
+        <h5>Material button</h5>
+        <button mat-button color="primary" class="mat-btn xl">XLarge Button</button>
+        <button mat-button color="primary" class="mat-btn lg">Large Button</button>
+        <button mat-button color="primary" class="mat-btn">Default Button</button>
+        <button mat-button color="primary" class="mat-btn sm">Small Button</button>
+        <button mat-button color="primary" class="mat-btn xs">XSmall Button</button>
       </div>
     </div>
 
@@ -172,7 +191,7 @@
     <h3 #anchor #iconOnly>Icon Only</h3>
     <p>Icon만 있는 버튼</p>
     <div class="style-guide-example">
-      <div class="d-flex">
+      <div class="d-flex flex-wrap">
         <div class="d-flex col">
           <h5>컬러별 아이콘 버튼</h5>
           <div>
@@ -289,29 +308,29 @@
 
         <div class="d-flex col">
           <h5>mat-icon-button</h5>
-          <div>
+          <div class="d-flex align-items-center">
             <code>기본</code>
-            <button mat-icon-button>
-              <mat-icon class="md-20">more_vert</mat-icon>
+            <button mat-icon-button class="btn-icon">
+              <mat-icon>more_vert</mat-icon>
             </button>
-            <button mat-icon-button color="primary">
-              <mat-icon class="md-20">home</mat-icon>
+            <button mat-icon-button color="primary" class="btn-icon">
+              <mat-icon>home</mat-icon>
             </button>
-            <button mat-icon-button color="accent">
-              <mat-icon class="md-20">menu</mat-icon>
-            </button>
-            <button mat-icon-button color="warn">
-              <mat-icon class="md-20">favorite</mat-icon>
+            <button mat-icon-button color="warn" class="btn-icon">
+              <mat-icon>favorite</mat-icon>
             </button>
           </div>
 
-          <div>
+          <div class="d-flex align-items-center">
             <code>Size</code>
-            <button mat-icon-button color="warn" class="btn-lg">
+            <button mat-icon-button color="warn" class="btn-icon">
               <mat-icon>favorite</mat-icon>
             </button>
-            <button mat-icon-button color="warn">
+            <button mat-icon-button color="warn" class="btn-icon btn-sm">
               <mat-icon class="md-20">favorite</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" class="btn-icon btn-xs">
+              <mat-icon class="md-16">favorite</mat-icon>
             </button>
           </div>
         </div>

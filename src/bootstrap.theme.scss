@@ -125,51 +125,46 @@
     border-radius: 50%;
   }
 
-  /**** Icon Only button ****/
-  &.btn-icon {
-   padding: $btn-padding;
-    @include btn-icon($btn-padding);
-    .fa {
-      width: $font-size-base;
-      height: $font-size-base;
-    }
-
-    &.btn-xl {
-      padding: $btn-padding-xl;
-      .fa {
-        width: $font-size-xl;
-        height: $font-size-xl;
-      }
-    }
-
-    &.btn-lg {
-      padding: $btn-padding-lg;
-      .fa {
-        width: $font-size-lg;
-        height: $font-size-lg;
-      }
-    }
-
-    &.btn-sm {
-      padding: $btn-padding-sm;
-      .fa {
-        width: 10px; //$font-size-sm;
-        height: 10px; //$font-size-sm;
-      }
-    }
-
-    &.btn-xs {
-      padding: $btn-padding-xs;
-      .fa {
-        width: $font-size-xs;
-        height: $font-size-xs;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
-  }
+  ///**** Icon Only button ****/
+  //&.btn-icon {
+  //  @include btn-icon($btn-padding);
+  //  .fa {
+  //    width: $font-size-base;
+  //    height: $font-size-base;
+  //  }
+  //
+  //  &.btn-xl {
+  //    @include btn-icon($btn-padding-xl);
+  //    .fa {
+  //      width: $font-size-xl;
+  //      height: $font-size-xl;
+  //    }
+  //  }
+  //
+  //  &.btn-lg {
+  //    @include btn-icon($btn-padding-lg);
+  //    .fa {
+  //      width: $font-size-lg;
+  //      height: $font-size-lg;
+  //    }
+  //  }
+  //
+  //  &.btn-sm {
+  //    @include btn-icon($btn-padding-sm);
+  //    .fa {
+  //      width: 10px; //$font-size-sm;
+  //      height: 10px; //$font-size-sm;
+  //    }
+  //  }
+  //
+  //  &.btn-xs {
+  //    @include btn-icon($btn-padding-xs);
+  //    .fa {
+  //      width: $font-size-xs;
+  //      height: $font-size-xs;
+  //    }
+  //  }
+  //}
 
   /**** Raised(shadow) button ****/
   &.btn-raised {
@@ -287,6 +282,48 @@ label.btn-split {
 .btn-outline-primary:hover,
 .btn-outline-info:hover {
   color: $btn-primary-color !important;
+}
+/**** Icon Only button ****/
+.btn-icon {
+  @include btn-icon($btn-padding);
+  .fa {
+    width: $font-size-base;
+    height: $font-size-base;
+  }
+
+  &.btn-xl {
+    @include btn-icon($btn-padding-xl);
+    .fa {
+      width: $font-size-xl;
+      height: $font-size-xl;
+    }
+  }
+
+  &.btn-lg {
+    @include btn-icon($btn-padding-lg);
+    .fa {
+      width: $font-size-lg;
+      height: $font-size-lg;
+    }
+  }
+
+  &.btn-sm {
+    --mdc-icon-button-state-layer-size: 35px!important;
+    @include btn-icon($btn-padding-sm);
+    .fa {
+      width: 10px; //$font-size-sm;
+      height: 10px; //$font-size-sm;
+    }
+  }
+
+  &.btn-xs {
+    --mdc-icon-button-state-layer-size: 30px!important;
+    @include btn-icon($btn-padding-xs);
+    .fa {
+      width: $font-size-xs;
+      height: $font-size-xs;
+    }
+  }
 }
 
 /****************************** ST: form *************************************************/
