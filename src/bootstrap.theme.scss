@@ -309,13 +309,6 @@ label.btn-split {
       margin-inline-end: $input-btn-padding-x-xs;
     }
   }
-
-  &.datepicker {
-    /*width: 280px;*/
-    &-range {
-      width: 558px;
-    }
-  }
 }
 
 .form-group {
@@ -324,7 +317,7 @@ label.btn-split {
   .clear-btn {
     position: absolute;
     color: rgba(0, 0, 0, 0.35);
-    right: 8px;
+    right: 5px;
     cursor: pointer;
     &:hover {
       color: rgba(0, 0, 0, 0.45);
@@ -332,7 +325,7 @@ label.btn-split {
   }
   &:has(.clear-btn) {
     .form-control {
-      padding-right: calc(1.5em + 0.75rem);
+      padding-right: calc(1.2em + 0.6rem);
     }
   }
   .was-validated .form-control:valid, .form-control.is-valid, .was-validated .form-control:invalid, .form-control.is-invalid {
@@ -345,10 +338,12 @@ label.btn-split {
   &:has(.form-control.form-control-xs) {
     label {
       @include font-size($font-size-xs);
+      line-height: $font-size-xs;
+      max-height: $font-size-xs * 2.1;
       padding: $input-btn-padding-y-xs*0.5 0;
     }
     .clear-btn {
-      bottom: 1px;
+      bottom: 2px;
       mat-icon {
         font-size: 12px !important;
         width: 12px !important;
@@ -360,13 +355,15 @@ label.btn-split {
       background-size: 10px;
     }
     .valid-feedback, .invalid-feedback {
-      @include font-size($font-size-xs);
+      @include font-size($font-size-xs*0.9);
       padding: $input-btn-padding-y-xs*0.5 1px;
     }
   }
   &:has(.form-control.form-control-sm) {
     label {
       @include font-size($font-size-sm);
+      line-height: $font-size-sm;
+      max-height: $font-size-sm * 2.1;
       padding: $input-btn-padding-y-sm*0.5 0;
     }
     .clear-btn {
@@ -382,13 +379,15 @@ label.btn-split {
       background-size: 13px;
     }
     .valid-feedback, .invalid-feedback {
-      @include font-size($font-size-sm);
+      @include font-size($font-size-sm*0.8);
       padding: $input-btn-padding-y-sm*0.5 1px;
     }
   }
   &:has(.form-control) {
     label {
       @include font-size($font-size-base);
+      line-height: $font-size-base;
+      max-height: $font-size-base * 2.1;
       padding: $input-btn-padding-y*0.5 0;
     }
     .clear-btn {
@@ -405,13 +404,15 @@ label.btn-split {
       background-size: 16px;
     }
     .valid-feedback, .invalid-feedback {
-      @include font-size($font-size-base);
+      @include font-size($font-size-base*0.8);
       padding: $input-btn-padding-y*0.5 1px;
     }
   }
   &:has(.form-control.form-control-lg) {
     label {
       @include font-size($font-size-lg);
+      line-height: $font-size-lg;
+      max-height: $font-size-lg * 2.2;
       padding: $input-btn-padding-y-lg*0.5 0;
     }
     .clear-btn {
@@ -427,16 +428,15 @@ label.btn-split {
       background-size: 20px;
     }
     .valid-feedback, .invalid-feedback {
-      @include font-size($font-size-lg);
+      @include font-size($font-size-lg*0.8);
       padding: $input-btn-padding-y-lg*0.5 1px;
     }
   }
 
   &.flex {
     display: flex;
-    label {
-      margin-right: 8px;
-    }
+    flex-wrap: wrap;
+    align-items: center;
     input {
       display: inline-block;
       flex: 1;
@@ -447,43 +447,45 @@ label.btn-split {
 .form-grid {
   display: flex;
   flex-wrap: wrap;
-  &:has(.form-group) {
+  align-items: center;
+  &:has(> button) { //수정필요
     align-items: end;
   }
+
   &:has(.form-group.flex) {
     align-items: center;
-    .form-group.flex, button {
-      margin-bottom: 5px;
-    }
-    .form-group.flex {
-      &:has(.form-control.form-control-xs) {
-        padding-right: 8px;
-      }
-      &:has(.form-control.form-control-sm) {
-        padding-right: 10px;
-      }
-      &:has(.form-control) {
-        padding-right: 12px;
-      }
-      &:has(.form-control.form-control-lg) {
-        padding-right: 14px;
-      }
-    }
+    //.form-group.flex, button {
+    //  margin-bottom: 5px;
+    //}
+    //.form-group.flex {
+    //  &:has(.form-control.form-control-xs) {
+    //    padding-right: 8px;
+    //  }
+    //  &:has(.form-control.form-control-sm) {
+    //    padding-right: 10px;
+    //  }
+    //  &:has(.form-control) {
+    //    padding-right: 12px;
+    //  }
+    //  &:has(.form-control.form-control-lg) {
+    //    padding-right: 14px;
+    //  }
+    //}
   }
 
   .form-group {
-    &:has(.form-control.form-control-xs) {
-      padding-right: 3px;
-    }
-    &:has(.form-control.form-control-sm) {
-      padding-right: 4px;
-    }
-    &:has(.form-control) {
-      padding-right: 6px;
-    }
-    &:has(.form-control.form-control-lg) {
-      padding-right: 8px;
-    }
+    //&:has(.form-control.form-control-xs) {
+    //  padding-right: 3px;
+    //}
+    //&:has(.form-control.form-control-sm) {
+    //  padding-right: 4px;
+    //}
+    //&:has(.form-control) {
+    //  padding-right: 6px;
+    //}
+    //&:has(.form-control.form-control-lg) {
+    //  padding-right: 8px;
+    //}
     button {
       height: 100%;
     }
@@ -596,12 +598,6 @@ label.btn-split {
 label {
   margin: 0;
   //height: 100%;
-  /* form-label min-width min-${size} */
-  @each $size in 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200 {
-    &.min-#{$size} {
-      min-width: $size + px !important;
-    }
-  }
 
   &.required {
     &::after {

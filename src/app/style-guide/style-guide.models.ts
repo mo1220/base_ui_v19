@@ -48,7 +48,15 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Input',
         link: '/form/input',
-        desc: `기본 입력용 Input`
+        desc: `기본 입력용 Input <br>
+               <code><b>[group 순서]</b> form-grid > form-group > label + input.form-control.form-control-sm + clear-btn + valid-feedback <br>
+               <b>[간격 지정 예시]</b> margin-bottom : mb-1 (1~5) / margin-right : me-1 (1~5) / padding-x : px-1 (1~5) / padding-left : ps-1 (1~5)<br>
+                * 1 : 0.25rem <br>
+                * 2 : 0.5rem <br>
+                * 3 : 1rem <br>
+                * 4 : 1.5rem <br>
+                * 5 : 3rem
+                </code>`
       },
       {
         name: 'Knob',
