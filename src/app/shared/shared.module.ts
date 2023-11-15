@@ -88,6 +88,7 @@ import { LicenseManager } from "ag-grid-enterprise";
 LicenseManager.setLicenseKey("Using_this_AG_Grid_Enterprise_key_( AG-050551 )_in_excess_of_the_licence_granted_is_not_permitted___Please_report_misuse_to_( legal@ag-grid.com )___For_help_with_changing_this_key_please_contact_( info@ag-grid.com )___( Datatree Korea )_is_granted_a_( Multiple Applications )_Developer_License_for_( 1 ))_Front-End_JavaScript_developer___All_Front-End_JavaScript_developers_need_to_be_licensed_in_addition_to_the_ones_working_with_AG_Grid_Enterprise___This_key_has_not_been_granted_a_Deployment_License_Add-on___This_key_works_with_AG_Grid_Enterprise_versions_released_before_( 9 November 2024 )____[v2]_MTczMTExMDQwMDAwMA==a0d6611a7276ad730b41535ae0a40371")
 import { ModuleRegistry } from 'ag-grid-community';
 import { ExcelExportModule } from "ag-grid-enterprise";
+import {DatePickerComponent} from "./date-picker/date-picker";
 ModuleRegistry.registerModules([ ExcelExportModule ]);
 
 
@@ -176,6 +177,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     ColorDialog, // 컬러 다이얼로그
     ColorInputComponent, // 컬러 인풋
     ColorsScaleComponent, // 스케일 컬러 인풋
+    DatePickerComponent, // 캘린더 DatePicker
     TreeDirComponent, // Tree directory
     TreeSelectFilterComponent, // Tree Filter
     DtkSliderComponent, // Slider Component
@@ -243,6 +245,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     ColorDialog, // 컬러 다이얼로그
     ColorInputComponent, // 컬러 인풋
     ColorsScaleComponent, // 스케일 컬러 인풋
+    DatePickerComponent, // 캘린더 DatePicker
     DtkSliderComponent, // Slider Component
     DtkMatSliderComponent, // Slider Material Component
     TreeDirComponent, // 트리 디렉토리 구조

@@ -61,30 +61,13 @@ export class StyleGuideCalendarComponent implements AfterViewInit, OnDestroy {
   minDate: Date;
   maxDate: Date;
 
-  today: Date = new Date();
-  yesterday: Date =  new Date(new Date().setDate(new Date().getDate() -1));
-  tomorrow: Date =  new Date(new Date().setDate(new Date().getDate() +1));
-
-  ranges: IRange[] = [
-    {
-      value: [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()],
-      label: 'Last 7 Days'
-    }, {
-      value: [new Date(), new Date(new Date().setDate(new Date().getDate() + 7))],
-      label: 'Next 7 Days'
-    }, {
-      value: [new Date(new Date().setDate(new Date().getDate() - 30)), new Date()],
-      label: 'Last 1 Month'
-    }, {
-      value: [new Date(new Date().setDate(new Date().getDate() - 365)), new Date()],
-      label: 'Last 1 Year'
-    }
-  ];
+  selectedDate: Date;
+  selectedRange: Date;
 
   tooltipDates: DatepickerDateTooltipText[] = [
-    { date: this.today, tooltipText: 'today'},
-    { date: this.yesterday, tooltipText: 'yesterday'},
-    { date: this.tomorrow, tooltipText: 'tomorrow'},
+    { date: new Date(), tooltipText: 'today'},
+    { date: new Date(new Date().setDate(new Date().getDate() -1)), tooltipText: 'yesterday'},
+    { date: new Date(new Date().setDate(new Date().getDate() +1)), tooltipText: 'tomorrow'},
   ];
 
 
@@ -97,6 +80,7 @@ export class StyleGuideCalendarComponent implements AfterViewInit, OnDestroy {
     this.maxDate = new Date();
     this.minDate.setDate(this.minDate.getDate() - 1);
     this.maxDate.setDate(this.maxDate.getDate() + 30);
+
   }
 
   ngAfterViewInit(): void {
