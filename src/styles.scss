@@ -2920,3 +2920,73 @@ input[type="radio"].mgr:checked:before {
     }
   }
 }
+/********* EN: Splitter Resized *****************************************************/
+/********************** ST: Gridster *************************************/
+.gridster-item-resizable-handler {
+  &:active,
+  &:hover {
+    background: rgba(0,0,0,0.05);
+  }
+
+  &.handle-n,
+  &.handle-s {
+    &:before {
+      content: '';
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: 4px;
+      width: 20px;
+      height: 2px;
+      background: #999;
+      transform: translateX(-50%);
+    }
+    &:hover {
+      &:before {
+        display: block;
+      }
+    }
+  }
+
+  &.handle-e,
+  &.handle-w {
+    &:before {
+      content: '';
+      display: none;
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      width: 2px;
+      height: 20px;
+      background: #999;
+      transform: translateY(-50%);
+    }
+    &:hover {
+      &:before {
+        display: block;
+      }
+    }
+  }
+
+  &.handle-se {
+    &:before {
+      content: '';
+      position: absolute;
+      left: -11px;
+      top: -1px;
+      width: 8px;
+      height: 8px;
+      border-bottom: 2px solid transparent;
+      border-right: 2px solid transparent;
+    }
+  }
+}
+
+gridster-item:hover .gridster-item-resizable-handler.handle-se {
+  border-color: transparent !important;
+  &:before {
+    border-color: #999;
+  }
+}
+/********************** EN: Gridster *************************************/
+

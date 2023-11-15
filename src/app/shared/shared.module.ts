@@ -54,6 +54,7 @@ import { CustomToastComponent } from './toast-message/toast-message.component';
 import { ToastrModule } from 'ngx-toastr';
 import { LaddaModule } from 'angular2-ladda';
 import { QuillModule } from 'ngx-quill';
+import { GridsterModule } from 'angular-gridster2';
 import { AceModule } from 'ngx-ace-wrapper';
 import { ACE_CONFIG } from 'ngx-ace-wrapper';
 import { AceConfigInterface } from 'ngx-ace-wrapper';
@@ -62,14 +63,14 @@ const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
 import { ColorSketchModule } from 'ngx-color/sketch';
 import { ColorSwatchesModule } from 'ngx-color/swatches';
 import { ColorChromeModule } from 'ngx-color/chrome';
-import {CategoryColorsComponent} from "./category-colors/category-colors.component";
-import {ColorDialog} from "./color-dialog/color-dialog";
-import {ColorInputComponent} from "./color-input/color-input.component";
-import {ColorsScaleComponent} from "./colors-scale/colors-scale";
+import { CategoryColorsComponent} from "./category-colors/category-colors.component";
+import { ColorDialog } from "./color-dialog/color-dialog";
+import { ColorInputComponent } from "./color-input/color-input.component";
+import { ColorsScaleComponent } from "./colors-scale/colors-scale";
 import { TreeModule } from '@odymaui/angular-tree-component';
 import { TableVirtualScrollModule } from 'ng-table-virtual-scroll';
-import {TreeDirComponent} from "./tree/tree-dir-component/tree-dir-component";
-import {TreeSelectFilterComponent} from "./tree/tree-filter/tree-select-filter.component";
+import { TreeDirComponent } from "./tree/tree-dir-component/tree-dir-component";
+import { TreeSelectFilterComponent } from "./tree/tree-filter/tree-select-filter.component";
 import { NgxSkeletonModule } from 'ngx-skeleton';
 import { NgxSliderModule } from 'ngx-slider-v2';
 import { NgSelectModule } from "@ng-select/ng-select";
@@ -163,7 +164,8 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     NgxSkeletonModule,
     NgxSliderModule,
     NgSelectModule,
-    AngularDraggableModule
+    AngularDraggableModule,
+    GridsterModule
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -267,6 +269,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     NgxSliderModule, // Slider Module
     NgSelectModule,
     AngularDraggableModule, // Element Resize 모듈
+    GridsterModule, // Angular Gridster2
   ],
   providers: [
     { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }

@@ -36,6 +36,7 @@
     "ag-grid-angular": "^30.2.0",
     "ag-grid-community": "^30.2.0",
     "ag-grid-enterprise": "^30.2.1",
+    "angular-gridster2": "^16.0.0",
     "angular2-draggable": "^16.0.0",
     "angular2-ladda": "^5.0.0",
     "autoprefixer": "10.4.5",
