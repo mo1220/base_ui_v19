@@ -4,22 +4,30 @@
       class="aside-menu-item sub-menu"
       [class.open]="compairIndex(i)">
     <div class="aside-item"
-         [style.padding-left]="depth === 0 ? '10px' : (depth * 25) + 'px'"
+         [style.padding-left]="depth === 0 ? '10px' : !minimize ? (depth * 25) + 'px' : '10px'"
          [class.active]="compairIndex(i)"
          matRipple
          (click)="selectValue(menu, i)">
       <mat-icon *ngIf="menu.icon && menu.icon !== ''"
                 class="menu-icon md-20">{{menu.icon}}</mat-icon>
-      <div class="menu-title">
-        {{menu[bindLabel]}}
-      </div>
-      <div class="arrow" *ngIf="menu.children && menu.children.length > 0"></div>
+      <ng-container *ngIf="!minimize">
+        <div class="menu-title">{{menu[bindLabel]}}</div>
+        <div class="arrow" *ngIf="menu.children && menu.children.length > 0"></div>
+      </ng-container>
+      <ng-container *ngIf="minimize">
+        <div class="menu-title" *ngIf="depth > 0">{{menu[bindLabel]}}</div>
+        <div class="arrow" *ngIf="depth > 0 && menu.children && menu.children.length > 0"></div>
+      </ng-container>
     </div>
     <div class="sub-menu-list"
          *ngIf="menu.children && menu.children.length > 0">
+      <ng-container *ngIf="minimize">
+        <div class="sub-menu-title">{{menu[bindLabel]}}</div>
+      </ng-container>
       <aside-menu-item [depth]="depth + 1"
+                       [minimize]="minimize"
                        [currentIndex]="menu.idx"
-                       [activeIndex]="activeIndex"
+                       [(activeIndex)]="activeIndex"
                        [parentIndex]="i"
                        [bindLabel]="bindLabel"
                        [currentUrls]="currentUrls"

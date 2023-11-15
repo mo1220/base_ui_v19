@@ -32,7 +32,7 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('tree') tree: TreeComponent;
 
-  @Output() nodeActiveChanged: EventEmitter<any> = new EventEmitter(); // 노드 클릭 시 해당 위젯 정보 보내기
+  @Output() nodeActiveChanged: EventEmitter<any> = new EventEmitter(); // 노드 클릭 시 해당 정보 보내기
   @Output() outputNode: EventEmitter<any> = new EventEmitter(); // 수정, 생성, 삭제 API 에 필요한 파라미터 보내기
 
   @Input() mode: string | undefined; // default: 추가|삭제|수정 등 관리 기능 | 'select': 선택 기능
