@@ -1,121 +1,97 @@
 <div class="d-flex">
   <div class="component-wrap" #contentWrap>
     <h3 #anchor #basic>Basic</h3>
-    <p>기본 날짜 선택 Date Picker<br>
-      <code>[minDate], [maxDate] </code>// Date format 변수<br>
-      <code>[bsConfig.outsideClick]:  true | false </code>// 바깥 클릭 시 닫힘<br>
-      <code>[bsConfig.dateInputFormat]: 'YYYY-MM'-DD' | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</code><br>
-      <code>[bsConfig.showWeekNumbers]: true | false </code>// week 표시
-    </p>
-    <div class="style-guide-example d-flex">
-      <input type="text"
-             [placeholder]="'YYYY-MM-DD'"
-             class="form-control form-control-sm datepicker"
-             bsDatepicker
-             [outsideClick]="true"
-             [minDate]="minDate"
-             [maxDate]="maxDate"
-             [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false, returnFocusToInput: true }">
-      <input type="text"
-             [placeholder]="'YYYY/MM/DD'"
-             class="form-control form-control-sm datepicker"
-             bsDatepicker
-             [minDate]="minDate"
-             [maxDate]="maxDate"
-             [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD', showWeekNumbers:false, returnFocusToInput: true }">
+    <p>기본 날짜 선택 Date Picker</p>
+    <div class="base-guide info">
+      <h5>date-picker 옵션 설정 <code>(입력 안 했을 경우 기본값)</code></h5>
+      <p>옵션 없이 date-picker 사용 가능 (단일 날짜 picker)</p>
+      <ul class="icon-ul check">
+        <li><b class="wd-150">[placeholder]</b> <code><b>dateInputFormat과 동일</b></code> | string 입력 </li>
+        <li><b class="wd-150">[locale]</b> <code><b>'kr'</b></code> | 'en' | 'cn'</li>
+        <li><b class="wd-150">[minDate], [maxDate]</b> Date format 변수</li>
+        <li><b class="wd-150">[dateInputFormat]</b> <code><b>'YYYY-MM'-DD'</b></code> | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</li>
+        <li><b class="wd-150">[outsideClick]</b> <code><b>true</b></code> | false (영역 바깥 클릭 시 닫힘)</li>
+        <li><b class="wd-150">[showWeekNumbers]</b> true | <code><b>false</b></code></li>
+        <li><b class="wd-150">[returnFocusToInput]</b> true | <code><b>false</b></code> (날짜 선택 후 input에 focus)</li>
+        <li><b class="wd-150">[placement]</b> <code><b>(adaptivePosition:true)</b></code> | 'bottom' | 'top' | 'left' | 'right' (캘린더 위치, 입력 안 할 경우 adaptivePosition:true)</li>
+        <li><b class="wd-150">[customTodayClass]</b> : <code><b>'ngx-today'</b></code> | '' (ngx-today 입력 시 오늘 날짜 스타일링)</li>
+        <li><b class="wd-150">[dateTooltipTexts]</b> : <code><b>[ &#123; date: Today, tooltipText: '오늘' &#125; ]</b></code> | tooltipDates: DatepickerDateTooltipText[] (툴팁 변수에 date, tooltipText 지정)</li>
+      </ul>
     </div>
-
-    <h3 #anchor #clear>Clear</h3>
-    <p>
-      선택된 날짜 제거 clear button<br>
-      <code>
-      clearPosition: 'left' | 'center' | 'right'
-      </code>
-    </p>
-    <p></p>
-    <div class="style-guide-example d-flex">
-      <input type="text"
-             [placeholder]="'clear left'"
-             class="form-control form-control-sm datepicker"
-             bsDatepicker
-             [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD', showClearButton: true, clearPosition: 'left', showWeekNumbers:false, returnFocusToInput: true }">
-      <input type="text"
-             [placeholder]="'clear center'"
-             class="form-control form-control-sm datepicker"
-             bsDatepicker
-             [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD', showClearButton: true, clearPosition: 'center', showWeekNumbers:false, returnFocusToInput: true }">
-      <input type="text"
-             [placeholder]="'clear right'"
-             class="form-control form-control-sm datepicker"
-             bsDatepicker
-             [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD', showClearButton: true, clearPosition: 'right', showWeekNumbers:false, returnFocusToInput: true }">
-    </div>
-
-    <h3 #anchor #rangepicker>Range Datepicker</h3>
-    <p>날짜 범위 선택<br>
-      <code>[bsConfig.rangeInputFormat]: 'YYYY-MM'-DD' | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</code><br>
-      <code>[bsConfig.ranges]: IRange[]</code> //범위 자동 선택
-    </p>
+    <div class="msg info">calendar와 input의 가로 사이즈를 맞추려면 date-picker에 'wd-280' 클래스 추가</div>
     <div class="style-guide-example">
-      <input type="text"
-             [placeholder]="'placeholder.datepicker_placeholder' | translate"
-             class="form-control form-control-sm datepicker-range"
-             bsDaterangepicker
-             [bsConfig]="{ rangeInputFormat : 'YYYY-MM-DD', ranges: ranges, showWeekNumbers:false, returnFocusToInput: true }">
+      <code><b>선택한 날짜 : {{selectedDate | json}}</b></code>
+      <div class="form-group mb-2">
+        <label>기본 date-picker</label>
+        <date-picker [(selectDate)]="selectedDate"></date-picker>
+      </div>
+      <div class="form-group mb-2">
+        <label>format변경 & 선택 후 input focus & wd-280</label>
+        <date-picker class="wd-280"
+                     [(selectDate)]="selectedDate"
+                     [dateInputFormat]="'YYYY/MM/DD'"
+                     [returnFocusToInput] = true></date-picker>
+      </div>
+      <div class="form-group mb-2">
+        <label>position placement 변경</label>
+        <div class="form-group flex">
+          <date-picker class="mb-1" style="width: 100%;"
+                       [(selectDate)]="selectedDate"
+                       [placeholder]="'default placement (adaptivePosition) : 스크롤에 따라 자동 포지션'"
+                       [dateInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-picker>
+          <date-picker class="wd-280 me-1"
+                       [(selectDate)]="selectedDate"
+                       [placeholder]="'bottom'"
+                       [placement]="'bottom'"
+                       [dateInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-picker>
+          <date-picker class="wd-280 me-1"
+                       [(selectDate)]="selectedDate"
+                       [placeholder]="'top'"
+                       [placement]="'top'"
+                       [dateInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-picker>
+          <date-picker class="wd-280 me-1"
+                       [(selectDate)]="selectedDate"
+                       [placeholder]="'left'"
+                       [placement]="'left'"
+                       [dateInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-picker>
+          <date-picker class="wd-280"
+                       [(selectDate)]="selectedDate"
+                       [placeholder]="'right'"
+                       [placement]="'right'"
+                       [dateInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-picker>
+        </div>
+      </div>
+      <div class="form-group mb-2">
+        <label>툴팁 custom</label>
+        <date-picker class="wd-280"
+                     [(selectDate)]="selectedDate"
+                     [dateTooltipTexts]="tooltipDates"></date-picker>
+      </div>
     </div>
 
-    <h3 #anchor #timepicker>Date Time picker</h3>
-    <p>날짜와 시간 선택<br>
-      <code>
-        [bsConfig.rangeInputFormat]: 'YYYY-MM'-DD' | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'
-      </code>
-    </p>
-    <div class="style-guide-example d-flex">
-      <input type="text"
-             [placeholder]="'Date Time Picker'"
-             class="form-control form-control-sm datepicker"
-             bsDatepicker
-             autoClose="false"
-             [bsConfig]="{ withTimepicker: true, keepDatepickerOpened: true, showClearButton: true, dateInputFormat: 'YYYY-MM-DD h:mm:ss:a', showWeekNumbers:false, returnFocusToInput: true }">
-    <input type="text"
-             [placeholder]="'Date Time Picker'"
-             class="form-control form-control-sm datepicker-range"
-             bsDaterangepicker
-             [bsConfig]="{ withTimepicker: true, keepDatepickerOpened: true, dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false, returnFocusToInput: true }">
+  <h3 #anchor #rangepicker>Range Datepicker</h3>
+    <p>날짜 범위 선택 Range Picker (기본 옵션은 Date Picker와 동일)</p>
+    <div class="msg info">range-picker의 경우 [dateInputFormat] 대신 <b>[rangeInputFormat]</b>을 필수로 입력해야함</div>
+    <div class="base-guide info">
+      <h5>range-picker 옵션 설정 <code>(기본값)</code></h5>
+      <p>range-picker 사용시 [rangeInpitFormat] 입력 필수 (날짜 범위 선택)</p>
+      <ul class="icon-ul check">
+        <li><b class="wd-150">[rangeInputFormat]</b> <code><b>'YYYY-MM'-DD'</b></code> | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</li>
+        <li><b class="wd-150">[ranges]</b> <code><b>[최근 일주일, 최근 1개월, 최근 3개월, 최근 6개월, 최근 1년]</b></code> | ranges: IRange[] (자동 선택 범위)</li>
+      </ul>
     </div>
-
-    <h3 #anchor #placement>Picker Position</h3>
-    <p>Picker 위치 설정<br>
-      <code>[bsConfig.adaptivePosition]: true | false</code> //스크롤 위치에 따라 자동 포지션<br>
-      <code matTooltip="bottom+left, top+right 등은 X">placement: 'bottom' | 'top' | 'right' | 'left'</code> //picker 위치 설정s
-    </p>
-    <div class="style-guide-example d-flex">
-      <input type="text"
-             [placeholder]="'adaptive Position'"
-             class="form-control form-control-sm datepicker"
-             bsDatepicker
-             [bsConfig]="{ adaptivePosition: true, dateInputFormat : 'YYYY-MM-DD', showWeekNumbers:false, returnFocusToInput: true }">
-      <input type="text"
-             [placeholder]="'right'"
-             class="form-control form-control-sm datepicker"
-             bsDatepicker
-             placement="right"
-             [bsConfig]="{ dateInputFormat : 'YYYY-MM-DD', showWeekNumbers:false, returnFocusToInput: true }">
-      <input type="text"
-             [placeholder]="'left'"
-             class="form-control form-control-sm datepicker"
-             bsDatepicker
-             placement="left"
-             [bsConfig]="{ dateInputFormat : 'YYYY-MM-DD', showWeekNumbers:false, returnFocusToInput: true }">
-
-      <input type="text"
-             [placeholder]="'top'"
-             class="form-control form-control-sm datepicker"
-             bsDatepicker
-             placement="top"
-             [bsConfig]="{ dateInputFormat : 'YYYY-MM-DD', showWeekNumbers:false, returnFocusToInput: true }">
+    <div class="style-guide-example">
+      <code><b>선택한 날짜 : {{selectedRange | json}}</b></code>
+      <date-picker [(selectDate)]="selectedRange"
+                   [rangeInputFormat]="'YYYY-MM-DD'"
+                   [returnFocusToInput] = true></date-picker>
     </div>
-
+<!--
     <h3 #anchor #today>Custom Today</h3>
     <p>오늘 날짜 Custom Class<br>
       <code>[bsConfig.customTodayClass]: 'ngx-today'</code> //오늘 날짜에 class 추가<br>
@@ -138,7 +114,7 @@
              class="form-control form-control-sm datepicker"
              bsDatepicker
              [bsConfig]="{ dateTooltipTexts: tooltipDates, customTodayClass: 'ngx-today', adaptivePosition: true, dateInputFormat : 'YYYY-MM-DD', showWeekNumbers:false, returnFocusToInput: true }">
-    </div>
+    </div>-->
   </div>
 
   <aside-menu-right [menu]="calendarMenu"
