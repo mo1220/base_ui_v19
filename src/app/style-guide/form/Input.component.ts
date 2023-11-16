@@ -33,12 +33,12 @@ export class StyleGuideInputComponent implements AfterViewInit, OnDestroy {
       anchor: 'size',
     },
     {
-      title: 'Icon',
-      anchor: 'icon',
-    },
-    {
       title: 'Clearable',
       anchor: 'clear',
+    },
+    {
+      title: 'Icon',
+      anchor: 'icon',
     },
     {
       title: 'Validation',

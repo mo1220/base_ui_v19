@@ -53,9 +53,20 @@
     <code><b>[group 순서]</b>
       div.form-group > label + input.form-control
     </code>
-    <div class="msg info">label과 input을 반드시 form-group으로 묶어야 함</div>
+    <div class="msg info">label과 input을 반드시 form-group으로 묶어야 함 (label 자동 sizing)</div>
     <div class="msg warning">label의 width 지정시 wd-N클래스 추가 (10단위 px)</div>
     <div class="style-guide-example">
+      <div class="form-group flex mb-2" *ngFor="let size of sizeList">
+        <label class="wd-50 me-2" [title]="size.label">{{size.label}}</label>
+        <input class="form-control"
+               [ngClass]="size.class"
+               [placeholder]="size.class || 'form-control-default'"
+               [(ngModel)]="keyword">
+        <button type="button" class="btn btn-primary ms-1"
+                [ngClass]="size.buttonClass">
+          {{size.label}}
+        </button>
+      </div>
       <div class="form-group flex mb-2" *ngFor="let size of sizeList">
         <label class="wd-50 me-2" [title]="size.label+'labelxxxXXX'">{{size.label}} labelxxxXXX</label>
         <input class="form-control"
@@ -77,66 +88,17 @@
       -->
     </div>
 
-    <h3 #anchor #icon>Icon</h3>
-    <div class="base-guide info">
-      <h5>Input에 아이콘을 추가하려면 반드시 input을 form-group으로 한번 묶어줘야함 (input에는 after, before 추가가 불가능)</h5>
-      <p>[group 순서] form-gorup > input.form-control</p>
-      <ul class="icon-ul check">
-        <li><b class="wd-120">[아이콘 위치 지정]</b> 아이콘의 위치에 따라 'icon-left' | 'icon-right' 클래스를 form-group에 추가</li>
-        <li><b class="wd-120">[아이콘 설정]</b> 아이콘 모양을 $input-icons에 추가 후 클래스 추가 </li>
-        <li><b class="wd-120">[로딩]</b> [class.loading]="로딩변수"</li>
-        <li><b class="wd-120">[로딩 애니메이션]</b> [class.is-loading]="로딩변수" 추가 <code>(is-loading 클래스는 spin animation을 위해 필요)</code></li>
-      </ul>
-    </div>
-    <div class="style-guide-example">
-      <div class="form-grid">
-        <div class="form-group">
-          <!-- il-loading -->
-          <div class="form-group icon-right loading mb-1"
-               [class.loading]="keyword === ''"
-               [class.is-loading]="keyword === ''"
-               *ngFor="let size of sizeList">
-            <input class="form-control"
-                   [ngClass]="size.class"
-                   [placeholder]="size.class || 'form-control-default'"
-                   [(ngModel)]="keyword">
-          </div>
-        </div>
-        <div class="form-group mx-1">
-          <div class="form-group icon-left search mb-1" *ngFor="let size of sizeList">
-            <input class="form-control"
-                   [ngClass]="size.class"
-                   [placeholder]="size.class || 'form-control-default'"
-                   [(ngModel)]="keyword">
-          </div>
-        </div>
-        <div class="form-group" style="flex:1">
-          <div class="form-group icon-right search mb-1" *ngFor="let size of sizeList">
-            <input class="form-control"
-                   [ngClass]="size.class"
-                   [placeholder]="(size.class || 'form-control-default') + ' clear'"
-                   [(ngModel)]="keyword">
-            <span class="clear-btn"
-                  *ngIf="keyword.trim() !== ''"
-                  (click)="keyword = ''">
-              <mat-icon class="mat-icon">close</mat-icon>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <h3 #anchor #clear>Clearable</h3>
     <p>입력받은 keyword가 있을 경우 클리어가 가능한 input<br>
-      div.form-group으로 묶으면 안에 있는 form-control의 size에 따라 clear-btn 사이즈 자동 변환<br>
+      div.form-box로 묶으면 안에 있는 form-control의 size에 따라 clear-btn 사이즈 자동 변환<br>
       <code><b>[group 순서]</b>
-        div.form-group > input.form-control + span.clear-btn
+        div.form-group > div.form-box > input.form-control + span.clear-btn
       </code>
     </p>
-    <div class="msg info">clear-btn과 input을 반드시 form-group으로 묶어야 함</div>
+    <div class="msg info">clear-btn과 input을 반드시 form-box로 묶어야 함</div>
     <div class="style-guide-example">
       <div class="form-grid flex">
-        <div class="form-group me-1" *ngFor="let size of sizeList; let i = index">
+        <div class="form-box me-1" *ngFor="let size of sizeList; let i = index">
           <input class="form-control"
                  [ngClass]="size.class"
                  [placeholder]="size.class || 'form-control-default'"
@@ -162,20 +124,99 @@
       -->
     </div>
 
+    <h3 #anchor #icon>Icon</h3>
+    <p>아이콘이 있는 input<br>
+      div.form-box로 묶으면 안에 있는 form-control의 size에 따라 icon 사이즈 자동 변환<br>
+      <code><b>[group 순서]</b>
+        div.form-group > div.form-box.icon-left.search > input.form-control
+      </code>
+    </p>
+    <div class="base-guide info">
+      <h5>Input에 아이콘을 추가하려면 반드시 input을 form-box로 묶어줘야함 (input에는 after, before 추가가 불가능)</h5>
+      <ul class="icon-ul check">
+        <li><b class="wd-120">[아이콘 위치 지정]</b> 아이콘의 위치에 따라 'icon-left' | 'icon-right' 클래스를 form-box에 추가</li>
+        <li><b class="wd-120">[아이콘 설정]</b> 아이콘 모양을 $input-icons에 추가 후 form-box에 해당 클래스 추가 </li>
+        <li><b class="wd-120">[로딩]</b> form-box에 [class.loading]="로딩변수", [class.icon-left]="로딩변수" 추가 <br>
+          * 로딩의 경우 icon-left (icon-right)도 로딩변수로 제어해야함</li>
+      </ul>
+    </div>
+    <div class="msg info">'stop'입력 시 loading = false</div>
+    <div class="style-guide-example">
+      <div class="form-grid">
+        <div class="form-group me-1">
+          <!-- il-loading -->
+          <div class="form-box mb-1" *ngFor="let size of sizeList"
+               [class.icon-left]="keyword !== 'stop'"
+               [class.loading]="keyword !== 'stop'">
+            <input class="form-control"
+                   [ngClass]="size.class"
+                   [placeholder]="size.class || 'form-control-default'"
+                   [(ngModel)]="keyword">
+            <span class="clear-btn"
+                  *ngIf="keyword.trim() !== ''"
+                  (click)="keyword = ''">
+              <mat-icon class="mat-icon">close</mat-icon>
+            </span>
+          </div>
+        </div>
+        <div class="form-group me-1">
+          <!-- il-loading -->
+          <div class="form-box mb-1 icon-right" *ngFor="let size of sizeList"
+               [class.icon-right]="keyword !== 'stop'"
+               [class.loading]="keyword !== 'stop'">
+            <input class="form-control"
+                   [ngClass]="size.class"
+                   [placeholder]="size.class || 'form-control-default'"
+                   [(ngModel)]="keyword">
+            <span class="clear-btn"
+                  *ngIf="keyword.trim() !== ''"
+                  (click)="keyword = ''">
+              <mat-icon class="mat-icon">close</mat-icon>
+            </span>
+          </div>
+        </div>
+        <div class="form-group me-1">
+          <div class="form-box icon-left search mb-1" *ngFor="let size of sizeList">
+            <input class="form-control"
+                   [ngClass]="size.class"
+                   [placeholder]="size.class || 'form-control-default'"
+                   [(ngModel)]="keyword">
+            <span class="clear-btn"
+                  *ngIf="keyword.trim() !== ''"
+                  (click)="keyword = ''">
+              <mat-icon class="mat-icon">close</mat-icon>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-box icon-right search mb-1" *ngFor="let size of sizeList">
+            <input class="form-control"
+                   [ngClass]="size.class"
+                   [placeholder]="(size.class || 'form-control-default') + ' clear'"
+                   [(ngModel)]="keyword">
+            <span class="clear-btn"
+                  *ngIf="keyword.trim() !== ''"
+                  (click)="keyword = ''">
+              <mat-icon class="mat-icon">close</mat-icon>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <h3 #anchor #validation>Validation</h3>
     <p>필수 입력 input validation check<br>
-      div.form-group으로 묶으면 안에 있는 form-control의 size에 따라 valid-feedback 사이즈 자동 변환<br>
+      div.form-box로 묶으면 안에 있는 form-control의 size에 따라 valid-feedback 사이즈 자동 변환<br>
       <code><b>[group 순서]</b>
-        div.form-group > input.form-control + span.valid-feedback(invalid-feedback)
+        div.form-group > div.form-box > input.form-control + span.valid-feedback(invalid-feedback)
       </code>
     </p>
     <div class="msg info">'success'입력 시 is-valid 클래스 추가 (clear-btn 조건과 valid 조건이 충돌하지 않게 주의)</div>
-    <div class="msg warning">form-group.flex 일 경우, valid-feedback(invalid-feedback)에 padding-left를 추가하기 위해 <b>'pl-N' ( 2~80 짝수)</b> 클래스 추가<br>
-    pl-N은 label의 wd-(x)값에 따라 적당히 (x) + margin값으로 계산</div>
+    <div class="msg info">valid 사용 시 form-group에 flex를 붙이지 말 것</div>
     <div class="style-guide-example">
-      <div class="form-group flex mb-1" *ngFor="let size of sizeList; let i = index">
-        <label class="required wd-50 me-2">{{size.label}} label xxxxxXX</label>
-        <div class="form-group">
+      <div class="form-group mb-1" *ngFor="let size of sizeList; let i = index">
+        <label class="required">{{size.label}}</label>
+        <div class="form-box">
           <input class="form-control"
                  placeholder="success 입력 시 valid"
                  [className]="size.class"
@@ -210,9 +251,9 @@
 
     <div class="msg info">입력 없을 시 is-invalid 클래스 추가</div>
     <div class="style-guide-example">
-      <div class="form-grid">
-        <div class="form-group me-1" *ngFor="let size of sizeList; let i = index">
-          <label class="required">{{size.label}}</label>
+      <div class="form-group mb-1" *ngFor="let size of sizeList; let i = index">
+        <label class="required">{{size.label}}</label>
+        <div class="form-box">
           <input class="form-control"
                  placeholder="키워드 입력 시 사라짐"
                  [className]="size.class"
@@ -306,7 +347,7 @@
     <div class="style-guide-example">
       <div class="form-grid mb-3" *ngFor="let size of sizeList">
         <div class="form-group flex col-md-12 mb-1">
-          <label class="wd-60 me-1 px-2s">label</label>
+          <label class="wd-60 me-1 px-2">label</label>
           <input class="form-control"
                  [ngClass]="size.class"
                  [placeholder]="'col-md-12 (100%)'">

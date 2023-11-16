@@ -348,53 +348,106 @@ label.btn-split {
   }
 }
 
-.form-group {
-  height: 100%;
+.form-box { // icon, clear-btn은 form-box 안에
   position: relative;
 
-
+  /*********************************ST: input-icons *********************************/
   &.icon-left {
-    .form-control.form-control-xs {
-      padding-left: $font-size-xs * 2;
-    }
-    .form-control.form-control-sm {
-      padding-left: $font-size-sm * 2;
-    }
+    .form-control.form-control-xs { padding-left: $font-size-xs * 2; }
+    .form-control.form-control-sm { pading-left: $font-size-sm * 2; }
     .form-control {
       padding-left: $font-size-base * 2;
       position: relative;
     }
-    .form-control.form-control-lg {
-      padding-left: $font-size-lg * 2;
+    .form-control.form-control-lg { padding-left: $font-size-lg * 2; }
+
+    &:has(.form-control.form-control-xs):after {
+      @include font-size($font-size-xs);
+      left: $input-btn-padding-y-xs + 0.2rem;
+    }
+    &:has(.form-control.form-control-sm):after {
+      @include font-size($font-size-sm);
+      left: $input-btn-padding-y-sm + 0.18rem;
+    }
+    &:has(.form-control):after {
+      @include font-size($font-size-base);
+      left: $input-btn-padding-y + 0.1rem;
+    }
+    &:has(.form-control.form-control-lg):after {
+      @include font-size($font-size-lg);
+      left: $input-btn-padding-y-lg + 0.1rem;
     }
   }
   &.icon-right {
-    .form-control.form-control-xs {
-      padding-right: $font-size-xs * 2;
-    }
-    .form-control.form-control-sm {
-      padding-right: $font-size-sm * 2;
-    }
+    .form-control.form-control-xs { padding-right: $font-size-xs * 2; }
+    .form-control.form-control-sm { padding-right: $font-size-sm * 2; }
     .form-control {
       padding-right: $font-size-base * 2;
       position: relative;
     }
-    .form-control.form-control-lg {
-      padding-right: $font-size-lg * 2;
+    .form-control.form-control-lg { padding-right: $font-size-lg * 2; }
+
+    &:has(.clear-btn) { // icon + clear-btn이 같이 있을 경우
+      .form-control.form-control-xs { padding-right: $font-size-xs * 4; }
+      .form-control.form-control-sm { padding-right: $font-size-sm * 4; }
+      .form-control { padding-right: $font-size-base * 4; }
+      .form-control.form-control-lg { padding-right: $font-size-lg * 4; }
+    }
+
+    &:has(.form-control.form-control-xs) {
+     &:after {
+       @include font-size($font-size-xs);
+       right: $input-btn-padding-y-xs + 0.2rem !important;
+     }
+      .clear-btn {
+        right: calc($input-btn-padding-y-xs + 0.2rem + 12px) !important;
+      }
+    }
+    &:has(.form-control.form-control-sm) {
+     &:after {
+       @include font-size($font-size-sm);
+       right: $input-btn-padding-y-sm + 0.18rem;
+     }
+      .clear-btn {
+        right: calc($input-btn-padding-y-sm + 0.2rem + 15px) !important;
+      }
+    }
+    &:has(.form-control) {
+     &:after {
+       @include font-size($font-size-base);
+       right: $input-btn-padding-y + 0.1rem;
+     }
+      .clear-btn {
+        right: calc($input-btn-padding-y + 0.2rem + 18px) !important;
+      }
+    }
+    &:has(.form-control.form-control-lg) {
+     &:after {
+       @include font-size($font-size-lg);
+       right: $input-btn-padding-y-lg + 0.1rem;
+     }
+      .clear-btn {
+        right: calc($input-btn-padding-y-lg + 0.2rem + 22px) !important;
+      }
     }
   }
 
-  /*********************************ST: input-icons *********************************/
   $input-icons: (
     search: '\f002',
     loading: '\f110'
     // 클래스명: '' 로 정의
   );
   @keyframes loading-spin {
-    0% { transform: rotate(0) translateY(-50%) }
-    to { transform: rotate(359deg) translateY(-50%) }
+    0% {
+      -webkit-transform: rotate(0deg) translateY(-50%) ;
+      transform: rotate(0deg) translateY(-50%) ;
+    }
+    100% {
+      -webkit-transform: rotate(359deg) translateY(-50%) ;
+      transform: rotate(359deg) translateY(-50%) ;
+    }
   }
-  .icon-left, .icon-right {
+  &.icon-left, &.icon-right {
     /* 아이콘 모양 */
     @each $key, $icon in $input-icons {
       &.#{$key}:after {
@@ -407,53 +460,9 @@ label.btn-split {
         transform: translateY(-50%);
       }
     }
-    &.is-loading:after { // is-loading일 경우 spin
-      animation: loading-spin 2s infinite linear;
+    &.loading:after { // loading일 경우 spin
+      animation: loading-spin 1s infinite steps(8);
       transform-origin: top;
-    }
-  }
-  .icon-left {
-    &:has(.form-control.form-control-xs) {
-      &:after {
-        left: $input-btn-padding-y-xs + 0.2rem;
-      }
-    }
-    &:has(.form-control.form-control-sm) {
-      &:after {
-        left: $input-btn-padding-y-sm + 0.15rem;
-      }
-    }
-    &:has(.form-control) {
-      &:after {
-        left: $input-btn-padding-y + 0.1rem;
-      }
-    }
-    &:has(.form-control.form-control-lg) {
-      &:after {
-        left: $input-btn-padding-y-lg + 0.1rem;
-      }
-    }
-  }
-  .icon-right {
-    &:has(.form-control.form-control-xs) {
-      &:after {
-        right: $input-btn-padding-y-xs + 0.2rem !important;
-      }
-    }
-    &:has(.form-control.form-control-sm) {
-      &:after {
-        right: $input-btn-padding-y-sm + 0.15rem;
-      }
-    }
-    &:has(.form-control) {
-      &:after {
-        right: $input-btn-padding-y + 0.1rem;
-      }
-    }
-    &:has(.form-control.form-control-lg) {
-      &:after {
-        right: $input-btn-padding-y-lg + 0.1rem;
-      }
     }
   }
   /*********************************EN: input-icons *********************************/
@@ -469,9 +478,10 @@ label.btn-split {
     }
   }
   &:has(.clear-btn) {
-    .form-control {
-      padding-right: calc(1.2em + 0.6rem);
-    }
+    .form-control.form-control-xs { padding-right: $font-size-xs * 2; }
+    .form-control.form-control-sm { padding-right: $font-size-sm * 2; }
+    .form-control { padding-right: $font-size-base * 2; }
+    .form-control.form-control-lg { padding-right: $font-size-lg * 2; }
   }
   .was-validated .form-control:valid, .form-control.is-valid, .was-validated .form-control:invalid, .form-control.is-invalid {
     margin-bottom: 0;
@@ -479,7 +489,7 @@ label.btn-split {
   .valid-feedback, .invalid-feedback {
     margin: 0;
   }
-  &:has(>.form-control.form-control-xs), &:has(.form-group .form-control.form-control-xs) {
+  &:has(.form-control.form-control-xs) {
     @include font-size($font-size-xs);
     label {
       @include font-size($font-size-xs);
@@ -488,7 +498,7 @@ label.btn-split {
       padding: $input-btn-padding-y-xs*0.5 0;
     }
     .clear-btn {
-      bottom: 2px;
+      bottom: 3px;
       mat-icon {
         font-size: 12px !important;
         width: 12px !important;
@@ -504,7 +514,7 @@ label.btn-split {
       padding: $input-btn-padding-y-xs*0.5 1px;
     }
   }
-  &:has(>.form-control.form-control-sm), &:has(.form-group .form-control.form-control-sm){
+  &:has(.form-control.form-control-sm) {
     @include font-size($font-size-sm);
     label {
       @include font-size($font-size-sm);
@@ -529,12 +539,12 @@ label.btn-split {
       padding: $input-btn-padding-y-sm*0.5 1px;
     }
   }
-  &:has(>.form-control), &:has(.form-group .form-control) {
+  &:has(.form-control) {
     @include font-size($font-size-base);
     label {
       @include font-size($font-size-base);
       line-height: $font-size-base;
-      max-height: $font-size-base * 2.1;
+      max-height: $font-size-base * 2.2;
       padding: $input-btn-padding-y*0.5 0;
     }
     .clear-btn {
@@ -555,13 +565,13 @@ label.btn-split {
       padding: $input-btn-padding-y*0.5 1px;
     }
   }
-  &:has(>.form-control.form-control-lg), &:has(.form-group .form-control.form-control-lg) {
+  &:has(.form-control.form-control-lg) {
     @include font-size($font-size-lg);
     label {
       @include font-size($font-size-lg);
       line-height: $font-size-lg;
       max-height: $font-size-lg * 2.2;
-      padding: $input-btn-padding-y-lg*0.5 0;
+      padding: $input-btn-padding-y-lg*0.3 0;
     }
     .clear-btn {
       bottom: 10px;
@@ -580,6 +590,50 @@ label.btn-split {
       padding: $input-btn-padding-y-lg*0.5 1px;
     }
   }
+}
+
+.form-group {
+  height: 100%;
+  position: relative;
+  &:has(.form-control.form-control-xs) {
+    @include font-size($font-size-xs);
+    label {
+      @include font-size($font-size-xs);
+      line-height: $font-size-xs;
+      max-height: $font-size-xs * 2.1;
+      padding: $input-btn-padding-y-xs*0.5 0;
+    }
+  }
+  &:has(.form-control.form-control-sm) {
+    @include font-size($font-size-sm);
+    label {
+      @include font-size($font-size-sm);
+      line-height: $font-size-sm;
+      max-height: $font-size-sm * 2.1;
+      padding: $input-btn-padding-y-sm*0.5 0;
+    }
+  }
+  &:has(.form-control) {
+    @include font-size($font-size-base);
+    label {
+      @include font-size($font-size-base);
+      line-height: $font-size-base;
+      max-height: $font-size-base * 2.2;
+      padding: $input-btn-padding-y*0.5 0;
+    }
+  }
+  &:has(.form-control.form-control-lg) {
+    @include font-size($font-size-lg);
+    label {
+      @include font-size($font-size-lg);
+      line-height: $font-size-lg;
+      max-height: $font-size-lg * 2.2;
+      padding: $input-btn-padding-y-lg*0.3 0;
+    }
+  }
+
+
+
 
   &.flex {
     display: flex;
