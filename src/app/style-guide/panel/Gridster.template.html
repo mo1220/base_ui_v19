@@ -1,10 +1,204 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap">
+    <ng-container *ngFor="let menu of menus; let i=index">
+      <h3 #anchors>{{ menu.title }}</h3>
+      <p [innerHTML]="menu.desc | safeHtml"></p>
+      <div class="base-guide info">
+        <h5>Gridster 기본 옵션</h5>
+        <dl class="d-flex" style="flex-wrap: wrap;">
+          <div class="d-flex-1 me-3 mb-3" *ngFor="let op of op_desc">
+            <dt>
+              <b class="wd-200">{{op.name}}
+                <a matTooltip="링크로 이동" [href]="op.link" target="_blank"><i class="fa fa-external-link"></i></a>
+              </b>
+            </dt>
+            <dd>
+              <p class="mb-0"><b>설명 : </b>{{op.desc}}</p>
+              <!--ST: Compact Type-->
+              <ng-container *ngIf="op.key === 'compactType'">
+                <ng-select [placeholder]="'compactType 설정'"
+                           [items]="op.options"
+                           (change)="changedOptions()"
+                           [(ngModel)]="options.compactType"></ng-select>
+              </ng-container>
+              <!--EN: Compact Type-->
 
-</body>
-</html>
+              <!--ST: Display Grid-->
+              <ng-container *ngIf="op.key === 'displayGrid'">
+                <ng-select [placeholder]="'display Grid 설정'"
+                           [items]="op.options"
+                           (change)="changedOptions()"
+                           [(ngModel)]="options.displayGrid"></ng-select>
+              </ng-container>
+              <!--EN: Display Grid-->
+              <!--ST: draggable-->
+              <ng-container *ngIf="op.key === 'draggable'">
+                <div class="form-group mb-1">
+                  <mat-checkbox class="matcheckbox" color="primary"
+                                (ngModelChange)="changedOptions()"
+                                [(ngModel)]="options.draggable.enabled">Drag Enabled
+                  </mat-checkbox>
+                  <mat-checkbox class="matcheckbox"
+                                color="primary"
+                                (ngModelChange)="changedOptions()"
+                                [(ngModel)]="options.draggable.ignoreContent">Drag ignoreContent
+                  </mat-checkbox>
+                </div>
+                <div class="form-group flex mb-1">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs dtk-slider-flex"
+                              [label]="'Delay Start'"
+                              [unit]="'ms'"
+                              [min]="1"
+                              [max]="1000"
+                              [mode]="'less'"
+                              [(value)]="options.draggable.delayStart"></dtk-slider>
+                </div>
+                <div class="form-group flex mb-1">
+                  <label class="wd-100">dragHandleClass</label>
+                  <input class="form-control form-control-xs"
+                         [(ngModel)]="options.draggable.dragHandleClass"
+                         type="texr"
+                         placeholder="Insert drag hanlder class..."
+                         (ngModelChange)="changedOptions()"/>
+                </div>
+                <div class="form-group flex">
+                  <label class="wd-100">ignoreContentClass</label>
+                  <input class="form-control form-control-xs"
+                         [(ngModel)]="options.draggable.ignoreContentClass"
+                         type="texr"
+                         placeholder="Insert ignoreContent class..."
+                         (ngModelChange)="changedOptions()"/>
+                </div>
+              </ng-container>
+              <!--ST: draggable-->
+
+              <!--ST: empty-->
+              <ng-container *ngIf="op.key === 'empty'">
+                <div class="form-group">
+                  <mat-checkbox
+                    class="matcheckbox" color="primary"
+                    [(ngModel)]="options.enableEmptyCellClick"
+                    (ngModelChange)="changedOptions()">
+                    Enable click to add
+                  </mat-checkbox>
+                </div>
+                <div class="form-group">
+                   <mat-checkbox class="matcheckbox" color="primary"
+                      [(ngModel)]="options.enableEmptyCellContextMenu"
+                      (ngModelChange)="changedOptions()">
+                      Enable right click to add
+                    </mat-checkbox>
+                </div>
+                <div class="form-group mb-1">
+                  <mat-checkbox
+                    class="matcheckbox" color="primary"
+                    [(ngModel)]="options.enableEmptyCellDrop"
+                    (ngModelChange)="changedOptions()">
+                    Enable drop to add
+                  </mat-checkbox>
+                  <span *ngIf="options.enableEmptyCellDrop"
+                       draggable="true"
+                       (dragstart)="dragStartHandler($event)">
+                    Drag me!
+                  </span>
+                </div>
+                <div class="form-group mb-1">
+                  <mat-checkbox
+                    class="matcheckbox" color="primary"
+                    (ngModelChange)="changedOptions()"
+                    [(ngModel)]="options.enableOccupiedCellDrop"
+                    [disabled]="!options.enableEmptyCellDrop">
+                    Enable drop on occupied cell
+                  </mat-checkbox>
+                </div>
+                <div class="form-group mb-1">
+                  <mat-checkbox class="matcheckbox" color="primary"
+                    [(ngModel)]="options.enableEmptyCellDrag"
+                    (ngModelChange)="changedOptions()">
+                    Enable drag to add
+                  </mat-checkbox>
+                </div>
+
+                <div class="form-group flex">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs dtk-slider-flex"
+                              [label]="'emptyCellDragMaxCols'"
+                              [unit]="'ms'"
+                              [min]="1"
+                              [max]="500"
+                              [mode]="'less'"
+                              [(value)]="options.emptyCellDragMaxCols"></dtk-slider>
+                </div>
+                <div class="form-group flex">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs dtk-slider-flex"
+                              [label]="'emptyCellDragMaxRows'"
+                              [unit]="'ms'"
+                              [min]="1"
+                              [max]="500"
+                              [mode]="'less'"
+                              [(value)]="options.emptyCellDragMaxRows"></dtk-slider>
+                </div>
+              </ng-container>
+              <!--EN: empty-->
+
+
+              <!-- ST: Margin-->
+<!--              margin: 5,-->
+<!--              outerMargin: true,-->
+<!--              outerMarginTop: 5,-->
+<!--              outerMarginBottom: 5,-->
+<!--              outerMarginLeft: 5,-->
+<!--              outerMarginRight: 5,-->
+              <!-- EN: Margin-->
+
+            </dd>
+          </div>
+        </dl>
+      </div>
+      <button mat-mini-fab (click)="addItem()" class="add-button cols-2">
+        <mat-icon>add</mat-icon>
+      </button>
+      <div class="style-guide-example d-flex col" style="height: 1300px; max-height: 10000px;">
+
+        <gridster [options]="options">
+          <gridster-item *ngFor="let item of dashboard"
+                         [item]="item">
+            <div class="gridster-item-wrap">
+              <div class="gridster-item-header">
+                <button [ngClass]="options.draggable.dragHandleClass">
+                  <mat-icon class="md-18">drag_indicator</mat-icon>
+                </button>
+                <!--<label>{{ item['label'] }}</label>-->
+                <button mat-button [matTooltip]="'새로고침'">
+                  <mat-icon>refresh</mat-icon>
+                </button>
+                <!--<ng-container *ngIf="modified">
+                  <button mat-button [matTooltip]="'더보기'"
+                          [matMenuTriggerFor]="gridMenu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #gridMenu="matMenu">
+                    <button mat-menu-item
+                            (mousedown)="removeItem($event, item)"
+                            (touchstart)="removeItem($event, item)">
+                      <mat-icon class="md-16">delete</mat-icon> 제거
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon class="md-16">change_circle</mat-icon> 변경
+                    </button>
+                  </mat-menu>
+                </ng-container>-->
+              </div>
+              <div [ngClass]="options.draggable.ignoreContentClass">
+                내용
+              </div>
+            </div>
+          </gridster-item>
+        </gridster>
+      </div>
+
+    </ng-container>
+  </div>
+
+  <aside-menu-right [menu]="menus"
+                    [anchor]="anchors"></aside-menu-right>
+</div>
