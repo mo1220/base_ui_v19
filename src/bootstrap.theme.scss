@@ -351,6 +351,114 @@ label.btn-split {
 .form-group {
   height: 100%;
   position: relative;
+
+
+  &.icon-left {
+    .form-control.form-control-xs {
+      padding-left: $font-size-xs * 2;
+    }
+    .form-control.form-control-sm {
+      padding-left: $font-size-sm * 2;
+    }
+    .form-control {
+      padding-left: $font-size-base * 2;
+      position: relative;
+    }
+    .form-control.form-control-lg {
+      padding-left: $font-size-lg * 2;
+    }
+  }
+  &.icon-right {
+    .form-control.form-control-xs {
+      padding-right: $font-size-xs * 2;
+    }
+    .form-control.form-control-sm {
+      padding-right: $font-size-sm * 2;
+    }
+    .form-control {
+      padding-right: $font-size-base * 2;
+      position: relative;
+    }
+    .form-control.form-control-lg {
+      padding-right: $font-size-lg * 2;
+    }
+  }
+
+  /*********************************ST: input-icons *********************************/
+  $input-icons: (
+    search: '\f002',
+    loading: '\f110'
+    // 클래스명: '' 로 정의
+  );
+  @keyframes loading-spin {
+    0% { transform: rotate(0) translateY(-50%) }
+    to { transform: rotate(359deg) translateY(-50%) }
+  }
+  .icon-left, .icon-right {
+    /* 아이콘 모양 */
+    @each $key, $icon in $input-icons {
+      &.#{$key}:after {
+        content: $icon;
+        display: inline-block;
+        position: absolute;
+        top:50%;
+        color: $input-icon-color;
+        font-family: FontAwesome;
+        transform: translateY(-50%);
+      }
+    }
+    &.is-loading:after { // is-loading일 경우 spin
+      animation: loading-spin 2s infinite linear;
+      transform-origin: top;
+    }
+  }
+  .icon-left {
+    &:has(.form-control.form-control-xs) {
+      &:after {
+        left: $input-btn-padding-y-xs + 0.2rem;
+      }
+    }
+    &:has(.form-control.form-control-sm) {
+      &:after {
+        left: $input-btn-padding-y-sm + 0.15rem;
+      }
+    }
+    &:has(.form-control) {
+      &:after {
+        left: $input-btn-padding-y + 0.1rem;
+      }
+    }
+    &:has(.form-control.form-control-lg) {
+      &:after {
+        left: $input-btn-padding-y-lg + 0.1rem;
+      }
+    }
+  }
+  .icon-right {
+    &:has(.form-control.form-control-xs) {
+      &:after {
+        right: $input-btn-padding-y-xs + 0.2rem !important;
+      }
+    }
+    &:has(.form-control.form-control-sm) {
+      &:after {
+        right: $input-btn-padding-y-sm + 0.15rem;
+      }
+    }
+    &:has(.form-control) {
+      &:after {
+        right: $input-btn-padding-y + 0.1rem;
+      }
+    }
+    &:has(.form-control.form-control-lg) {
+      &:after {
+        right: $input-btn-padding-y-lg + 0.1rem;
+      }
+    }
+  }
+  /*********************************EN: input-icons *********************************/
+
+  /*********************************ST: input-celar *********************************/
   .clear-btn {
     position: absolute;
     color: rgba(0, 0, 0, 0.35);
@@ -371,8 +479,8 @@ label.btn-split {
   .valid-feedback, .invalid-feedback {
     margin: 0;
   }
-
-  &:has(.form-control.form-control-xs) {
+  &:has(>.form-control.form-control-xs), &:has(.form-group .form-control.form-control-xs) {
+    @include font-size($font-size-xs);
     label {
       @include font-size($font-size-xs);
       line-height: $font-size-xs;
@@ -396,7 +504,8 @@ label.btn-split {
       padding: $input-btn-padding-y-xs*0.5 1px;
     }
   }
-  &:has(.form-control.form-control-sm) {
+  &:has(>.form-control.form-control-sm), &:has(.form-group .form-control.form-control-sm){
+    @include font-size($font-size-sm);
     label {
       @include font-size($font-size-sm);
       line-height: $font-size-sm;
@@ -420,7 +529,8 @@ label.btn-split {
       padding: $input-btn-padding-y-sm*0.5 1px;
     }
   }
-  &:has(.form-control) {
+  &:has(>.form-control), &:has(.form-group .form-control) {
+    @include font-size($font-size-base);
     label {
       @include font-size($font-size-base);
       line-height: $font-size-base;
@@ -445,7 +555,8 @@ label.btn-split {
       padding: $input-btn-padding-y*0.5 1px;
     }
   }
-  &:has(.form-control.form-control-lg) {
+  &:has(>.form-control.form-control-lg), &:has(.form-group .form-control.form-control-lg) {
+    @include font-size($font-size-lg);
     label {
       @include font-size($font-size-lg);
       line-height: $font-size-lg;
@@ -477,6 +588,39 @@ label.btn-split {
     input {
       display: inline-block;
       flex: 1;
+    }
+    &:has(.form-group) {
+      align-items: start;
+      label {
+        border: 1px solid transparent;
+      }
+      .form-group { flex: 1 }
+
+      &:has(.form-control.form-control-xs) {
+        label {
+          line-height: $line-height-xs;
+          padding: $input-btn-padding-y-xs 0;
+        }
+      }
+      &:has(.form-control.form-control-sm) {
+        label {
+          line-height: $line-height-sm;
+          padding: $input-btn-padding-y-sm 0;
+        }
+      }
+      &:has(.form-control) {
+        label {
+          line-height: $line-height-base;
+          padding: $input-btn-padding-y 0;
+        }
+
+      }
+      &:has(.form-control.form-control-lg) {
+        label {
+          line-height: $line-height-lg;
+          padding: $input-btn-padding-y-lg 0;
+        }
+      }
     }
   }
 }

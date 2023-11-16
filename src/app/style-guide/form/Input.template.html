@@ -77,6 +77,55 @@
       -->
     </div>
 
+    <h3 #anchor #icon>Icon</h3>
+    <div class="base-guide info">
+      <h5>Input에 아이콘을 추가하려면 반드시 input을 form-group으로 한번 묶어줘야함 (input에는 after, before 추가가 불가능)</h5>
+      <p>[group 순서] form-gorup > input.form-control</p>
+      <ul class="icon-ul check">
+        <li><b class="wd-120">[아이콘 위치 지정]</b> 아이콘의 위치에 따라 'icon-left' | 'icon-right' 클래스를 form-group에 추가</li>
+        <li><b class="wd-120">[아이콘 설정]</b> 아이콘 모양을 $input-icons에 추가 후 클래스 추가 </li>
+        <li><b class="wd-120">[로딩]</b> [class.loading]="로딩변수"</li>
+        <li><b class="wd-120">[로딩 애니메이션]</b> [class.is-loading]="로딩변수" 추가 <code>(is-loading 클래스는 spin animation을 위해 필요)</code></li>
+      </ul>
+    </div>
+    <div class="style-guide-example">
+      <div class="form-grid">
+        <div class="form-group">
+          <!-- il-loading -->
+          <div class="form-group icon-right loading mb-1"
+               [class.loading]="keyword === ''"
+               [class.is-loading]="keyword === ''"
+               *ngFor="let size of sizeList">
+            <input class="form-control"
+                   [ngClass]="size.class"
+                   [placeholder]="size.class || 'form-control-default'"
+                   [(ngModel)]="keyword">
+          </div>
+        </div>
+        <div class="form-group mx-1">
+          <div class="form-group icon-left search mb-1" *ngFor="let size of sizeList">
+            <input class="form-control"
+                   [ngClass]="size.class"
+                   [placeholder]="size.class || 'form-control-default'"
+                   [(ngModel)]="keyword">
+          </div>
+        </div>
+        <div class="form-group" style="flex:1">
+          <div class="form-group icon-right search mb-1" *ngFor="let size of sizeList">
+            <input class="form-control"
+                   [ngClass]="size.class"
+                   [placeholder]="(size.class || 'form-control-default') + ' clear'"
+                   [(ngModel)]="keyword">
+            <span class="clear-btn"
+                  *ngIf="keyword.trim() !== ''"
+                  (click)="keyword = ''">
+              <mat-icon class="mat-icon">close</mat-icon>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <h3 #anchor #clear>Clearable</h3>
     <p>입력받은 keyword가 있을 경우 클리어가 가능한 input<br>
       div.form-group으로 묶으면 안에 있는 form-control의 size에 따라 clear-btn 사이즈 자동 변환<br>
@@ -87,7 +136,7 @@
     <div class="msg info">clear-btn과 input을 반드시 form-group으로 묶어야 함</div>
     <div class="style-guide-example">
       <div class="form-grid flex">
-        <div class="form-group flex me-1" *ngFor="let size of sizeList; let i = index">
+        <div class="form-group me-1" *ngFor="let size of sizeList; let i = index">
           <input class="form-control"
                  [ngClass]="size.class"
                  [placeholder]="size.class || 'form-control-default'"
@@ -125,19 +174,21 @@
     pl-N은 label의 wd-(x)값에 따라 적당히 (x) + margin값으로 계산</div>
     <div class="style-guide-example">
       <div class="form-group flex mb-1" *ngFor="let size of sizeList; let i = index">
-        <label class="required wd-50 me-2">{{size.label}}</label>
-        <input class="form-control"
-               placeholder="success 입력 시 valid"
-               [className]="size.class"
-               [ngClass]="{'is-valid': valid == 'success'}"
-               [(ngModel)]="valid">
-        <span class="clear-btn"
-              *ngIf="valid !== 'success' && valid !== ''"
-              (click)="valid = ''">
+        <label class="required wd-50 me-2">{{size.label}} label xxxxxXX</label>
+        <div class="form-group">
+          <input class="form-control"
+                 placeholder="success 입력 시 valid"
+                 [className]="size.class"
+                 [ngClass]="{'is-valid': valid == 'success'}"
+                 [(ngModel)]="valid">
+          <span class="clear-btn"
+                *ngIf="valid !== 'success' && valid !== ''"
+                (click)="valid = ''">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
-        <span class="valid-feedback pl-58"
-              [style.display]="valid == 'success' ? 'block': 'none'">검증 완료</span>
+          <span class="valid-feedback"
+                [style.display]="valid == 'success' ? 'block': 'none'">검증 완료</span>
+        </div>
       </div>
       <!--복붙용
       <div class="form-group">

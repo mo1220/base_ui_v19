@@ -6,6 +6,7 @@
       <h5>date-picker 옵션 설정 <code>(입력 안 했을 경우 기본값)</code></h5>
       <p>옵션 없이 date-picker 사용 가능 (단일 날짜 picker)</p>
       <ul class="icon-ul check">
+        <li><b class="wd-150">[size]</b> <code><b>'sm'</b></code> | 'xs' | 'default' (input.form-control size를 결정) </li>
         <li><b class="wd-150">[placeholder]</b> <code><b>dateInputFormat과 동일</b></code> | string 입력 </li>
         <li><b class="wd-150">[locale]</b> <code><b>'kr'</b></code> | 'en' | 'cn'</li>
         <li><b class="wd-150">[minDate], [maxDate]</b> Date format 변수</li>
@@ -14,8 +15,8 @@
         <li><b class="wd-150">[showWeekNumbers]</b> true | <code><b>false</b></code></li>
         <li><b class="wd-150">[returnFocusToInput]</b> true | <code><b>false</b></code> (날짜 선택 후 input에 focus)</li>
         <li><b class="wd-150">[placement]</b> <code><b>(adaptivePosition:true)</b></code> | 'bottom' | 'top' | 'left' | 'right' (캘린더 위치, 입력 안 할 경우 adaptivePosition:true)</li>
-        <li><b class="wd-150">[customTodayClass]</b> : <code><b>'ngx-today'</b></code> | '' (ngx-today 입력 시 오늘 날짜 스타일링)</li>
-        <li><b class="wd-150">[dateTooltipTexts]</b> : <code><b>[ &#123; date: Today, tooltipText: '오늘' &#125; ]</b></code> | tooltipDates: DatepickerDateTooltipText[] (툴팁 변수에 date, tooltipText 지정)</li>
+        <li><b class="wd-150">[customTodayClass]</b> <code><b>'ngx-today'</b></code> | '' (ngx-today 입력 시 오늘 날짜 스타일링)</li>
+        <li><b class="wd-150">[dateTooltipTexts]</b> <code><b>[ &#123; date: Today, tooltipText: '오늘' &#125; ]</b></code> | tooltipDates: DatepickerDateTooltipText[] (툴팁 변수에 date, tooltipText 지정)</li>
       </ul>
     </div>
     <div class="msg info">calendar와 input의 가로 사이즈를 맞추려면 date-picker에 'wd-280' 클래스 추가</div>
@@ -26,8 +27,9 @@
         <date-picker [(selectDate)]="selectedDate"></date-picker>
       </div>
       <div class="form-group mb-2">
-        <label>format변경 & 선택 후 input focus & wd-280</label>
+        <label>input size default & format변경 & 선택 후 input focus & wd-280</label>
         <date-picker class="wd-280"
+                     size
                      [(selectDate)]="selectedDate"
                      [dateInputFormat]="'YYYY/MM/DD'"
                      [returnFocusToInput] = true></date-picker>

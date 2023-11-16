@@ -1,7 +1,12 @@
 @import './src/styles-variables.scss';
-
+.bs-datepicker {
+  background-color: transparent;
+  box-shadow: none;
+}
 .bs-datepicker-container {
   padding: 0 !important;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 #aaa;
 }
 
 .bs-datepicker-body table td.week span {
@@ -26,7 +31,8 @@
 }
 
 .bs-datepicker-custom-range {
-  padding: 50px 10px 0 0 !important;
+  padding: 50px 0 0 0 !important;
+  background-color: transparent;
 }
 .bs-datepicker-body table td span.is-highlighted:not(.disabled):not(.selected) {
   background-color: lighten($primary, 30);

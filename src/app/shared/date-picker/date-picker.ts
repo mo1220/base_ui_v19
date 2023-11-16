@@ -24,6 +24,7 @@ export class DatePickerComponent implements OnInit {
   yesterday: Date =  new Date(new Date().setDate(new Date().getDate() -1));
   tomorrow: Date =  new Date(new Date().setDate(new Date().getDate() +1));
 
+  @Input() size: string = 'sm' // input.form-control size
   @Input() locale: string = 'kr'; // en cn kr 캘린더 언어
 
   @Input() placeholder:string;
