@@ -199,6 +199,9 @@ ul, ol, dl {
         margin-right: 5px;
       }
 
+      b {
+        vertical-align: middle;
+      }
       & > ol,
       & > ul {
         margin-left: 30px;
@@ -2791,11 +2794,11 @@ date-picker {
   }
 
   &-input {
-    margin-left: 20px;
+    margin-left: 10px;
 
     &.from {
       margin-left: 0;
-      margin-right: 20px;
+      margin-right: 10px;
     }
 
     .form-control {
@@ -2825,7 +2828,7 @@ date-picker {
       align-items: center;
 
       label {
-        margin-right: 20px;
+        /*margin-right: 20px;*/
       }
 
       .dtk-slider-wrap {
@@ -2835,6 +2838,9 @@ date-picker {
   }
 
   &-xl {
+    label {
+      font-size: $font-size-xl !important;
+    }
     .dtk-slider-input {
       .form-control {
         font-size: $font-size-xl;
@@ -2856,7 +2862,9 @@ date-picker {
     .ngx-slider.linear-filter {
       margin: 10px 0;
     }
-
+    label {
+      font-size: $font-size-lg !important;
+    }
     .dtk-slider-input {
       .form-control {
         font-size: $font-size-lg;
@@ -2892,7 +2900,9 @@ date-picker {
       height: 12px !important;
       top: -4px !important;
     }
-
+    label {
+      font-size: $font-size-sm !important;
+    }
     .dtk-slider-input {
       .form-control {
         font-size: $font-size-sm;
@@ -2933,6 +2943,9 @@ date-picker {
       top: -3px !important;
     }
 
+    label {
+      font-size: $font-size-xs !important;
+    }
     .dtk-slider-input {
       .form-control {
         font-size: $font-size-xs;

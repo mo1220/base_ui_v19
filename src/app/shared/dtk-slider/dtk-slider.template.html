@@ -1,5 +1,5 @@
 <div class="form-group dtk-slider">
-  <label>{{label}}</label>
+  <label [ngClass]="labelClass">{{label}}</label>
   <ng-container *ngIf="_mode !== 'range'">
     <div class="dtk-slider-wrap">
       <ngx-slider [(value)]="_value"

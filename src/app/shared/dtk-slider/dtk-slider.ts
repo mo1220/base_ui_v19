@@ -19,6 +19,7 @@ export class DtkSliderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   options: Options = {}; // 슬라이더 옵션
   unsubscribe$: Subject<void> = new Subject<void>();
+  @Input() labelClass: string = '';
   @Input() format: any;
   _mode = 'less'; // 'less' || 'greater' || 'range'
   @Input()
