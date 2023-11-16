@@ -2910,12 +2910,13 @@ date-picker {
 
   &.handle-n,
   &.handle-s {
+    height: 6px !important;
     &:before {
       content: '';
       display: none;
       position: absolute;
       left: 50%;
-      top: 4px;
+      top: 2px;
       width: 20px;
       height: 2px;
       background: #999;
@@ -2926,15 +2927,21 @@ date-picker {
         display: block;
       }
     }
+    &:active {
+      &:before {
+        background: #333;
+      }
+    }
   }
 
   &.handle-e,
   &.handle-w {
+    width: 6px !important;
     &:before {
       content: '';
       display: none;
       position: absolute;
-      left: 4px;
+      left: 2px;
       top: 50%;
       width: 2px;
       height: 20px;
@@ -2944,6 +2951,11 @@ date-picker {
     &:hover {
       &:before {
         display: block;
+      }
+    }
+    &:active {
+      &:before {
+        background: #333;
       }
     }
   }
@@ -2958,6 +2970,16 @@ date-picker {
       height: 8px;
       border-bottom: 2px solid transparent;
       border-right: 2px solid transparent;
+    }
+    &:hover {
+      &:before {
+        border-color: #333;
+      }
+    }
+    &:active {
+      &:before {
+        border-color: #333;
+      }
     }
   }
 }
