@@ -8,7 +8,8 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ViewChild
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import {ITreeOptions, KEYS, TreeComponent} from "@odymaui/angular-tree-component";
 
@@ -16,7 +17,8 @@ import {ITreeOptions, KEYS, TreeComponent} from "@odymaui/angular-tree-component
 @Component({
   selector: 'tree-select-filter',
   templateUrl: 'tree-select-filter.template.html',
-  styleUrls: ['tree-select-filter.style.scss']
+  styleUrls: ['tree-select-filter.style.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class TreeSelectFilterComponent implements OnInit, OnChanges, AfterViewInit {
@@ -33,6 +35,7 @@ export class TreeSelectFilterComponent implements OnInit, OnChanges, AfterViewIn
   @ViewChild('tree') tree: TreeComponent;
   @ViewChild('treeWrap') treeWrap: ElementRef;
 
+  @Input('labelName') labelName: string;
   @Input() nodes: any;
 
   _openState = false;
