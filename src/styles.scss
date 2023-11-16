@@ -199,6 +199,9 @@ ul, ol, dl {
         margin-right: 5px;
       }
 
+      b {
+        vertical-align: middle;
+      }
       & > ol,
       & > ul {
         margin-left: 30px;
@@ -2791,11 +2794,11 @@ date-picker {
   }
 
   &-input {
-    margin-left: 20px;
+    margin-left: 10px;
 
     &.from {
       margin-left: 0;
-      margin-right: 20px;
+      margin-right: 10px;
     }
 
     .form-control {
@@ -2825,7 +2828,7 @@ date-picker {
       align-items: center;
 
       label {
-        margin-right: 20px;
+        /*margin-right: 20px;*/
       }
 
       .dtk-slider-wrap {
@@ -2835,6 +2838,9 @@ date-picker {
   }
 
   &-xl {
+    label {
+      font-size: $font-size-xl !important;
+    }
     .dtk-slider-input {
       .form-control {
         font-size: $font-size-xl;
@@ -2856,7 +2862,9 @@ date-picker {
     .ngx-slider.linear-filter {
       margin: 10px 0;
     }
-
+    label {
+      font-size: $font-size-lg !important;
+    }
     .dtk-slider-input {
       .form-control {
         font-size: $font-size-lg;
@@ -2892,7 +2900,9 @@ date-picker {
       height: 12px !important;
       top: -4px !important;
     }
-
+    label {
+      font-size: $font-size-sm !important;
+    }
     .dtk-slider-input {
       .form-control {
         font-size: $font-size-sm;
@@ -2933,6 +2943,9 @@ date-picker {
       top: -3px !important;
     }
 
+    label {
+      font-size: $font-size-xs !important;
+    }
     .dtk-slider-input {
       .form-control {
         font-size: $font-size-xs;
@@ -3126,4 +3139,79 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
 }
 
 /********************** EN: Gridster *************************************/
+/********************** ST: Layout *************************************/
+.layout {
+  &-wrap {
+    flex: 1;
+    height: 100%;
+    &.fixed {
+      display: flex;
+      flex-direction: column;
+      .layout-container {
+        flex: 1;
+      }
+    }
+  }
+  &-header {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    border-bottom: 1px solid #CCC;
+    h2 {
+      flex: 1;
+      margin: 0;
+      font-size: 16px;
+    }
+    p {
+      margin: 0;
+    }
+    &-btns {
+      hr {
+        display: inline-block;
+        margin: 0 2px;
+        border-left: 1px solid #CCC;
+        height: 12px;
+        opacity: 1;
+        vertical-align: middle;
+      }
+      .mdc-button {
+        height: 30px !important;
+        .mat-icon {
+          margin: 0;
+          color: #999;
+        }
+        &:hover {
+          .mat-icon {
+            color: #222;
+          }
+        }
+      }
+    }
+  }
 
+  &-container {
+    display: flex;
+  }
+
+  &-aside {
+    width: 200px;
+    min-width: 90px;
+    max-width: 600px;
+    border-right: 1px solid #CCC;
+    position: relative;
+    h3 {
+      padding:0 10px;
+      font-size: 12px;
+      line-height: 30px;
+      margin:0;
+    }
+  }
+
+  &-content {
+    flex: 1;
+    background: #FFF;
+    position: relative;
+  }
+}
+/********************** EN: Layout *************************************/
