@@ -113,6 +113,7 @@ button {
   border: none;
   background: transparent;
 }
+
 .mat-btn.mdc-button {
   --mdc-text-button-container-height: $btn-line-height !important;
   --mdc-typography-button-line-height: $btn-line-height !important;
@@ -121,16 +122,19 @@ button {
   //border-radius: $border-radius !important;
   @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
   //padding: $btn-padding-y $btn-padding-x !important;
-  &.xl{
+  &.xl {
     @include button-size($btn-padding-y-xl, $btn-padding-x-xl, $font-size-xl, $border-radius-xl);
   }
-  &.lg{
+
+  &.lg {
     @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
   }
-  &.sm{
+
+  &.sm {
     @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
   }
-  &.xs{
+
+  &.xs {
     @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-xs, $border-radius-xs);
   }
 }
@@ -325,6 +329,7 @@ ul, ol, dl {
     display: inline-block;
   }
 }
+
 /* padding-left pl-${size} */
 @each $size in 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80 {
   .pl-#{$size} {
@@ -487,12 +492,14 @@ ul, ol, dl {
 .d-flex {
   //display: flex;
   white-space: nowrap;
+
   &.row {
     flex-direction: row;
   }
 
   &.col {
     flex-direction: column;
+
     &-center {
       align-items: center;
     }
@@ -501,7 +508,7 @@ ul, ol, dl {
 
   @each $size in 1, 2, 3 {
     &-#{$size} {
-     flex: $size
+      flex: $size
     }
   }
 
@@ -517,7 +524,6 @@ ul, ol, dl {
     }
   }
 }
-
 
 
 /****************************** ST: magic-input checkbox *************************************************/
@@ -846,18 +852,22 @@ input[type="radio"].mgr:checked:before {
     border-color: $primary;
     background-color: $primary;
   }
+
   &:has(.mgc-success) {
     border-color: $success;
     background-color: $success;
   }
+
   &:has(.mgc-info) {
     border-color: $info;
     background-color: $info;
   }
+
   &:has(.mgc-warning) {
     border-color: $warning;
     background-color: $warning;
   }
+
   &:has(.mgc-danger) {
     border-color: $danger;
     background-color: $danger;
@@ -1027,6 +1037,7 @@ input[type="radio"].mgr:checked:before {
 /****************************** ST: Ng-select *************************************************/
 .ng-select {
   margin-bottom: 0;
+
   &.ng-select-default {
     .ng-clear-wrapper {
       .ng-clear {
@@ -1041,6 +1052,7 @@ input[type="radio"].mgr:checked:before {
     box-sizing: content-box;
     @include font-size($font-size-base);
     @include border-radius($border-radius);
+
     .ng-value-container {
       padding-left: $input-btn-padding-x;
     }
@@ -1048,29 +1060,35 @@ input[type="radio"].mgr:checked:before {
 
   .ng-clear-wrapper {
     width: 16px !important;
+
     .ng-clear {
       @include font-size($font-size-base);
-      color: rgba(0,0,0, 0.35) !important;
+      color: rgba(0, 0, 0, 0.35) !important;
     }
+
     &:hover .ng-clear {
-      color: rgba(0,0,0, 0.45) !important;
+      color: rgba(0, 0, 0, 0.45) !important;
     }
   }
 
-  &.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+  &.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
     border-color: $input-focus-border-color;
     box-shadow: $input-btn-focus-box-shadow;
   }
+
   .ng-dropdown-panel .ng-dropdown-panel-items {
     .ng-option, .ng-optgroup {
       padding: $input-btn-padding-y $input-btn-padding-x
     }
+
     .ng-option.ng-option-child {
       padding-left: $input-btn-padding-x * 2.2;
     }
+
     .ng-option.ng-option-marked, .ng-optgroup.ng-option-marked, .ng-optgroup.ng-option-selected.ng-option-marked {
       background-color: rgba($primary, 0.1);
     }
+
     .ng-option.ng-option-selected, .ng-optgroup.ng-option-selected {
       background-color: rgba($primary, 0.06);
     }
@@ -1081,62 +1099,79 @@ input[type="radio"].mgr:checked:before {
       height: 19px !important;
       @include font-size($font-size-xs);
       @include border-radius($border-radius-xs);
+
       .ng-value-container {
         padding-left: $input-btn-padding-x-xs;
       }
     }
+
     .ng-dropdown-panel .ng-dropdown-panel-items .ng-option, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
       padding: $input-btn-padding-y-xs $input-btn-padding-x-xs;
     }
+
     .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-child {
       padding-left: $input-btn-padding-x-xs * 3;
     }
+
     .ng-clear-wrapper {
       width: 12px !important;
+
       .ng-clear {
         @include font-size($font-size-xs);
       }
     }
   }
+
   &.ng-select-sm {
     .ng-select-container {
       height: 24px !important;
       @include font-size($font-size-sm);
       @include border-radius($border-radius-sm);
+
       .ng-value-container {
         padding-left: $input-btn-padding-x-sm;
       }
     }
+
     .ng-dropdown-panel .ng-dropdown-panel-items .ng-option, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
       padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
     }
+
     .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-child {
       padding-left: $input-btn-padding-x-sm * 2.5;
     }
+
     .ng-clear-wrapper {
       width: 14px !important;
+
       .ng-clear {
         @include font-size($font-size-sm);
       }
     }
   }
+
   &.ng-select-lg {
     .ng-select-container {
       height: 39px !important;
       @include font-size($font-size-lg);
       @include border-radius($border-radius-lg);
+
       .ng-value-container {
         padding-left: $input-btn-padding-x-lg;
       }
     }
+
     .ng-dropdown-panel .ng-dropdown-panel-items .ng-option, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
       padding: $input-btn-padding-y-lg $input-btn-padding-x-lg;
     }
+
     .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-child {
       padding-left: $input-btn-padding-x-lg * 2;
     }
+
     .ng-clear-wrapper {
       width: 18px !important;
+
       .ng-clear {
         @include font-size($font-size-lg);
       }
@@ -1148,15 +1183,18 @@ input[type="radio"].mgr:checked:before {
       margin-right: 5px;
     }
   }
+
   &-multiple {
     .ng-select-container .ng-value-container .ng-value {
-      background-color: rgba(0,0,0, 0.08) !important;
+      background-color: rgba(0, 0, 0, 0.08) !important;
+
       .ng-value-icon {
         &.left {
-          border-right: 1px solid rgba(0,0,0, 0.1) !important;
+          border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
         }
+
         &:hover {
-          background-color: rgba(0,0,0, 0.1) !important;
+          background-color: rgba(0, 0, 0, 0.1) !important;
         }
       }
     }
@@ -1169,6 +1207,7 @@ input[type="radio"].mgr:checked:before {
 date-picker {
   display: block;
 }
+
 /****************************** EN: ngx-datepicker *************************************************/
 
 /****************************** ST: Mat-chips *************************************************/
@@ -1443,6 +1482,7 @@ date-picker {
       border: none;
       background-color: $primary;
       color: #FFF;
+
       .mat-icon {
         color: #FFF;
       }
@@ -1784,7 +1824,7 @@ date-picker {
 /* EN : Dialog */
 
 /**** ST: Analysis table ****/
-.analysis-table{
+.analysis-table {
   table th {
     position: relative;
   }
@@ -1809,6 +1849,7 @@ date-picker {
     width: 20px;
   }
 }
+
 .mat-mdc-table-sticky {
   background: #eee !important;
   opacity: 1;
@@ -1844,7 +1885,6 @@ date-picker {
 .mat-mdc-table-sticky-border-elem-left {
   border-right: 2px solid midnightblue;
 }
-
 
 
 /**** EN: Analysis table ****/
@@ -2147,34 +2187,37 @@ date-picker {
       }
     }
   }
-
-  &.tree-filter { // 트리 검색(filter)
-    tree-viewport {
-      overflow: hidden;
-    }
-  }
 }
 
 /*********ST: 데이터 포탈 디렉토리 *********/
 
 /**** ST : 담당자 트리 선택 ***/
-.tree-select-filter {
+.input-tree-wrap {
   position: relative;
-  min-width: 200px;
-  max-width: 300px;
+  //min-width: 200px;
+  //max-width: 300px;
   .toggle-children-wrapper {
     margin-top: 3px !important;
   }
-
-  .form-control { cursor: pointer; }
+  .form-control {
+    cursor: pointer;
+  }
   .expand-icon {
     top: 50%;
     right: 8px;
     margin-top: 2px;
     position: absolute;
     color: #999;
-    .fa { font-weight: 600; }
+
+    .fa {
+      font-weight: 600;
+    }
   }
+}
+
+
+.tree-filter {
+  background: #FFF;
 
   .search-icon {
     position: absolute;
@@ -2184,35 +2227,24 @@ date-picker {
     z-index: 1;
   }
 
-  .tree-search {
-    padding-left: 25px;
-  }
-
-  .tree-item {
-    display: inline-block;
-    height: 18px;
-    cursor: pointer;
-    margin-bottom: 0;
-  }
-
   &-wrap {
-    position: absolute;
-    left: 0;
-    z-index: 2;
     background: #FFF;
     border: 1px solid #ced4da;
-    width: 100%; //calc(100% - 14.4px);
     box-shadow: 3px 3px 10px rgba(0, 0, 0, .25);
+    max-height: 350px;
+    overflow: auto;
+    //width: 100%; //calc(100% - 14.4px);
+    //position: absolute;
+    //left: 0;
+    //z-index: 2;
     //margin: 0.45rem;
     //padding: 10px;
-    max-height: 200px;
-    overflow: auto;
   }
 
   &-search {
     position: sticky;
     top: 0;
-    z-index: 1;
+    //z-index: 1;
     border-bottom: 1px solid #ddd;
     background-color: #FFF;
     padding: 6px;
@@ -2220,6 +2252,20 @@ date-picker {
   }
 
   .tree-filter-content {
+    min-height: 80px;
+    .dp-directory {
+      tree-viewport {
+        overflow: hidden;
+      }
+    }
+
+    .tree-item {
+      display: inline-block;
+      height: 18px;
+      cursor: pointer;
+      margin-bottom: 0;
+    }
+
     .node-wrapper {
       height: 18px !important;
       line-height: 18px !important;
@@ -2236,13 +2282,13 @@ date-picker {
     top: 0;
     left: 0;
     right: 0;
-    border-radius: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+    bottom: 0;
+    //border-radius: 0;
+    //width: 100%;
+    //height: 100%;
+    //z-index: 1;
   }
 }
-
 /**** EN : 담당자 트리 선택 ***/
 
 /***** ST: Accordion ******/
@@ -2354,7 +2400,10 @@ date-picker {
     font-weight: 400;
   }
 
-  .answer-content{ white-space: pre-wrap; }
+  .answer-content {
+    white-space: pre-wrap;
+  }
+
   .a-mark {
     color: #333;
   }
@@ -2363,27 +2412,31 @@ date-picker {
     box-shadow: none !important;
   }
 }
+
 /***** EN: Accordion *****/
 
 /**** ST: Card *****/
-.card{
+.card {
   &-list {
     display: flex;
     flex-direction: column; // 기본 리스트형
     &-item {
       @include card-item(1px, #CCC, $card-border-radius, 0, auto, #FFF);
+
       &.sm {
-        &>button{
+        & > button {
           position: absolute;
           right: -7px;
           top: -10px;
           background-color: #FFF;
-          &:hover{
+
+          &:hover {
             color: #eee;
             background-color: $gray;
           }
         }
       }
+
       &-icon {
         margin: 0;
         display: flex;
@@ -2393,8 +2446,10 @@ date-picker {
         width: 120px;
         text-align: center;
         padding: $card-list-padding 0 $card-list-padding $card-list-padding;
+
         &.sm {
           padding: $card-list-padding-sm 0 $card-list-padding-sm $card-list-padding-sm;
+
           img {
             height: $card-list-icon-sm;
           }
@@ -2410,7 +2465,8 @@ date-picker {
           background-size: cover;
           width: 200px;
           position: relative;
-          &::after{
+
+          &::after {
             content: '';
             display: block;
             width: 100%;
@@ -2419,7 +2475,7 @@ date-picker {
             top: 0;
             left: 0;
             opacity: .15;
-            background: linear-gradient(to top, #999,  #FFF);
+            background: linear-gradient(to top, #999, #FFF);
           }
         }
 
@@ -2436,12 +2492,18 @@ date-picker {
         flex: 1;
         position: relative;
         padding: $card-list-padding $card-list-padding $card-list-padding $card-list-padding-sm;
+
         &.sm {
           padding: $card-list-padding-sm $card-list-padding-sm $card-list-padding-sm 0;
-          mat-checkbox { margin-left: 0; }
+
+          mat-checkbox {
+            margin-left: 0;
+          }
+
           h5.card-title {
             font-weight: bold;
-            small{
+
+            small {
               max-width: 100px;
               color: #999;
               display: inline-block;
@@ -2451,13 +2513,16 @@ date-picker {
               vertical-align: middle;
               margin-left: 0.2rem;
             }
+
             & * {
               font-weight: inherit;
             }
           }
         }
+
         .card-title {
           cursor: pointer;
+
           &:hover {
             text-decoration: underline;
           }
@@ -2476,6 +2541,7 @@ date-picker {
           -webkit-line-clamp: 2;
           display: -webkit-box;
           -webkit-box-orient: vertical;
+
           &.sm {
             margin-top: 5px;
           }
@@ -2484,9 +2550,11 @@ date-picker {
         &-footer {
           display: flex;
           justify-content: space-between;
+
           &.flex-end {
             justify-content: flex-end;
           }
+
           &-r {
             .fa {
               margin-right: 3px;
@@ -2495,6 +2563,7 @@ date-picker {
 
             span {
               margin-right: 10px;
+
               &:last-of-type {
                 margin-right: 0;
               }
@@ -2505,12 +2574,15 @@ date-picker {
     }
   }
 }
+
 /**** EN: Card *****/
 /**** ST: keyword *****/
 .keyword-list {
   display: flex;
+
   li {
     margin-right: 5px;
+
     .tag {
       position: relative;
       display: inline-block;
@@ -2525,11 +2597,12 @@ date-picker {
       cursor: pointer;
       color: #717171;
       font-size: 11px;
-      &:hover{
+
+      &:hover {
         color: $primary;
       }
 
-      &::before{
+      &::before {
         content: '#';
         position: absolute;
         display: block;
@@ -2538,11 +2611,12 @@ date-picker {
       }
     }
 
-    &:last-of-type{
+    &:last-of-type {
       margin-right: 0;
     }
   }
 }
+
 /**** EN: keyword *****/
 
 
@@ -2552,10 +2626,12 @@ date-picker {
     /* Bar BG */
     &.ngx-slider-full-bar {
       padding-top: 17px;
+
       .ngx-slider-bar {
         height: 2px !important;
       }
     }
+
     /* Selection Bar */
     &.ngx-slider-selection-bar {
       .ngx-slider-bar {
@@ -2564,15 +2640,18 @@ date-picker {
     }
 
   }
+
   .ngx-slider-selection {
     background: $primary !important;
   }
 
   .ngx-slider-pointer {
     background-color: $primary !important;
+
     &:after {
       background: $primary !important;
     }
+
     &:focus-visible {
       outline: none;
     }
@@ -2627,6 +2706,7 @@ date-picker {
     }
   }
 }
+
 /********* EN: ngx-slider *************************/
 
 /********* ST: Material Slider **************************/
@@ -2640,8 +2720,10 @@ date-picker {
   --mdc-slider-label-label-text-font: $code-font-family;
   --mdc-slider-label-label-text-size: 10px;
 }
+
 .mdc-slider {
   height: 26px !important;
+
   .mdc-slider__value-indicator-container {
     bottom: 26px !important;
   }
@@ -2650,17 +2732,21 @@ date-picker {
 .mdc-slider__input {
   height: 26px !important;
 }
+
 .mdc-slider .mdc-slider__thumb {
   width: 26px !important;
   height: 26px !important;
   left: -13px !important;
 }
+
 .mdc-slider .mdc-slider__track {
   top: 13px !important;
 }
+
 .mat-mdc-slider-visual-thumb .mat-ripple {
   border-radius: 50%;;
 }
+
 .mat-mdc-slider .mdc-slider__value-indicator-text {
   font-family: $code-font-family !important;
   line-height: 1em !important;
@@ -2676,14 +2762,17 @@ date-picker {
   height: 22px !important;
   padding: 0 8px !important;
 }
+
 /********* EN: Material Slider **************************/
 /********* ST: Slider Component *************************************/
 
 .dtk-slider {
   position: relative;
+
   &-wrap {
-    display:flex;
+    display: flex;
     align-items: center;
+
     .linear-filter {
       flex: 1;
     }
@@ -2700,11 +2789,13 @@ date-picker {
     .form-control {
       padding-left: 0;
       padding-right: 0;
+
       &:has(.dtk-slider-input-value:focus) {
         box-shadow: $input-focus-box-shadow;
         border-color: $primary;
       }
     }
+
     &-unit {
       color: #999;
       padding-right: $input-btn-padding-x;
@@ -2720,9 +2811,11 @@ date-picker {
     .form-group.dtk-slider {
       display: flex;
       align-items: center;
+
       label {
         margin-right: 20px;
       }
+
       .dtk-slider-wrap {
         flex: 1;
       }
@@ -2736,32 +2829,39 @@ date-picker {
         padding-top: $input-btn-padding-y-xl;
         padding-bottom: $input-btn-padding-y-xl;
       }
+
       .dtk-slider-input-unit {
         padding-right: $input-btn-padding-x-xl;
       }
+
       .dtk-slider-input-value {
         padding: 0 $input-btn-padding-x-xl;
       }
     }
   }
+
   &-lg {
     .ngx-slider.linear-filter {
       margin: 10px 0;
     }
+
     .dtk-slider-input {
       .form-control {
         font-size: $font-size-lg;
         padding-top: $input-btn-padding-y-lg;
         padding-bottom: $input-btn-padding-y-lg;
       }
+
       .dtk-slider-input-unit {
         padding-right: $input-btn-padding-x-lg;
       }
+
       .dtk-slider-input-value {
         padding: 0 $input-btn-padding-x-lg;
       }
     }
   }
+
   &-sm {
     .dtk-mat-slider {
       --mdc-slider-inactive-track-height: 2px;
@@ -2769,29 +2869,35 @@ date-picker {
       --mdc-slider-handle-height: 12px;
       --mdc-slider-handle-width: 12px;
     }
+
     .ngx-slider.linear-filter {
       margin: 10px 0;
     }
+
     .ngx-slider-pointer {
       border-radius: 6px !important;
       width: 12px !important;
       height: 12px !important;
       top: -4px !important;
     }
+
     .dtk-slider-input {
       .form-control {
         font-size: $font-size-sm;
         padding-top: $input-btn-padding-y-sm;
         padding-bottom: $input-btn-padding-y-sm;
       }
+
       .dtk-slider-input-unit {
         padding-right: $input-btn-padding-x-sm;
       }
+
       .dtk-slider-input-value {
         padding: 0 $input-btn-padding-x-sm;
       }
     }
   }
+
   &-xs {
     .dtk-mat-slider {
       --mdc-slider-inactive-track-height: 1px;
@@ -2799,27 +2905,33 @@ date-picker {
       --mdc-slider-handle-height: 10px;
       --mdc-slider-handle-width: 10px;
     }
+
     .mdc-slider__input {
       height: 22px !important;
     }
+
     .ngx-slider.linear-filter {
       margin: 7px 0;
     }
+
     .ngx-slider-pointer {
       border-radius: 5px !important;
       width: 10px !important;
       height: 10px !important;
       top: -3px !important;
     }
+
     .dtk-slider-input {
       .form-control {
         font-size: $font-size-xs;
         padding-top: $input-btn-padding-y-xs;
         padding-bottom: $input-btn-padding-y-xs;
       }
+
       .dtk-slider-input-unit {
         padding-right: $input-btn-padding-x-xs;
       }
+
       .dtk-slider-input-value {
         padding: 0 $input-btn-padding-x-xs;
       }
@@ -2829,20 +2941,25 @@ date-picker {
 
 .dtk-slider-link {
   position: relative;
+
   &-row {
-    display:flex;
+    display: flex;
+
     .dtk-slider-link-item {
       &:first-child {
         margin-right: 25px;
       }
+
       &:last-child {
         margin-left: 25px;
       }
     }
   }
+
   &-item {
     flex: 1;
     position: relative;
+
     label {
       font-size: 11px;
     }
@@ -2850,8 +2967,8 @@ date-picker {
 
   &-value {
     position: absolute;
-    top:0;
-    right:0;
+    top: 0;
+    right: 0;
     font-size: 10px;
     font-family: $code-font-family;
   }
@@ -2863,6 +2980,7 @@ date-picker {
     transform: translate(-50%, -50%);
   }
 }
+
 /********* EN: Slider Component *************************************/
 /********* ST: Quill Editor ***********************************************************/
 .ql-snow .ql-editor pre.ql-syntax * {
@@ -2889,23 +3007,27 @@ date-picker {
 
   &:hover {
     background: rgba($gray-dark, .2);
+
     &:before {
       background: $gray-dark;
     }
   }
+
   &:active {
     background: rgba($gray-dark, .5);
+
     &:before {
       background: $gray-dark;
     }
   }
 }
+
 /********* EN: Splitter Resized *****************************************************/
 /********************** ST: Gridster *************************************/
 .gridster-item-resizable-handler {
   &:active,
   &:hover {
-    background: rgba(0,0,0,0.05);
+    background: rgba(0, 0, 0, 0.05);
   }
 
   &.handle-n,
@@ -2921,6 +3043,7 @@ date-picker {
       background: #999;
       transform: translateX(-50%);
     }
+
     &:hover {
       &:before {
         display: block;
@@ -2941,6 +3064,7 @@ date-picker {
       background: #999;
       transform: translateY(-50%);
     }
+
     &:hover {
       &:before {
         display: block;
@@ -2964,9 +3088,11 @@ date-picker {
 
 gridster-item:hover .gridster-item-resizable-handler.handle-se {
   border-color: transparent !important;
+
   &:before {
     border-color: #999;
   }
 }
+
 /********************** EN: Gridster *************************************/
 
