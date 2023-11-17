@@ -89,7 +89,6 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
             },
             drop: (tree: TreeModel, node: TreeNode, e: any, {from, to}: any) => {
               const targetParentId = to.parent.data._id;
-              const fromParent = _.cloneDeep(from.parent.data);
               if (from instanceof TreeNode) { // 폴더 내 이동
                 if (to.dropOnNode) {
                   // 같은 디렉토리 일 때
