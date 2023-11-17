@@ -153,7 +153,7 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Splitter',
         link: '/panel/splitter',
-        desc: `Splitter 설명 <span></span>`
+        desc: `<a href="https://xieziyu.github.io/angular2-draggable/#/resizable/demo" target="_blank">angular2-draggable</a> 이용하여 Resize 구현 해당 문서 참고`
       },
       {
         name: 'Gridster',
