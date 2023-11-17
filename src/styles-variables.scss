@@ -18,6 +18,17 @@ $gray-light: #EFEFEF;
 //$primary: #183D85;
 //$secondary: #AAAAAA;
 
+
+
+$primary: $pink;//#007bff;
+$secondary: #6d6e71;
+$success: #28a745;
+$info: #007bff;
+$warning: #e1ac00;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #5A5A5A;
+
 $colors-palette: (
   blue: $blue,
   indigo: $indigo,
@@ -33,16 +44,16 @@ $colors-palette: (
   gray: $gray,
   gray-dark: $gray-dark,
   gray-light: $gray-light,
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  info: $info,
+  warning: $warning,
+  danger: $danger,
+  light: $light,
+  dark: $dark
 );
 
-$primary: $pink;//#007bff;
-$secondary: #6d6e71;
-$success: #28a745;
-$info: #007bff;
-$warning: #e1ac00;
-$danger: #dc3545;
-$light: #f8f9fa;
-$dark: #5A5A5A;
 $font-family-sans-serif: 'Noto Sans KR', 'Roboto', 'Helvetica','Dotum','돋움','AppleSDGothicNeo',sans-serif;
 $code-font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
 $toolbar-breakpoint: 600px;

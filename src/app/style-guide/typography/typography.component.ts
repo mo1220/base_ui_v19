@@ -42,7 +42,37 @@ export class StyleGuideTypographyComponent implements AfterViewInit, OnDestroy {
       title: '알림 스타일',
       anchor: 'alramStyle',
       desc: '알림 스타일 설명'
+    },
+    {
+      title: 'Text Or Background Color',
+      anchor: 'textColor',
+      desc: '텍스트나 백그라운드 컬러 스타일'
     }
+  ];
+
+  colorsPalette: string[] = [
+    'blue',
+    'indigo',
+    'purple',
+    'pink',
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'teal',
+    'cyan',
+    'white',
+    'gray',
+    'gray-dark',
+    'gray-light',
+    'primary',
+    'secondary',
+    'success',
+    'info',
+    'warning',
+    'danger',
+    'light',
+    'dark'
   ];
   constructor(
     private cd: ChangeDetectorRef,

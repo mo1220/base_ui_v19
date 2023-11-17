@@ -344,7 +344,10 @@ ul, ol, dl {
 @each $key, $color in $colors-palette {
   .color-#{$key} {
     color: $color;
-    font-weight: 500;
+  }
+
+  .bg-#{$key} {
+    background-color: $color;
   }
 }
 
