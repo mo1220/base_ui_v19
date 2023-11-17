@@ -14,6 +14,9 @@ import {menuType} from "../style-guide.models";
 import {ITreeOptions, ITreeState, TreeComponent, TreeNode} from "@odymaui/angular-tree-component";
 import {NotificationService} from "../../core/notifications/notification.service";
 import {MessagesService} from "../../core/toast-message/messages.service";
+import {COUNTRIES} from "./table.component";
+import {ColDef, GridOptions, GridReadyEvent, RowDropZoneParams} from "ag-grid-community";
+import * as _ from 'lodash';
 
 /**
  * @class StyleGuideButtonComponent *
@@ -59,6 +62,7 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
   ];
   @ViewChildren('anchors') anchors: QueryList<ElementRef>;
 
+  countries = COUNTRIES
   nodes = [
     {
       id: 1,
@@ -80,23 +84,27 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
 
   nodes2 = [
     {
+      _id: '전체',
       name: '전체',
       children: [
         {
+          _id: 'root1',
           name: 'root1',
           children: [
-            {name: 'child1'},
-            {name: 'child2'}
+            {name: 'child1', _id: 'ch1'},
+            {name: 'child2',  _id: 'ch2'}
           ]
         },
         {
+          _id: 'root2',
           name: 'root2',
           children: [
-            {name: 'child2.1'},
+            {name: 'child2.1',  _id: 'ch2.1'},
             {
+              _id: 'ch2.2',
               name: 'child2.2',
               children: [
-                {name: 'subsub'}
+                {name: 'subsub', _id: 'sub'}
               ]
             }
           ]
@@ -195,12 +203,46 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
   state: ITreeState;
   selectedNode: any = {}; // 선택 노드
 
+  gridOptions:GridOptions;
+  defaultColDef: ColDef = {
+    minWidth: 50,
+    suppressMenu: true,
+    sortable: false,
+    resizable: true,
+    flex: 1
+  };
+  columnDefs: ColDef[] = [];
+  gridApi: any;
+
   constructor(
     private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router,
     private msgs: MessagesService,
   ) {
+    this.columnDefs = [
+      // {
+      //   field: 'id',
+      //   headerName: '#',
+      // },
+      {
+        field: 'name',
+        headerName: '국가 이름',
+        rowDrag: true
+      },
+      {
+        field: 'flag',
+        headerName: '국기'
+      },
+      {
+        field: 'area',
+        headerName: '국가 면적'
+      },
+      {
+        field: 'population',
+        headerName: '인구수'
+      },
+    ];
   }
 
   ngAfterViewInit(): void {
@@ -228,13 +270,20 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
   onEvent(e: any) {
   }
 
+  onGridReady(params: GridReadyEvent){
+    this.gridApi = params.api;
+  }
+
+
+
   /**
    * @function 선택한 노드 정보 받기
    * @param treeNode
    * @param type
    */
   nodeActiveChanged(treeNode: any, type?: string) {
-    const {node} = treeNode;
+    const { node, from } = treeNode;
+    console.log(node, from, treeNode );
     if (type !== undefined) {
       this.selectedNode[type] = node.data;
     }
@@ -245,7 +294,8 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
    * @param type: 'add' | 'update' | 'delete'
    * @param node: TreeNode
    */
-  outputNode({type, node}: any) {
+  outputAPI({type, node}: any) {
+    console.log('=======', type, node)
     this.loading2 = true;
     // API 성공 시
     setTimeout(() => {
@@ -258,10 +308,64 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
     } else if (type === 'update') { // 폴더 수정
       // TODO  API 연결
       this.msgs.success({title: '폴더 수정', message: '폴더 수정 성공!'})
-    } else { // 폴더 삭제
+    } else if(type === 'delete') { // 폴더 삭제
       // TODO  API 연결
       this.msgs.success({title: '폴더 삭제', message: '폴더 삭제 성공!'})
+    } else if(type === 'move') { // rowData 폴더로 이동 시
+      // TODO  API 연결
+      this.msgs.success({title: '폴더 이동', message: '폴더 이동 성공!'})
     }
+  }
+
+  /**
+   * @function tree-element 받아 droopZone 생성
+   * @param container
+   */
+  setDropZone(container: any){
+    const vm = this;
+    setTimeout(() => {
+      container.forEach((d: any )=> {
+        // ag grid row를 드래그 할수 있는 콘테이너로 등록
+        this.addDropZones(d.nativeElement);
+      });
+    }, 10);
+  }
+
+  dragOverId: any; //dragoverId
+  /**
+   * Drop Zone Container 설정 (데이터를 드래그하여 디렉터리 이동 시 필요)
+   * */
+  addDropZones(container: any) {
+    if(!this.gridApi) {
+      setTimeout(() => {
+        this.addDropZones(container);
+      }, 10);
+      return;
+    }
+    const dropZone: RowDropZoneParams = {
+      getContainer: () => {
+        return container;
+      },
+      onDragEnter: (e) => {
+        const _id = container.getAttribute('id');
+        // 전체, 공유는 제외
+        this.dragOverId = ['0'].includes(_id) ? '' : _id;
+        console.log(this.dragOverId);
+      },
+      onDragLeave: (e) => {
+        this.dragOverId = '';
+      },
+      onDragStop: (params) => {
+        // TODO DATA ID에 맞게 변경
+        const data = params.nodes.map(d => d.data.id);
+        // this.moveNode(this.dragOverId, data);
+        this.dragOverId = '';
+      }
+    };
+    this.gridApi.removeRowDropZone(dropZone);
+    // setTimeout(() => {
+      this.gridApi.addRowDropZone(dropZone);
+    // }, 1)
   }
 
   /**

@@ -308,20 +308,34 @@ label.btn-split {
   }
 
   &.btn-sm {
-    --mdc-icon-button-state-layer-size: 35px!important;
+    --mdc-icon-button-state-layer-size: 35px !important;
     @include btn-icon($btn-padding-sm);
+
     .fa {
       width: 10px; //$font-size-sm;
       height: 10px; //$font-size-sm;
     }
+    .mat-icon {
+      font-size: $mat-btn-icon-sm;
+      width: $mat-btn-icon-sm;
+      height: $mat-btn-icon-sm;
+      line-height: $mat-btn-icon-sm;
+    }
   }
 
   &.btn-xs {
-    --mdc-icon-button-state-layer-size: 30px!important;
+    --mdc-icon-button-state-layer-size: 30px !important;
     @include btn-icon($btn-padding-xs);
+
     .fa {
       width: $font-size-xs;
       height: $font-size-xs;
+    }
+    .mat-icon {
+      font-size: $mat-btn-icon-xs;
+      width: $mat-btn-icon-xs;
+      height: $mat-btn-icon-xs;
+      line-height: $mat-btn-icon-xs;
     }
   }
 }
@@ -1066,6 +1080,9 @@ label {
   }
   &-title {
     &:hover { text-decoration: underline; }
+  }
+  &-text {
+    white-space: pre-wrap;
   }
   &-body{
     border-top:$card-border-width solid $card-border-color;

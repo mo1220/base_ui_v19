@@ -14,12 +14,12 @@
       <div class="node-content-wrapper"
            #categoriesElem
            [id]="node.data._id"
-           [class.active]="nodeActiveId === node.data.id"
-           [class.drag-over]="dragOverId === node.data._id"
+           [class.active]="nodeActiveId === node.data._id"
+           [class.drag-over]="dragoverId == node.data._id"
            [class.node-content-wrapper-active]="node.isActive"
            [class.node-content-wrapper-focused]="node.isFocused"
            (click)="node.mouseAction('click', $event)"
-           (dragover)="treeDropDragOver($event)"
+           (dragenter)="treeDragEnter($event, node)"
            (contextmenu)="node.mouseAction('contextMenu', $event)"
            (treeDrop)="node.onDrop($event)"
            [treeAllowDrop]="node.allowDrop"
@@ -34,7 +34,7 @@
                [(ngModel)]="node.data.name"/>
         <div *ngIf="editMode"
              (click)="updateNode(node)"
-             style="position: fixed; top:0; left:0; right:0; bottom:0; background-color: rgba(0,0,0, .01); z-index:9; user-select: none;"></div>
+             style="position: fixed; top:0; left:0; right:0; bottom:0; z-index:9; user-select: none;"></div>
       </div>
 
       <ng-container *ngIf="!editMode && !mode">

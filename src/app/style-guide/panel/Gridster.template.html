@@ -6,7 +6,7 @@
       <div class="base-guide info">
         <h5>Gridster 기본 옵션</h5>
         <dl class="d-flex" style="flex-wrap: wrap;">
-          <div class="d-flex-1 me-3 mb-3" *ngFor="let op of op_desc">
+          <div class="d-flex-1 me-3 mb-4" *ngFor="let op of op_desc">
             <dt>
               <b class="wd-200">{{op.name}}
                 <a matTooltip="링크로 이동" [href]="op.link" target="_blank"><i class="fa fa-external-link"></i></a>
@@ -33,11 +33,13 @@
               <!--EN: Display Grid-->
               <!--ST: draggable-->
               <ng-container *ngIf="op.key === 'draggable'">
-                <div class="form-group mb-1">
+                <div class="form-group">
                   <mat-checkbox class="matcheckbox" color="primary"
                                 (ngModelChange)="changedOptions()"
                                 [(ngModel)]="options.draggable.enabled">Drag Enabled
                   </mat-checkbox>
+                </div>
+                <div class="form-group">
                   <mat-checkbox class="matcheckbox"
                                 color="primary"
                                 (ngModelChange)="changedOptions()"
@@ -80,14 +82,14 @@
                     class="matcheckbox" color="primary"
                     [(ngModel)]="options.enableEmptyCellClick"
                     (ngModelChange)="changedOptions()">
-                    Enable click to add
+                    Enable Empty Cell click
                   </mat-checkbox>
                 </div>
                 <div class="form-group">
                    <mat-checkbox class="matcheckbox" color="primary"
                       [(ngModel)]="options.enableEmptyCellContextMenu"
                       (ngModelChange)="changedOptions()">
-                      Enable right click to add
+                     Enable Empty Cell ContextMenu
                     </mat-checkbox>
                 </div>
                 <div class="form-group mb-1">
@@ -97,11 +99,15 @@
                     (ngModelChange)="changedOptions()">
                     Enable drop to add
                   </mat-checkbox>
-                  <span *ngIf="options.enableEmptyCellDrop"
-                       draggable="true"
-                       (dragstart)="dragStartHandler($event)">
-                    Drag me!
-                  </span>
+                  <div *ngIf="options.enableEmptyCellDrop">
+                    <button mat-icon-button
+                            class="btn-icon btn-xs" *ngFor="let icon of _originDashboard"
+                            [matTooltip]="icon['config'].chart"
+                            draggable = true
+                            (dragstart)="dragStartHandler($event)">
+                      <mat-icon>{{dashboardIcon[icon['config'].chart]}}</mat-icon>
+                    </button>
+                  </div>
                 </div>
                 <div class="form-group mb-1">
                   <mat-checkbox
@@ -121,18 +127,18 @@
                 </div>
 
                 <div class="form-group flex">
-                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs dtk-slider-flex"
-                              [label]="'emptyCellDragMaxCols'"
-                              [unit]="'ms'"
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'Drag 최대 Col 영역 설정'"
+                              [unit]="'px'"
                               [min]="1"
                               [max]="500"
                               [mode]="'less'"
                               [(value)]="options.emptyCellDragMaxCols"></dtk-slider>
                 </div>
                 <div class="form-group flex">
-                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs dtk-slider-flex"
-                              [label]="'emptyCellDragMaxRows'"
-                              [unit]="'ms'"
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'Drag 최대 Row 영역 설정'"
+                              [unit]="'px'"
                               [min]="1"
                               [max]="500"
                               [mode]="'less'"
@@ -143,21 +149,43 @@
 
 
               <!-- ST: Margin-->
-<!--              margin: 5,-->
-<!--              outerMargin: true,-->
-<!--              outerMarginTop: 5,-->
-<!--              outerMarginBottom: 5,-->
-<!--              outerMarginLeft: 5,-->
-<!--              outerMarginRight: 5,-->
-              <!-- EN: Margin-->
-
+              <!--ST: empty-->
+              <ng-container *ngIf="op.key === 'margin'">
+                <div class="form-group">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'margin'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              [(value)]="options.margin"></dtk-slider>
+                </div>
+                <div class="form-group">
+                  <mat-checkbox class="matcheckbox"
+                                color="primary"
+                                [(ngModel)]="options.outerMargin"
+                                (ngModelChange)="changedOptions()">Outer Margin
+                  </mat-checkbox>
+                </div>
+                <div class="form-group">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'Outer Margin Top'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              [(value)]="options.outerMarginTop"></dtk-slider>
+                </div>
+              </ng-container>
             </dd>
           </div>
         </dl>
       </div>
-      <button mat-mini-fab (click)="addItem()" class="add-button cols-2">
-        <mat-icon>add</mat-icon>
-      </button>
+      <div>
+        <button mat-mini-fab (click)="addItem()" class="btn-icon btn-sm">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
       <div class="style-guide-example d-flex col" style="height: 1300px; max-height: 10000px;">
 
         <gridster [options]="options">
@@ -168,11 +196,11 @@
                 <button [ngClass]="options.draggable.dragHandleClass">
                   <mat-icon class="md-18">drag_indicator</mat-icon>
                 </button>
-                <!--<label>{{ item['label'] }}</label>-->
+                <label>{{ item['config']?.title ? ( item['config'].title | translate) : 'Gridster Item'}}</label>
                 <button mat-button [matTooltip]="'새로고침'">
                   <mat-icon>refresh</mat-icon>
                 </button>
-                <!--<ng-container *ngIf="modified">
+                <ng-container *ngIf="modified">
                   <button mat-button [matTooltip]="'더보기'"
                           [matMenuTriggerFor]="gridMenu">
                     <mat-icon>more_vert</mat-icon>
@@ -187,7 +215,7 @@
                       <mat-icon class="md-16">change_circle</mat-icon> 변경
                     </button>
                   </mat-menu>
-                </ng-container>-->
+                </ng-container>
               </div>
               <div [ngClass]="options.draggable.ignoreContentClass">
                 내용
