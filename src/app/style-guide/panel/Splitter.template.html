@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap">
+    <ng-container *ngFor="let menu of menus; let i=index;">
+      <h3 #anchors>{{ menu.title }}</h3>
+      <p [innerHTML]="menu.desc | safeHtml"></p>
+      <ng-container [ngSwitch]="menu.anchor">
+        <!--ST: leftRight -->
+        <div class="style-guide-example" *ngSwitchCase="'leftRight'">
+          <div class="splitter-sample">
+            <div class="splitter-sample-aside"
+                 ngResizable
+                 [rzHandles]="'e'">
+              <div>왼쪽</div>
+            </div>
+            <div class="splitter-sample-content">
+              <div>내용</div>
+            </div>
+          </div>
+        </div>
+        <!-- EN: leftRight-->
 
-</body>
-</html>
+        <!--ST: topBottom-->
+        <div class="style-guide-example" *ngSwitchCase="'topBottom'">
+          <div class="splitter-sample column">
+            <div class="splitter-sample-header"
+                 ngResizable
+                 [rzHandles]="'s'">
+              <div>Header</div>
+            </div>
+            <div class="splitter-sample-content">
+              <div>내용</div>
+            </div>
+          </div>
+        </div>
+        <!--EN: topBottom-->
+
+        <!--ST: layout-->
+        <div class="style-guide-example" *ngSwitchCase="'layout'">
+          <div class="layout-wrap fixed" style="height: 500px; border:1px solid #CCC;">
+            <div class="layout-container">
+              <div class="layout-aside"
+                   ngResizable
+                   [rzHandles]="'e'">
+                왼쪽<br />
+                최소 90px ~ 최대 600px
+              </div>
+              <div class="layout-content">
+                <div class="layout-content-header"
+                     style="height: 250px;"
+                     ngResizable
+                     [rzHandles]="'s'">
+                  상단
+                </div>
+                <div class="layout-content-body">
+                  내용
+                </div>
+              </div>
+              <div class="layout-rnb"
+                   ngResizable
+                   [rzHandles]="'w'">
+                오른쪽<br />
+                최소 90px ~ 최대 600px
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--EN: layout-->
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <aside-menu-right [menu]="menus"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

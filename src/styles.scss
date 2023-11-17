@@ -340,6 +340,14 @@ ul, ol, dl {
   }
 }
 
+/* color */
+@each $key, $color in $colors-palette {
+  .color-#{$key} {
+    color: $color;
+    font-weight: 500;
+  }
+}
+
 
 /****************************** ST: Material Style ******************************************/
 /* ST: Mat-icon */
@@ -3025,35 +3033,57 @@ date-picker {
 
 
 /********* ST: Splitter Resized *****************************************************/
-.ng-resizable-handle.ng-resizable-e {
-  background: #CCC6;
-  width: 4px;
-  right: 0;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 1px;
-    width: 2px;
-    height: 24px;
-    background: #AAA;
-    transform: translateY(-50%);
-  }
-
-  &:hover {
-    background: rgba($gray-dark, .2);
-
-    &:before {
-      background: $gray-dark;
+.ng-resizable {
+  &-handle {
+    background: #CCC6;
+    &:hover {
+      background: rgba($gray-dark, .2);
+      &:before {
+        background: $gray-dark;
+      }
     }
-  }
+    &:active {
+      background: rgba($gray-dark, .5);
+      &:before {
+        background: $gray-dark;
+      }
+    }
 
-  &:active {
-    background: rgba($gray-dark, .5);
+    &.ng-resizable-n,
+    &.ng-resizable-s {
+      height: 4px;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 1px;
+        left: 50%;
+        width: 24px;
+        height: 2px;
+        background: #AAA;
+        transform: translateX(-50%);
+      }
+    }
 
-    &:before {
-      background: $gray-dark;
+    &.ng-resizable-w,
+    &.ng-resizable-e {
+      width: 4px;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 1px;
+        width: 2px;
+        height: 24px;
+        background: #AAA;
+        transform: translateY(-50%);
+      }
+    }
+
+    &.ng-resizable-e {
+      right: 0;
+    }
+    &.ng-resizable-w {
+      left: 0;
     }
   }
 }
@@ -3223,6 +3253,17 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
     flex: 1;
     background: #FFF;
     position: relative;
+  }
+
+  &-rnb {
+    width: 200px;
+    min-width: 90px;
+    max-width: 600px;
+    border-left: 1px solid #CCC;
+    position: relative;
+    &.ng-resizable {
+      left: 0 !important;
+    }
   }
 }
 /********************** EN: Layout *************************************/

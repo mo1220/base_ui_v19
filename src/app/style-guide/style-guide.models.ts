@@ -49,14 +49,14 @@ export const STYLE_GUIDE_MENU = [
         name: 'Input',
         link: '/form/input',
         desc: `기본 입력용 Input <br>
-               <code><b>[group 순서]</b> form-grid > form-group > label + input.form-control.form-control-sm + clear-btn + valid-feedback <br>
-               <b>[간격 지정 예시]</b> margin-bottom : mb-1 (1~5) / margin-right : me-1 (1~5) / padding-x : px-1 (1~5) / padding-left : ps-1 (1~5)<br>
+               <span class="color-pink"><b>[group 순서]</b> form-grid > form-group > label + input.form-control.form-control-sm + clear-btn + valid-feedback <br></span>
+               <span class="color-purple"><b>[간격 지정 예시]</b> margin-bottom : mb-1 (1~5) / margin-right : me-1 (1~5) / padding-x : px-1 (1~5) / padding-left : ps-1 (1~5)<br>
                 * 1 : 0.25rem <br>
                 * 2 : 0.5rem <br>
                 * 3 : 1rem <br>
                 * 4 : 1.5rem <br>
                 * 5 : 3rem
-                </code>`
+                </span>`
       },
       {
         name: 'Knob',
@@ -145,15 +145,15 @@ export const STYLE_GUIDE_MENU = [
         link: '/panel/card',
         desc: `Card 설명 <span></span>`
       },
-      {
-        name: 'Divider',
-        link: '/panel/divider',
-        desc: `Divider 설명 <span></span>`
-      },
+      // {
+      //   name: 'Divider',
+      //   link: '/panel/divider',
+      //   desc: `Divider 설명 <span></span>`
+      // },
       {
         name: 'Splitter',
         link: '/panel/splitter',
-        desc: `Splitter 설명 <span></span>`
+        desc: `<a href="https://xieziyu.github.io/angular2-draggable/#/resizable/demo" target="_blank">angular2-draggable</a> 이용하여 Resize 구현 해당 문서 참고`
       },
       {
         name: 'Gridster',
@@ -200,11 +200,6 @@ export const STYLE_GUIDE_MENU = [
         desc: `Local Navigation 설명 <span></span>`
       },
       {
-        name: 'Menu',
-        link: '/menu/menu',
-        desc: `Menu 설명 <span></span>`
-      },
-      {
         name: 'Steps',
         link: '/menu/steps',
         desc: `Steps 설명 <span></span>`
@@ -224,29 +219,35 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Messages',
         link: '/messages/messages',
+        desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
+      }
+    ]
+  },
+  {
+    name: 'Menu Depth1',
+    icon: 'account_tree',
+    link: '/menu',
+    desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+    children: [
+      {
+        name: 'Menu Depth1-1',
+        link: '/menu/depth1',
         desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
         children: [
           {
-            name: 'Messages',
-            link: '/messages/messages',
+            name: 'Menu Depth1-1-1',
+            link: '/menu/depth1/depth1-1',
             desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
             children: [
               {
-                name: 'Messages',
-                link: '/messages/messages',
+                name: 'Menu Depth1-1-1',
+                link: '/menu/depth1/depth1-1/depth1-1-1',
                 desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
                 children: [
                   {
-                    name: 'Messages',
-                    link: '/messages/messages',
-                    desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
-                    children: [
-                      {
-                        name: 'Messages',
-                        link: '/messages/messages',
-                        desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
-                      }
-                    ]
+                    name: 'Menu Depth1-1-1-1',
+                    link: '/menu/depth1/depth1-1/depth1-1-1/depth1-1-1-1',
+                    desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
                   }
                 ]
               }
@@ -255,31 +256,67 @@ export const STYLE_GUIDE_MENU = [
         ]
       },
       {
-        name: 'Messages2',
-        link: '/messages/messages2',
+        name: 'Menu Depth1-2',
+        link: '/menu/depth2',
         desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
         children: [
           {
-            name: 'Messages',
-            link: '/messages/messages2',
+            name: 'Menu Depth1-2-1',
+            link: '/menu/depth2/depth2-1',
             desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
             children: [
               {
-                name: 'Messages',
-                link: '/messages/messages2',
+                name: 'Menu Depth1-2-1',
+                link: '/menu/depth2/depth2-1/depth1-1-1',
                 desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
                 children: [
                   {
-                    name: 'Messages',
-                    link: '/messages/messages2',
-                    desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
-                    children: [
-                      {
-                        name: 'Messages',
-                        link: '/messages/messages2',
-                        desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
-                      }
-                    ]
+                    name: 'Menu Depth1-2-1-1',
+                    link: '/menu/depth2/depth2-1/depth1-1-1/depth1-1-1-1',
+                    desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: 'Menu Depth1-3',
+        link: '/menu/depth3',
+        desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+        children: [
+          {
+            name: 'Menu Depth1-3-1',
+            link: '/menu/depth3/depth1-1',
+            desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+            children: [
+              {
+                name: 'Menu Depth1-3-1',
+                link: '/menu/depth3/depth1-1/depth1-1-1',
+                desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+                children: [
+                  {
+                    name: 'Menu Depth1-3-1-1',
+                    link: '/menu/depth3/depth3-1/depth3-1-1/depth3-1-1-1',
+                    desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
+                  }
+                ]
+              },
+              {
+                name: 'Menu Depth1-3-2',
+                link: '/menu/depth3/depth3-2/depth1-1-1',
+                desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`,
+                children: [
+                  {
+                    name: 'Menu Depth1-3-2-1',
+                    link: '/menu/depth3/depth3-2/depth3-2-1/depth3-2-1-1',
+                    desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
+                  },
+                  {
+                    name: 'Menu Depth1-3-2-2',
+                    link: '/menu/depth3/depth3-1/depth3-2-2/depth3-2-2-2',
+                    desc: `솔루현내 알림을 표시하는 상태나 상황에 따른 Message`
                   }
                 ]
               }
@@ -288,7 +325,7 @@ export const STYLE_GUIDE_MENU = [
         ]
       }
     ]
-  },
+  }
   /*{
     name: 'Drag&Drop',
     icon: 'drag_pan',
