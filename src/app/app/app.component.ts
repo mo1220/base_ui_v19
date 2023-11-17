@@ -83,7 +83,6 @@ export class AppComponent {
     });
 
     router.events.subscribe((event: Event) => {
-      console.log(event);
       switch (true) {
         case event instanceof ActivationEnd: {
           // @ts-ignore

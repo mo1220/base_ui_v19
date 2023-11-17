@@ -1,10 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basic>Basic</h3>
+    <p>기본 radio</p>
+    <div class="style-guide-example d-flex alignC">
+      <code style="width: 70px">Magic Input</code>
+      <div class="form-group flex">
+        <ng-container *ngFor="let items of sublist">
+          <input [id]="items.value"
+                 [value]="items.value"
+                 [checked]="items.value === radioValue"
+                 (change)="changeRadioValue($event)"
+                 name="basic"
+                 type="radio"
+                 [ngClass]="items.value !== 'default' ? 'mgr-' + items.value : ''"
+                 class="mgr" />
+          <label [for]="items.value">{{items.name}}</label>
+        </ng-container>
+      </div>
+    </div>
+    <div class="style-guide-example d-flex alignC">
+      <code style="width: 70px">Material</code>
+      <div class="form-group">
+        <mat-radio-group [(ngModel)]="radioValue">
+          <ng-container *ngFor="let items of sublist">
+            <mat-radio-button [value]="items.value">
+              {{items.name}}
+            </mat-radio-button>
+          </ng-container>
+        </mat-radio-group>
+      </div>
+    </div>
 
-</body>
-</html>
+    <h3 #anchor #size>Size</h3>
+    <p>사이즈별 radio</p>
+    <div class="style-guide-example d-flex alignC">
+      <div style="flex:1">
+        <code>magic input</code>
+        <div class="form-group flex">
+          <ng-container *ngFor="let items of sizeList">
+            <input [id]="items.value"
+                   [value]="items.value"
+                   [checked]="items.value === sizeValue"
+                   (change)="changeRadioSizeValue($event)"
+                   name="basic"
+                   type="radio"
+                   [ngClass]="items.value !== 'default' ? 'mgr-' + items.value : ''"
+                   class="mgr mgr-primary" />
+            <label [for]="items.value">{{items.name}}</label>
+          </ng-container>
+        </div>
+      </div>
+      <div style="flex: 1">
+        <code>material</code>
+        <div class="form-group">
+          <mat-radio-group [(ngModel)]="radioValue">
+            <ng-container *ngFor="let items of sublist">
+              <mat-radio-button [color]="'primary'"
+                                [ngClass]="items.value !== '' ? 'mat-radio-' + items.value : 'mat-radio'"
+                                [value]="items.value">
+                {{items.name}}
+              </mat-radio-button>
+            </ng-container>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+
+    <h3 #anchor #disabled>Disabled State</h3>
+    <p>disabled radio</p>
+    <div class="style-guide-example d-flex alignC">
+      <code style="width: 70px">Magic Input</code>
+      <div class="form-group flex">
+        <ng-container *ngFor="let items of sublist">
+          <input [id]="'ds-' + items.value"
+                 [value]="items.value"
+                 [checked]="items.value === radioValue"
+                 [disabled]="true"
+                 name="basic"
+                 type="radio"
+                 [ngClass]="items.value !== 'default' ? 'mgr-' + items.value : ''"
+                 class="mgr" />
+          <label [for]="'ds-' + items.value">{{items.name}}</label>
+        </ng-container>
+      </div>
+    </div>
+    <div class="style-guide-example d-flex alignC">
+      <code style="width: 70px">Material</code>
+      <div class="form-group flex">
+        <mat-radio-group [(ngModel)]="radioValue">
+          <ng-container *ngFor="let items of sublist">
+            <mat-radio-button [value]="items.value"
+                              [disabled]="true">
+              {{items.name}}
+            </mat-radio-button>
+          </ng-container>
+        </mat-radio-group>
+      </div>
+    </div>
+  </div>
+
+  <aside-menu-right [menu]="radioMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

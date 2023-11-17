@@ -653,7 +653,7 @@ label.btn-split {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    input {
+    input.form-control {
       display: inline-block;
       flex: 1;
     }
