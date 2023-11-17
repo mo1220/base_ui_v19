@@ -1,5 +1,6 @@
 // @import '@angular/material/theming';
 
+
 $blue: #007bff;
 $indigo: #6610f2;
 $purple: #6f42c1;
@@ -17,7 +18,24 @@ $gray-light: #EFEFEF;
 //$primary: #183D85;
 //$secondary: #AAAAAA;
 
-$primary: #007bff;
+$colors-palette: (
+  blue: $blue,
+  indigo: $indigo,
+  purple: $purple,
+  pink: $pink,
+  red: $red,
+  orange: $orange,
+  yellow: $yellow,
+  green: $green,
+  teal: $teal,
+  cyan: $cyan,
+  white: $white,
+  gray: $gray,
+  gray-dark: $gray-dark,
+  gray-light: $gray-light,
+);
+
+$primary: $pink;//#007bff;
 $secondary: #6d6e71;
 $success: #28a745;
 $info: #007bff;
