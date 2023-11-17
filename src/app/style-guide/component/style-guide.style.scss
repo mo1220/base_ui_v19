@@ -120,6 +120,9 @@
       margin-bottom: 10px;
     }
 
+    input[type="checkbox"].mgc + label {
+      margin: 0 15px 0 0;
+    }
     button{
       //margin-bottom: 5px;
       //margin-right: 7px !important;

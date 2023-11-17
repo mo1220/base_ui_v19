@@ -5,16 +5,16 @@
     <div class="style-guide-example d-flex alignC">
       <code style="width: 70px">Magic Input</code>
       <div class="form-group flex">
+        <!-- (ngModelChange)="changeRadioValue($event)" -->
         <ng-container *ngFor="let items of sublist">
-          <input [id]="items.value"
+          <input [id]="'bc-' + items.value"
                  [value]="items.value"
-                 [checked]="items.value === radioValue"
-                 (change)="changeRadioValue($event)"
+                 [(ngModel)]="radioValue"
                  name="basic"
                  type="radio"
                  [ngClass]="items.value !== 'default' ? 'mgr-' + items.value : ''"
                  class="mgr" />
-          <label [for]="items.value">{{items.name}}</label>
+          <label [for]="'bc-' + items.value">{{items.name}}</label>
         </ng-container>
       </div>
     </div>
@@ -35,18 +35,19 @@
     <p>사이즈별 radio</p>
     <div class="style-guide-example d-flex alignC">
       <div style="flex:1">
+        <!-- [checked]="items.value === "
+                   (change)="changeRadioSizeValue($event)" -->
         <code>magic input</code>
         <div class="form-group flex">
           <ng-container *ngFor="let items of sizeList">
-            <input [id]="items.value"
+            <input [id]="'size-' + items.value"
                    [value]="items.value"
-                   [checked]="items.value === sizeValue"
-                   (change)="changeRadioSizeValue($event)"
-                   name="basic"
+                   [(ngModel)]="sizeValue"
+                   name="size"
                    type="radio"
                    [ngClass]="items.value !== 'default' ? 'mgr-' + items.value : ''"
                    class="mgr mgr-primary" />
-            <label [for]="items.value">{{items.name}}</label>
+            <label [for]="'size-' + items.value">{{items.name}}</label>
           </ng-container>
         </div>
       </div>
@@ -54,7 +55,7 @@
         <code>material</code>
         <div class="form-group">
           <mat-radio-group [(ngModel)]="radioValue">
-            <ng-container *ngFor="let items of sublist">
+            <ng-container *ngFor="let items of sizeList">
               <mat-radio-button [color]="'primary'"
                                 [ngClass]="items.value !== '' ? 'mat-radio-' + items.value : 'mat-radio'"
                                 [value]="items.value">
@@ -71,12 +72,13 @@
     <div class="style-guide-example d-flex alignC">
       <code style="width: 70px">Magic Input</code>
       <div class="form-group flex">
+        <!-- [checked]="items.value === radioValue" -->
         <ng-container *ngFor="let items of sublist">
           <input [id]="'ds-' + items.value"
+                 [(ngModel)]="radioValue"
                  [value]="items.value"
-                 [checked]="items.value === radioValue"
                  [disabled]="true"
-                 name="basic"
+                 name="ds"
                  type="radio"
                  [ngClass]="items.value !== 'default' ? 'mgr-' + items.value : ''"
                  class="mgr" />

@@ -66,7 +66,8 @@ export class StyleGuideRadioButtonComponent implements AfterViewInit, OnDestroy 
   ) { }
 
   changeRadioValue(e: any) {
-    console.log(e);
+    // console.log(e.target.value);
+    this.radioValue = e.target.value;
   }
 
   changeRadioSizeValue(e: any) {
