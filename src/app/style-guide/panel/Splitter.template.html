@@ -39,27 +39,34 @@
           <div class="layout-wrap fixed" style="height: 500px; border:1px solid #CCC;">
             <div class="layout-container">
               <div class="layout-aside"
+                   style="display: flex; align-items: center; justify-content: center; text-align: center;"
                    ngResizable
                    [rzHandles]="'e'">
-                왼쪽<br />
-                최소 90px ~ 최대 600px
+                <div>
+                  왼쪽<br />
+                  최소 90px ~ 최대 600px
+                </div>
               </div>
-              <div class="layout-content">
+              <div class="layout-content" style="display: flex; flex-direction: column;">
                 <div class="layout-content-header"
-                     style="height: 250px;"
+                     style="height: 250px; display: flex; align-items: center; justify-content: center; text-align: center;"
                      ngResizable
                      [rzHandles]="'s'">
-                  상단
+                  <div>상단</div>
                 </div>
-                <div class="layout-content-body">
-                  내용
+                <div class="layout-content-body"
+                     style="flex: 1; display: flex; align-items: center; justify-content: center; text-align: center;">
+                  <div>내용</div>
                 </div>
               </div>
               <div class="layout-rnb"
+                   style="display: flex; align-items: center; justify-content: center; text-align: center;"
                    ngResizable
                    [rzHandles]="'w'">
+                <div>
                 오른쪽<br />
                 최소 90px ~ 최대 600px
+                </div>
               </div>
             </div>
           </div>
