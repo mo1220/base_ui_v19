@@ -89,6 +89,8 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
             },
             drop: (tree: TreeModel, node: TreeNode, e: any, {from, to}: any) => {
               const targetParentId = to.parent.data._id;
+              // 전체 밖에 위치로 이동한 경우 무시
+              if (to.parent.data.virtual) return;
               if (from instanceof TreeNode) { // 폴더 내 이동
                 if (to.dropOnNode) {
                   // 같은 디렉토리 일 때
@@ -97,19 +99,17 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
                   to.parent.data.children.push(from.data);
                   const before = from.parent.data.children.filter((n: any) => n._id !== from.data._id);
                   from.parent.data.children = [...before];
+                  // // 노드 사이의 슬롯에다가 드래그 한 경우
+                  // // 원래와 같은 위치로 드래그한 경우 무시
+                  if (from.data.parentId == targetParentId && (to.index == from.index || to.index == from.index + 1)) return;
                   // TODO API 연결
                   this.outputNodeAPI.emit({type: 'update', node});
                   this.tree.treeModel.update();
                   return;
                 }
-                // // 노드 사이의 슬롯에다가 드래그 한 경우
-                // // 원래와 같은 위치로 드래그한 경우 무시
-                if (from.data.parentId == targetParentId && (to.index == from.index || to.index == from.index + 1)) return;
-                // 전체 밖에 위치로 이동한 경우 무시
-                if (to.parent.data.virtual) return;
               } else { // 데이터 -> 폴더 이동
                 // if (from.rowData) { // 카드형 데이터 이동
-                //   if(!to.dropOnNode) return;
+                if (!to.dropOnNode) return;
                 this.nodeActiveChanged.emit({node, from});
                 this.outputNodeAPI.emit({type: 'move', node});
               }
