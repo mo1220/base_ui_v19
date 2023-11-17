@@ -145,11 +145,11 @@ export const STYLE_GUIDE_MENU = [
         link: '/panel/card',
         desc: `Card 설명 <span></span>`
       },
-      {
-        name: 'Divider',
-        link: '/panel/divider',
-        desc: `Divider 설명 <span></span>`
-      },
+      // {
+      //   name: 'Divider',
+      //   link: '/panel/divider',
+      //   desc: `Divider 설명 <span></span>`
+      // },
       {
         name: 'Splitter',
         link: '/panel/splitter',
