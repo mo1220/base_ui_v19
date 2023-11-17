@@ -31,7 +31,7 @@ interface PeriodicElement {
   filler?: number;
 }
 
-const COUNTRIES: Country[] = [
+export const COUNTRIES: Country[] = [
   {
     id: 1,
     name: 'Russia',

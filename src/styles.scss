@@ -1933,6 +1933,12 @@ date-picker {
     overflow-x: hidden;
   }
 
+  .node-drop-slot.is-dragging-over{
+    background: transparent;
+    height: 2px;
+    border: 1px solid $primary;
+  }
+
   .tree-node-blank-expander {
     display: inline-block;
     width: 13px;
@@ -2107,6 +2113,11 @@ date-picker {
       &.active {
         background-color: $primary;
         color: #ffffff;
+      }
+      &.is-dragging-over,
+      &.drag-over {
+        background: rgba($primary, .2);
+        //border: 2px dotted $primary;
       }
     }
 
@@ -2556,7 +2567,7 @@ date-picker {
           -webkit-line-clamp: 2;
           display: -webkit-box;
           -webkit-box-orient: vertical;
-
+          white-space: pre-wrap;
           &.sm {
             margin-top: 5px;
           }

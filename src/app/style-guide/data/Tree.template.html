@@ -91,7 +91,7 @@
         <!--EN: loading -->
 
         <!--ST: Event -->
-        <div class="style-guide-example" *ngSwitchCase="'event'">
+        <div class="style-guide-example d-flex" *ngSwitchCase="'event'">
           <div style="width: 250px;">
             <ng-container *ngIf="loading2 else content">
               <div *ngFor="let node of loadingContent; let i=index;">
@@ -106,9 +106,56 @@
             <ng-template #content>
               <tree-dir-component-app [nodes]="nodes2"
                                       [viewType]="'styleGuide'"
+                                      (treeElements)="setDropZone($event)"
+                                      [dragoverId]="dragOverId"
                                       (nodeActiveChanged)="nodeActiveChanged($event, 'event')"
-                                      (outputNode)="outputNode($event)"></tree-dir-component-app>
+                                      (outputNodeAPI)="outputAPI($event)"></tree-dir-component-app>
             </ng-template>
+          </div>
+          <div class="card d-flex-1">
+            <div class="card-item" *ngFor="let item of countries | slice: 0 : 5; let li=index"
+                 [treeDrag]="{ rowData: item }"
+                 [treeDragEnabled]="true">
+              <img class="card-img-top"
+                   src="https://primefaces.org/cdn/primeng/images/usercard.png"
+                   alt="포탈 데이터 아이콘"/>
+              <div class="card-body">
+                <h4 class="card-title">{{item.name}}</h4>
+                <p class="card-text">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                </p>
+                <!--<div class="card-item-content-footer" [class.flex-end]="li===0">
+                  <div class="card-item-content-footer-l" *ngIf="li > 0">
+                    <ul class="keyword-list">
+                      <li *ngFor="let tag of tags;">
+                        <span class="tag" [title]="tag">{{tag}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-item-content-footer-r">
+                    <span class="text-body-secondary"><i class="fa fa-clock-o" aria-hidden="true"></i>YYYY-MM-dd HH:mm:ss</span>
+                    <span class="text-body-secondary"><i class="fa fa-eye"
+                                                         aria-hidden="true"></i>{{(li + 1) * 10}}</span>
+                  </div>
+                </div>-->
+              </div>
+              <div class="card-footer flex-end">
+                <span class="text-body-secondary">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>YYYY-MM-dd HH:mm:ss</span>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex-1">
+            <ag-grid-angular style="width: 100%; height: 100%"
+                             class="ag-theme-alpine"
+                             [rowDragManaged]="true"
+                             [defaultColDef]="defaultColDef"
+                             [gridOptions]="gridOptions"
+                             (gridReady)="onGridReady($event)"
+                             [columnDefs]="columnDefs"
+                             [rowData]="countries">
+
+            </ag-grid-angular>
           </div>
         </div>
         <!--EN: Event -->
