@@ -9,21 +9,13 @@ $check-sizes: (
 
 // 첫번째는 라디오 사이즈 두번째는 라벨 폰트 사이즈 안에 원(before)
 $radio-sizes: (
-  xs: 10 $font-size-xs 5,
-  sm: 12 $font-size-sm 6,
-  lg: 19 $font-size-lg 10,
-  xl: 22 $font-size-xl 14
+  xs: 10px $font-size-xs 5px 20px,
+  sm: 12px $font-size-sm 6px 20px,
+  lg: 19px $font-size-lg 10px 30px,
+  xl: 22px $font-size-xl 11px 36px
 );
-$colors: (
-  primary: $primary,
-  secondary: $secondary,
-  success: $success,
-  info: $info,
-  warning: $warning,
-  danger: $danger,
-  light: $light,
-  dark: $dark
-);
+
+$radio-default-size: 16px;
 
 $button-size: (
   // padding-y, padding-x, font-size, border-radius
@@ -42,33 +34,89 @@ $button-size: (
 
 
 @mixin mat-size {
+  .mdc-form-field>label {
+    padding-left: 3px;
+  }
+  .mat-mdc-radio-touch-target {
+    height: 30px;
+    width: 30px;
+  }
   .mat-mdc-radio-button {
+    margin-left: -3px;
+    margin-right: 15px;
     .mdc-radio {
-      width: 16px;
-      height: 16px;
-      --mdc-radio-state-layer-size: 20px;
+      width: $radio-default-size;
+      height: $radio-default-size;
+      --mdc-radio-state-layer-size: 26px;
     }
-
     .mdc-radio__background {
-      width: 16px;
-      height: 16px;
-
+      width: $radio-default-size;
+      height: $radio-default-size;
       .mdc-radio__outer-circle {
         border-width: 1px;
       }
+      &::before {
+        top: calc(-1 * (var(--mdc-radio-state-layer-size) - $radio-default-size) / 2) !important;
+        left: calc(-1 * (var(--mdc-radio-state-layer-size) - $radio-default-size) / 2) !important;
+      }
     }
-
+    .mdc-radio__inner-circle {
+      border-width: 8px;
+    }
     &.mat-accent {
-      --mdc-radio-disabled-unselected-icon-color: #F00;
+      --mdc-radio-unselected-icon-color: #d7d7d7;
+      --mdc-radio-unselected-pressed-icon-color: #d7d7d7;
+      --mat-radio-disabled-label-color: rgba(0, 0, 0, 0.38);
     }
 
-    //&.mat-radio-#{$key} {
-    //  .mdc-radio {
-    //    width: 12px;
-    //    height: 12px;
-    //    --mdc-radio-state-layer-size: #{$value} + px;
-    //  }
-    //}
+    label {
+      cursor: pointer;
+    }
+
+    // 라디오 버튼 컬러
+    @each $key, $color in $colors {
+      &.mat-radio-#{$key} {
+        &.mat-accent {
+          --mat-radio-ripple-color: #{$color}; // Ripple Background
+          --mdc-radio-selected-icon-color: #{$color}; // 선택된 라디오 버튼 내부
+          --mdc-radio-selected-hover-icon-color: #{$color}; // 선택된 라디오 버튼 아웃라인
+          --mdc-radio-unselected-hover-icon-color: #{$color}; // 마우스 오버 아웃라인
+          --mdc-radio-selected-focus-icon-color: #{$color};
+          --mat-radio-checked-ripple-color: #{$color};
+          --mdc-radio-selected-pressed-icon-color: #{$color};
+        }
+        label:hover {
+          color: $color;
+        }
+      }
+    }
+
+    @each $key, $value in $radio-sizes {
+      &.mat-radio-#{$key} {
+        .mdc-radio {
+          width: #{nth($value, 1)};
+          height: #{nth($value, 1)};
+          --mdc-radio-state-layer-size: #{nth($value, 4)};
+        }
+        .mdc-radio__background {
+          width: #{nth($value, 1)};
+          height: #{nth($value, 1)};
+          .mdc-radio__outer-circle {
+            border-width: 1px;
+          }
+          &::before {
+            top: calc(-1 * (var(--mdc-radio-state-layer-size) - #{nth($value, 1)}) / 2) !important;
+            left: calc(-1 * (var(--mdc-radio-state-layer-size) - #{nth($value, 1)}) / 2) !important;
+          }
+        }
+        .mdc-radio__inner-circle {
+          border-width: #{nth($value, 3)};
+        }
+        label {
+          font-size: #{nth($value, 2)};
+        }
+      }
+    }
   }
 
   .mat-mdc-button {

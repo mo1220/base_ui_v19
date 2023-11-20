@@ -23,7 +23,9 @@
       <div class="form-group">
         <mat-radio-group [(ngModel)]="radioValue">
           <ng-container *ngFor="let items of sublist">
-            <mat-radio-button [value]="items.value">
+            <mat-radio-button
+              [ngClass]="items.value !== 'default' ? 'mat-radio-' + items.value : ''"
+              [value]="items.value">
               {{items.name}}
             </mat-radio-button>
           </ng-container>
@@ -56,7 +58,8 @@
         <div class="form-group">
           <mat-radio-group [(ngModel)]="radioValue">
             <ng-container *ngFor="let items of sizeList">
-              <mat-radio-button [color]="'primary'"
+              <!-- [color]="'primary'" -->
+              <mat-radio-button class="mat-radio-primary"
                                 [ngClass]="items.value !== '' ? 'mat-radio-' + items.value : 'mat-radio'"
                                 [value]="items.value">
                 {{items.name}}

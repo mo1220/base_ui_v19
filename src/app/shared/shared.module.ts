@@ -42,6 +42,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { RatingModule } from 'ngx-bootstrap/rating';
 
 
 import { PipesModule } from './pipes/index'; // Pipe
@@ -131,6 +132,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     MatToolbarModule,
     MatExpansionModule,
     MatCardModule,
+    CdkMenuModule,
     OverlayModule,
 
     // ngx-bootstrap
@@ -142,7 +144,8 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     TabsModule,
     CollapseModule,
     ButtonsModule,
-    CdkMenuModule,
+    RatingModule,
+
 
     PipesModule,
     RouterModule,
@@ -235,6 +238,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     TabsModule,
     CollapseModule,
     ButtonsModule,
+    RatingModule,
 
     PipesModule, // Pipe
 

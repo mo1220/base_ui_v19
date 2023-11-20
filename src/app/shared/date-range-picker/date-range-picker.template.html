@@ -1,20 +1,34 @@
 <!-- ST: range picker -->
 <div class="form-group">
-  <input type="text" style="display: block"
-         [placeholder]="placeholder || _bsConfig.rangeInputFormat || 'YYYY-MM-DD'"
-         class="form-control form-control-sm datepicker"
-         bsDaterangepicker
-         [(ngModel)]="selectDate"
-         (ngModelChange)="changeDate()"
-         [outsideClick]="outsideClick"
-         [minDate]="minDate"
-         [maxDate]="maxDate"
-         [bsConfig]="_bsConfig">
-  <span class="clear-btn"
-        *ngIf="selectDate !== undefined"
-        (click)="selectDate = undefined">
+  <div class="form-box icon-left calendar">
+    <input type="text" style="display: block"
+           cdkOverlayOrigin
+           #d1="cdkOverlayOrigin"
+           [placeholder]="placeholder || _bsConfig.rangeInputFormat"
+           class="form-control"
+           [ngClass]="size && size !== '' ? 'form-control-' + size : ''"
+           [ngModel]="selectDate | dateRange : _bsConfig.rangeInputFormat"
+           (click)="open = true">
+    <span class="clear-btn"
+          *ngIf="selectDate !== undefined"
+          (click)="deleteDate()">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
+    <ng-template cdkConnectedOverlay
+                 [cdkConnectedOverlayOrigin]="d1"
+                 [cdkConnectedOverlayOpen]="open">
+      <bs-daterangepicker-inline [bsValue]="selectDate"
+                                 (bsValueChange)="changeDate($event)"
+                                 [minDate]="minDate"
+                                 [maxDate]="maxDate"
+                                 [bsConfig]="_bsConfig">
+      </bs-daterangepicker-inline>
+    </ng-template>
+  </div>
 </div>
+
+<div *ngIf="open"
+     class="overlay-bg"
+     (click)="open = false"></div>
 <!-- EN: range picker -->
 

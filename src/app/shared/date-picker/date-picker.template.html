@@ -1,125 +1,33 @@
 <!-- ST: date picker -->
 <div class="form-group">
-  <ng-container *ngIf="['bottom','left','top','right'].indexOf(_placement) === -1">
-    <div class="form-box">
-      <input type="text" style="display: block"
-             [placeholder]="placeholder || _bsConfig.dateInputFormat"
-             class="form-control"
-             cdkOverlayOrigin
-             #d1="cdkOverlayOrigin"
-             [class.form-control-xs]="size === 'xs'"
-             [class.form-control-sm]="size === 'sm'"
-             [ngModel]="selectDate | date : changeDateFormat(_bsConfig.dateInputFormat)"
-             (click)="open = true">
-      <span class="clear-btn"
-            *ngIf="selectDate !== undefined"
-            (click)="deleteDate()">
+  <div class="form-box icon-left calendar">
+    <input type="text" style="display: block"
+           cdkOverlayOrigin
+           #d1="cdkOverlayOrigin"
+           [placeholder]="placeholder || _bsConfig.dateInputFormat"
+           class="form-control"
+           [ngClass]="size && size !== '' ? 'form-control-' + size : ''"
+           [ngModel]="selectDate | date : changeDateFormat(_bsConfig.dateInputFormat)"
+           (click)="toggleOpen()">
+    <span class="clear-btn"
+          *ngIf="selectDate !== undefined"
+          (click)="deleteDate()">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
-      <ng-template cdkConnectedOverlay
-                   [cdkConnectedOverlayOrigin]="d1"
-                   [cdkConnectedOverlayOpen]="open">
-        <bs-datepicker-inline [bsValue]="calendarDate"
-                              (bsValueChange)="changeDate($event)"
-                              [minDate]="minDate"
-                              [maxDate]="maxDate"
-                              [bsConfig]="_bsConfig">
-        </bs-datepicker-inline>
-      </ng-template>
-      <div *ngIf="open"
-           class="overlay-bg"
-           (click)="open = false"></div>
-    </div>
-
-  </ng-container>
-
-  <ng-container *ngIf="['bottom'].includes(_placement)">
-    <div class="form-box">
-      <input type="text" style="display: block"
-             [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
-             class="form-control datepicker"
-             [class.form-control-xs]="size === 'xs'"
-             [class.form-control-sm]="size === 'sm'"
-             bsDatepicker
-             placement="bottom"
-             [(ngModel)]="selectDate"
-             (ngModelChange)="changeDate($event)"
-             [outsideClick]="outsideClick"
-             [minDate]="minDate"
-             [maxDate]="maxDate"
-             [bsConfig]="_bsConfig">
-      <span class="clear-btn"
-            *ngIf="selectDate !== undefined"
-            (click)="deleteDate()">
-          <mat-icon class="mat-icon">close</mat-icon>
-          </span>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="['left'].includes(_placement)">
-    <div class="form-box">
-      <input type="text" style="display: block"
-             [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
-             class="form-control datepicker"
-             [class.form-control-xs]="size === 'xs'"
-             [class.form-control-sm]="size === 'sm'"
-             bsDatepicker
-             placement="left"
-             [(ngModel)]="selectDate"
-             (ngModelChange)="changeDate($event)"
-             [outsideClick]="outsideClick"
-             [minDate]="minDate"
-             [maxDate]="maxDate"
-             [bsConfig]="_bsConfig">
-      <span class="clear-btn"
-            *ngIf="selectDate !== undefined"
-            (click)="deleteDate()">
-          <mat-icon class="mat-icon">close</mat-icon>
-          </span>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="['top'].includes(_placement)">
-    <div class="form-box">
-      <input type="text" style="display: block"
-             [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
-             class="form-control datepicker"
-             [class.form-control-xs]="size === 'xs'"
-             [class.form-control-sm]="size === 'sm'"
-             bsDatepicker
-             placement="top"
-             [(ngModel)]="selectDate"
-             (ngModelChange)="changeDate($event)"
-             [outsideClick]="outsideClick"
-             [minDate]="minDate"
-             [maxDate]="maxDate"
-             [bsConfig]="_bsConfig">
-      <span class="clear-btn"
-            *ngIf="selectDate !== undefined"
-            (click)="deleteDate()">
-          <mat-icon class="mat-icon">close</mat-icon>
-          </span>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="['right'].includes(_placement)">
-    <div class="form-box">
-      <input type="text" style="display: block"
-             [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
-             class="form-control datepicker"
-             [class.form-control-xs]="size === 'xs'"
-             [class.form-control-sm]="size === 'sm'"
-             bsDatepicker
-             placement="right"
-             [(ngModel)]="selectDate"
-             (ngModelChange)="changeDate($event)"
-             [outsideClick]="outsideClick"
-             [minDate]="minDate"
-             [maxDate]="maxDate"
-             [bsConfig]="_bsConfig">
-      <span class="clear-btn"
-            *ngIf="selectDate !== undefined"
-            (click)="deleteDate()">
-          <mat-icon class="mat-icon">close</mat-icon>
-          </span>
-    </div>
-  </ng-container>
+    <ng-template cdkConnectedOverlay
+                 position
+                 [cdkConnectedOverlayOrigin]="d1"
+                 [cdkConnectedOverlayOpen]="open">
+      <bs-datepicker-inline [bsValue]="selectDate"
+                            (bsValueChange)="changeDate($event)"
+                            [minDate]="minDate"
+                            [maxDate]="maxDate"
+                            [bsConfig]="_bsConfig">
+      </bs-datepicker-inline>
+    </ng-template>
+    <div *ngIf="open"
+         class="overlay-bg"
+         (click)="open = false"></div>
+  </div>
 </div>
 <!-- EN: date picker -->

@@ -292,8 +292,8 @@ ul, ol, dl {
   }
 }
 
-/* 고정 width wd-${size} */
-@each $size in 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300 {
+/* 고정 width wd-${size}  1~500 (23-11-20수정) */
+@each $size in 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420 ,430, 440, 450, 460, 470, 480, 490, 500 {
   .wd-#{$size} {
     width: $size + px !important;
     overflow: hidden;
@@ -317,7 +317,6 @@ ul, ol, dl {
   .color-#{$key} {
     color: $color;
   }
-
   .bg-#{$key} {
     background-color: $color;
   }
@@ -334,6 +333,18 @@ ul, ol, dl {
   z-index: 1;
 }
 
+$font-sizes: (
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+  lg: $font-size-lg,
+  xl: $font-size-xl
+);
+/* Font Size */
+@each $key, $value in $font-sizes {
+  .font-#{$key} {
+    font-size: $value;
+  }
+}
 
 /****************************** ST: Material Style ******************************************/
 /* ST: Mat-icon */

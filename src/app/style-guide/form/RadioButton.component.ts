@@ -36,7 +36,7 @@ export class StyleGuideRadioButtonComponent implements AfterViewInit, OnDestroy 
       title: 'Disabled State',
       anchor: 'disabled',
     }
-  ]
+  ];
 
   radioItems: string[] = ['default', 'primary', 'success', 'info', 'warning', 'danger']
   radioValue: string = 'default';

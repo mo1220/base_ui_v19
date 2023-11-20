@@ -1,9 +1,18 @@
-import {Component, EventEmitter, Inject, Input, OnInit, Output, ViewEncapsulation} from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation
+} from "@angular/core";
 import {BsLocaleService, DatepickerDateTooltipText} from "ngx-bootstrap/datepicker";
 import {defineLocale, enGbLocale, zhCnLocale} from 'ngx-bootstrap/chronos';
 import { koLocale } from 'ngx-bootstrap/locale';
 import * as moment from 'moment';
-import * as events from "events";
+import * as _ from 'lodash';
 
 defineLocale('kr', koLocale);
 defineLocale('en', enGbLocale);
@@ -30,29 +39,24 @@ export class DatePickerComponent implements OnInit {
   @Input() locale: string = 'kr'; // en cn kr 캘린더 언어
 
   @Input() placeholder:string;
-  @Input() selectDate: any // 선택한 날짜 value 전달용
-  calendarDate: any; // calendar에 설정된 실제 날짜
+  @Input() selectDate:any;
+  // get selectDate() {
+  //   return this._selectDate;
+  // } // 선택한 날짜 value 전달용
+  // set selectDate(value) {
+  //   this._selectDate = value;
+  // }
+  // _selectDate;
   @Output() selectDateChange: EventEmitter<any> = new EventEmitter<any>();
+  calendarDate: any; // calendar에 설정된 실제 날짜
 
   @Input() minDate: Date;
   @Input() maxDate: Date;
-  @Input() outsideClick:boolean = true;
-  _placement: string;
-  @Input()
-  get placement() {
-    return this._placement;
-  };
-  set placement(value) {
-    this._placement = value;
-    this._bsConfig.adaptivePosition = false;
-  }
 
   _bsConfig: any = {
     containerClass: '', // Theme 'theme-default' | 'theme-primary'
     dateInputFormat: 'YYYY-MM-DD', // 'YYYY.MM.DD' 'YYYY/MM/DD' 'YYYY MM DD h:mm:ss a'
     showWeekNumbers: false,
-    returnFocusToInput: false,
-    adaptivePosition: true,
     customTodayClass: 'ngx-today',
     dateTooltipTexts: [
       { date: this.today, tooltipText: '오늘'},
@@ -63,16 +67,6 @@ export class DatePickerComponent implements OnInit {
   }
 
   @Input()
-  get containerClass() {
-    return this._bsConfig.containerClass;
-  };
-  set containerClass(value) {
-    this._bsConfig = {
-      ...this._bsConfig,
-      containerClass: value
-    };
-  }
-  @Input()
   get dateInputFormat() {
     return this._bsConfig.dateInputFormat;
   }
@@ -80,7 +74,6 @@ export class DatePickerComponent implements OnInit {
     this._bsConfig = {
       ...this._bsConfig,
       dateInputFormat: value,
-      rangeInputFormat: undefined
     };
   }
   @Input()
@@ -91,16 +84,6 @@ export class DatePickerComponent implements OnInit {
     this._bsConfig = {
       ...this._bsConfig,
       showWeekNumbers: value || false
-    }
-  }
-  @Input()
-  get returnFocusToInput() {
-    return this._bsConfig.returnFocusToInput;
-  }
-  set returnFocusToInput(value) {
-    this._bsConfig = {
-      ...this._bsConfig,
-      returnFocusToInput: value || false
     }
   }
   @Input()
@@ -121,13 +104,12 @@ export class DatePickerComponent implements OnInit {
     this._bsConfig = {
       ...this._bsConfig,
       withTimepicker: value,
-      keepDatepickerOpened: value,
     }
-    console.log(this._bsConfig);
   }
 
 
   constructor(
+    private cd: ChangeDetectorRef,
     private localeService: BsLocaleService
   ) {
     this.localeService.use(this.locale);
@@ -137,18 +119,28 @@ export class DatePickerComponent implements OnInit {
 
   }
 
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
+
   changeDateFormat(value:any): string {
     // html에서 date pipe 사용 시 DD => dd로 포맷 변환 필요
     return value.replace(/(DD)/,"dd");
   }
 
+  toggleOpen() {
+    this.open = true;
+    this.cd.detectChanges();
+  }
   changeDate(e:any): void {
+    console.log(e, '---------',this.selectDate);
+    if(!this.selectDate) { this.open = false; }
+    // changeDate 이벤트는 bs-datepicker가 열릴 때마다 호출됨
     // time-picker가 없을 경우 날짜 선택 시 닫힘
-    if(!this._bsConfig.withTimepicker) this.open = false;
-
-    this.calendarDate = e;
-    this.selectDate = e;// moment(e).format(this._bsConfig.dateInputFormat);
+    if(!moment(e).isSame(this.selectDate) && !this._bsConfig.withTimepicker) this.open = false;
+    this.selectDate = e;
     this.selectDateChange.emit(this.selectDate);
+    this.cd.detectChanges();
   }
   deleteDate(): void {
     this.selectDateChange.emit('');

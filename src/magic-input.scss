@@ -9,20 +9,10 @@ $check-sizes: (
 
 // 첫번째는 라디오 사이즈 두번째는 라벨 폰트 사이즈 안에 원(before)
 $radio-sizes: (
-  xs: 10 $font-size-xs 5,
+  xs: 10 $font-size-xs 4.5,
   sm: 12 $font-size-sm 6,
-  lg: 19 $font-size-lg 10,
-  xl: 22 $font-size-xl 14
-);
-$colors: (
-  primary: $primary,
-  secondary: $secondary,
-  success: $success,
-  info: $info,
-  warning: $warning,
-  danger: $danger,
-  light: $light,
-  dark: $dark
+  lg: 19 $font-size-lg 9.5,
+  xl: 22 $font-size-xl 11.5
 );
 
 .mgc {

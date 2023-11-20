@@ -73,6 +73,7 @@ import {
   NumeralFormatPipe,
   ThresholdFormatPipe
 } from './number';
+import {DateRangePipe} from "./date";
 
 export const PIPES = [
   MenusPipe,
@@ -139,7 +140,9 @@ export const PIPES = [
   LegendIconPipe,
   UsedLengthPipe,
   SliderTrans,
-  ThresholdFormatPipe
+  ThresholdFormatPipe,
+  SafeHtmlPipe,
+  DateRangePipe
 ];
 
 @NgModule({

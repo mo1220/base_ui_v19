@@ -6,6 +6,11 @@ $date-calendar-padding: 6px 10px;
 $date-header-btn-size: 24px;
 $date-font-size: 11px;
 $date-cell-size: 24px;
+$time-up-x: 4px;
+$time-down-x: 5px;
+$time-left-y: 8px;
+$time-right-y: 74px;
+
 
 .bs-datepicker-head {
   min-width: $date-calendar-minW;
@@ -31,8 +36,9 @@ $date-cell-size: 24px;
   min-width: $date-calendar-minW;
   min-height: $date-calendar-minH;
   padding: $date-calendar-padding;
+  border-radius: 0;
 }
-.bs-datepicker-body table th {
+.bs-datepicker-body table {
   font-size: $date-font-size;
 }
 .bs-datepicker-body table.days span {
@@ -41,10 +47,23 @@ $date-cell-size: 24px;
   height: $date-cell-size;
   line-height: $date-cell-size - 1px;
 }
+.bs-datepicker-body table.months td {
+  height: $date-cell-size * 2 - 8px;
+  span {
+    font-size: $date-font-size;
+  }
+}
+.bs-datepicker-body table.years td span {
+  font-size: $date-font-size + 1px;
+  line-height: $date-cell-size * 1.4;
+  width: $date-cell-size * 1.4;
+  height: $date-cell-size * 1.4;
+  margin: 4px auto !important;
+}
 //////
 .bs-datepicker {
   background-color: transparent;
-  box-shadow: none;
+  //box-shadow: none;
 }
 .bs-datepicker-container {
   padding: 0 !important;
@@ -74,8 +93,8 @@ $date-cell-size: 24px;
 }
 
 .bs-datepicker-custom-range {
-  padding: 50px 0 0 0 !important;
-  background-color: transparent;
+  padding: 0;
+  background-color: #fff;
 }
 .bs-datepicker-body table td span.is-highlighted:not(.disabled):not(.selected) {
   background-color: lighten($primary, 30);
@@ -84,19 +103,17 @@ $date-cell-size: 24px;
   background-color: lighten($primary, 38);
 }
 .bs-datepicker-predefined-btns button {
-  margin-bottom: 8px;
-  padding: 0 12px;
-  border: 1px solid $primary;
-  border-left: none;
-  color: $primary;
+  margin-bottom: 0;
+  padding: 2px 15px;
+  color: $black;
   background-color: #fff;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0;
   font-size: $font-size-sm;
   transition: 0.3s;
   //opacity: 0.7;
   &:hover {
     background-color: lighten($primary, 35) !important;
-    color: $primary;
+    //color: $primary;
   }
   &.selected, &:active {
     background-color: $primary !important;
@@ -108,6 +125,10 @@ $date-cell-size: 24px;
 }
 
 // timepicker
+.bs-datepicker .bs-timepicker-in-datepicker-container {
+  border: 1px solid #dee2e6;
+  border-top: none;
+}
 .bs-timepicker-field {
   width: 34px !important;
   padding: 2px 4px !important;
@@ -136,12 +157,12 @@ $date-cell-size: 24px;
   tr:nth-child(2) {
     td.form-group {
       position: relative;
-      &:nth-child(1):has(.is-invalid) {
-        &:after {
-          content: '잘못된 입력';
+      &:nth-child(1) {
+        &:hover:after {
+          content: '스크롤 조절 가능';
           padding: 2px 4px;
           border-radius: 3px;
-          background-color: $danger;
+          background-color: $gray-dark;
           color: #fff;
           font-size: 9px;
           white-space: nowrap;
@@ -149,19 +170,47 @@ $date-cell-size: 24px;
           top: -14px;
           left: 0;
         }
+        &:has(.is-invalid) {
+          &:after {
+            content: '잘못된 입력';
+            padding: 2px 4px;
+            border-radius: 3px;
+            background-color: $danger;
+            color: #fff;
+            font-size: 9px;
+            white-space: nowrap;
+            position: absolute;
+            top: -14px;
+            left: 0;
+          }
+        }
       }
-      &:nth-child(3):has(.is-invalid) {
-        &:after {
-          content: '잘못된 입력';
+      &:nth-child(3) {
+        &:hover:after {
+          content: '스크롤로 변경(5분 단위)';
           padding: 2px 4px;
           border-radius: 3px;
-          background-color: $danger;
+          background-color: $gray-dark;
           color: #fff;
           font-size: 9px;
           white-space: nowrap;
           position: absolute;
           top: -14px;
           left: 0;
+        }
+        &:has(.is-invalid) {
+          &:after {
+            content: '잘못된 입력';
+            padding: 2px 4px;
+            border-radius: 3px;
+            background-color: $danger;
+            color: #fff;
+            font-size: 9px;
+            white-space: nowrap;
+            position: absolute;
+            top: -14px;
+            left: 0;
+          }
         }
       }
     }
@@ -188,28 +237,28 @@ $date-cell-size: 24px;
   tr:first-child { // 위
     td:first-child {
       .btn-link {
-        top: 4px;
-        left: 8px;
+        top: $time-up-x;
+        left: $time-left-y;
       }
     }
     td:nth-child(3) {
       .btn-link {
-        top: 4px;
-        left: 74px;
+        top: $time-up-x;
+        left: $time-right-y;
       }
     }
   }
   tr:last-child { //아래
     td:first-child {
       .btn-link {
-        bottom: 5px;
-        left: 8px;
+        bottom: $time-down-x;
+        left: $time-left-y;
       }
     }
     td:nth-child(3) {
       .btn-link {
-        bottom: 5px;
-        left: 74px;
+        bottom: $time-down-x;
+        left: $time-right-y;
       }
     }
   }
