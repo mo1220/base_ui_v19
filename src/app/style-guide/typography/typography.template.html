@@ -130,6 +130,32 @@
       <div class="msg warning">아이디는 필수 입력값입니다.</div>
       <div class="msg error">처리중 오류가 발생했습니다.</div>
     </div>
+
+    <h3 #anchor #textColor>텍스트 컬러, 백그라운드 컬러</h3>
+    <p>
+      UI에 지정한 컬러 설정
+    </p>
+    <div class="style-guide-example">
+      <p>텍스트 컬러 <code>class="color-"</code></p>
+      <div style="margin-bottom: 30px; font-size: 11px; white-space: initial;">
+        <span *ngFor="let color of colorsPalette; index as i"
+              style="display: inline-block; margin-right: 5px; line-height: 30px;"
+              [ngClass]="'color-' + color">
+          color-{{color}}
+          <ng-container *ngIf="i < (colorsPalette.length - 1)">,</ng-container>
+        </span>
+      </div>
+
+      <p>백그라운드 컬러 <code>class="bg-"</code></p>
+      <div style="margin-bottom: 30px; font-size: 11px; white-space: initial;">
+        <span *ngFor="let color of colorsPalette; index as i"
+              style="display: inline-block; margin-right: 5px; padding:0 5px; line-height: 30px;"
+              [style.color]="['gray-light', 'light', 'white'].includes(color) ? '#000' : '#FFF'"
+              [ngClass]="'bg-' + color">
+          bg-{{color}}
+        </span>
+      </div>
+    </div>
   </div>
   <aside-menu-right [menu]="typoMenu"
                     [anchor]="anchors"></aside-menu-right>

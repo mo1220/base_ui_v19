@@ -10,8 +10,8 @@ import {
   NavigationCancel,
   NavigationEnd,
   NavigationError,
-  NavigationStart,
-  Router
+  NavigationStart, RouteConfigLoadEnd,
+  Router, Scroll
 } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -90,6 +90,7 @@ export class AppComponent {
           break;
         }
         case event instanceof NavigationStart: {
+          console.log('NavigationStart NavigationStart NavigationStart NavigationStart NavigationStart NavigationStart');
           this.dialog.closeAll(); // 열려있는 다이얼로그 창 닫기
           this.loading = true;
           snackBar.dismiss(); // 열려있는 snackBar 창 닫기
@@ -98,7 +99,8 @@ export class AppComponent {
         case event instanceof NavigationEnd:
         case event instanceof NavigationCancel:
         case event instanceof NavigationError: {
-          this.loading = false;
+          console.log('NavigationEnd NavigationEnd NavigationEnd NavigationEnd NavigationEnd NavigationEnd');
+
           let e: any = event;
           // Tab 구조 변화로 인한 초기화 삭제
           let url = e.url.split('/');
@@ -115,6 +117,14 @@ export class AppComponent {
           }, 10);
           break;
         }
+        // @ts-ignore
+        case event instanceof Scroll: {
+          this.loading = false;
+        }
+        // @ts-ignore
+        // case event instanceof RouteConfigLoadEnd: {
+        //   console.log('RouteConfigLoadEnd RouteConfigLoadEnd RouteConfigLoadEnd RouteConfigLoadEnd RouteConfigLoadEnd RouteConfigLoadEnd');
+        // }
         default: {
           break;
         }

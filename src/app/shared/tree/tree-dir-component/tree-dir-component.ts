@@ -1,12 +1,12 @@
 import {
   AfterViewInit,
-  Component,
+  Component, ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
   OnInit,
-  Output,
-  ViewChild
+  Output, QueryList,
+  ViewChild, ViewChildren
 } from "@angular/core";
 import {ITreeOptions, TreeComponent, TreeModel, TreeNode} from "@odymaui/angular-tree-component";
 import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
@@ -14,6 +14,8 @@ import {TreeNodeType} from "./tree-dir-model";
 import {PopupMessage} from "../../popup-message/popup-message";
 import {MatDialog} from "@angular/material/dialog";
 import * as _ from 'lodash';
+import {RowDropZoneParams} from "ag-grid-community";
+import {MessagesService} from "../../../core/toast-message/messages.service";
 
 @Component({
   selector: 'tree-dir-component-app',
@@ -24,20 +26,22 @@ import * as _ from 'lodash';
 export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
   options: ITreeOptions;
   state: any = {};
-  nodeActiveId: number;
+  nodeActiveId: any;
   selectNodeIds = []; // 선택한 Node + 하위 id 전부 포함
-  dragOverId: any;   // 드래그 id
   editMode: boolean = false;
   lang: string;
 
   @ViewChild('tree') tree: TreeComponent;
+  @ViewChildren('categoriesElem') categoriesElem: QueryList<any>
 
   @Output() nodeActiveChanged: EventEmitter<any> = new EventEmitter(); // 노드 클릭 시 해당 정보 보내기
-  @Output() outputNode: EventEmitter<any> = new EventEmitter(); // 수정, 생성, 삭제 API 에 필요한 파라미터 보내기
+  @Output() outputNodeAPI: EventEmitter<any> = new EventEmitter(); // 수정, 생성, 삭제 API 에 필요한 파라미터 보내기
+  @Output() treeElements: EventEmitter<any> = new EventEmitter(); // Tree Element
 
   @Input() mode: string | undefined; // default: 추가|삭제|수정 등 관리 기능 | 'select': 선택 기능
   @Input() loading: boolean | undefined; // loading 상태
   @Input() viewType: string;  // View Type(ex. 추천 | 관심)
+  @Input() dragoverId: any;
 
   _nodes: Array<any>; // 트리 노드
   @Input()
@@ -53,7 +57,8 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     public translate: TranslateService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private msgs: MessagesService
   ) {
     translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.lang = event.lang;
@@ -70,7 +75,6 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
     }, 10)
   }
 
-
   onEvent(e: any): void {
     if (e.eventName === 'initialized') {
       this.options = {
@@ -80,35 +84,68 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
         actionMapping: {
           mouse: {
             click: (tree: TreeModel, node: TreeNode, e: any) => {
-              this.nodeActiveId = node.data.id;
+              this.nodeActiveId = node.data._id;
               this.nodeActiveChanged.emit({node});
-            }
+            },
+            drop: (tree: TreeModel, node: TreeNode, e: any, {from, to}: any) => {
+              const targetParentId = to.parent.data._id;
+              // 전체 밖에 위치로 이동한 경우 무시
+              if (to.parent.data.virtual) return;
+              if (from instanceof TreeNode) { // 폴더 내 이동
+                if (to.dropOnNode) {
+                  // 같은 디렉토리 일 때
+                  if (from.data.id == to.parent.data.id || from.parent.data.id == to.parent.data.id) return;
+                  if (!to.parent.data.children) to.parent.data.children = [];
+                  to.parent.data.children.push(from.data);
+                  const before = from.parent.data.children.filter((n: any) => n._id !== from.data._id);
+                  from.parent.data.children = [...before];
+                  // // 노드 사이의 슬롯에다가 드래그 한 경우
+                  // // 원래와 같은 위치로 드래그한 경우 무시
+                  if (from.data.parentId == targetParentId && (to.index == from.index || to.index == from.index + 1)) return;
+                  // TODO API 연결
+                  this.outputNodeAPI.emit({type: 'update', node});
+                  this.tree.treeModel.update();
+                  return;
+                }
+              } else { // 데이터 -> 폴더 이동
+                // if (from.rowData) { // 카드형 데이터 이동
+                if (!to.dropOnNode) return;
+                this.nodeActiveChanged.emit({node, from});
+                this.outputNodeAPI.emit({type: 'move', node});
+              }
+              this.dragoverId = '';
+            },
           }
         }
       };
 
 
     }
+    // 노드 펼치기/접기
+    if (e.eventName === 'toggleExpanded') {
+      this.treeElements.emit(this.categoriesElem);
+    }
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+  }
 
   /**
-   * @function Update / Addchildren API
-   * @param node
+   * @function Update / Add children API
+   * @param node: add | update 할 node data
    */
   updateNode(node: any) {
     this.editMode = false;
     node.isEdit = false;
     if (node.data._id === '') { // 생성
-      this.outputNode.emit({type: 'add', node});
+      this.outputNodeAPI.emit({type: 'add', node});
     } else { //수정
-      this.outputNode.emit({type: 'update', node});
+      this.outputNodeAPI.emit({type: 'update', node});
     }
   }
 
-  treeDropDragOver($event: DragEvent) {
-
+  treeDragEnter(e: DragEvent, node: any) {
+    this.dragoverId = node.data._id;
   }
 
   /**
@@ -127,6 +164,11 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
   // }
   //
 
+  /**
+   * @function 폴더 추가
+   * @param e: mouse evnet
+   * @param node: node data
+   */
   addChildren(e: MouseEvent, node: TreeNodeType) {
     e.stopPropagation();
     // this.editMode = true;
@@ -158,27 +200,32 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
     }, 100);
   }
 
+  /**
+   * @function 삭제 confirm dialog
+   * @param e
+   * @param node
+   */
   deleteMsg(e: MouseEvent, node: any) {
     console.log(node)
     // if (node.data._id !== '') {
-      const dialogRef = this.dialog.open(PopupMessage, {
-        width: '400px',
-        data: {
-          type: 'warning',
-          title: '폴더를 삭제하시겠습니까?',
-          txt: '삭제하시면, 폴더안에 있는 데이터도 같이 삭제 됩니다.<br/>그래도 삭제하시겠습니까?'
-        }
-      });
+    const dialogRef = this.dialog.open(PopupMessage, {
+      width: '400px',
+      data: {
+        type: 'warning',
+        title: '폴더를 삭제하시겠습니까?',
+        txt: '삭제하시면, 폴더안에 있는 데이터도 같이 삭제 됩니다.<br/>그래도 삭제하시겠습니까?'
+      }
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        if (result === 'confirm') {
-          console.log(node);
-          this.outputNode.emit({type: 'delete', node});
-          const nd = _.clone(node);
-          node.parent.data.children.splice(node.index, 1);
-          this.tree.treeModel.update();
-        }
-      })
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        console.log(node);
+        this.outputNodeAPI.emit({type: 'delete', node});
+        const nd = _.clone(node);
+        node.parent.data.children.splice(node.index, 1);
+        this.tree.treeModel.update();
+      }
+    })
     // }
   }
 

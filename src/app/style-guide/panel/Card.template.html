@@ -1,5 +1,5 @@
 <div class="d-flex">
-  <div class="component-wrap">
+  <div class="component-wrap card-wrap">
     <ng-container *ngFor="let menu of menus; let i=index;">
       <h3 #anchors>{{ menu.title }}</h3>
       <p [innerHTML]="menu.desc | safeHtml"></p>

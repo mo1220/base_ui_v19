@@ -1,10 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basic>Basic</h3>
+    <p>기본 radio</p>
+    <div class="style-guide-example d-flex alignC">
+      <code style="width: 70px">Magic Input</code>
+      <div class="form-group flex">
+        <!-- (ngModelChange)="changeRadioValue($event)" -->
+        <ng-container *ngFor="let items of sublist">
+          <input [id]="'bc-' + items.value"
+                 [value]="items.value"
+                 [(ngModel)]="radioValue"
+                 name="basic"
+                 type="radio"
+                 [ngClass]="items.value !== 'default' ? 'mgr-' + items.value : ''"
+                 class="mgr" />
+          <label [for]="'bc-' + items.value">{{items.name}}</label>
+        </ng-container>
+      </div>
+    </div>
+    <div class="style-guide-example d-flex alignC">
+      <code style="width: 70px">Material</code>
+      <div class="form-group">
+        <mat-radio-group [(ngModel)]="radioValue">
+          <ng-container *ngFor="let items of sublist">
+            <mat-radio-button [value]="items.value">
+              {{items.name}}
+            </mat-radio-button>
+          </ng-container>
+        </mat-radio-group>
+      </div>
+    </div>
 
-</body>
-</html>
+    <h3 #anchor #size>Size</h3>
+    <p>사이즈별 radio</p>
+    <div class="style-guide-example d-flex alignC">
+      <div style="flex:1">
+        <!-- [checked]="items.value === "
+                   (change)="changeRadioSizeValue($event)" -->
+        <code>magic input</code>
+        <div class="form-group flex">
+          <ng-container *ngFor="let items of sizeList">
+            <input [id]="'size-' + items.value"
+                   [value]="items.value"
+                   [(ngModel)]="sizeValue"
+                   name="size"
+                   type="radio"
+                   [ngClass]="items.value !== 'default' ? 'mgr-' + items.value : ''"
+                   class="mgr mgr-primary" />
+            <label [for]="'size-' + items.value">{{items.name}}</label>
+          </ng-container>
+        </div>
+      </div>
+      <div style="flex: 1">
+        <code>material</code>
+        <div class="form-group">
+          <mat-radio-group [(ngModel)]="radioValue">
+            <ng-container *ngFor="let items of sizeList">
+              <mat-radio-button [color]="'primary'"
+                                [ngClass]="items.value !== '' ? 'mat-radio-' + items.value : 'mat-radio'"
+                                [value]="items.value">
+                {{items.name}}
+              </mat-radio-button>
+            </ng-container>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+
+    <h3 #anchor #disabled>Disabled State</h3>
+    <p>disabled radio</p>
+    <div class="style-guide-example d-flex alignC">
+      <code style="width: 70px">Magic Input</code>
+      <div class="form-group flex">
+        <!-- [checked]="items.value === radioValue" -->
+        <ng-container *ngFor="let items of sublist">
+          <input [id]="'ds-' + items.value"
+                 [(ngModel)]="radioValue"
+                 [value]="items.value"
+                 [disabled]="true"
+                 name="ds"
+                 type="radio"
+                 [ngClass]="items.value !== 'default' ? 'mgr-' + items.value : ''"
+                 class="mgr" />
+          <label [for]="'ds-' + items.value">{{items.name}}</label>
+        </ng-container>
+      </div>
+    </div>
+    <div class="style-guide-example d-flex alignC">
+      <code style="width: 70px">Material</code>
+      <div class="form-group flex">
+        <mat-radio-group [(ngModel)]="radioValue">
+          <ng-container *ngFor="let items of sublist">
+            <mat-radio-button [value]="items.value"
+                              [disabled]="true">
+              {{items.name}}
+            </mat-radio-button>
+          </ng-container>
+        </mat-radio-group>
+      </div>
+    </div>
+  </div>
+
+  <aside-menu-right [menu]="radioMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

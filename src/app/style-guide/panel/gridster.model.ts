@@ -1,3 +1,12 @@
+export const DASHBOARD_ICON: any = {
+  'cloud': 'cloud',
+  'list': 'format_list_numbered',
+  'board': 'reorder',
+  'bar': 'bar_chart',
+  'barH': 'bar_chart',
+  'pie': 'incomplete_circle'
+}
+
 export interface gridsterOpType {
   name: string;
   key?: string;
@@ -42,12 +51,6 @@ export const gridsterOp: Array<gridsterOpType> = [
     desc: '빈 Cell 설정',
     link: 'https://tiberiuzuld.github.io/angular-gridster2/emptyCell'
   },
-  // {
-  //   name: 'Grid Event',
-  //   key: 'event',
-  //   desc: 'Init, Resize 등 Grid Event 관련 설정',
-  //   link: 'https://tiberiuzuld.github.io/angular-gridster2/gridEvents'
-  // },
   {
     name: 'Grid Margin',
     key: 'margin',
@@ -91,6 +94,7 @@ export const GRIDSTER_CONFIG_INIT: any = {
   scrollSensitivity: 10,
   scrollSpeed: 20,
   enableEmptyCellClick: false,
+  enableEmptyCellContextMenu: false,
   enableEmptyCellDrop: true,
   enableEmptyCellDrag: true,
   emptyCellDragMaxCols: 50,
@@ -148,7 +152,7 @@ export interface DASHBOARD_ITEM_TYPE {
   x: number,
   minItemCols?: number,
   minItemRows?: number,
-  config: MAIN_WIDGET_TYPE | WIDGET_TYPE | any;
+  config: any;
   disabled?: boolean
 }
 
@@ -162,7 +166,7 @@ export const originDashboard: Array<DASHBOARD_ITEM_TYPE> = [
     x: 0,
     minItemCols: 4,
     minItemRows: 4,
-    config: {'title': 'main.wordcloud','chart':'cloud', 'widgetType': 'wordcloud'},
+    config: {title: 'main.wordcloud', chart: 'cloud', widgetType: 'wordcloud'},
     disabled: true
   },
   {
@@ -175,16 +179,16 @@ export const originDashboard: Array<DASHBOARD_ITEM_TYPE> = [
     'config': {'title': 'main.recommendKeyword','chart':'list', 'widgetType': 'recommendKeyword'},
     'disabled': true
   },
-  {
-    'cols': 9,
-    'rows': 5,
-    'y': 5,
-    'x': 12,
-    'minItemCols': 4,
-    'minItemRows': 4,
-    'config': {'title': 'main.recommendDataset','chart':'list', 'widgetType': 'recommendDataset'},
-    'disabled': true
-  },
+  // {
+  //   'cols': 9,
+  //   'rows': 5,
+  //   'y': 5,
+  //   'x': 12,
+  //   'minItemCols': 4,
+  //   'minItemRows': 4,
+  //   'config': {'title': 'main.recommendDataset','chart':'list', 'widgetType': 'recommendDataset'},
+  //   'disabled': true
+  // },
   {
     'cols': 12,
     'rows': 6,
@@ -214,16 +218,16 @@ export const originDashboard: Array<DASHBOARD_ITEM_TYPE> = [
     'config': {'title': 'main.topDataset', 'chart':'pie', 'widgetType': 'topDataset'},
     'disabled': true
   },
-  // {
-  //   'cols': 11,
-  //   'rows': 5,
-  //   'y': 18,
-  //   'x': 11,
-  //   'minItemCols': 5,
-  //   'minItemRows': 4,
-  //   'config': {'title': 'nav.menu4-5-1', 'chart':'board', 'widgetType': 'extractReqList'},
-  //   'disabled': true
-  // },
+  {
+    'cols': 11,
+    'rows': 5,
+    'y': 18,
+    'x': 11,
+    'minItemCols': 5,
+    'minItemRows': 4,
+    'config': {'title': 'nav.menu4-5-1', 'chart':'board', 'widgetType': 'extractReqList'},
+    'disabled': true
+  },
   // {
   //   'cols': 10,
   //   'rows': 5,

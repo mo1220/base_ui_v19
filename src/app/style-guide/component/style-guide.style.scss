@@ -120,6 +120,9 @@
       margin-bottom: 10px;
     }
 
+    input[type="checkbox"].mgc + label {
+      margin: 0 15px 0 0;
+    }
     button{
       //margin-bottom: 5px;
       //margin-right: 7px !important;
@@ -214,4 +217,36 @@ h5.card-title{
   }
 }
 
+.splitter-sample {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  border: 1px solid #CCC;
+  &.column {
+    flex-direction: column;
+  }
+  &-aside {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  &-header {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.card-wrap{
+  width: calc(100% - 200px);
+}
