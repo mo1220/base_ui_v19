@@ -15,17 +15,6 @@ $radio-sizes: (
   xl: 22px $font-size-xl 11px 36px
 );
 
-$colors: (
-  primary: $primary,
-  secondary: $secondary,
-  success: $success,
-  info: $info,
-  warning: $warning,
-  danger: $danger,
-  light: $light,
-  dark: $dark
-);
-
 $radio-default-size: 16px;
 
 @mixin mat-size {

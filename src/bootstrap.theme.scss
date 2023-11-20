@@ -1110,3 +1110,80 @@ label {
   }
 }
 /******** EN: card **********/
+// 첫번째는 라디오 사이즈 두번째는 라벨 폰트 사이즈 안에 원(before)
+$rating-sizes: (
+  xs: 10px,
+  sm: 12px,
+  lg: 19px,
+  xl: 22px
+);
+/**************** ST: Rating **************************/
+.bs-rating-star {
+  color: transparent;
+  font-size: 0;
+  margin-right: 2px;
+  &:before {
+    content: '\f006';
+    font-family: FontAwesome;
+    color: #DDD;
+    font-size: 14px;
+  }
+  &.active {
+    &:before {
+      content: '\f005';
+      color: #333;
+    }
+  }
+}
+
+@each $key, $color in $colors {
+  .bs-rating-#{$key} {
+    .bs-rating-star {
+      &.active {
+        &:before {
+          color: $color;
+        }
+      }
+    }
+  }
+}
+
+@each $key, $value in $rating-sizes {
+  .bs-rating-#{$key} {
+    .bs-rating-star {
+      &:before {
+        font-size: $value;
+      }
+    }
+  }
+}
+.rating-custom {
+  .bs-rating-star {
+    color: #DDD;
+    font-size: 14px;
+    &:before {
+      display: none;
+    }
+    &.active {
+      color: #333;
+    }
+  }
+  @each $key, $value in $rating-sizes {
+    &.bs-rating-#{$key} {
+      .bs-rating-star {
+        font-size: $value;
+      }
+    }
+  }
+
+  @each $key, $color in $colors {
+    &.bs-rating-#{$key} {
+      .bs-rating-star {
+        &.active {
+          color: $color;
+        }
+      }
+    }
+  }
+}
+/**************** EN: Rating **************************/
