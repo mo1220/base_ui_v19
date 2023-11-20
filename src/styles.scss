@@ -17,6 +17,7 @@
 .default-theme {
   @include mat.all-component-themes($dtk-theme);
   @include mat-size; // Size
+
 }
 
 .dark-theme {
@@ -116,39 +117,6 @@ button {
   border: none;
   background: transparent;
 }
-
-.mat-btn.mdc-button {
-  --mdc-text-button-container-height: $btn-line-height !important;
-  --mdc-typography-button-line-height: $btn-line-height !important;
-  border: 1px solid transparent !important;
-  height: var(--mdc-text-button-container-height) !important;
-  //border-radius: $border-radius !important;
-  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
-  //padding: $btn-padding-y $btn-padding-x !important;
-  &.xl {
-    @include button-size($btn-padding-y-xl, $btn-padding-x-xl, $font-size-xl, $border-radius-xl);
-  }
-
-  &.lg {
-    @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
-  }
-
-  &.sm {
-    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
-  }
-
-  &.xs {
-    @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-xs, $border-radius-xs);
-  }
-}
-
-//.mat-mdc-icon-button.mat-mdc-button-base{
-//  @include btn-icon($btn-padding);
-//  --mdc-icon-button-state-layer-size: #{$btn-mat-width} !important;
-//  &.btn-lg{
-//    --mdc-icon-button-state-layer-size: #{$btn-mat-width-lg} !important;
-//  }
-//}
 
 // list style
 ul, ol, dl {
@@ -255,6 +223,7 @@ ul, ol, dl {
     left: 80px;
     bottom: 20px;
   }
+
 
   &.info {
     &:before {
@@ -2789,6 +2758,33 @@ date-picker {
   }
 }
 
+gridster-item {
+  border-radius: 10px;
+  .gridster-item{
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    &-header {
+      border: 1px solid #EEE;
+      height: 35px;
+      border-radius: 10px 10px 0 0;
+      //line-height: 35px;
+      & button {
+        height: 100%;
+      }
+     &-btns{
+       position: absolute;
+       top: 0;
+       right: 0;
+     }
+    }
+  }
+  .drag-handler {
+    cursor: move;
+  }
+}
+
 gridster-item:hover .gridster-item-resizable-handler.handle-se {
   border-color: transparent !important;
   &:before {
@@ -2796,7 +2792,7 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
   }
 }
 
-/********************** EN: Gridster *************************************/
+/********************** EN: Gridster ************************************/
 /********************** ST: Layout *************************************/
 .layout {
   &-wrap {

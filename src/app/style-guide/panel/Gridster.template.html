@@ -3,10 +3,10 @@
     <ng-container *ngFor="let menu of menus; let i=index">
       <h3 #anchors>{{ menu.title }}</h3>
       <p [innerHTML]="menu.desc | safeHtml"></p>
-      <div class="base-guide info">
+      <div class="base-guide info" style="height: 424px; overflow-y: auto;">
         <h5>Gridster 기본 옵션</h5>
         <dl class="d-flex" style="flex-wrap: wrap;">
-          <div class="d-flex-1 me-3 mb-4" *ngFor="let op of op_desc">
+          <div class="me-5 mb-4" style="width: 20%" *ngFor="let op of op_desc">
             <dt>
               <b class="wd-200">{{op.name}}
                 <a matTooltip="링크로 이동" [href]="op.link" target="_blank"><i class="fa fa-external-link"></i></a>
@@ -86,25 +86,25 @@
                   </mat-checkbox>
                 </div>
                 <div class="form-group">
-                   <mat-checkbox class="matcheckbox" color="primary"
-                      [(ngModel)]="options.enableEmptyCellContextMenu"
-                      (ngModelChange)="changedOptions()">
-                     Enable Empty Cell ContextMenu
-                    </mat-checkbox>
+                  <mat-checkbox class="matcheckbox" color="primary"
+                                [(ngModel)]="options.enableEmptyCellContextMenu"
+                                (ngModelChange)="changedOptions()">
+                    Enable Empty Cell ContextMenu
+                  </mat-checkbox>
                 </div>
                 <div class="form-group mb-1">
                   <mat-checkbox
                     class="matcheckbox" color="primary"
                     [(ngModel)]="options.enableEmptyCellDrop"
                     (ngModelChange)="changedOptions()">
-                    Enable drop to add
+                   아래 아이콘을 드래그하세요.
                   </mat-checkbox>
-                  <div *ngIf="options.enableEmptyCellDrop">
+                  <div *ngIf="options.enableEmptyCellDrop" style="background: #FFF; border: 1px solid #EEE; border-radius: 5px;">
                     <button mat-icon-button
                             class="btn-icon btn-xs" *ngFor="let icon of _originDashboard"
                             [matTooltip]="icon['config'].chart"
-                            draggable = true
-                            (dragstart)="dragStartHandler($event)">
+                            draggable=true
+                            (dragstart)="dragStartHandler($event, icon)">
                       <mat-icon>{{dashboardIcon[icon['config'].chart]}}</mat-icon>
                     </button>
                   </div>
@@ -120,8 +120,8 @@
                 </div>
                 <div class="form-group mb-1">
                   <mat-checkbox class="matcheckbox" color="primary"
-                    [(ngModel)]="options.enableEmptyCellDrag"
-                    (ngModelChange)="changedOptions()">
+                                [(ngModel)]="options.enableEmptyCellDrag"
+                                (ngModelChange)="changedOptions()">
                     Enable drag to add
                   </mat-checkbox>
                 </div>
@@ -133,6 +133,7 @@
                               [min]="1"
                               [max]="500"
                               [mode]="'less'"
+                              (valueChange)="changedOptions()"
                               [(value)]="options.emptyCellDragMaxCols"></dtk-slider>
                 </div>
                 <div class="form-group flex">
@@ -142,14 +143,12 @@
                               [min]="1"
                               [max]="500"
                               [mode]="'less'"
+                              (valueChange)="changedOptions()"
                               [(value)]="options.emptyCellDragMaxRows"></dtk-slider>
                 </div>
               </ng-container>
               <!--EN: empty-->
-
-
               <!-- ST: Margin-->
-              <!--ST: empty-->
               <ng-container *ngIf="op.key === 'margin'">
                 <div class="form-group">
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
@@ -158,6 +157,7 @@
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
+                              (valueChange)="changedOptions()"
                               [(value)]="options.margin"></dtk-slider>
                 </div>
                 <div class="form-group">
@@ -174,49 +174,258 @@
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
+                              (valueChange)="changedOptions()"
                               [(value)]="options.outerMarginTop"></dtk-slider>
                 </div>
+                <div class="form-group">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'Outer Margin Bottom'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.outerMarginBottom"></dtk-slider>
+                </div>
+                <div class="form-group">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'Outer Margin Right'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.outerMarginRight"></dtk-slider>
+                </div>
+                <div class="form-group">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'Outer Margin Left'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.outerMarginLeft"></dtk-slider>
+                </div>
               </ng-container>
+              <!-- EN: Margin-->
+              <!--ST: Grid Size-->
+              <ng-container *ngIf="op.key === 'gridSize'">
+                <div class="form-group flex">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
+                              [label]="'Minimum column size'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.minCols"></dtk-slider>
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'Maximum Col size'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.maxCols"></dtk-slider>
+                </div>
+                <div class="form-group flex me-1">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
+                              [label]="'Minimum Row size'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.minRows"></dtk-slider>
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'Maximum Rows size'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.maxRows"></dtk-slider>
+                </div>
+                <div class="form-group flex">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
+                              [label]="'Default Item Cols'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.defaultItemCols"></dtk-slider>
+
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'Default Item Rows'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.defaultItemRows"></dtk-slider>
+                </div>
+                <div class="form-group flex">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
+                              [label]="'Min Item Cols'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.minItemCols"></dtk-slider>
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
+                              [label]="'Max Item Cols'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.maxItemCols"></dtk-slider>
+                </div>
+                <div class="form-group flex">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
+                              [label]="'Min Item Rows'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.minItemRows"></dtk-slider>
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'Max Item Rows'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.maxItemRows"></dtk-slider>
+                </div>
+
+                <div class="form-group flex">
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
+                              [label]="'Min Item Area'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.minItemArea"></dtk-slider>
+                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                              [label]="'Max Item Area'"
+                              [unit]="'px'"
+                              [min]="1"
+                              [max]="100"
+                              [mode]="'less'"
+                              (valueChange)="changedOptions()"
+                              [(value)]="options.maxItemArea"></dtk-slider>
+                </div>
+              </ng-container>
+              <!--EN: Grid Size-->
+              <!-- ST: GridType-->
+              <ng-container *ngIf="op.key === 'gridType'">
+                <div class="form-group">
+                  <ng-select placeholder="'Grid Type 설정'"
+                             [items]="op.options"
+                             appendTo="body"
+                             (change)="changedOptions()"
+                             [(ngModel)]="options.gridType"></ng-select>
+                </div>
+
+                <div *ngIf="options.gridType === 'fixed'">
+                  <div class="form-group flex">
+                    <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                                [label]="'Fixed Col width'"
+                                [unit]="'px'"
+                                [min]="1"
+                                [max]="500"
+                                [mode]="'less'"
+                                (valueChange)="changedOptions()"
+                                [(value)]="options.fixedColWidth"></dtk-slider>
+                  </div>
+                  <div class="form-group flex">
+                    <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                                [label]="'Fixed Row width'"
+                                [unit]="'px'"
+                                [min]="1"
+                                [max]="500"
+                                [mode]="'less'"
+                                (valueChange)="changedOptions()"
+                                [(value)]="options.fixedRowWidth"></dtk-slider>
+                  </div>
+                </div>
+
+                <div *ngIf="['scrollVertical', 'scrollHorizontal'].includes(options.gridType)">
+                  <div class="form-group flex">
+                    <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                                [label]="'Row Height Ratio'"
+                                [unit]="'px'"
+                                [min]="1"
+                                [max]="100"
+                                [mode]="'less'"
+                                (valueChange)="changedOptions()"
+                                [(value)]="options.rowHeightRatio"></dtk-slider>
+                  </div>
+                </div>
+              </ng-container>
+              <!-- EN: GridType-->
             </dd>
           </div>
         </dl>
       </div>
-      <div>
+
+      <div style="display: flex; justify-content: flex-end;">
         <button mat-mini-fab (click)="addItem()" class="btn-icon btn-sm">
           <mat-icon>add</mat-icon>
         </button>
-      </div>
-      <div class="style-guide-example d-flex col" style="height: 1300px; max-height: 10000px;">
 
-        <gridster [options]="options">
-          <gridster-item *ngFor="let item of dashboard"
-                         [item]="item">
+        <button mat-mini-fab (click)="modified = !modified" class="btn-icon btn-sm">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+      </div>
+      <div class="style-guide-example d-flex col gridster-wrap">
+
+        <gridster [options]="options" (drag)="onDrag($event)">
+          <gridster-item *ngFor="let item of dashboard" [item]="item">
             <div class="gridster-item-wrap">
               <div class="gridster-item-header">
                 <button [ngClass]="options.draggable.dragHandleClass">
                   <mat-icon class="md-18">drag_indicator</mat-icon>
                 </button>
-                <label>{{ item['config']?.title ? ( item['config'].title | translate) : 'Gridster Item'}}</label>
-                <button mat-button [matTooltip]="'새로고침'">
-                  <mat-icon>refresh</mat-icon>
-                </button>
-                <ng-container *ngIf="modified">
-                  <button mat-button [matTooltip]="'더보기'"
-                          [matMenuTriggerFor]="gridMenu">
-                    <mat-icon>more_vert</mat-icon>
+                <label>{{ item['config']?.title ? (item['config'].title | translate) : 'Gridster Item'}}</label>
+
+                <div class="gridster-item-header-btns">
+                  <button mat-button [matTooltip]="'새로고침'" class="btn-icon">
+                    <mat-icon class="md-18">refresh</mat-icon>
                   </button>
-                  <mat-menu #gridMenu="matMenu">
-                    <button mat-menu-item
-                            (mousedown)="removeItem($event, item)"
-                            (touchstart)="removeItem($event, item)">
-                      <mat-icon class="md-16">delete</mat-icon> 제거
+                  <button class="btn-icon"
+                          mat-button matTooltip="삭제"
+                          (click)="removeItem($event, item)">
+                    <mat-icon class="md-18">close</mat-icon>
+                  </button>
+                  <ng-container *ngIf="modified">
+                    <button class="btn-icon"
+                            mat-button [matTooltip]="'더보기'"
+                            [matMenuTriggerFor]="gridMenu">
+                      <mat-icon class="md-18">more_vert</mat-icon>
                     </button>
-                    <button mat-menu-item>
-                      <mat-icon class="md-16">change_circle</mat-icon> 변경
-                    </button>
-                  </mat-menu>
-                </ng-container>
+                    <mat-menu #gridMenu="matMenu">
+                      <button mat-menu-item (mousedown)="removeItem($event, item)"
+                              (touchstart)="removeItem($event, item)">
+                        <mat-icon class="md-16">delete</mat-icon>
+                        제거
+                      </button>
+                      <button mat-menu-item>
+                        <mat-icon class="md-16">change_circle</mat-icon>
+                        변경
+                      </button>
+                    </mat-menu>
+                  </ng-container>
+                </div>
               </div>
+
               <div [ngClass]="options.draggable.ignoreContentClass">
                 내용
               </div>

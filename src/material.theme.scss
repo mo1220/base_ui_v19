@@ -25,6 +25,22 @@ $colors: (
   dark: $dark
 );
 
+$button-size: (
+  // padding-y, padding-x, font-size, border-radius
+  xl: $input-btn-padding-y-xl $input-btn-padding-x-xl $font-size-xl $border-radius-xl,
+  lg: $input-btn-padding-y-lg $input-btn-padding-x-lg $font-size-lg $border-radius-lg,
+  sm: $input-btn-padding-y-sm $input-btn-padding-x-sm $font-size-sm $border-radius-sm,
+  xs: $input-btn-padding-y-xs $input-btn-padding-x-xs $font-size-xs $border-radius-xs,
+);
+
+@mixin mat-button-size($padding-y, $padding-x, $font-size, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  border-radius: $border-radius;
+  border: 1px solid transparent !important;
+}
+
+
 @mixin mat-size {
   .mat-mdc-radio-button {
     .mdc-radio {
@@ -32,13 +48,16 @@ $colors: (
       height: 16px;
       --mdc-radio-state-layer-size: 20px;
     }
+
     .mdc-radio__background {
       width: 16px;
       height: 16px;
+
       .mdc-radio__outer-circle {
         border-width: 1px;
       }
     }
+
     &.mat-accent {
       --mdc-radio-disabled-unselected-icon-color: #F00;
     }
@@ -50,5 +69,21 @@ $colors: (
     //    --mdc-radio-state-layer-size: #{$value} + px;
     //  }
     //}
+  }
+
+  .mat-mdc-button {
+    --mdc-text-button-container-height: $btn-line-height;
+    --mdc-typography-button-line-height: $btn-line-height;
+    line-height: var(--mdc-typography-button-line-height) !important;
+    height: var(--mdc-text-button-container-height) !important;
+    @include mat-button-size($btn-padding-y, $btn-padding-x, $font-size-base, $border-radius);
+    @each $key, $size in $button-size {
+      &.btn-#{$key} {
+        @include mat-button-size(#{nth($size, 1)}, #{nth($size, 2)}, #{nth($size, 3)}, #{nth($size, 4)});
+      }
+    }
+    & > .mat-icon{
+      margin-right: 0;
+    }
   }
 }
