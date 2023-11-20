@@ -6,6 +6,11 @@ $date-calendar-padding: 6px 10px;
 $date-header-btn-size: 24px;
 $date-font-size: 11px;
 $date-cell-size: 24px;
+$time-up-x: 4px;
+$time-down-x: 5px;
+$time-left-y: 8px;
+$time-right-y: 74px;
+
 
 .bs-datepicker-head {
   min-width: $date-calendar-minW;
@@ -32,7 +37,7 @@ $date-cell-size: 24px;
   min-height: $date-calendar-minH;
   padding: $date-calendar-padding;
 }
-.bs-datepicker-body table th {
+.bs-datepicker-body table {
   font-size: $date-font-size;
 }
 .bs-datepicker-body table.days span {
@@ -40,6 +45,19 @@ $date-cell-size: 24px;
   width: $date-cell-size;
   height: $date-cell-size;
   line-height: $date-cell-size - 1px;
+}
+.bs-datepicker-body table.months td {
+  height: $date-cell-size * 2 - 8px;
+  span {
+    font-size: $date-font-size;
+  }
+}
+.bs-datepicker-body table.years td span {
+  font-size: $date-font-size + 1px;
+  line-height: $date-cell-size * 1.4;
+  width: $date-cell-size * 1.4;
+  height: $date-cell-size * 1.4;
+  margin: 4px auto !important;
 }
 //////
 .bs-datepicker {
@@ -188,28 +206,28 @@ $date-cell-size: 24px;
   tr:first-child { // 위
     td:first-child {
       .btn-link {
-        top: 4px;
-        left: 8px;
+        top: $time-up-x;
+        left: $time-left-y;
       }
     }
     td:nth-child(3) {
       .btn-link {
-        top: 4px;
-        left: 74px;
+        top: $time-up-x;
+        left: $time-right-y;
       }
     }
   }
   tr:last-child { //아래
     td:first-child {
       .btn-link {
-        bottom: 5px;
-        left: 8px;
+        bottom: $time-down-x;
+        left: $time-left-y;
       }
     }
     td:nth-child(3) {
       .btn-link {
-        bottom: 5px;
-        left: 74px;
+        bottom: $time-down-x;
+        left: $time-right-y;
       }
     }
   }
