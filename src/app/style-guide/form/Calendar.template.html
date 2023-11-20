@@ -126,7 +126,7 @@
 
   <h3 #anchor #rangepicker>Range Datepicker</h3>
     <p>날짜 범위 선택 Range Picker (기본 옵션은 Date Picker와 동일)</p>
-    <div class="msg info">range-picker의 경우 [dateInputFormat] 대신 <b>[rangeInputFormat]</b>을 필수로 입력해야함</div>
+    <div class="msg info">range-picker의 경우 [dateInputFormat] 대신 <b>[rangeInputFormat]</b>을 입력해야함</div>
     <div class="base-guide info">
       <h5>&lt;date-range-picker&gt; 옵션 설정 <span class="color-pink">(기본값)</span></h5>
       <p>&lt;date-range-picker&gt; 사용시 [rangeInpitFormat] 입력 필수 (날짜 범위 선택)</p>
@@ -136,10 +136,126 @@
       </ul>
     </div>
     <div class="style-guide-example">
-      <code><b>선택한 날짜 : {{selectedRange | json}}</b></code>
-      <date-range-picker [(selectDate)]="selectedRange"
-                   [rangeInputFormat]="'YYYY-MM-DD'"
-                   [returnFocusToInput] = true></date-range-picker>
+      <code><b>선택한 날짜 : {{selectedRange | json}}</b></code><hr>
+
+      <div class="form-group mb-3">
+        <label>옵션 없는 기본 range-picker</label>
+        <date-range-picker [(selectDate)]="selectedRange"></date-range-picker>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Input Size (xs, sm, default)</label>
+        <div class="form-group flex">
+          <date-range-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedRange"
+                       [size]="'xs'"
+                       [placeholder]="'form-control-xs'"></date-range-picker>
+          <date-range-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedRange"
+                       [placeholder]="'form-control-sm'"></date-range-picker>
+          <date-range-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedRange"
+                       [size]="'default'"
+                       [placeholder]="'form-control-default'"></date-range-picker>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>input format 변경 & [returnFocusToInput]= true</label>
+        <div class="form-group flex">
+          <date-range-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedRange"
+                       [rangeInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-range-picker>
+          <date-range-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedRange"
+                       [rangeInputFormat]="'YYYY.MM.DD'"
+                       [returnFocusToInput] = true></date-range-picker>
+          <date-range-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedRange"
+                       [rangeInputFormat]="'YYYY MM DD h:mm a'"
+                       [returnFocusToInput] = true></date-range-picker>
+          <date-range-picker class="wd-220"
+                       [(selectDate)]="selectedRange"
+                       [rangeInputFormat]="'YYYY MM DD H:mm'"
+                       [returnFocusToInput] = true></date-range-picker>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>position placement 변경</label>
+        <div class="form-group flex">
+          <date-range-picker class="mb-1" style="width: 100%;"
+                       [(selectDate)]="selectedRange"
+                       [placeholder]="'default placement (adaptivePosition) : 스크롤에 따라 자동 포지션'"
+                       [rangeInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-range-picker>
+          <date-range-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedRange"
+                       [placeholder]="'bottom'"
+                       [placement]="'bottom'"
+                       [rangeInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-range-picker>
+          <date-range-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedRange"
+                       [placeholder]="'top'"
+                       [placement]="'top'"
+                       [rangeInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-range-picker>
+          <date-range-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedRange"
+                       [placeholder]="'left'"
+                       [placement]="'left'"
+                       [rangeInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-range-picker>
+          <date-range-picker class="wd-220"
+                       [(selectDate)]="selectedRange"
+                       [placeholder]="'right'"
+                       [placement]="'right'"
+                       [rangeInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-range-picker>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>툴팁 custom</label>
+        <date-range-picker [(selectDate)]="selectedRange"
+                     [dateTooltipTexts]="tooltipDates"></date-range-picker>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>시간과 함께 with time picker</label>
+        <div class="form-group flex">
+          <date-range-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedRange"
+                       [rangeInputFormat]="'YYYY-MM-DD h:mm a'"
+                       [withTimepicker]="true"></date-range-picker>
+          <date-range-picker class="wd-220"
+                       [(selectDate)]="selectedRange"
+                       [rangeInputFormat]="'YYYY-MM-DD H:mm'"
+                       [withTimepicker]="true"></date-range-picker>
+        </div>
+      </div>
+    </div>
+
+  <h3 #anchor #timepicker>Time Picker</h3>
+    <p>시간 선택 Time Picker (기본 옵션은 Date Picker와 동일)</p>
+    <div class="msg info">range-picker의 경우 [dateInputFormat] 대신 <b>[rangeInputFormat]</b>을 입력해야함</div>
+    <div class="base-guide info">
+      <h5>&lt;date-range-picker&gt; 옵션 설정 <span class="color-pink">(기본값)</span></h5>
+      <p>&lt;date-range-picker&gt; 사용시 [rangeInpitFormat] 입력 필수 (날짜 범위 선택)</p>
+      <ul class="icon-ul check">
+        <li><b class="wd-150">[rangeInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</li>
+        <li><b class="wd-150">[ranges]</b> <span class="color-pink">[최근 일주일, 최근 1개월, 최근 3개월, 최근 6개월, 최근 1년]</span> | ranges: IRange[] (자동 선택 범위)</li>
+      </ul>
+    </div>
+    <div class="style-guide-example">
+      <code><b>선택한 날짜 : {{selectedRange | json}}</b></code><hr>
+
+      <div class="form-group mb-3">
+        <label>옵션 없는 기본 date-picker</label>
+        <date-range-picker [(selectDate)]="selectedRange"></date-range-picker>
+      </div>
     </div>
   </div>
 

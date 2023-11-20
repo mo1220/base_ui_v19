@@ -1,4 +1,13 @@
-import {Component, EventEmitter, Inject, Input, OnInit, Output, ViewEncapsulation} from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation
+} from "@angular/core";
 import {BsLocaleService, DatepickerDateTooltipText} from "ngx-bootstrap/datepicker";
 import {defineLocale, enGbLocale, zhCnLocale} from 'ngx-bootstrap/chronos';
 import { koLocale } from 'ngx-bootstrap/locale';
@@ -30,9 +39,16 @@ export class DatePickerComponent implements OnInit {
   @Input() locale: string = 'kr'; // en cn kr 캘린더 언어
 
   @Input() placeholder:string;
-  @Input() selectDate: any // 선택한 날짜 value 전달용
-  calendarDate: any; // calendar에 설정된 실제 날짜
+  @Input() selectDate:any;
+  // get selectDate() {
+  //   return this._selectDate;
+  // } // 선택한 날짜 value 전달용
+  // set selectDate(value) {
+  //   this._selectDate = value;
+  // }
+  // _selectDate;
   @Output() selectDateChange: EventEmitter<any> = new EventEmitter<any>();
+  calendarDate: any; // calendar에 설정된 실제 날짜
 
   @Input() minDate: Date;
   @Input() maxDate: Date;
@@ -80,7 +96,6 @@ export class DatePickerComponent implements OnInit {
     this._bsConfig = {
       ...this._bsConfig,
       dateInputFormat: value,
-      rangeInputFormat: undefined
     };
   }
   @Input()
@@ -128,6 +143,7 @@ export class DatePickerComponent implements OnInit {
 
 
   constructor(
+    private cd: ChangeDetectorRef,
     private localeService: BsLocaleService
   ) {
     this.localeService.use(this.locale);
@@ -135,6 +151,10 @@ export class DatePickerComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
   }
 
   changeDateFormat(value:any): string {
