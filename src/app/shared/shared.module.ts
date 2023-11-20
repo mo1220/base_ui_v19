@@ -89,6 +89,7 @@ LicenseManager.setLicenseKey("Using_this_AG_Grid_Enterprise_key_( AG-050551 )_in
 import { ModuleRegistry } from 'ag-grid-community';
 import { ExcelExportModule } from "ag-grid-enterprise";
 import {DatePickerComponent} from "./date-picker/date-picker";
+import {DateRangePickerComponent} from "./date-range-picker/date-range-picker";
 ModuleRegistry.registerModules([ ExcelExportModule ]);
 
 
@@ -178,6 +179,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     ColorInputComponent, // 컬러 인풋
     ColorsScaleComponent, // 스케일 컬러 인풋
     DatePickerComponent, // 캘린더 DatePicker
+    DateRangePickerComponent,
     TreeDirComponent, // Tree directory
     TreeSelectFilterComponent, // Tree Filter
     DtkSliderComponent, // Slider Component
@@ -246,6 +248,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     ColorInputComponent, // 컬러 인풋
     ColorsScaleComponent, // 스케일 컬러 인풋
     DatePickerComponent, // 캘린더 DatePicker
+    DateRangePickerComponent,
     DtkSliderComponent, // Slider Component
     DtkMatSliderComponent, // Slider Material Component
     TreeDirComponent, // 트리 디렉토리 구조
