@@ -8,7 +8,10 @@ import * as d3 from 'd3';
 @Pipe({ name: 'dateRange' })
 export class DateRangePipe implements PipeTransform {
   transform(value: any, format:any) {
-    console.log(value, format);
-    return value
+    if(value) {
+      let res = moment(value[0]).format(format) + ' ~ ' + moment(value[1]).format(format);
+      return res;
+    }
+    else return;
   }
 }
