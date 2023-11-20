@@ -9,10 +9,10 @@ $check-sizes: (
 
 // 첫번째는 라디오 사이즈 두번째는 라벨 폰트 사이즈 안에 원(before)
 $radio-sizes: (
-  xs: 10 $font-size-xs 4.5,
-  sm: 12 $font-size-sm 6,
-  lg: 19 $font-size-lg 9.5,
-  xl: 22 $font-size-xl 11.5
+  xs: 10px $font-size-xs 5px 20px,
+  sm: 12px $font-size-sm 6px 20px,
+  lg: 19px $font-size-lg 10px 30px,
+  xl: 22px $font-size-xl 11px 36px
 );
 
 $colors: (
@@ -30,18 +30,19 @@ $radio-default-size: 16px;
 
 @mixin mat-size {
   .mdc-form-field>label {
-    padding-left: 5px;
+    padding-left: 3px;
   }
   .mat-mdc-radio-touch-target {
     height: 30px;
     width: 30px;
   }
   .mat-mdc-radio-button {
+    margin-left: -3px;
     margin-right: 15px;
     .mdc-radio {
       width: $radio-default-size;
       height: $radio-default-size;
-      --mdc-radio-state-layer-size: 20px;
+      --mdc-radio-state-layer-size: 26px;
     }
     .mdc-radio__background {
       width: $radio-default-size;
@@ -67,6 +68,7 @@ $radio-default-size: 16px;
       cursor: pointer;
     }
 
+    // 라디오 버튼 컬러
     @each $key, $color in $colors {
       &.mat-radio-#{$key} {
         &.mat-accent {
@@ -80,6 +82,33 @@ $radio-default-size: 16px;
         }
         label:hover {
           color: $color;
+        }
+      }
+    }
+
+    @each $key, $value in $radio-sizes {
+      &.mat-radio-#{$key} {
+        .mdc-radio {
+          width: #{nth($value, 1)};
+          height: #{nth($value, 1)};
+          --mdc-radio-state-layer-size: #{nth($value, 4)};
+        }
+        .mdc-radio__background {
+          width: #{nth($value, 1)};
+          height: #{nth($value, 1)};
+          .mdc-radio__outer-circle {
+            border-width: 1px;
+          }
+          &::before {
+            top: calc(-1 * (var(--mdc-radio-state-layer-size) - #{nth($value, 1)}) / 2) !important;
+            left: calc(-1 * (var(--mdc-radio-state-layer-size) - #{nth($value, 1)}) / 2) !important;
+          }
+        }
+        .mdc-radio__inner-circle {
+          border-width: #{nth($value, 3)};
+        }
+        label {
+          font-size: #{nth($value, 2)};
         }
       }
     }
