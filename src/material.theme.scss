@@ -25,30 +25,62 @@ $colors: (
   dark: $dark
 );
 
+$radio-default-size: 16px;
+
 @mixin mat-size {
+  .mdc-form-field>label {
+    padding-left: 5px;
+  }
+  .mat-mdc-radio-touch-target {
+    height: 30px;
+    width: 30px;
+  }
   .mat-mdc-radio-button {
+    margin-right: 15px;
     .mdc-radio {
-      width: 16px;
-      height: 16px;
+      width: $radio-default-size;
+      height: $radio-default-size;
       --mdc-radio-state-layer-size: 20px;
     }
     .mdc-radio__background {
-      width: 16px;
-      height: 16px;
+      width: $radio-default-size;
+      height: $radio-default-size;
       .mdc-radio__outer-circle {
         border-width: 1px;
       }
+      &::before {
+        top: calc(-1 * (var(--mdc-radio-state-layer-size) - $radio-default-size) / 2) !important;
+        left: calc(-1 * (var(--mdc-radio-state-layer-size) - $radio-default-size) / 2) !important;
+      }
+    }
+    .mdc-radio__inner-circle {
+      border-width: 8px;
     }
     &.mat-accent {
-      --mdc-radio-disabled-unselected-icon-color: #F00;
+      --mdc-radio-unselected-icon-color: #d7d7d7;
+      --mdc-radio-unselected-pressed-icon-color: #d7d7d7;
+      --mat-radio-disabled-label-color: rgba(0, 0, 0, 0.38);
     }
 
-    //&.mat-radio-#{$key} {
-    //  .mdc-radio {
-    //    width: 12px;
-    //    height: 12px;
-    //    --mdc-radio-state-layer-size: #{$value} + px;
-    //  }
-    //}
+    label {
+      cursor: pointer;
+    }
+
+    @each $key, $color in $colors {
+      &.mat-radio-#{$key} {
+        &.mat-accent {
+          --mat-radio-ripple-color: #{$color}; // Ripple Background
+          --mdc-radio-selected-icon-color: #{$color}; // 선택된 라디오 버튼 내부
+          --mdc-radio-selected-hover-icon-color: #{$color}; // 선택된 라디오 버튼 아웃라인
+          --mdc-radio-unselected-hover-icon-color: #{$color}; // 마우스 오버 아웃라인
+          --mdc-radio-selected-focus-icon-color: #{$color};
+          --mat-radio-checked-ripple-color: #{$color};
+          --mdc-radio-selected-pressed-icon-color: #{$color};
+        }
+        label:hover {
+          color: $color;
+        }
+      }
+    }
   }
 }

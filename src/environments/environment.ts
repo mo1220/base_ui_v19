@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  appName: 'QBig Studio111', // K water - Data workspace
+  appName: 'QBig Studio', // K water - Data workspace
   envName: 'DEV',
   test: false,
   appFullName: 'QBig Data Studio',
