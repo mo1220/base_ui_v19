@@ -1,4 +1,47 @@
 @import './src/styles-variables.scss';
+//////달력 작게?
+$date-calendar-minW: 220px;
+$date-calendar-minH: 175px;
+$date-calendar-padding: 6px 10px;
+$date-header-btn-size: 24px;
+$date-font-size: 11px;
+$date-cell-size: 24px;
+
+.bs-datepicker-head {
+  min-width: $date-calendar-minW;
+  height: 40px;
+  padding: 6px;
+  button {
+    font-size: $date-font-size;
+    line-height: $date-font-size - 1px;
+    vertical-align: middle;
+    &.current {
+      padding: 0 10px;
+    }
+    &.previous, &.next{
+      width: $date-header-btn-size;
+      height: $date-header-btn-size;
+      span {
+        font-size: $date-header-btn-size - 4px;
+      }
+    }
+  }
+}
+.bs-datepicker-body {
+  min-width: $date-calendar-minW;
+  min-height: $date-calendar-minH;
+  padding: $date-calendar-padding;
+}
+.bs-datepicker-body table th {
+  font-size: $date-font-size;
+}
+.bs-datepicker-body table.days span {
+  font-size: $date-font-size;
+  width: $date-cell-size;
+  height: $date-cell-size;
+  line-height: $date-cell-size - 1px;
+}
+//////
 .bs-datepicker {
   background-color: transparent;
   box-shadow: none;
@@ -21,8 +64,8 @@
 .bs-datepicker-body table td[class*="select-"] span:after,
 .bs-datepicker-body table td.active-week span:hover,
 .theme-green .btn-today-wrapper .btn-success, .theme-green .btn-clear-wrapper .btn {
-  background-color: $primary !important;
-  border: none !important;
+  background-color: $primary;
+  border: 1px solid transparent !important;
   color: #fff !important;
 }
 
@@ -64,27 +107,125 @@
   }
 }
 
+// timepicker
 .bs-timepicker-field {
-  width: 50px !important;
+  width: 34px !important;
+  padding: 2px 4px !important;
+  font-size: 10px;
+  margin-right: 20px;
+  &.is-invalid {
+    background: none;
+  }
+}
+// timepicker 화살표 커스텀
+.bs-chevron {
+  width: 4px !important;
+  height: 4px !important;
+  border-width: 1px 0 0 1px !important;
+}
+.btn-link {
+  padding: 3px 8px;
+  position: absolute;
+  z-index: 1;
+  transition: 0.3s;
+  &:hover {
+    background-color: lighten($primary, 37)
+  }
+}
+.bs-datepicker .bs-timepicker-in-datepicker-container timepicker table tbody{
+  tr:nth-child(2) {
+    td.form-group {
+      position: relative;
+      &:nth-child(1):has(.is-invalid) {
+        &:after {
+          content: '잘못된 입력';
+          padding: 2px 4px;
+          border-radius: 3px;
+          background-color: $danger;
+          color: #fff;
+          font-size: 9px;
+          white-space: nowrap;
+          position: absolute;
+          top: -14px;
+          left: 0;
+        }
+      }
+      &:nth-child(3):has(.is-invalid) {
+        &:after {
+          content: '잘못된 입력';
+          padding: 2px 4px;
+          border-radius: 3px;
+          background-color: $danger;
+          color: #fff;
+          font-size: 9px;
+          white-space: nowrap;
+          position: absolute;
+          top: -14px;
+          left: 0;
+        }
+      }
+    }
+    td:last-child {
+      button {
+        font-size: 11px;
+        padding: 6px;
+      }
+    }
+  }
+  tr:nth-of-type(odd) {
+    position: relative;
+    td {
+      display: none;
+      position: absolute;
+      &:first-child { // 좌
+        display: inline-block;
+      }
+      &:nth-child(3) { // 우
+        display: inline-block;
+      }
+    }
+  }
+  tr:first-child { // 위
+    td:first-child {
+      .btn-link {
+        top: 4px;
+        left: 8px;
+      }
+    }
+    td:nth-child(3) {
+      .btn-link {
+        top: 4px;
+        left: 74px;
+      }
+    }
+  }
+  tr:last-child { //아래
+    td:first-child {
+      .btn-link {
+        bottom: 5px;
+        left: 8px;
+      }
+    }
+    td:nth-child(3) {
+      .btn-link {
+        bottom: 5px;
+        left: 74px;
+      }
+    }
+  }
 }
 
-.bs-chevron {
-  width: 8px !important;
-  height: 8px !important;
-  border-width: 2px 0 0 2px !important;
-}
 
 .ngx-today {
   color: $primary;
 }
 
 //툴팁
-.tooltip .tooltip-arrow {
-
-}
-
 .tooltip-inner{
   background-color: darken($primary, 10);
+  padding: 0.2rem 0.4rem;
+  font-size: 10px;
+  white-space: nowrap;
 }
 .bs-tooltip-top .tooltip-arrow::before {
   border-top-color: darken($primary, 10);

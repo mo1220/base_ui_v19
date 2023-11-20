@@ -3,38 +3,72 @@
     <h3 #anchor #basic>Basic</h3>
     <p>기본 날짜 선택 Date Picker</p>
     <div class="base-guide info">
-      <h5>date-picker 옵션 설정 <span class="color-pink">(입력 안 했을 경우 기본값)</span></h5>
-      <p>옵션 없이 date-picker 사용 가능 (단일 날짜 picker)</p>
+      <h5>&lt;date-picker&gt; 옵션 설정 <span class="color-pink">(입력 안 했을 경우 기본값)</span></h5>
+      <p>옵션 없이 &lt;date-picker&gt; 사용 가능 (단일 날짜 picker)</p>
       <ul class="icon-ul check">
         <li><b class="wd-150">[size]</b> <span class="color-pink">'sm'</span> | 'xs' | 'default' (input.form-control size를 결정) </li>
-        <li><b class="wd-150">[placeholder]</b> <span class="color-pink">dateInputFormat과 동일</span> | string 입력 </li>
+        <li><b class="wd-150">[placeholder]</b> <span class="color-pink">입력 안할 경우 dateInputFormat과 동일</span> | string 입력</li>
         <li><b class="wd-150">[locale]</b> <span class="color-pink">'kr'</span> | 'en' | 'cn'</li>
         <li><b class="wd-150">[minDate], [maxDate]</b> Date format 변수</li>
-        <li><b class="wd-150">[dateInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</li>
+        <li><b class="wd-150">[dateInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'YYYY.MM.DD H:ss' | 'YYYY/MM/DD h:ss a' | 나머지 포맷 moment.js 참고</li>
         <li><b class="wd-150">[outsideClick]</b> <span class="color-pink">true</span> | false (영역 바깥 클릭 시 닫힘)</li>
         <li><b class="wd-150">[showWeekNumbers]</b> true | <span class="color-pink">false</span></li>
         <li><b class="wd-150">[returnFocusToInput]</b> true | <span class="color-pink">false</span> (날짜 선택 후 input에 focus)</li>
-        <li><b class="wd-150">[placement]</b> <span class="color-pink">(adaptivePosition:true)</span> | 'bottom' | 'top' | 'left' | 'right' (캘린더 위치, 입력 안 할 경우 adaptivePosition:true)</li>
+        <li><b class="wd-150">[placement]</b> <span class="color-pink">(adaptivePosition:true)</span> | 'bottom' | 'top' | 'left' | 'right' (캘린더 위치, 입력 안 할 경우 adaptivePosition:true) <span class="color-red">* bottom+left 등 불가능... 한가지 포지션만 설정 가능</span></li>
         <li><b class="wd-150">[customTodayClass]</b> <span class="color-pink">'ngx-today'</span> | '' (ngx-today 입력 시 오늘 날짜 스타일링)</li>
         <li><b class="wd-150">[dateTooltipTexts]</b> <span class="color-pink">[ &#123; date: Today, tooltipText: '오늘' &#125; ]</span> | tooltipDates: DatepickerDateTooltipText[] (툴팁 변수에 date, tooltipText 지정)</li>
+        <li><b class="wd-150">[withTimepicker]</b> <span class="color-pink">true</span> | false </li>
       </ul>
     </div>
-    <div class="msg info">calendar와 input의 가로 사이즈를 맞추려면 date-picker에 'wd-280' 클래스 추가</div>
+    <div class="msg info">calendar와 input의 가로 사이즈를 맞추려면 date-picker에 'wd-220' 클래스 추가</div>
     <div class="style-guide-example">
-      <code><b>선택한 날짜 : {{selectedDate | json}}</b></code>
-      <div class="form-group mb-2">
-        <label>기본 date-picker</label>
+      <code><b>선택한 날짜 : {{selectedDate | json}}</b></code><hr>
+
+      <div class="form-group mb-3">
+        <label>옵션 없는 기본 date-picker</label>
         <date-picker [(selectDate)]="selectedDate"></date-picker>
       </div>
-      <div class="form-group mb-2">
-        <label>input size default & format변경 & 선택 후 input focus & wd-280</label>
-        <date-picker class="wd-280"
-                     size
-                     [(selectDate)]="selectedDate"
-                     [dateInputFormat]="'YYYY/MM/DD'"
-                     [returnFocusToInput] = true></date-picker>
+
+      <div class="form-group mb-3">
+        <label>Input Size (xs, sm, default)</label>
+        <div class="form-group flex">
+          <date-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedDate"
+                       [size]="'xs'"
+                       [placeholder]="'form-control-xs'"></date-picker>
+          <date-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedDate"
+                       [placeholder]="'form-control-sm'"></date-picker>
+          <date-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedDate"
+                       [size]="'default'"
+                       [placeholder]="'form-control-default'"></date-picker>
+        </div>
       </div>
-      <div class="form-group mb-2">
+
+      <div class="form-group mb-3">
+        <label>input format 변경 & [returnFocusToInput]= true</label>
+        <div class="form-group flex">
+          <date-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedDate"
+                       [dateInputFormat]="'YYYY/MM/DD'"
+                       [returnFocusToInput] = true></date-picker>
+          <date-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedDate"
+                       [dateInputFormat]="'YYYY.MM.DD'"
+                       [returnFocusToInput] = true></date-picker>
+          <date-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedDate"
+                       [dateInputFormat]="'YYYY MM DD h:mm a'"
+                       [returnFocusToInput] = true></date-picker>
+          <date-picker class="wd-220"
+                       [(selectDate)]="selectedDate"
+                       [dateInputFormat]="'YYYY MM DD H:mm'"
+                       [returnFocusToInput] = true></date-picker>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
         <label>position placement 변경</label>
         <div class="form-group flex">
           <date-picker class="mb-1" style="width: 100%;"
@@ -42,25 +76,25 @@
                        [placeholder]="'default placement (adaptivePosition) : 스크롤에 따라 자동 포지션'"
                        [dateInputFormat]="'YYYY/MM/DD'"
                        [returnFocusToInput] = true></date-picker>
-          <date-picker class="wd-280 me-1"
+          <date-picker class="wd-220 me-1"
                        [(selectDate)]="selectedDate"
                        [placeholder]="'bottom'"
                        [placement]="'bottom'"
                        [dateInputFormat]="'YYYY/MM/DD'"
                        [returnFocusToInput] = true></date-picker>
-          <date-picker class="wd-280 me-1"
+          <date-picker class="wd-220 me-1"
                        [(selectDate)]="selectedDate"
                        [placeholder]="'top'"
                        [placement]="'top'"
                        [dateInputFormat]="'YYYY/MM/DD'"
                        [returnFocusToInput] = true></date-picker>
-          <date-picker class="wd-280 me-1"
+          <date-picker class="wd-220 me-1"
                        [(selectDate)]="selectedDate"
                        [placeholder]="'left'"
                        [placement]="'left'"
                        [dateInputFormat]="'YYYY/MM/DD'"
                        [returnFocusToInput] = true></date-picker>
-          <date-picker class="wd-280"
+          <date-picker class="wd-220"
                        [(selectDate)]="selectedDate"
                        [placeholder]="'right'"
                        [placement]="'right'"
@@ -68,11 +102,25 @@
                        [returnFocusToInput] = true></date-picker>
         </div>
       </div>
-      <div class="form-group mb-2">
+
+      <div class="form-group mb-3">
         <label>툴팁 custom</label>
-        <date-picker class="wd-280"
-                     [(selectDate)]="selectedDate"
+        <date-picker [(selectDate)]="selectedDate"
                      [dateTooltipTexts]="tooltipDates"></date-picker>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>시간과 함께 with time picker</label>
+        <div class="form-group flex">
+          <date-picker class="wd-220 me-1"
+                       [(selectDate)]="selectedDate"
+                       [dateInputFormat]="'YYYY-MM-DD h:mm a'"
+                       [withTimepicker]="true"></date-picker>
+          <date-picker class="wd-220"
+                       [(selectDate)]="selectedDate"
+                       [dateInputFormat]="'YYYY-MM-DD H:mm'"
+                       [withTimepicker]="true"></date-picker>
+        </div>
       </div>
     </div>
 
@@ -80,8 +128,8 @@
     <p>날짜 범위 선택 Range Picker (기본 옵션은 Date Picker와 동일)</p>
     <div class="msg info">range-picker의 경우 [dateInputFormat] 대신 <b>[rangeInputFormat]</b>을 필수로 입력해야함</div>
     <div class="base-guide info">
-      <h5>range-picker 옵션 설정 <span class="color-pink">(기본값)</span></h5>
-      <p>range-picker 사용시 [rangeInpitFormat] 입력 필수 (날짜 범위 선택)</p>
+      <h5>&lt;date-range-picker&gt; 옵션 설정 <span class="color-pink">(기본값)</span></h5>
+      <p>&lt;date-range-picker&gt; 사용시 [rangeInpitFormat] 입력 필수 (날짜 범위 선택)</p>
       <ul class="icon-ul check">
         <li><b class="wd-150">[rangeInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</li>
         <li><b class="wd-150">[ranges]</b> <span class="color-pink">[최근 일주일, 최근 1개월, 최근 3개월, 최근 6개월, 최근 1년]</span> | ranges: IRange[] (자동 선택 범위)</li>
@@ -89,9 +137,9 @@
     </div>
     <div class="style-guide-example">
       <code><b>선택한 날짜 : {{selectedRange | json}}</b></code>
-      <date-picker [(selectDate)]="selectedRange"
+      <date-range-picker [(selectDate)]="selectedRange"
                    [rangeInputFormat]="'YYYY-MM-DD'"
-                   [returnFocusToInput] = true></date-picker>
+                   [returnFocusToInput] = true></date-range-picker>
     </div>
   </div>
 
