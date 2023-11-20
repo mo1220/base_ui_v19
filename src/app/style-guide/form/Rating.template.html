@@ -1,10 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <ng-container *ngFor="let menu of menus;">
+      <h3 #anchors>{{ menu.title }}</h3>
+      <p [innerHTML]="menu.desc | safeHtml"></p>
+      <ng-container [ngSwitch]="menu.anchor">
+        <!--ST: 베이직 페이지 네이션 -->
+        <div class="style-guide-example" *ngSwitchCase="'basic'">
+          <h3>Readonly</h3>
+          <p>읽기 전용 일때</p>
+          <div class="form-group flex">
+            <label class="wd-80">읽기 전용</label>
+            <rating [(ngModel)]="rate" [max]="max" [readonly]="true"></rating>
+          </div>
 
-</body>
-</html>
+          <h3>Not Readonly</h3>
+          <p>입력을 받을때</p>
+          <div class="form-group flex">
+            <label class="wd-80">입력 전용</label>
+            <rating [(ngModel)]="rate" [max]="max" [readonly]="false"></rating>
+          </div>
+        </div>
+        <!--EN: 베이직 페이지 네이션 -->
+        <!--ST: Color -->
+        <div class="style-guide-example" *ngSwitchCase="'color'">
+          <ng-container *ngFor="let color of colorlist">
+            <div class="form-group flex">
+              <label class="wd-80"
+                     [ngClass]="color.value !== 'default' ? 'color-' + color.value : ''">
+                {{color.name}}
+              </label>
+              <rating [(ngModel)]="rate"
+                      [ngClass]="color.value !== 'default' ? 'bs-rating-' + color.value : ''"
+                      [max]="max" [readonly]="false"></rating>
+            </div>
+          </ng-container>
+        </div>
+        <!--EN: Color -->
+
+        <!--ST: Size -->
+        <div class="style-guide-example" *ngSwitchCase="'size'">
+          <ng-container *ngFor="let size of sizeList">
+            <div class="form-group flex">
+              <label class="wd-80"
+                     [ngClass]="size.value !== 'default' ? 'font-' + size.value : ''">
+                {{size.name}}
+              </label>
+              <rating [(ngModel)]="rate"
+                      [ngClass]="size.value !== 'default' ? 'bs-rating-' + size.value : ''"
+                      [max]="max" [readonly]="false"></rating>
+            </div>
+          </ng-container>
+        </div>
+        <!--EN: Size -->
+        <!--ST: Icon -->
+        <div class="style-guide-example" *ngSwitchCase="'customIcon'">
+          <ng-container *ngFor="let icon of iconList">
+            <div class="form-group flex">
+              <label class="wd-80">
+                {{icon.name}}
+              </label>
+              <rating [max]="max"
+                      class="rating-custom bs-rating-primary"
+                      [(ngModel)]="rate"
+                      [customTemplate]="t"></rating>
+              <ng-template #t let-index="index" let-value="value">
+                <mat-icon class="md-20 wt-200" [ngClass]="index < value ? 'fill' : ''">
+                  {{icon.value}}
+                </mat-icon>
+                <!--{{index < value ? '&#9745;' : '&#9744;'}}-->
+              </ng-template>
+            </div>
+          </ng-container>
+          <div class="form-group flex">
+            <label class="wd-80">
+              Smile
+            </label>
+            <rating [max]="max"
+                    class="rating-custom bs-rating-primary"
+                    [(ngModel)]="rate"
+                    [customTemplate]="t"></rating>
+            <ng-template #t let-index="index" let-value="value">
+              <mat-icon class="md-20 wt-200" [ngClass]="index < value ? 'fill' : ''">
+                {{index < value ? 'sentiment_satisfied' : 'sentiment_dissatisfied'}}
+              </mat-icon>
+              <!--{{index < value ? '&#9745;' : '&#9744;'}}-->
+            </ng-template>
+          </div>
+        </div>
+        <!--EN: Icon -->
+      </ng-container>
+    </ng-container>
+  </div>
+  <aside-menu-right [menu]="menus"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

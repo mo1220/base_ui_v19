@@ -54,6 +54,17 @@ $colors-palette: (
   dark: $dark
 );
 
+$colors: (
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  info: $info,
+  warning: $warning,
+  danger: $danger,
+  light: $light,
+  dark: $dark
+);
+
 $font-family-sans-serif: 'Noto Sans KR', 'Roboto', 'Helvetica','Dotum','돋움','AppleSDGothicNeo',sans-serif;
 $code-font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
 $toolbar-breakpoint: 600px;
