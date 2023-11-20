@@ -1,0 +1,54 @@
+@import "styles-variables";
+// 첫번째는 체크박스 사이즈 두번째는 라벨 폰트 사이즈 check width 네번째는 check height
+$check-sizes: (
+  xs: 10 $font-size-xs 5,
+  sm: 12 $font-size-sm 6,
+  lg: 19 $font-size-lg 10,
+  xl: 22 $font-size-xl 14
+);
+
+// 첫번째는 라디오 사이즈 두번째는 라벨 폰트 사이즈 안에 원(before)
+$radio-sizes: (
+  xs: 10 $font-size-xs 5,
+  sm: 12 $font-size-sm 6,
+  lg: 19 $font-size-lg 10,
+  xl: 22 $font-size-xl 14
+);
+$colors: (
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  info: $info,
+  warning: $warning,
+  danger: $danger,
+  light: $light,
+  dark: $dark
+);
+
+@mixin mat-size {
+  .mat-mdc-radio-button {
+    .mdc-radio {
+      width: 16px;
+      height: 16px;
+      --mdc-radio-state-layer-size: 20px;
+    }
+    .mdc-radio__background {
+      width: 16px;
+      height: 16px;
+      .mdc-radio__outer-circle {
+        border-width: 1px;
+      }
+    }
+    &.mat-accent {
+      --mdc-radio-disabled-unselected-icon-color: #F00;
+    }
+
+    //&.mat-radio-#{$key} {
+    //  .mdc-radio {
+    //    width: 12px;
+    //    height: 12px;
+    //    --mdc-radio-state-layer-size: #{$value} + px;
+    //  }
+    //}
+  }
+}
