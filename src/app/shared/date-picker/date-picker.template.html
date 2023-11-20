@@ -1,115 +1,125 @@
 <!-- ST: date picker -->
-<div class="form-group" *ngIf="!_bsConfig.rangeInputFormat">
+<div class="form-group">
   <ng-container *ngIf="['bottom','left','top','right'].indexOf(_placement) === -1">
-    <input type="text" style="display: block"
-           [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
-           class="form-control form-control-sm datepicker"
-           bsDatepicker
-           [(ngModel)]="selectDate"
-           (ngModelChange)="changeDate()"
-           [outsideClick]="outsideClick"
-           [minDate]="minDate"
-           [maxDate]="maxDate"
-           [bsConfig]="_bsConfig">
-    <span class="clear-btn"
-          *ngIf="selectDate !== undefined"
-          (click)="selectDate = undefined">
+    <div class="form-box">
+      <input type="text" style="display: block"
+             [placeholder]="placeholder || _bsConfig.dateInputFormat"
+             class="form-control"
+             cdkOverlayOrigin
+             #d1="cdkOverlayOrigin"
+             [class.form-control-xs]="size === 'xs'"
+             [class.form-control-sm]="size === 'sm'"
+             [ngModel]="selectDate | date : changeDateFormat(_bsConfig.dateInputFormat)"
+             (click)="open = true">
+      <span class="clear-btn"
+            *ngIf="selectDate !== undefined"
+            (click)="deleteDate()">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
+      <ng-template cdkConnectedOverlay
+                   [cdkConnectedOverlayOrigin]="d1"
+                   [cdkConnectedOverlayOpen]="open">
+        <bs-datepicker-inline [bsValue]="calendarDate"
+                              (bsValueChange)="changeDate($event)"
+                              [minDate]="minDate"
+                              [maxDate]="maxDate"
+                              [bsConfig]="_bsConfig">
+        </bs-datepicker-inline>
+      </ng-template>
+      <div *ngIf="open"
+           class="overlay-bg"
+           (click)="open = false"></div>
+    </div>
+
   </ng-container>
 
   <ng-container *ngIf="['bottom'].includes(_placement)">
-    <input type="text" style="display: block"
-           [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
-           class="form-control form-control-sm datepicker"
-           bsDatepicker
-           placement="bottom"
-           [(ngModel)]="selectDate"
-           (ngModelChange)="changeDate()"
-           [outsideClick]="outsideClick"
-           [minDate]="minDate"
-           [maxDate]="maxDate"
-           [bsConfig]="_bsConfig">
-    <span class="clear-btn"
-          *ngIf="selectDate !== undefined"
-          (click)="selectDate = undefined">
+    <div class="form-box">
+      <input type="text" style="display: block"
+             [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
+             class="form-control datepicker"
+             [class.form-control-xs]="size === 'xs'"
+             [class.form-control-sm]="size === 'sm'"
+             bsDatepicker
+             placement="bottom"
+             [(ngModel)]="selectDate"
+             (ngModelChange)="changeDate($event)"
+             [outsideClick]="outsideClick"
+             [minDate]="minDate"
+             [maxDate]="maxDate"
+             [bsConfig]="_bsConfig">
+      <span class="clear-btn"
+            *ngIf="selectDate !== undefined"
+            (click)="deleteDate()">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
+    </div>
   </ng-container>
   <ng-container *ngIf="['left'].includes(_placement)">
-    <input type="text" style="display: block"
-           [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
-           class="form-control form-control-sm datepicker"
-           bsDatepicker
-           placement="left"
-           [(ngModel)]="selectDate"
-           (ngModelChange)="changeDate()"
-           [outsideClick]="outsideClick"
-           [minDate]="minDate"
-           [maxDate]="maxDate"
-           [bsConfig]="_bsConfig">
-    <span class="clear-btn"
-          *ngIf="selectDate !== undefined"
-          (click)="selectDate = undefined">
+    <div class="form-box">
+      <input type="text" style="display: block"
+             [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
+             class="form-control datepicker"
+             [class.form-control-xs]="size === 'xs'"
+             [class.form-control-sm]="size === 'sm'"
+             bsDatepicker
+             placement="left"
+             [(ngModel)]="selectDate"
+             (ngModelChange)="changeDate($event)"
+             [outsideClick]="outsideClick"
+             [minDate]="minDate"
+             [maxDate]="maxDate"
+             [bsConfig]="_bsConfig">
+      <span class="clear-btn"
+            *ngIf="selectDate !== undefined"
+            (click)="deleteDate()">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
+    </div>
   </ng-container>
   <ng-container *ngIf="['top'].includes(_placement)">
-    <input type="text" style="display: block"
-           [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
-           class="form-control form-control-sm datepicker"
-           bsDatepicker
-           placement="top"
-           [(ngModel)]="selectDate"
-           (ngModelChange)="changeDate()"
-           [outsideClick]="outsideClick"
-           [minDate]="minDate"
-           [maxDate]="maxDate"
-           [bsConfig]="_bsConfig">
-    <span class="clear-btn"
-          *ngIf="selectDate !== undefined"
-          (click)="selectDate = undefined">
+    <div class="form-box">
+      <input type="text" style="display: block"
+             [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
+             class="form-control datepicker"
+             [class.form-control-xs]="size === 'xs'"
+             [class.form-control-sm]="size === 'sm'"
+             bsDatepicker
+             placement="top"
+             [(ngModel)]="selectDate"
+             (ngModelChange)="changeDate($event)"
+             [outsideClick]="outsideClick"
+             [minDate]="minDate"
+             [maxDate]="maxDate"
+             [bsConfig]="_bsConfig">
+      <span class="clear-btn"
+            *ngIf="selectDate !== undefined"
+            (click)="deleteDate()">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
+    </div>
   </ng-container>
   <ng-container *ngIf="['right'].includes(_placement)">
-    <input type="text" style="display: block"
-           [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
-           class="form-control form-control-sm datepicker"
-           bsDatepicker
-           placement="right"
-           [(ngModel)]="selectDate"
-           (ngModelChange)="changeDate()"
-           [outsideClick]="outsideClick"
-           [minDate]="minDate"
-           [maxDate]="maxDate"
-           [bsConfig]="_bsConfig">
-    <span class="clear-btn"
-          *ngIf="selectDate !== undefined"
-          (click)="selectDate = undefined">
+    <div class="form-box">
+      <input type="text" style="display: block"
+             [placeholder]="placeholder || _bsConfig.dateInputFormat || 'YYYY-MM-DD'"
+             class="form-control datepicker"
+             [class.form-control-xs]="size === 'xs'"
+             [class.form-control-sm]="size === 'sm'"
+             bsDatepicker
+             placement="right"
+             [(ngModel)]="selectDate"
+             (ngModelChange)="changeDate($event)"
+             [outsideClick]="outsideClick"
+             [minDate]="minDate"
+             [maxDate]="maxDate"
+             [bsConfig]="_bsConfig">
+      <span class="clear-btn"
+            *ngIf="selectDate !== undefined"
+            (click)="deleteDate()">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
+    </div>
   </ng-container>
 </div>
 <!-- EN: date picker -->
-
-<!-- ST: range picker -->
-<div class="form-group" *ngIf="_bsConfig.rangeInputFormat">
-  <input type="text" style="display: block"
-         [placeholder]="placeholder || _bsConfig.rangeInputFormat || 'YYYY-MM-DD'"
-         class="form-control form-control-sm datepicker"
-         bsDaterangepicker
-         [(ngModel)]="selectDate"
-         (ngModelChange)="changeDate()"
-         [outsideClick]="outsideClick"
-         [minDate]="minDate"
-         [maxDate]="maxDate"
-         [bsConfig]="_bsConfig">
-  <span class="clear-btn"
-        *ngIf="selectDate !== undefined"
-        (click)="selectDate = undefined">
-          <mat-icon class="mat-icon">close</mat-icon>
-          </span>
-</div>
-<!-- EN: range picker -->
-

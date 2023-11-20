@@ -33,29 +33,9 @@ export class StyleGuideCalendarComponent implements AfterViewInit, OnDestroy {
       anchor: 'basic',
     },
     {
-      title: 'Clear',
-      anchor: 'clear',
-    },
-    {
       title: 'Range Datepicker',
       anchor: 'rangepicker',
     },
-    {
-      title: 'Date Time picker',
-      anchor: 'timepicker',
-    },
-    {
-      title: 'Picker Position',
-      anchor: 'placement',
-    },
-    {
-      title: 'Custom Today',
-      anchor: 'today',
-    },
-    {
-      title: 'Tooltip For Date',
-      anchor: 'tooltip',
-    }
   ]
 
   minDate: Date;

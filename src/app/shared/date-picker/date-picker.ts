@@ -3,6 +3,7 @@ import {BsLocaleService, DatepickerDateTooltipText} from "ngx-bootstrap/datepick
 import {defineLocale, enGbLocale, zhCnLocale} from 'ngx-bootstrap/chronos';
 import { koLocale } from 'ngx-bootstrap/locale';
 import * as moment from 'moment';
+import * as events from "events";
 
 defineLocale('kr', koLocale);
 defineLocale('en', enGbLocale);
@@ -20,6 +21,7 @@ interface IRange {
   encapsulation: ViewEncapsulation.None
 })
 export class DatePickerComponent implements OnInit {
+  open: boolean = false;
   today: Date = new Date();
   yesterday: Date =  new Date(new Date().setDate(new Date().getDate() -1));
   tomorrow: Date =  new Date(new Date().setDate(new Date().getDate() +1));
@@ -28,7 +30,8 @@ export class DatePickerComponent implements OnInit {
   @Input() locale: string = 'kr'; // en cn kr 캘린더 언어
 
   @Input() placeholder:string;
-  @Input() selectDate: any // 선택한 날짜 value
+  @Input() selectDate: any // 선택한 날짜 value 전달용
+  calendarDate: any; // calendar에 설정된 실제 날짜
   @Output() selectDateChange: EventEmitter<any> = new EventEmitter<any>();
 
   @Input() minDate: Date;
@@ -43,8 +46,9 @@ export class DatePickerComponent implements OnInit {
     this._placement = value;
     this._bsConfig.adaptivePosition = false;
   }
+
   _bsConfig: any = {
-    isAnimated: true,
+    containerClass: '', // Theme 'theme-default' | 'theme-primary'
     dateInputFormat: 'YYYY-MM-DD', // 'YYYY.MM.DD' 'YYYY/MM/DD' 'YYYY MM DD h:mm:ss a'
     showWeekNumbers: false,
     returnFocusToInput: false,
@@ -55,30 +59,19 @@ export class DatePickerComponent implements OnInit {
       // { date: this.yesterday, tooltipText: '어제'},
       // { date: this.tomorrow, tooltipText: '내일'},
     ],
-    rangeInputFormat: undefined, // 'YYYY-MM-DD' | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'
-    ranges: [
-      {
-        value: [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()],
-        label: '최근 일주일'
-      }, {
-        value: [new Date(new Date().setDate(new Date().getDate() - 30)), new Date()],
-        label: '최근 1개월'
-      }, {
-        value: [new Date(new Date().setDate(new Date().getDate() - 61)), new Date()],
-        label: '최근 3개월'
-      }, {
-        value: [new Date(new Date().setDate(new Date().getDate() - 183)), new Date()],
-        label: '최근 6개월'
-      }, {
-        value: [new Date(new Date().setDate(new Date().getDate() - 365)), new Date()],
-        label: '최근 1년'
-      }, {
-        value: [new Date(new Date().setDate(new Date().getDate() - 1095)), new Date()],
-        label: '최근 3년'
-      }
-    ]
+    withTimepicker: false,
   }
 
+  @Input()
+  get containerClass() {
+    return this._bsConfig.containerClass;
+  };
+  set containerClass(value) {
+    this._bsConfig = {
+      ...this._bsConfig,
+      containerClass: value
+    };
+  }
   @Input()
   get dateInputFormat() {
     return this._bsConfig.dateInputFormat;
@@ -89,18 +82,6 @@ export class DatePickerComponent implements OnInit {
       dateInputFormat: value,
       rangeInputFormat: undefined
     };
-  }
-  @Input()
-  get rangeInputFormat() {
-    return this._bsConfig.rangeInputFormat;
-  }
-  set rangeInputFormat(value) {
-    this._bsConfig = {
-      ...this._bsConfig,
-      dateInputFormat: undefined,
-      rangeInputFormat: value
-    };
-    console.log(this._bsConfig);
   }
   @Input()
   get showWeekNumbers() {
@@ -123,16 +104,6 @@ export class DatePickerComponent implements OnInit {
     }
   }
   @Input()
-  get ranges() {
-    return this._bsConfig.ranges;
-  }
-  set ranges(value) {
-    this._bsConfig = {
-      ...this._bsConfig,
-      ranges: value || undefined
-    }
-  }
-  @Input()
   get dateTooltipTexts() {
     return this._bsConfig.dateTooltipTexts;
   }
@@ -142,23 +113,18 @@ export class DatePickerComponent implements OnInit {
       dateTooltipTexts: value
     }
   }
-
-
-  // @Input() ranges: IRange[] = [
-  //   {
-  //     value: [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()],
-  //     label: 'Last 7 Days'
-  //   }, {
-  //     value: [new Date(), new Date(new Date().setDate(new Date().getDate() + 7))],
-  //     label: 'Next 7 Days'
-  //   }, {
-  //     value: [new Date(new Date().setDate(new Date().getDate() - 30)), new Date()],
-  //     label: 'Last 1 Month'
-  //   }, {
-  //     value: [new Date(new Date().setDate(new Date().getDate() - 365)), new Date()],
-  //     label: 'Last 1 Year'
-  //   }
-  // ];
+  @Input()
+  get withTimepicker() {
+    return this._bsConfig.withTimepicker;
+  }
+  set withTimepicker(value) {
+    this._bsConfig = {
+      ...this._bsConfig,
+      withTimepicker: value,
+      keepDatepickerOpened: value,
+    }
+    console.log(this._bsConfig);
+  }
 
 
   constructor(
@@ -171,9 +137,21 @@ export class DatePickerComponent implements OnInit {
 
   }
 
-  changeDate(): void {
-    console.log(this.selectDate);
+  changeDateFormat(value:any): string {
+    // html에서 date pipe 사용 시 DD => dd로 포맷 변환 필요
+    return value.replace(/(DD)/,"dd");
+  }
+
+  changeDate(e:any): void {
+    // time-picker가 없을 경우 날짜 선택 시 닫힘
+    if(!this._bsConfig.withTimepicker) this.open = false;
+
+    this.calendarDate = e;
+    this.selectDate = e;// moment(e).format(this._bsConfig.dateInputFormat);
     this.selectDateChange.emit(this.selectDate);
+  }
+  deleteDate(): void {
+    this.selectDateChange.emit('');
   }
 }
 
