@@ -17,6 +17,7 @@
 .default-theme {
   @include mat.all-component-themes($dtk-theme);
   @include mat-size; // Size
+
 }
 
 .dark-theme {
@@ -116,39 +117,6 @@ button {
   border: none;
   background: transparent;
 }
-
-.mat-btn.mdc-button {
-  --mdc-text-button-container-height: $btn-line-height !important;
-  --mdc-typography-button-line-height: $btn-line-height !important;
-  border: 1px solid transparent !important;
-  height: var(--mdc-text-button-container-height) !important;
-  //border-radius: $border-radius !important;
-  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
-  //padding: $btn-padding-y $btn-padding-x !important;
-  &.xl {
-    @include button-size($btn-padding-y-xl, $btn-padding-x-xl, $font-size-xl, $border-radius-xl);
-  }
-
-  &.lg {
-    @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
-  }
-
-  &.sm {
-    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
-  }
-
-  &.xs {
-    @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-xs, $border-radius-xs);
-  }
-}
-
-//.mat-mdc-icon-button.mat-mdc-button-base{
-//  @include btn-icon($btn-padding);
-//  --mdc-icon-button-state-layer-size: #{$btn-mat-width} !important;
-//  &.btn-lg{
-//    --mdc-icon-button-state-layer-size: #{$btn-mat-width-lg} !important;
-//  }
-//}
 
 // list style
 ul, ol, dl {
@@ -256,6 +224,7 @@ ul, ol, dl {
     bottom: 20px;
   }
 
+
   &.info {
     &:before {
       content: 'info';
@@ -323,8 +292,8 @@ ul, ol, dl {
   }
 }
 
-/* 고정 width wd-${size} */
-@each $size in 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300 {
+/* 고정 width wd-${size}  1~500 (23-11-20수정) */
+@each $size in 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420 ,430, 440, 450, 460, 470, 480, 490, 500 {
   .wd-#{$size} {
     width: $size + px !important;
     overflow: hidden;
@@ -2800,6 +2769,35 @@ date-picker {
   }
 }
 
+gridster-item {
+  border-radius: 10px;
+  .gridster-item{
+    &-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    &-header {
+      background: #FAFAFA;
+      border-bottom: 1px solid #EEE;
+      height: 35px;
+      line-height: 35px;
+      border-radius: 10px 10px 0 0;
+      user-select: none;
+      & button {
+        height: 100%;
+      }
+     &-btns{
+       position: absolute;
+       top: 0;
+       right: 0;
+     }
+    }
+  }
+  .drag-handler {
+    cursor: move;
+  }
+}
+
 gridster-item:hover .gridster-item-resizable-handler.handle-se {
   border-color: transparent !important;
   &:before {
@@ -2807,7 +2805,7 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
   }
 }
 
-/********************** EN: Gridster *************************************/
+/********************** EN: Gridster ************************************/
 /********************** ST: Layout *************************************/
 .layout {
   &-wrap {

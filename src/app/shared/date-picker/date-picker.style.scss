@@ -36,6 +36,7 @@ $time-right-y: 74px;
   min-width: $date-calendar-minW;
   min-height: $date-calendar-minH;
   padding: $date-calendar-padding;
+  border-radius: 0;
 }
 .bs-datepicker-body table {
   font-size: $date-font-size;
@@ -62,7 +63,7 @@ $time-right-y: 74px;
 //////
 .bs-datepicker {
   background-color: transparent;
-  box-shadow: none;
+  //box-shadow: none;
 }
 .bs-datepicker-container {
   padding: 0 !important;
@@ -92,8 +93,8 @@ $time-right-y: 74px;
 }
 
 .bs-datepicker-custom-range {
-  padding: 50px 0 0 0 !important;
-  background-color: transparent;
+  padding: 0;
+  background-color: #fff;
 }
 .bs-datepicker-body table td span.is-highlighted:not(.disabled):not(.selected) {
   background-color: lighten($primary, 30);
@@ -102,19 +103,17 @@ $time-right-y: 74px;
   background-color: lighten($primary, 38);
 }
 .bs-datepicker-predefined-btns button {
-  margin-bottom: 8px;
-  padding: 0 12px;
-  border: 1px solid $primary;
-  border-left: none;
-  color: $primary;
+  margin-bottom: 0;
+  padding: 2px 15px;
+  color: $black;
   background-color: #fff;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0;
   font-size: $font-size-sm;
   transition: 0.3s;
   //opacity: 0.7;
   &:hover {
     background-color: lighten($primary, 35) !important;
-    color: $primary;
+    //color: $primary;
   }
   &.selected, &:active {
     background-color: $primary !important;
@@ -126,6 +125,10 @@ $time-right-y: 74px;
 }
 
 // timepicker
+.bs-datepicker .bs-timepicker-in-datepicker-container {
+  border: 1px solid #dee2e6;
+  border-top: none;
+}
 .bs-timepicker-field {
   width: 34px !important;
   padding: 2px 4px !important;
@@ -154,12 +157,12 @@ $time-right-y: 74px;
   tr:nth-child(2) {
     td.form-group {
       position: relative;
-      &:nth-child(1):has(.is-invalid) {
-        &:after {
-          content: '잘못된 입력';
+      &:nth-child(1) {
+        &:hover:after {
+          content: '스크롤 조절 가능';
           padding: 2px 4px;
           border-radius: 3px;
-          background-color: $danger;
+          background-color: $gray-dark;
           color: #fff;
           font-size: 9px;
           white-space: nowrap;
@@ -167,19 +170,47 @@ $time-right-y: 74px;
           top: -14px;
           left: 0;
         }
+        &:has(.is-invalid) {
+          &:after {
+            content: '잘못된 입력';
+            padding: 2px 4px;
+            border-radius: 3px;
+            background-color: $danger;
+            color: #fff;
+            font-size: 9px;
+            white-space: nowrap;
+            position: absolute;
+            top: -14px;
+            left: 0;
+          }
+        }
       }
-      &:nth-child(3):has(.is-invalid) {
-        &:after {
-          content: '잘못된 입력';
+      &:nth-child(3) {
+        &:hover:after {
+          content: '스크롤로 변경(5분 단위)';
           padding: 2px 4px;
           border-radius: 3px;
-          background-color: $danger;
+          background-color: $gray-dark;
           color: #fff;
           font-size: 9px;
           white-space: nowrap;
           position: absolute;
           top: -14px;
           left: 0;
+        }
+        &:has(.is-invalid) {
+          &:after {
+            content: '잘못된 입력';
+            padding: 2px 4px;
+            border-radius: 3px;
+            background-color: $danger;
+            color: #fff;
+            font-size: 9px;
+            white-space: nowrap;
+            position: absolute;
+            top: -14px;
+            left: 0;
+          }
         }
       }
     }

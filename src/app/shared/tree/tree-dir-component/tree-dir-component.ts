@@ -66,7 +66,8 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.nodeActiveId = 0;
+    this.nodeActiveId = null;
+    this.dragoverId = null;
   }
 
   ngAfterViewInit(): void {
@@ -86,6 +87,7 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
             click: (tree: TreeModel, node: TreeNode, e: any) => {
               this.nodeActiveId = node.data._id;
               this.nodeActiveChanged.emit({node});
+              this.dragoverId = null;
             },
             drop: (tree: TreeModel, node: TreeNode, e: any, {from, to}: any) => {
               const targetParentId = to.parent.data._id;
@@ -182,12 +184,12 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
     this.tree.treeModel.update();
 
     setTimeout(() => {
-      const no = this.tree.treeModel.getNodeById(node._id ? node._id : node.id);
+      const no = this.tree.treeModel.getNodeById(node._id);
       if (no.isExpanded === undefined || !no.isExpanded) {
         no.expand();
       }
       const lastChild = no.data.children[no.data.children.length - 1];
-      let child = this.tree.treeModel.getNodeById(lastChild._id ? lastChild._id : lastChild.id);
+      let child = this.tree.treeModel.getNodeById(lastChild._id);
       child.isEdit = true;
       child.focus();
       this.tree.treeModel.setFocus(this.state[this.viewType].activeNodeIds[0]);
@@ -206,7 +208,7 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
    * @param node
    */
   deleteMsg(e: MouseEvent, node: any) {
-    console.log(node)
+    // console.log(node)
     // if (node.data._id !== '') {
     const dialogRef = this.dialog.open(PopupMessage, {
       width: '400px',
@@ -219,7 +221,7 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'confirm') {
-        console.log(node);
+        // console.log(node);
         this.outputNodeAPI.emit({type: 'delete', node});
         const nd = _.clone(node);
         node.parent.data.children.splice(node.index, 1);
