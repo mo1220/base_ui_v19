@@ -126,6 +126,7 @@ $border-radius-round:         1.2rem !default; // Default Border Radius
 
 
 
+
 $input-btn-padding-y-xs:      .15rem !default;
 $input-btn-padding-x-xs:      .3rem !default;//
 $input-btn-padding-y-sm:      .25rem !default;
@@ -202,6 +203,8 @@ $btn-font-family: $font-family-sans-serif;//'Noto Sans KR', 'Roboto', 'Helvetica
 $btn-padding-y: .375rem !default;
 $btn-padding-x: .75rem !default;
 
+//$line-height-base: 1.5 !default;
+$btn-line-height: $line-height-base !default;
 
 //$btn-padding-y-lg: $input-btn-padding-y-lg;
 //$btn-padding-x-lg: 1rem;

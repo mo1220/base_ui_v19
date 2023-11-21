@@ -58,16 +58,23 @@ export const gridsterOp: Array<gridsterOpType> = [
     link: 'https://tiberiuzuld.github.io/angular-gridster2/gridMargins'
   },
   {
+    name: 'Grid Size',
+    key: 'gridSize',
+    desc: 'Grid 사이즈 설정',
+    link: 'https://tiberiuzuld.github.io/angular-gridster2/gridTypes'
+  },
+  {
     name: 'Grid Type',
     key: 'gridType',
     desc: 'Grid 타입 설정',
-    link: 'https://tiberiuzuld.github.io/angular-gridster2/gridMargins'
+    options: ['fit', 'scrollVertical', 'scrollHorizontal', 'fixed', 'verticalFixed', 'horizontalFixed'],
+    link: 'https://tiberiuzuld.github.io/angular-gridster2/gridSizes'
   }
 ]
 // Gridster Init Options
 export const GRIDSTER_CONFIG_INIT: any = {
   compactType: 'none',
-  gridType: 'fixed', //'verticalFixed'
+  gridType: 'fit', //'verticalFixed'
   margin: 5,
   outerMargin: true,
   outerMarginTop: 5,
@@ -96,7 +103,7 @@ export const GRIDSTER_CONFIG_INIT: any = {
   enableEmptyCellClick: false,
   enableEmptyCellContextMenu: false,
   enableEmptyCellDrop: true,
-  enableEmptyCellDrag: true,
+  enableEmptyCellDrag: false,
   emptyCellDragMaxCols: 50,
   emptyCellDragMaxRows: 50,
   enableOccupiedCellDrop: true,
@@ -122,7 +129,8 @@ export const GRIDSTER_CONFIG_INIT: any = {
     }
   },
   api: {},
-  swap: false,
+  swap: true,
+  swapWhileDragging: true,
   pushItems: true,
   pushResizeItems: false,
   displayGrid: 'onDrag&Resize', //always
@@ -153,7 +161,7 @@ export interface DASHBOARD_ITEM_TYPE {
   minItemCols?: number,
   minItemRows?: number,
   config: any;
-  disabled?: boolean
+  disabled?: boolean;
 }
 
 
@@ -167,7 +175,7 @@ export const originDashboard: Array<DASHBOARD_ITEM_TYPE> = [
     minItemCols: 4,
     minItemRows: 4,
     config: {title: 'main.wordcloud', chart: 'cloud', widgetType: 'wordcloud'},
-    disabled: true
+    disabled: true,
   },
   {
     'cols': 9,
@@ -177,18 +185,18 @@ export const originDashboard: Array<DASHBOARD_ITEM_TYPE> = [
     'minItemCols': 4,
     'minItemRows': 4,
     'config': {'title': 'main.recommendKeyword','chart':'list', 'widgetType': 'recommendKeyword'},
-    'disabled': true
+    'disabled': true,
   },
-  // {
-  //   'cols': 9,
-  //   'rows': 5,
-  //   'y': 5,
-  //   'x': 12,
-  //   'minItemCols': 4,
-  //   'minItemRows': 4,
-  //   'config': {'title': 'main.recommendDataset','chart':'list', 'widgetType': 'recommendDataset'},
-  //   'disabled': true
-  // },
+  {
+    'cols': 9,
+    'rows': 5,
+    'y': 5,
+    'x': 12,
+    'minItemCols': 4,
+    'minItemRows': 4,
+    'config': {'title': 'main.recommendDataset','chart':'list', 'widgetType': 'recommendDataset'},
+    'disabled': true,
+  },
   {
     'cols': 12,
     'rows': 6,
@@ -197,7 +205,7 @@ export const originDashboard: Array<DASHBOARD_ITEM_TYPE> = [
     'minItemCols': 5,
     'minItemRows': 4,
     'config': {'title': 'main.sourceSystem', 'chart':'bar', 'widgetType': 'sourceSystem'},
-    'disabled': true
+    'disabled': true,
   },
   {
     'cols': 12,
@@ -218,16 +226,16 @@ export const originDashboard: Array<DASHBOARD_ITEM_TYPE> = [
     'config': {'title': 'main.topDataset', 'chart':'pie', 'widgetType': 'topDataset'},
     'disabled': true
   },
-  {
-    'cols': 11,
-    'rows': 5,
-    'y': 18,
-    'x': 11,
-    'minItemCols': 5,
-    'minItemRows': 4,
-    'config': {'title': 'nav.menu4-5-1', 'chart':'board', 'widgetType': 'extractReqList'},
-    'disabled': true
-  },
+  // {
+  //   'cols': 11,
+  //   'rows': 5,
+  //   'y': 18,
+  //   'x': 11,
+  //   'minItemCols': 5,
+  //   'minItemRows': 4,
+  //   'config': {'title': 'nav.menu4-5-1', 'chart':'board', 'widgetType': 'extractReqList'},
+  //   'disabled': true
+  // },
   // {
   //   'cols': 10,
   //   'rows': 5,

@@ -1,0 +1,23 @@
+@keyframes dash-frame {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+.knob {
+  &-range {
+    fill: none;
+    transition: stroke 0.1s ease-in;
+  }
+  &-value {
+    animation-name: dash-frame;
+    animation-fill-mode: forwards;
+    fill: none;
+  }
+  &-text {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  &.disabled {
+    opacity: 0.6;
+  }
+}
