@@ -58,6 +58,18 @@ export const STYLE_GUIDE_MENU = [
                 * 5 : 3rem
                 </span>`
       },
+
+      {
+        name: 'InputMask',
+        link: '/form/inputMask',
+        desc: `InputMask 구성 요소는 숫자, 날짜, 통화 및 전화와 같은 특정 형식으로 입력을 입력하는 데 사용됩니다.`
+      },
+      {
+        name: 'InputNumber',
+        link: '/form/inputNumber',
+        desc: `InputNumber는 숫자 입력을 제공하는 입력 구성 요소입니다.`
+      },
+
       {
         name: 'Knob',
         link: '/form/knob',

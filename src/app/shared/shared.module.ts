@@ -92,6 +92,10 @@ import { ExcelExportModule } from "ag-grid-enterprise";
 import { DatePickerComponent } from "./date-picker/date-picker";
 import { DateRangePickerComponent } from "./date-range-picker/date-range-picker";
 import {KnobComponent} from "./knob/knob.component";
+import {DtkTemplate, InputText} from "./input-text/input-text";
+import {AutoFocus} from "./autofocus/autofocus";
+import {InputMask} from "./input-mask/input-mask.component";
+import {InputNumber} from "./input-number/input-number.component";
 ModuleRegistry.registerModules([ ExcelExportModule ]);
 
 
@@ -191,6 +195,11 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     GnbComponent, // Global Navigation
     GnbItemComponent, // Global Navigation Item
     KnobComponent, // Knob Component
+    InputText,
+    AutoFocus,
+    DtkTemplate,
+    InputMask,
+    InputNumber
   ],
   exports: [
     CommonModule,
@@ -262,6 +271,12 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     GnbComponent, // Global Navigation
     GnbItemComponent, // Global Navigation Item
     KnobComponent, // Knob Component
+    InputText,
+    AutoFocus,
+    DtkTemplate,
+    InputMask,
+    InputNumber,
+
     //3rd Party
     LaddaModule,
     ToastrModule,

@@ -1,0 +1,108 @@
+@import '../../../styles-variables.scss';
+
+$btn-sizes: (
+  xs: $font-size-xs $border-radius-xs 6px,
+  sm: $font-size-sm $border-radius-sm 8px,
+  lg: $font-size-lg $border-radius-lg 14px,
+  xl: $font-size-xl $border-radius-xl 18px
+);
+
+.input-number {
+  display: inline-flex;
+  &-input {
+    flex: 1 1 auto;
+  }
+
+  &-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    padding:0 10px;
+    border-radius: $border-radius;
+    height: auto;
+    // 버튼 사이즈
+    @each $key, $value in $btn-sizes {
+      &.btn-#{$key} {
+        font-size: #{nth($value, 1)};
+        border-radius: #{nth($value, 2)};
+        padding: 0 #{nth($value, 3)}
+      }
+    }
+  }
+  &-buttons {
+    &-stacked {
+      .input-number-input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      .input-number-button-group {
+        display: flex;
+        flex-direction: column;
+        button {
+          &.input-number-button {
+            flex: 1 1 auto;
+          }
+          &.input-number-button-up {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+          &.input-number-button-down {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+
+    &-horizontal {
+      .input-number-input {
+        order: 2;
+        border-radius: 0;
+      }
+
+      button {
+        height: auto;
+        &.input-number-button-up {
+          order: 3;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          height: auto;
+        }
+        &.input-number-button-down {
+          order: 1;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          height: auto;
+        }
+      }
+    }
+
+    &-vertical {
+      flex-direction: column;
+      .input-number-input {
+        order: 2;
+        border-radius: 0;
+        text-align: center;
+      }
+      button {
+        padding: 5px 0;
+        &.input-number-button-up {
+          order: 1;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          width: 100%;
+        }
+        &.input-number-button-down {
+          order: 3;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -28,6 +28,8 @@ import { StyleGuideRadioButtonComponent } from './form/RadioButton.component';
 import { StyleGuideRatingComponent } from './form/Rating.component';
 import { StyleGuideSelectComponent } from './form/Select.component';
 import { StyleGuideSliderComponent } from './form/Slider.component';
+import { StyleGuideInputMaskComponent } from './form/InputMask.component';
+import { StyleGuideInputNumberComponent } from './form/inputNumber.component';
 // Menu
 import { StyleGuideBreadcrumbComponent } from './menu/Breadcrumb.component';
 import { StyleGuideContextMenuComponent } from './menu/ContextMenu.component';
@@ -103,6 +105,16 @@ const routes: Routes = [
         path: 'form/input',
         component: StyleGuideInputComponent,
         data: {title: 'Input'}
+      },
+      {
+        path: 'form/inputMask',
+        component: StyleGuideInputMaskComponent,
+        data: {title: 'Input Mask'}
+      },
+      {
+        path: 'form/inputNumber',
+        component: StyleGuideInputNumberComponent,
+        data: {title: 'Input Number'}
       },
       {
         path: 'form/knob',
