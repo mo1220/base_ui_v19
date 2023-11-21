@@ -104,7 +104,17 @@
       <h5>&lt;date-range-picker&gt; 옵션 설정 <span class="color-pink">(기본값)</span></h5>
       <p>&lt;date-range-picker&gt; 사용시 [rangeInpitFormat] 입력 필수 (날짜 범위 선택)</p>
       <ul class="icon-ul check">
+        <li><b class="wd-150">[size]</b> <span class="color-pink">'sm'</span> | 'xs' | 'default' (input.form-control size를 결정) </li>
+        <li><b class="wd-150">[placeholder]</b> <span class="color-pink">입력 안할 경우 dateInputFormat과 동일</span> | string 입력</li>
+        <li><b class="wd-150">[locale]</b> <span class="color-pink">'kr'</span> | 'en' | 'cn'</li>
+        <li><b class="wd-150">[minDate], [maxDate]</b> Date format 변수</li>
         <li><b class="wd-150">[rangeInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</li>
+        <li><b class="wd-150">[showWeekNumbers]</b> true | <span class="color-pink">false</span></li>
+        <!--        <li><b class="wd-150">[returnFocusToInput]</b> true | <span class="color-pink">false</span> (날짜 선택 후 input에 focus)</li>-->
+        <!--        <li><b class="wd-150">[placement]</b> <span class="color-pink">(adaptivePosition:true)</span> | 'bottom' | 'top' | 'left' | 'right' (캘린더 위치, 입력 안 할 경우 adaptivePosition:true) <span class="color-red">* bottom+left 등 불가능... 한가지 포지션만 설정 가능</span></li>-->
+        <li><b class="wd-150">[customTodayClass]</b> <span class="color-pink">'ngx-today'</span> | '' (ngx-today 입력 시 오늘 날짜 스타일링)</li>
+        <li><b class="wd-150">[dateTooltipTexts]</b> <span class="color-pink">[ &#123; date: Today, tooltipText: '오늘' &#125; ]</span> | tooltipDates: DatepickerDateTooltipText[] (툴팁 변수에 date, tooltipText 지정)</li>
+        <li><b class="wd-150">[withTimepicker]</b> <span class="color-pink">true</span> | false </li>
         <li><b class="wd-150">[ranges]</b> <span class="color-pink">[최근 일주일, 최근 1개월, 최근 3개월, 최근 6개월, 최근 1년]</span> | ranges: IRange[] (자동 선택 범위)</li>
       </ul>
     </div>
@@ -113,7 +123,15 @@
 
       <div class="form-group mb-3">
         <label>옵션 없는 기본 range-picker</label>
-        <date-range-picker [(selectDate)]="selectedRange"></date-range-picker>
+        <div class="form-group flex">
+          <date-range-picker class="wd-440 me-1"
+                             [(selectDate)]="selectedRange"></date-range-picker>
+          <date-range-picker class="wd-440"
+                       [(selectDate)]="selectedRange"
+                       [placeholder]="'min 1 day ago, max 1 month'"
+                       [minDate]="minDate"
+                       [maxDate]="maxDate"></date-range-picker>
+        </div>
       </div>
 
       <div class="form-group mb-3">
@@ -164,11 +182,11 @@
       <div class="form-group mb-3">
         <label>With Time Picker</label>
         <div class="form-group flex">
-          <date-range-picker class="wd-220 me-1"
+          <date-range-picker class="wd-440 me-1"
                        [(selectDate)]="selectedRange"
                        [rangeInputFormat]="'YYYY-MM-DD h:mm a'"
                        [withTimepicker]="true"></date-range-picker>
-          <date-range-picker class="wd-220"
+          <date-range-picker class="wd-440"
                        [(selectDate)]="selectedRange"
                        [rangeInputFormat]="'YYYY-MM-DD H:mm'"
                        [withTimepicker]="true"></date-range-picker>

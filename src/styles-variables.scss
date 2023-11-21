@@ -123,17 +123,30 @@ $border-radius-right: 0       $border-radius $border-radius 0;
 
 $border-radius-round:         1.2rem !default; // Default Border Radius
 
-$input-btn-padding-y:         .375rem !default;
-$input-btn-padding-x:         .75rem !default;
 
-$input-btn-padding-y-xl:      .75rem !default;
-$input-btn-padding-x-xl:      1.2rem !default;
+
+
+
 $input-btn-padding-y-xs:      .15rem !default;
-$input-btn-padding-x-xs:      .35rem !default;
+$input-btn-padding-x-xs:      .3rem !default;//
 $input-btn-padding-y-sm:      .25rem !default;
-$input-btn-padding-x-sm:      .5rem !default;
-$input-btn-padding-y-lg:      .5rem !default;
-$input-btn-padding-x-lg:      1rem !default;
+$input-btn-padding-x-sm:      .5rem !default;//
+$input-btn-padding-y:         .375rem !default;
+$input-btn-padding-x:         .7rem !default;//
+$input-btn-padding-y-lg:      .4rem !default;
+$input-btn-padding-x-lg:      .8rem !default;//
+$input-btn-padding-y-xl:      .75rem !default;
+$input-btn-padding-x-xl:      1.2rem !default;//
+
+$input-label-padding-xs:       $input-btn-padding-y-xs * .5;
+$input-label-padding-sm:       $input-btn-padding-y-sm * .5;
+$input-label-padding:          $input-btn-padding-y * .5;
+$input-label-padding-lg:       $input-btn-padding-y-lg * .5;
+
+$input-icon-padding-xs:       $font-size-xs + 0.16rem*3;
+$input-icon-padding-sm:       $font-size-sm + 0.3rem*3;
+$input-icon-padding:          $font-size-base + 0.35rem*3;
+$input-icon-padding-lg:       $font-size-lg + 0.42rem*3;
 
 //$input-line-height:           $line-height-base !default;
 $line-height-base:            1.5 !default;

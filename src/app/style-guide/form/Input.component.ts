@@ -68,7 +68,7 @@ export class StyleGuideInputComponent implements AfterViewInit, OnDestroy {
       buttonClass: 'btn-sm'
     },
     {
-      label: 'Default',
+      label: 'Base',
       class: '',
       buttonClass: ''
     },

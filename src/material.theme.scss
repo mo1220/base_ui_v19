@@ -119,6 +119,7 @@ $button-size: (
     }
   }
 
+  // mat-button
   .mat-mdc-button {
     --mdc-text-button-container-height: $btn-line-height;
     --mdc-typography-button-line-height: $btn-line-height;
@@ -134,4 +135,75 @@ $button-size: (
       margin-right: 0;
     }
   }
+
+  .mat-mdc-autocomplete-panel {
+    /* 스크롤바 전체 기본 꾸미기 */
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    /* 스크롤바 막대 꾸미기 */
+    &::-webkit-scrollbar-thumb {
+      background: rgba($dark, .2); /* 스크롤바 막대 색상 */
+      //border: 2px solid rgba($dark, .2); /* 스크롤바 막대 테두리 설정  */
+      border-radius: $border-radius;
+    }
+
+    /* 스크롤바 트랙 꾸미기 */
+    &::-webkit-scrollbar-track {
+      background: #E1E1E1;
+    }
+  }
+
+  // mat-option, mat-optgroup
+  .mat-mdc-optgroup{
+    --mat-optgroup-label-text-color: #9c9c9c;
+    --mat-optgroup-label-text-line-height: $line-height-base;
+    &-label{
+      min-height: var(--mat-optgroup-label-text-line-height);
+      padding-top: 7px;
+      padding-bottom: 10px;
+      font-weight: 700;
+    }
+    .mat-mdc-option:not(.mat-mdc-option-multiple){
+      padding-left: 25px;
+    }
+
+    &:first-child{
+      border-bottom: 1px solid #EEE;
+      padding-bottom: 10px;
+    }
+  }
+
+  .mat-mdc-option {
+    display: block;
+    --mat-optgroup-label-text-color: #9c9c9c;
+    --mat-option-label-text-line-height: $line-height-sm;
+    --mat-option-label-text-size: $font-size-base;
+    min-height: var(--mat-option-label-text-line-height);
+    padding: 5px 16px;
+    &.autocomplete-no-data {
+      --mat-option-focus-state-layer-color: transparent;
+      cursor: default;
+      user-select: none;
+      text-align: center;
+      &:hover,
+      &:active,
+      &:focus {
+        background: var(--mat-option-focus-state-layer-color);
+      }
+    }
+    .mat-mdc-option-pseudo-checkbox {
+      display: none;
+    }
+    .mat-icon {
+      color: var(--mat-optgroup-label-text-color);
+    }
+  }
+  .mat-mdc-autocomplete-panel {
+    box-shadow: $box-shadow;
+  }
 }
+
+

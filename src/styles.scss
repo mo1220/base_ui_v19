@@ -330,7 +330,7 @@ ul, ol, dl {
   bottom: 0;
   right: 0;
   //background: rgba(0,0,0, 0.1);
-  z-index: 1;
+  //z-index: 1;
 }
 
 $font-sizes: (
@@ -2893,3 +2893,43 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
   }
 }
 /********************** EN: Layout *************************************/
+
+/********************** ST: AutoComplete *********************/
+
+.autocomplete {
+  &-loading {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+  }
+  .mat-mdc-option {
+    p {
+      margin-bottom: 0;
+      & > span {
+        display: inline-block;
+        padding: 3px;
+        background-color: rgba(0,0,0,.05);
+        border-radius: 50%;
+        margin-right: 10px;
+        .mat-icon{ margin-right: 0}
+      }
+    }
+  }
+  &-box{
+    display: flex;
+    flex-direction: column;
+    &-date {
+      position: absolute;
+      right: 16px;
+      font-size: $font-size-sm;
+      color: #999999;
+    }
+  }
+}
+/********************** EN: AutoComplete *********************/
+
+.highlight {
+  background-color: #f3f3f3;
+  color: $primary;
+}
+
