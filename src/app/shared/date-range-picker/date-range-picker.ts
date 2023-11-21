@@ -171,5 +171,9 @@ export class DateRangePickerComponent implements OnInit {
   deleteDate(): void {
     this.selectDateChange.emit('');
   }
+  closePopup() {
+    console.log(this.selectDate);
+    this.open = false;
+  }
 }
 
