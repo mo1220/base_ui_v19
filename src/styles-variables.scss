@@ -138,6 +138,11 @@ $input-btn-padding-x-lg:      .8rem !default;//
 $input-btn-padding-y-xl:      .75rem !default;
 $input-btn-padding-x-xl:      1.2rem !default;//
 
+$input-label-padding-xs:       $input-btn-padding-y-xs * .5;
+$input-label-padding-sm:       $input-btn-padding-y-sm * .5;
+$input-label-padding:          $input-btn-padding-y * .5;
+$input-label-padding-lg:       $input-btn-padding-y-lg * .5;
+
 $input-icon-padding-xs:       $font-size-xs + 0.16rem*3;
 $input-icon-padding-sm:       $font-size-sm + 0.3rem*3;
 $input-icon-padding:          $font-size-base + 0.35rem*3;
