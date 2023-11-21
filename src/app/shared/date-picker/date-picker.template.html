@@ -1,6 +1,7 @@
 <!-- ST: date picker -->
 <div class="form-group">
-  <div class="form-box icon-left calendar">
+  <div class="form-box icon-left calendar"
+       [class.icon-mat]="_bsConfig.withTimepicker === true">
     <input type="text" style="display: block"
            cdkOverlayOrigin
            #d1="cdkOverlayOrigin"
@@ -24,10 +25,10 @@
                             [maxDate]="maxDate"
                             [bsConfig]="_bsConfig">
       </bs-datepicker-inline>
+      <div *ngIf="open"
+           class="overlay-bg"
+           (click)="open = false"></div>
     </ng-template>
-    <div *ngIf="open"
-         class="overlay-bg"
-         (click)="open = false"></div>
   </div>
 </div>
 <!-- EN: date picker -->

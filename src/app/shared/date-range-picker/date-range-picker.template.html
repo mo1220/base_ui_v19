@@ -1,6 +1,8 @@
 <!-- ST: range picker -->
 <div class="form-group">
-  <div class="form-box icon-left calendar">
+  <div class="form-box icon-left calendar"
+       [class.icon-mat]="_bsConfig.withTimepicker === true">
+    <!-- calendar-time 사용 시 icon-mat 클래스 추가 -->
     <input type="text" style="display: block"
            cdkOverlayOrigin
            #d1="cdkOverlayOrigin"
@@ -17,18 +19,26 @@
     <ng-template cdkConnectedOverlay
                  [cdkConnectedOverlayOrigin]="d1"
                  [cdkConnectedOverlayOpen]="open">
-      <bs-daterangepicker-inline [bsValue]="selectDate"
-                                 (bsValueChange)="changeDate($event)"
-                                 [minDate]="minDate"
-                                 [maxDate]="maxDate"
-                                 [bsConfig]="_bsConfig">
-      </bs-daterangepicker-inline>
+      <div>
+        <bs-daterangepicker-inline [bsValue]="selectDate"
+                                   (bsValueChange)="changeDate($event)"
+                                   [minDate]="minDate"
+                                   [maxDate]="maxDate"
+                                   [bsConfig]="_bsConfig">
+        </bs-daterangepicker-inline>
+        <div style="padding:5px 15px; background:#FFF; text-align: right;">
+          {{open}}
+          <button class="btn btn-primary btn-sm" (click)="closePopup()">
+            {{'buttons.close' | translate}}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="open"
+           class="overlay-bg"
+           (click)="open = false"></div>
     </ng-template>
   </div>
 </div>
 
-<div *ngIf="open"
-     class="overlay-bg"
-     (click)="open = false"></div>
 <!-- EN: range picker -->
 
