@@ -10,7 +10,7 @@
                 [ngClass]="{ 'btn-primary': keywordLoading, 'btn-secondary': !keywordLoading }"
                 (click)="keywordLoading=!keywordLoading">Toggle Loading
         </button>
-        <input type="text" class="form-control form-control-sm"
+        <input type="text" class="form-control"
                #searchInput
                [placeholder]="'placeholder.keyword_placeholder' | translate"
                (focus)="onFocus()"
@@ -67,7 +67,7 @@
                 [ngClass]="{ 'btn-primary': keywordLoading, 'btn-secondary': !keywordLoading }"
                 (click)="keywordLoading=!keywordLoading">Toggle Loading
         </button>
-        <input type="text" class="form-control form-control-sm"
+        <input type="text" class="form-control"
                #searchInput2
                [placeholder]="'placeholder.keyword_placeholder' | translate"
                (focus)="onFocus()"
@@ -137,7 +137,7 @@
     <p>입력 시 자동완성</p>
     <div class="style-guide-example">
       <input type="text" class="form-control"
-             placeholder="이름으로 검색하세요."
+             [placeholder]="'placeholder.keyword_placeholder' | translate"
              (focus)="onFocus()"
              (keyup)="keyupEvent($event)"
              [(ngModel)]="searchKeyword"
