@@ -178,6 +178,7 @@ $button-size: (
 
   .mat-mdc-option {
     display: block;
+    --mat-optgroup-label-text-color: #9c9c9c;
     --mat-option-label-text-line-height: $line-height-sm;
     --mat-option-label-text-size: $font-size-base;
     min-height: var(--mat-option-label-text-line-height);
@@ -195,6 +196,9 @@ $button-size: (
     }
     .mat-mdc-option-pseudo-checkbox {
       display: none;
+    }
+    .mat-icon {
+      color: var(--mat-optgroup-label-text-color);
     }
   }
   .mat-mdc-autocomplete-panel {

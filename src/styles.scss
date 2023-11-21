@@ -2901,24 +2901,35 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
     display: flex;
     flex-direction: column;
     padding: 10px 0;
-    .mat-mdc-option {
-      p {
-        margin-bottom: 0;
+  }
+  .mat-mdc-option {
+    p {
+      margin-bottom: 0;
+      & > span {
+        display: inline-block;
+        padding: 3px;
+        background-color: rgba(0,0,0,.05);
+        border-radius: 50%;
+        margin-right: 10px;
+        .mat-icon{ margin-right: 0}
       }
     }
   }
   &-box{
     display: flex;
     flex-direction: column;
-    & .mat-icon {
-      color: var(--mat-optgroup-label-text-color);
+    &-date {
+      position: absolute;
+      right: 16px;
+      font-size: $font-size-sm;
+      color: #999999;
     }
   }
 }
 /********************** EN: AutoComplete *********************/
 
 .highlight {
-  background-color: #FAFAFA;
+  background-color: #f3f3f3;
   color: $primary;
 }
 

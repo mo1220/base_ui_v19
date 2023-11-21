@@ -73,7 +73,7 @@ import {
   NumeralFormatPipe,
   ThresholdFormatPipe
 } from './number';
-import {DateRangePipe} from "./date";
+import {DateRangePipe, TimeForTodayPipe} from "./date";
 
 export const PIPES = [
   MenusPipe,
@@ -142,7 +142,8 @@ export const PIPES = [
   SliderTrans,
   ThresholdFormatPipe,
   SafeHtmlPipe,
-  DateRangePipe
+  DateRangePipe,
+  TimeForTodayPipe
 ];
 
 @NgModule({

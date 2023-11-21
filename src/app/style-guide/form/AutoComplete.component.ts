@@ -12,11 +12,12 @@ import {Router} from '@angular/router';
 import * as events from "events";
 import {FormControl} from "@angular/forms";
 import {Observable, startWith, Subject} from "rxjs";
-import {debounceTime, distinctUntilChanged, map, tap} from "rxjs/operators";
+import {debounceTime, distinctUntilChanged, filter, map, tap} from "rxjs/operators";
 import {menuType} from "../style-guide.models";
 import {MatAutocompleteTrigger} from "@angular/material/autocomplete";
 import * as _ from 'lodash';
 import {MatOptionSelectionChange} from "@angular/material/core";
+import * as moment from "moment/moment";
 
 /**
  * @class StyleGuideButtonComponent *
@@ -50,10 +51,10 @@ export class StyleGuideAutoComplateComponent implements AfterViewInit, OnDestroy
   keywordList: { val: string; label: any }[] = [];
   keywordGroupList: Array<any> = [];
   completeList: Array<string> = ['apple', 'ace', 'banana', 'bulls', 'cat', 'city', 'strong'];
-  filteredList: Array<string> = [];
+  // filteredList: Array<string> = [];
   loadingList = Array.from({length: 5}).map((_, i) => i);
   autoCompleteView: boolean = false;
-  inputKeyword: string = '';
+  // inputKeyword: string = '';
   inputList$: Observable<any> = new Observable<any>();
 
 
@@ -98,7 +99,7 @@ export class StyleGuideAutoComplateComponent implements AfterViewInit, OnDestroy
     this.inputList$ = this.search$.pipe(
       debounceTime(100),
       distinctUntilChanged(),
-      tap(d => console.log(d)),
+      // filter(d => !d),
       map(keyword => this.completeList.filter(d => d.toLowerCase().includes(keyword))
         .map(d => ({ val: d, label: keywordHighlight(d)})))
     );
@@ -106,13 +107,16 @@ export class StyleGuideAutoComplateComponent implements AfterViewInit, OnDestroy
     this.inputList$
       .subscribe((list) => {
       this.keywordLoading = false;
-      // this.filteredList =
+      console.log(list);
       this.keywordList = [...list]; //this.filteredList.map(d => ({val: d, label: keywordHighlight(d)} ));
       this.keywordGroupList = [
         {
           group: 'history',
           label: '최근 검색어',
-          values: [...list]
+          values: list.map((d: any) => ({
+            ...d,
+            logtime: moment().format('YYYY-MM-DD')
+          }))
         },
         {
           group: 'keyword',
