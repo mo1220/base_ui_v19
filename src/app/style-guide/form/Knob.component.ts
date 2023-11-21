@@ -29,11 +29,35 @@ export class StyleGuideKnobComponent implements AfterViewInit, OnDestroy {
       anchor: 'basic',
     },
     {
+      title: 'Min/Max',
+      anchor: 'minMax',
+    },
+    {
+      title: 'Step',
+      anchor: 'step',
+    },
+    {
+      title: 'Value Template',
+      anchor: 'valueTemplate',
+    },
+    {
+      title: 'Stroke Width',
+      anchor: 'strokeWidth',
+    },
+    {
       title: 'Size',
       anchor: 'size',
     },
     {
-      title: 'Disabled State',
+      title: 'Color',
+      anchor: 'color',
+    },
+    {
+      title: 'ReadOnly',
+      anchor: 'readonly',
+    },
+    {
+      title: 'Disabled',
       anchor: 'disabled',
     }
   ];

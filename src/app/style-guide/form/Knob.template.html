@@ -19,14 +19,14 @@
       <knob [(ngModel)]="value" [step]="5" [min]="0" [max]="100"></knob>
     </div>
 
-    <h3 #anchor #size>Value Template</h3>
+    <h3 #anchor #valueTemplate>Value Template</h3>
     <p>Label은 자리 표시자로 60을 갖는 <code>[valueTemplate]</code> 속성을 사용하여 사용자 정의할 수 있는 문자열 템플릿입니다.</p>
     <div class="style-guide-example d-flex alignC">
       <!-- Value Template -->
       <knob [(ngModel)]="value" [valueTemplate]="'{value}%'" [min]="0" [max]="100"></knob>
     </div>
 
-    <h3 #anchor #size>Stroke Width</h3>
+    <h3 #anchor #strokeWidth>Stroke Width</h3>
     <p>테두리 크기는 <code>[strokeWidth]</code> 속성을 사용하여 픽셀 단위로 지정됩니다.</p>
     <div class="style-guide-example d-flex alignC">
       <!-- Stroke Width -->
@@ -56,7 +56,7 @@
     <div class="style-guide-example d-flex alignC">
       <knob [(ngModel)]="value" [readonly]="true"></knob>
     </div>
-    <h3 #anchor #disabled>Disabled State</h3>
+    <h3 #anchor #disabled>Disabled</h3>
     <p>비활성화된 경우 Knob와 상호 작용할 수 없음을 나타내는 시각적 힌트가 적용됩니다. <code>[disabled]</code></p>
     <div class="style-guide-example d-flex alignC">
       <knob [(ngModel)]="value" [disabled]="true"></knob>
