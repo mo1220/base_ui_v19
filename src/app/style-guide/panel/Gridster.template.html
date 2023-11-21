@@ -3,7 +3,7 @@
     <ng-container *ngFor="let menu of menus; let i=index">
       <h3 #anchors>{{ menu.title }}</h3>
       <p [innerHTML]="menu.desc | safeHtml"></p>
-      <div class="base-guide info" style="height: 424px; overflow-y: auto;">
+      <div class="base-guide info" style="height: 410px; overflow-y: auto;">
         <h5>Gridster 기본 옵션</h5>
         <dl class="d-flex" style="flex-wrap: wrap;">
           <div class="me-5 mb-4" style="width: 20%" *ngFor="let op of op_desc">
@@ -35,14 +35,14 @@
               <ng-container *ngIf="op.key === 'draggable'">
                 <div class="form-group">
                   <mat-checkbox class="matcheckbox" color="primary"
-                                (ngModelChange)="changedOptions()"
+                                (change)="changedOptions()"
                                 [(ngModel)]="options.draggable.enabled">Drag Enabled
                   </mat-checkbox>
                 </div>
                 <div class="form-group">
                   <mat-checkbox class="matcheckbox"
                                 color="primary"
-                                (ngModelChange)="changedOptions()"
+                                (change)="changedOptions()"
                                 [(ngModel)]="options.draggable.ignoreContent">Drag ignoreContent
                   </mat-checkbox>
                 </div>
@@ -81,7 +81,7 @@
                   <mat-checkbox
                     class="matcheckbox" color="primary"
                     [(ngModel)]="options.enableEmptyCellClick"
-                    (ngModelChange)="changedOptions()">
+                    (change)="changedOptions()">
                     Enable Empty Cell click
                   </mat-checkbox>
                 </div>
@@ -96,7 +96,7 @@
                   <mat-checkbox
                     class="matcheckbox" color="primary"
                     [(ngModel)]="options.enableEmptyCellDrop"
-                    (ngModelChange)="changedOptions()">
+                    (change)="changedOptions()">
                    아래 아이콘을 드래그하세요.
                   </mat-checkbox>
                   <div *ngIf="options.enableEmptyCellDrop" style="background: #FFF; border: 1px solid #EEE; border-radius: 5px;">
@@ -112,7 +112,7 @@
                 <div class="form-group mb-1">
                   <mat-checkbox
                     class="matcheckbox" color="primary"
-                    (ngModelChange)="changedOptions()"
+                    (change)="changedOptions()"
                     [(ngModel)]="options.enableOccupiedCellDrop"
                     [disabled]="!options.enableEmptyCellDrop">
                     Enable drop on occupied cell
@@ -129,7 +129,7 @@
                 <div class="form-group flex">
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
                               [label]="'Drag 최대 Col 영역 설정'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="500"
                               [mode]="'less'"
@@ -139,7 +139,7 @@
                 <div class="form-group flex">
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
                               [label]="'Drag 최대 Row 영역 설정'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="500"
                               [mode]="'less'"
@@ -214,7 +214,7 @@
                 <div class="form-group flex">
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
                               [label]="'Minimum column size'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
@@ -222,7 +222,7 @@
                               [(value)]="options.minCols"></dtk-slider>
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
                               [label]="'Maximum Col size'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
@@ -232,7 +232,7 @@
                 <div class="form-group flex me-1">
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
                               [label]="'Minimum Row size'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
@@ -240,7 +240,7 @@
                               [(value)]="options.minRows"></dtk-slider>
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
                               [label]="'Maximum Rows size'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
@@ -250,7 +250,7 @@
                 <div class="form-group flex">
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
                               [label]="'Default Item Cols'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
@@ -259,7 +259,7 @@
 
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
                               [label]="'Default Item Rows'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
@@ -277,7 +277,7 @@
                               [(value)]="options.minItemCols"></dtk-slider>
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
                               [label]="'Max Item Cols'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
@@ -287,7 +287,7 @@
                 <div class="form-group flex">
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
                               [label]="'Min Item Rows'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
@@ -303,23 +303,37 @@
                               [(value)]="options.maxItemRows"></dtk-slider>
                 </div>
 
+                <div class="form-group mt-2">
+                  <h6 class="mb-0">cols * rows의 Min/Max</h6>
+                  <div class="form-group flex">
+                    <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
+                                [label]="'Min Item Area'"
+                                [unit]="''"
+                                [min]="1"
+                                [max]="500"
+                                [mode]="'less'"
+                                (valueChange)="changedOptions()"
+                                [(value)]="options.minItemArea"></dtk-slider>
+                    <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
+                                [label]="'Max Item Area'"
+                                [unit]="''"
+                                [min]="100"
+                                [max]="2500"
+                                [mode]="'less'"
+                                (valueChange)="changedOptions()"
+                                [(value)]="options.maxItemArea"></dtk-slider>
+                  </div>
+                </div>
+
                 <div class="form-group flex">
-                  <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
-                              [label]="'Min Item Area'"
-                              [unit]="'px'"
-                              [min]="1"
-                              [max]="100"
-                              [mode]="'less'"
-                              (valueChange)="changedOptions()"
-                              [(value)]="options.minItemArea"></dtk-slider>
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
-                              [label]="'Max Item Area'"
-                              [unit]="'px'"
+                              [label]="'Add Empty Rows Count'"
+                              [unit]="''"
                               [min]="1"
-                              [max]="100"
+                              [max]="10"
                               [mode]="'less'"
                               (valueChange)="changedOptions()"
-                              [(value)]="options.maxItemArea"></dtk-slider>
+                              [(value)]="options.addEmptyRowsCount"></dtk-slider>
                 </div>
               </ng-container>
               <!--EN: Grid Size-->
@@ -337,7 +351,7 @@
                   <div class="form-group flex">
                     <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
                                 [label]="'Fixed Col width'"
-                                [unit]="'px'"
+                                [unit]="''"
                                 [min]="1"
                                 [max]="500"
                                 [mode]="'less'"
@@ -347,7 +361,7 @@
                   <div class="form-group flex">
                     <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
                                 [label]="'Fixed Row width'"
-                                [unit]="'px'"
+                                [unit]="''"
                                 [min]="1"
                                 [max]="500"
                                 [mode]="'less'"
@@ -360,7 +374,7 @@
                   <div class="form-group flex">
                     <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
                                 [label]="'Row Height Ratio'"
-                                [unit]="'px'"
+                                [unit]="''"
                                 [min]="1"
                                 [max]="100"
                                 [mode]="'less'"
@@ -387,7 +401,7 @@
       </div>
       <div class="style-guide-example d-flex col gridster-wrap">
 
-        <gridster [options]="options" (drag)="onDrag($event)">
+        <gridster [options]="options" class="bg-dark">
           <gridster-item *ngFor="let item of dashboard" [item]="item">
             <div class="gridster-item-wrap">
               <div class="gridster-item-header">

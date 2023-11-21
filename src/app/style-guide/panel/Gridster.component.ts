@@ -88,9 +88,11 @@ export class StyleGuideGridsterComponent implements OnInit, AfterViewInit{
   emptyCellEvent(e: any, item: GridsterItem): void {
     console.info(`empty cell ${e.type}`, e.type, e, item);
     e.preventDefault();
-    const {enableEmptyCellClick,  enableEmptyCellContextMenu, enableOccupiedCellDrop, enableEmptyCellDrag} = this.options;
+    const {enableEmptyCellClick,  enableEmptyCellContextMenu, enableEmptyCellDrop, enableEmptyCellDrag} = this.options;
 
-    if(e.type === 'drop' && enableOccupiedCellDrop){
+    if(enableEmptyCellClick && ['click', 'mouseup'].includes(e.type)) this.notifi.success('Empty Cell Click');
+    if(enableEmptyCellContextMenu && e.type ==='contextmenu') this.notifi.success('Contextmenu Cell Click');
+    if(e.type === 'drop' && enableEmptyCellDrop){
       const data = e.dataTransfer.getData('text');
       item = { ...item, rows: 5, cols: 5, config: JSON.parse(data) };
       this.dashboard.push(item);
@@ -98,16 +100,6 @@ export class StyleGuideGridsterComponent implements OnInit, AfterViewInit{
     if(e.type === 'mouseup' && enableEmptyCellDrag) {
       if(item.cols === 1 && item.rows === 1) return;
       this.dashboard.push(item);
-    }
-    if(enableEmptyCellClick && e.type === 'mouseup') this.notifi.success('Empty Cell Click');
-    if(enableEmptyCellContextMenu && e.type ==='contextmenu') this.notifi.success('Contextmenu Cell Click');
-  }
-
-  onDrag(e: DragEvent){
-    console.log(e.type);
-    const { enableEmptyCellDrag } = this.options;
-    if(e.type === 'mouseup' && enableEmptyCellDrag) {
-      // this.dashboard.push(item);
     }
   }
 
