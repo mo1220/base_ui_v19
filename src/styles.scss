@@ -2893,3 +2893,32 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
   }
 }
 /********************** EN: Layout *************************************/
+
+/********************** ST: AutoComplete *********************/
+
+.autocomplete {
+  &-loading {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    .mat-mdc-option {
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &-box{
+    display: flex;
+    flex-direction: column;
+    & .mat-icon {
+      color: var(--mat-optgroup-label-text-color);
+    }
+  }
+}
+/********************** EN: AutoComplete *********************/
+
+.highlight {
+  background-color: #FAFAFA;
+  color: $primary;
+}
+
