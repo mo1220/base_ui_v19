@@ -1,0 +1,42 @@
+<div [ngClass]="containerClass()"
+     [class]="styleClass ? styleClass : ''"
+     [ngStyle]="style"
+     [attr.data-pc-name]="'knob'"
+     [attr.data-pc-section]="'root'">
+  <svg
+    viewBox="0 0 100 100"
+    role="slider"
+    [style.width]="size + 'px'"
+    [style.height]="size + 'px'"
+    (click)="onClick($event)"
+    (keydown)="onKeyDown($event)"
+    (mousedown)="onMouseDown($event)"
+    (mouseup)="onMouseUp($event)"
+    (touchstart)="onTouchStart($event)"
+    (touchend)="onTouchEnd($event)"
+    [attr.aria-valuemin]="min"
+    [attr.aria-valuemax]="max"
+    [attr.aria-valuenow]="_value"
+    [attr.aria-labelledby]="ariaLabelledBy"
+    [attr.aria-label]="ariaLabel"
+    [attr.tabindex]="readonly || disabled ? -1 : tabindex"
+    [attr.data-pc-section]="'svg'">
+    <path [attr.d]="rangePath()"
+          [attr.stroke-width]="strokeWidth"
+          [attr.stroke]="rangeColor"
+          class="knob-range"></path>
+    <path [attr.d]="valuePath()"
+          [attr.stroke-width]="strokeWidth"
+          [attr.stroke]="valueColor"
+          class="knob-value"></path>
+    <text *ngIf="showValue"
+          [attr.x]="50"
+          [attr.y]="57"
+          text-anchor="middle"
+          [attr.fill]="textColor"
+          class="knob-text"
+          [attr.name]="name">
+      {{ valueToDisplay() }}
+    </text>
+  </svg>
+</div>

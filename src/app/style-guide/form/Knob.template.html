@@ -1,10 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basic>Basic</h3>
+    <p>기본 Knob</p>
+    <div class="style-guide-example d-flex alignC">
+      <knob [max]="100" [min]="0" [(ngModel)]="value"></knob>
+    </div>
+    <h3 #anchor #minMax>Min/Max</h3>
+    <p>범위는 기본값이 각각 0과 100인 <code>[min]</code> 및 <code>[max]</code> 속성으로 구성됩니다.</p>
+    <div class="style-guide-example d-flex alignC">
+      <!-- Min/Max -->
+      <knob [(ngModel)]="value" [min]="-50" [max]="50"></knob>
+    </div>
 
-</body>
-</html>
+    <h3 #anchor #step>Step</h3>
+    <p>각 이동의 크기는 <code>[step]</code> 속성으로 정의됩니다.</p>
+    <div class="style-guide-example d-flex alignC">
+      <!-- Step -->
+      <knob [(ngModel)]="value" [step]="5" [min]="0" [max]="100"></knob>
+    </div>
+
+    <h3 #anchor #size>Value Template</h3>
+    <p>Label은 자리 표시자로 60을 갖는 <code>[valueTemplate]</code> 속성을 사용하여 사용자 정의할 수 있는 문자열 템플릿입니다.</p>
+    <div class="style-guide-example d-flex alignC">
+      <!-- Value Template -->
+      <knob [(ngModel)]="value" [valueTemplate]="'{value}%'" [min]="0" [max]="100"></knob>
+    </div>
+
+    <h3 #anchor #size>Stroke Width</h3>
+    <p>테두리 크기는 <code>[strokeWidth]</code> 속성을 사용하여 픽셀 단위로 지정됩니다.</p>
+    <div class="style-guide-example d-flex alignC">
+      <!-- Stroke Width -->
+      <knob [(ngModel)]="value" [strokeWidth]="5" [min]="0" [max]="100"></knob>
+    </div>
+
+    <h3 #anchor #size>Size</h3>
+    <p>손잡이의 직경은 <code>[size]</code> 속성을 사용하여 픽셀 단위로 정의됩니다.</p>
+    <div class="style-guide-example d-flex alignC">
+      <knob [(ngModel)]="value" [size]="30"></knob>
+      <knob [(ngModel)]="value" [size]="50"></knob>
+      <knob [(ngModel)]="value" [size]="100"></knob>
+      <knob [(ngModel)]="value" [size]="200"></knob>
+    </div>
+
+    <h3 #anchor #color>Color</h3>
+    <p>색상은 <code>[textColor], [rangeColor], [valueColor]</code> 속성을 사용하여 사용자 정의됩니다.
+    </p>
+    <div class="style-guide-example d-flex alignC">
+      <knob [(ngModel)]="value"
+            [valueColor]="'var(--bs-success, Green)'"
+            [rangeColor]="'var(--bs-light, lightGrey)'"></knob>
+    </div>
+
+    <h3 #anchor #readonly>ReadOnly</h3>
+    <p>읽기 전용이 있으면 값을 편집할 수 없습니다. <code>[readonly]</code></p>
+    <div class="style-guide-example d-flex alignC">
+      <knob [(ngModel)]="value" [readonly]="true"></knob>
+    </div>
+    <h3 #anchor #disabled>Disabled State</h3>
+    <p>비활성화된 경우 Knob와 상호 작용할 수 없음을 나타내는 시각적 힌트가 적용됩니다. <code>[disabled]</code></p>
+    <div class="style-guide-example d-flex alignC">
+      <knob [(ngModel)]="value" [disabled]="true"></knob>
+    </div>
+  </div>
+
+  <aside-menu-right [menu]="radioMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>
