@@ -5,9 +5,22 @@ import * as moment from 'moment';
 import * as chroma from 'chroma-js';
 import * as d3 from 'd3';
 
+@Pipe({ name: 'time' })
+export class TimePipe implements PipeTransform {
+  transform(value: any, format:any) {
+    // format : 12H일 경우 'hh:mm a' , 24H일 경우 'HH:mm'
+    if(value) {
+      let res = moment(value).format(format);
+      return res;
+    }
+    else return;
+  }
+}
+
 @Pipe({ name: 'dateRange' })
 export class DateRangePipe implements PipeTransform {
-  transform(value: any, format:any) {
+  transform(value: Array<any>, format:any) {
+    // [ start, end ]를 받아 format 변경
     if(value) {
       let res = moment(value[0]).format(format) + ' ~ ' + moment(value[1]).format(format);
       return res;

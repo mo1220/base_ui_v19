@@ -184,6 +184,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     ColorInputComponent, // 컬러 인풋
     ColorsScaleComponent, // 스케일 컬러 인풋
     DatePickerComponent, // 캘린더 DatePicker
+
     DateRangePickerComponent,
     TreeDirComponent, // Tree directory
     TreeSelectFilterComponent, // Tree Filter

@@ -73,7 +73,7 @@ import {
   NumeralFormatPipe,
   ThresholdFormatPipe
 } from './number';
-import {DateRangePipe, TimeForTodayPipe} from "./date";
+import {DateRangePipe, TimeForTodayPipe, TimePipe} from "./date";
 
 export const PIPES = [
   MenusPipe,
@@ -142,6 +142,7 @@ export const PIPES = [
   SliderTrans,
   ThresholdFormatPipe,
   SafeHtmlPipe,
+  TimePipe,
   DateRangePipe,
   TimeForTodayPipe
 ];
