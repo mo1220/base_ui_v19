@@ -105,7 +105,7 @@
       <p>&lt;date-range-picker&gt; 사용시 [rangeInpitFormat] 입력 필수 (날짜 범위 선택)</p>
       <ul class="icon-ul check">
         <li><b class="wd-150">[size]</b> <span class="color-pink">'sm'</span> | 'xs' | 'default' (input.form-control size를 결정) </li>
-        <li><b class="wd-150">[placeholder]</b> <span class="color-pink">입력 안할 경우 dateInputFormat과 동일</span> | string 입력</li>
+        <li><b class="wd-150">[placeholder]</b> <span class="color-pink">입력 안할 경우 rangeInputFormat과 동일</span> | string 입력</li>
         <li><b class="wd-150">[locale]</b> <span class="color-pink">'kr'</span> | 'en' | 'cn'</li>
         <li><b class="wd-150">[minDate], [maxDate]</b> Date format 변수</li>
         <li><b class="wd-150">[rangeInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</li>
@@ -195,22 +195,135 @@
     </div>
 
   <h3 #anchor #timepicker>Time Picker</h3>
-    <p>시간 선택 Time Picker (기본 옵션은 Date Picker와 동일)</p>
-    <div class="msg info">range-picker의 경우 [dateInputFormat] 대신 <b>[rangeInputFormat]</b>을 입력해야함</div>
+    <p>시간 선택 Time Picker</p>
     <div class="base-guide info">
-      <h5>&lt;date-range-picker&gt; 옵션 설정 <span class="color-pink">(기본값)</span></h5>
-      <p>&lt;date-range-picker&gt; 사용시 [rangeInpitFormat] 입력 필수 (날짜 범위 선택)</p>
+      <h5>&lt;timepicker&gt; 옵션 설정 <span class="color-pink">(기본값)</span></h5>
       <ul class="icon-ul check">
-        <li><b class="wd-150">[rangeInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</li>
-        <li><b class="wd-150">[ranges]</b> <span class="color-pink">[최근 일주일, 최근 1개월, 최근 3개월, 최근 6개월, 최근 1년]</span> | ranges: IRange[] (자동 선택 범위)</li>
+        <li><b class="wd-150">size</b> timepicker 사용 시 무조건 time-base, time-sm, time-xs 중 1개 클래스 추가</li>
+        <li><b class="wd-150">[disabled]</b> true | false</li>
+        <li><b class="wd-150">[showMeridian]</b> <span class="color-pink">true</span> (12H) | false (24H)</li>
       </ul>
     </div>
     <div class="style-guide-example">
-      <code><b>선택한 날짜 : {{selectedRange | json}}</b></code><hr>
+      <code><b>선택한 시간 : {{selectedTime | json}}</b></code><hr>
 
       <div class="form-group mb-3">
-        <label>옵션 없는 기본 date-picker</label>
-        <date-range-picker [(selectDate)]="selectedRange"></date-range-picker>
+        <label>옵션 없는 기본 timepicker</label>
+        <timepicker class="time-base"
+                    [(ngModel)]="selectedTime"></timepicker>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Disable</label>
+        <timepicker class="time-base"
+                    [disabled]="true"
+                    [(ngModel)]="selectedTime"></timepicker>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Size</label>
+        <div class="form-group flex">
+          <timepicker class="time-xs me-3"
+                      [(ngModel)]="selectedTime"></timepicker>
+          <timepicker class="time-sm me-3"
+                      [(ngModel)]="selectedTime"></timepicker>
+          <timepicker class="time-base me-3"
+                      [(ngModel)]="selectedTime"></timepicker>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label style="font-size: 0.75rem; line-height: 0.75rem; max-height: 1.65rem; padding: 0.1875rem 0;">
+          Custom Step (스크롤 시 변경 스텝)
+        </label>
+        <div class="form-grid mb-1">
+          <div class="form-group me-1">
+            <label>Hours step</label>
+            <input class="form-control form-control-xs" [(ngModel)]="hourStep">
+          </div>
+          <div class="form-group me-3">
+            <label>Minutes step</label>
+            <input class="form-control form-control-xs" [(ngModel)]="minStep">
+          </div>
+        </div>
+        <timepicker class="time-sm"
+                    [(ngModel)]="selectedTime"
+                    [hourStep]="hourStep"
+                    [minuteStep]="minStep"></timepicker>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Meridian (12H / 24H)</label><br>
+        <code><b>showMeridian : {{showMeridian}}</b></code>
+        <div class="form-group flex">
+          <button class="btn btn-xs btn-primary me-1"
+                  (click)="showMeridian = !showMeridian">change mode</button>
+          <timepicker class="time-xs me-3"
+                      [(ngModel)]="selectedTime"
+                      [showMeridian]="showMeridian"></timepicker>
+          <button class="btn btn-sm btn-primary me-1"
+                  (click)="showMeridian = !showMeridian">change mode</button>
+          <timepicker class="time-sm me-3"
+                      [(ngModel)]="selectedTime"
+                      [showMeridian]="showMeridian"></timepicker>
+          <button class="btn btn-primary me-1"
+                  (click)="showMeridian = !showMeridian">change mode</button>
+          <timepicker class="time-base me-3"
+                      [(ngModel)]="selectedTime"
+                      [showMeridian]="showMeridian"></timepicker>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Custom Meridian</label><br>
+        <div class="form-group flex">
+          <button class="btn btn-xs btn-primary me-1"
+                  (click)="showMeridian = !showMeridian">change mode</button>
+          <timepicker class="time-xs me-3"
+                      [(ngModel)]="selectedTime"
+                      [showMeridian]="showMeridian"
+                      [meridians]="customMeridian"></timepicker>
+          <button class="btn btn-sm btn-primary me-1"
+                  (click)="showMeridian = !showMeridian">change mode</button>
+          <timepicker class="time-sm me-3"
+                      [(ngModel)]="selectedTime"
+                      [showMeridian]="showMeridian"
+                      [meridians]="customMeridian"></timepicker>
+          <button class="btn btn-primary me-1"
+                  (click)="showMeridian = !showMeridian">change mode</button>
+          <timepicker class="time-base me-3"
+                      [(ngModel)]="selectedTime"
+                      [showMeridian]="showMeridian"
+                      [meridians]="customMeridian"></timepicker>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Min Max time</label><br>
+        <code><b>min : {{minTime}}<br> max: {{maxTime}}</b></code>
+        <div class="form-group flex">
+          <timepicker class="time-xs me-3"
+                      [(ngModel)]="selectedTime"
+                      [min]="minDate"
+                      [max]="maxDate"></timepicker>
+        </div>
+      </div>
+
+
+      <div class="form-group mb-3">
+        <label>Minutes, Seconds Show/Hide</label><br>
+        <div class="form-group flex my-2">
+          <button class="btn btn-sm btn-primary me-1"
+                  (click)="showMin = !showMin">{{showMin? 'Hide minutes' : 'Show minutes'}}</button>
+          <button class="btn btn-sm btn-primary me-1"
+                  (click)="showSec = !showSec">{{showSec? 'Hide seconds' : 'Show seconds'}}</button>
+        </div>
+        <div class="form-group flex">
+          <timepicker class="time-xs me-3"
+                      [(ngModel)]="selectedTime"
+                      [showMinutes]="showMin"
+                      [showSeconds]="showSec"></timepicker>
+        </div>
       </div>
     </div>
   </div>

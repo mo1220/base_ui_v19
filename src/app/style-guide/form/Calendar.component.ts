@@ -42,11 +42,12 @@ export class StyleGuideCalendarComponent implements AfterViewInit, OnDestroy {
     },
   ]
 
-  minDate: Date;
-  maxDate: Date;
+  minDate: Date = new Date();
+  maxDate: Date = new Date();
 
-  selectedDate: Date;
-  selectedRange: Date;
+  selectedDate: Date = new Date();
+  selectedRange: any = [new Date(), new Date(new Date().setDate(new Date().getDate() +1))];
+  selectedTime: Date = new Date();
 
   tooltipDates: DatepickerDateTooltipText[] = [
     { date: new Date(), tooltipText: 'today'},
@@ -54,16 +55,29 @@ export class StyleGuideCalendarComponent implements AfterViewInit, OnDestroy {
     { date: new Date(new Date().setDate(new Date().getDate() +1)), tooltipText: 'tomorrow'},
   ];
 
+  hourStep:number = 1;
+  minStep:number = 15;
+
+  showMeridian: boolean = true;
+  customMeridian: Array<string> = ['오전', '오후'];
+  showMin:boolean = true;
+  showSec:boolean = true;
+
+  minTime: Date = new Date();
+  maxTime: Date = new Date();
 
   constructor(
     private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
   ) {
-    this.minDate = new Date();
-    this.maxDate = new Date();
     this.minDate.setDate(this.minDate.getDate() - 1);
     this.maxDate.setDate(this.maxDate.getDate() + 30);
+
+    this.minTime.setHours(8);
+    this.minTime.setMinutes(0);
+    this.maxTime.setHours(23);
+    this.maxTime.setMinutes(55);
 
   }
 

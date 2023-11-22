@@ -39,16 +39,15 @@ export class DatePickerComponent implements OnInit {
   @Input() locale: string = 'kr'; // en cn kr 캘린더 언어
 
   @Input() placeholder:string;
-  @Input() selectDate:any;
-  // get selectDate() {
-  //   return this._selectDate;
-  // } // 선택한 날짜 value 전달용
-  // set selectDate(value) {
-  //   this._selectDate = value;
-  // }
-  // _selectDate;
+  _selectDate: any;
   @Output() selectDateChange: EventEmitter<any> = new EventEmitter<any>();
-  calendarDate: any; // calendar에 설정된 실제 날짜
+  @Input()// selectDate:any;
+  get selectDate() {
+    return this._selectDate;
+  }
+  set selectDate(value) {
+    this._selectDate = value;
+  }
 
   @Input() minDate: Date;
   @Input() maxDate: Date;
@@ -130,20 +129,25 @@ export class DatePickerComponent implements OnInit {
 
   toggleOpen() {
     this.open = true;
-    this.cd.detectChanges();
+    console.log(this.open);
+    // this.cd.detectChanges();
   }
   changeDate(e:any): void {
-    console.log(e, '---------',this.selectDate);
-    if(!this.selectDate) { this.open = false; }
-    // changeDate 이벤트는 bs-datepicker가 열릴 때마다 호출됨
+    // e : 클릭한 날짜 , _selectDate : 클릭전부터 갖고있던 날짜
+    // _selectDate값을 갖고 들어오는 경우 calendar open시 이벤트가 호출되어 예외처리 필수
     // time-picker가 없을 경우 날짜 선택 시 닫힘
-    if(!moment(e).isSame(this.selectDate) && !this._bsConfig.withTimepicker) this.open = false;
-    this.selectDate = e;
-    this.selectDateChange.emit(this.selectDate);
+    if(!moment(e).isSame(this._selectDate) && !this._bsConfig.withTimepicker) {
+      this.open = false;
+    }
+
+    this._selectDate = e;
+    this.selectDateChange.emit(e);
     this.cd.detectChanges();
   }
   deleteDate(): void {
-    this.selectDateChange.emit('');
+    this.open = false;
+    this.selectDateChange.emit(undefined);
+    this.cd.detectChanges();
   }
 }
 

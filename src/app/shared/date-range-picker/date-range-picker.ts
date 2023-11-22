@@ -25,7 +25,7 @@ interface IRange {
 @Component({
   selector: 'date-range-picker',
   templateUrl: './date-range-picker.template.html',
-  styleUrls: ['./date-range-picker.style.scss'],
+  styleUrls: ['../date-picker/date-picker.style.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class DateRangePickerComponent implements OnInit {
@@ -38,10 +38,16 @@ export class DateRangePickerComponent implements OnInit {
   @Input() locale: string = 'kr'; // en cn kr 캘린더 언어
 
   @Input() placeholder:string;
-  @Input() selectDate: any // 선택한 날짜 value 전달용
+  _selectDate: any;
   @Output() selectDateChange: EventEmitter<any> = new EventEmitter<any>();
+  @Input() //selectDate: any
+  get selectDate() {
+    return this._selectDate;
+  }
+  set selectDate(value) {
+    this._selectDate = value;
+  }
   calendarDate: any; // calendar에 설정된 실제 날짜
-
   @Input() minDate: Date;
   @Input() maxDate: Date;
   @Input() outsideClick:boolean = true;
@@ -154,26 +160,26 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   changeDate(e:any): void {
+
     // changeDate 이벤트는 bs-datepicker가 열릴 때마다 호출됨
     // time-picker가 없을 경우 날짜 선택 시 닫힘
-    console.log(e, '---------',this.selectDate);
-    if(!this.selectDate) { this.open = false; }
-    else {
-      if(moment(e[0]).isSame(this.selectDate[0]) && moment(e[1]).isSame(this.selectDate[1])) return;
+    if(this._selectDate && this._selectDate.length === 2) {
+      //값을 갖고 들어온 경우 return;
+      if(moment(e[0]).isSame(this._selectDate[0]) && moment(e[1]).isSame(this._selectDate[1])) return;
 
     }
-
-    this.selectDate = e;
-    this.selectDateChange.emit(this.selectDate);
-    if(!this._bsConfig.withTimepicker) this.open = false;
+    this._selectDate = [...e];
+    this.selectDateChange.emit(e);
     this.cd.detectChanges();
+
+    if(!this._bsConfig.withTimepicker) {
+      this.open = false;
+    }
   }
   deleteDate(): void {
-    this.selectDateChange.emit('');
-  }
-  closePopup() {
-    console.log(this.selectDate);
     this.open = false;
+    this.selectDateChange.emit(undefined);
+    this.cd.detectChanges();
   }
 }
 

@@ -8,18 +8,17 @@
            [placeholder]="placeholder || _bsConfig.dateInputFormat"
            class="form-control"
            [ngClass]="size && size !== '' ? 'form-control-' + size : ''"
-           [ngModel]="selectDate | date : changeDateFormat(_bsConfig.dateInputFormat)"
+           [ngModel]="_selectDate | date : changeDateFormat(_bsConfig.dateInputFormat)"
            (click)="toggleOpen()">
     <span class="clear-btn"
-          *ngIf="selectDate !== undefined"
+          *ngIf="_selectDate !== undefined"
           (click)="deleteDate()">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
     <ng-template cdkConnectedOverlay
-                 position
                  [cdkConnectedOverlayOrigin]="d1"
                  [cdkConnectedOverlayOpen]="open">
-      <bs-datepicker-inline [bsValue]="selectDate"
+      <bs-datepicker-inline [bsValue]="_selectDate"
                             (bsValueChange)="changeDate($event)"
                             [minDate]="minDate"
                             [maxDate]="maxDate"

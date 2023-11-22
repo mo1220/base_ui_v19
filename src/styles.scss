@@ -827,7 +827,170 @@ $font-sizes: (
 date-picker {
   display: block;
 }
+@import 'src/app/shared/date-picker/date-picker.style.scss';
 
+$timepicker-size: (
+  // 1.input width, 2: input padding, 3: input font-size, 4: input margin-right,
+  // 5: arrow size, 6: arrow btn padding, 7: arrow border size,
+  // 8: arrow up x, 9: arrow down x, 10: arrow left y, 11: arrow right y
+  //    1     2      3     4     5    6    7      8      9      10   11
+  xs:   34px  1.5px  10px  18px  4px  2px  1px    1px    1px    8px  74px,
+  sm:   40px  3.5px  11px  26px  5px  3px  1.5px  1.5px  1.5px  8px  86px,
+  base: 46px  5px    12px  30px  6px  4px  1.5px  2px    2px    8px  98px
+);
+
+//timepicker
+timepicker {
+  .bs-datepicker .bs-timepicker-in-datepicker-container {
+    border: 1px solid #dee2e6;
+    border-top: none;
+  }
+  @each $key, $value in $timepicker-size {
+    &.time-#{$key} {
+      .bs-timepicker-field { // time input
+        width: #{nth($value, 1)} !important;
+        padding: #{nth($value, 2)} calc(#{nth($value, 2)} * 2) !important;
+        font-size: #{nth($value, 3)};
+        margin-right: #{nth($value, 4)};
+        &.is-invalid {
+          background: none;
+        }
+      }
+      .bs-chevron { // timepicker 화살표 커스텀
+        width: #{nth($value, 5)} !important;
+        height: #{nth($value, 5)} !important;
+        border-width: #{nth($value, 7)} 0 0 #{nth($value, 7)} !important;
+      }
+      .btn-link { // timepicker 화살표 버튼 커스텀
+        padding: #{nth($value, 6)} calc(#{nth($value, 6)} * 2);
+        position: absolute;
+        z-index: 1;
+        transition: 0.3s;
+        &:hover {
+          background-color: lighten($primary, 37)
+        }
+      }
+      table tbody{
+        tr:nth-child(2) {
+          td.form-group {
+            position: relative;
+            &:has(.form-control:disabled):hover:after {
+              display: none;
+            }
+            &:nth-child(1) {
+              &:hover:after {
+                content: '스크롤 조절 가능';
+                padding: 2px 4px;
+                border-radius: 3px;
+                background-color: $gray-dark;
+                color: #fff;
+                font-size: 9px;
+                white-space: nowrap;
+                position: absolute;
+                top: -18px;
+                left: 0;
+              }
+              &:has(.is-invalid) {
+                &:after {
+                  content: '잘못된 입력';
+                  padding: 2px 4px;
+                  border-radius: 3px;
+                  background-color: $danger;
+                  color: #fff;
+                  font-size: 9px;
+                  white-space: nowrap;
+                  position: absolute;
+                  top: -18px;
+                  left: 0;
+                }
+              }
+            }
+            &:nth-child(3) {
+              &:hover:after {
+                content: '스크롤로 변경(5분 단위)';
+                padding: 2px 4px;
+                border-radius: 3px;
+                background-color: $gray-dark;
+                color: #fff;
+                font-size: 9px;
+                white-space: nowrap;
+                position: absolute;
+                top: -18px;
+                left: 0;
+              }
+              &:has(.is-invalid) {
+                &:after {
+                  content: '잘못된 입력';
+                  padding: 2px 4px;
+                  border-radius: 3px;
+                  background-color: $danger;
+                  color: #fff;
+                  font-size: 9px;
+                  white-space: nowrap;
+                  position: absolute;
+                  top: -18px;
+                  left: 0;
+                }
+              }
+            }
+          }
+          td:nth-child(4) {
+            display: inline-block;
+            position: absolute;
+            z-index: -1;
+          }
+          td:nth-child(5) {
+            button { // AM PM
+              font-size: #{nth($value, 3)};
+              padding: 0 5px//calc(#{nth($value, 6)} * 2);
+            }
+          }
+        }
+        tr:nth-of-type(odd) {
+          position: relative;
+          td {
+            display: none;
+            position: absolute;
+            &:first-child { // 좌
+              display: inline-block;
+            }
+            &:nth-child(3) { // 우
+              display: inline-block;
+            }
+          }
+        }
+        tr:first-child { // 위
+          td:first-child {
+            .btn-link {
+              top: #{nth($value, 8)};
+              left: #{nth($value, 10)};
+            }
+          }
+          td:nth-child(3) {
+            .btn-link {
+              top: #{nth($value, 8)};
+              left: #{nth($value, 11)};
+            }
+          }
+        }
+        tr:last-child { //아래
+          td:first-child {
+            .btn-link {
+              bottom: #{nth($value, 9)};
+              left: #{nth($value, 10)};
+            }
+          }
+          td:nth-child(3) {
+            .btn-link {
+              bottom: #{nth($value, 9)};
+              left: #{nth($value, 11)};
+            }
+          }
+        }
+      }
+    }
+  }
+}
 /****************************** EN: ngx-datepicker *************************************************/
 
 /****************************** ST: Mat-chips *************************************************/

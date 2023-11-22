@@ -9,10 +9,10 @@
            [placeholder]="placeholder || _bsConfig.rangeInputFormat"
            class="form-control"
            [ngClass]="size && size !== '' ? 'form-control-' + size : ''"
-           [ngModel]="selectDate | dateRange : _bsConfig.rangeInputFormat"
+           [ngModel]="_selectDate | dateRange : _bsConfig.rangeInputFormat"
            (click)="open = true">
     <span class="clear-btn"
-          *ngIf="selectDate !== undefined"
+          *ngIf="_selectDate !== undefined"
           (click)="deleteDate()">
           <mat-icon class="mat-icon">close</mat-icon>
           </span>
@@ -20,18 +20,18 @@
                  [cdkConnectedOverlayOrigin]="d1"
                  [cdkConnectedOverlayOpen]="open">
       <div>
-        <bs-daterangepicker-inline [bsValue]="selectDate"
+        <bs-daterangepicker-inline [bsValue]="_selectDate"
                                    (bsValueChange)="changeDate($event)"
                                    [minDate]="minDate"
                                    [maxDate]="maxDate"
                                    [bsConfig]="_bsConfig">
         </bs-daterangepicker-inline>
-        <div style="padding:5px 15px; background:#FFF; text-align: right;">
-          {{open}}
-          <button class="btn btn-primary btn-sm" (click)="closePopup()">
-            {{'buttons.close' | translate}}
-          </button>
-        </div>
+<!--        <div style="padding:5px 15px; background:#FFF; text-align: right;">-->
+<!--          {{open}}-->
+<!--          <button class="btn btn-primary btn-sm" (click)="closePopup()">-->
+<!--            {{'buttons.close' | translate}}-->
+<!--          </button>-->
+<!--        </div>-->
       </div>
       <div *ngIf="open"
            class="overlay-bg"
