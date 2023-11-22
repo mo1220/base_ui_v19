@@ -360,6 +360,9 @@ label.btn-split {
       margin-inline-end: $input-btn-padding-x-xs;
     }
   }
+  &:disabled {
+    opacity: .6;
+  }
 }
 
 .form-box { // icon, clear-btn은 form-box 안에

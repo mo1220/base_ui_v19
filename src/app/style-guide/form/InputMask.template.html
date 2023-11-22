@@ -10,7 +10,6 @@
                       placeholder="99-999999"></input-mask>
         </div>
 
-
         <div class="style-guide-example" *ngSwitchCase="'size'">
           <label class="font-bold block mb-1">X Small</label>
           <input-mask mask="99-999999" [(ngModel)]="value"
@@ -56,17 +55,33 @@
         </div>
 
         <div class="style-guide-example" *ngSwitchCase="'disabled'">
-          <input-mask mask="999-99-9999"
-                      placeholder="999-99-9999"
-                      [(ngModel)]="value"
-                      [disabled]="true"></input-mask>
+          <div class="form-group mb-3">
+            <label style="display: block;" [for]="'disabled'" class="mb-1">Disabled</label>
+            <input-mask mask="999-99-9999"
+                        placeholder="999-99-9999"
+                        [(ngModel)]="value"
+                        [disabled]="true"></input-mask>
+          </div>
+          <div class="form-group">
+            <label style="display: block;" [for]="'readonly'" class="mb-1">ReadOnly</label>
+            <input-mask mask="999-99-9999"
+                        placeholder="999-99-9999"
+                        [(ngModel)]="value"
+                        [readonly]="true"></input-mask>
+          </div>
         </div>
 
         <div class="style-guide-example" *ngSwitchCase="'invalid'">
-          <input-mask mask="999-99-9999"
-                      placeholder="999-99-9999"
-                      [(ngModel)]="value"
-                      class="ng-invalid ng-dirty"></input-mask>
+          <div class="form-group mb-1">
+            <label>Invalid</label>
+            <input-mask mask="999-99-9999"
+                        placeholder="999-99-9999"
+                        [styleClass]="invalid == '' ? 'is-invalid' : ''"
+                        (ngModelChange)="changeValue($event)"
+                        [(ngModel)]="value"></input-mask>
+            <span class="invalid-feedback"
+                  [style.display]="invalid == '' ? 'block': 'none'">필수 입력</span>
+          </div>
         </div>
       </ng-container>
     </ng-container>

@@ -314,12 +314,27 @@
         </div>
 
         <div class="style-guide-example" *ngSwitchCase="'invalid'">
-          <input-number inputId="integeronly" class="ng-invalid ng-dirty" [(ngModel)]="value"> </input-number>
+          <div class="form-group mb-1">
+            <label [for]="'invalid'" style="display: block;" class="mb-1">Invalid</label>
+            <input-number inputId="invalid"
+                          [styleClass]="invalid == '' ? 'is-invalid' : ''"
+                          class="ng-invalid ng-dirty"
+                          (ngModelChange)="changeValue($event)"
+                          [(ngModel)]="value"> </input-number>
+            <span class="invalid-feedback"
+                  [style.display]="invalid == '' ? 'block': 'none'">필수 입력</span>
+          </div>
         </div>
 
         <div class="style-guide-example" *ngSwitchCase="'disabled'">
-          <input-number inputId="integeronly" [disabled]="true" prefix="%" [(ngModel)]="value"> </input-number>
-
+          <div class="form-group mb-3">
+            <label style="display: block;" [for]="'disabled'" class="mb-1">Disabled</label>
+            <input-number inputId="disabled" [disabled]="true" suffix="%" [(ngModel)]="value"> </input-number>
+          </div>
+          <div class="form-group">
+            <label style="display: block;" [for]="'readonly'" class="mb-1">ReadOnly</label>
+            <input-number inputId="readonly" [readonly]="true" suffix="%" [(ngModel)]="value"> </input-number>
+          </div>
         </div>
       </ng-container>
     </ng-container>

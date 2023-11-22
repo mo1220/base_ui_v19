@@ -50,13 +50,13 @@ export class StyleGuideInputMaskComponent implements AfterViewInit, OnDestroy {
       anchor: 'optional',
     },
     {
-      title: 'Disabled',
+      title: 'Disabled & ReadOnly',
       desc: `비활성화된 경우 요소를 편집하고 집중할 수 없습니다.`,
       anchor: 'disabled',
     },
     {
       title: 'Invalid',
-      desc: `실패한 유효성 검사를 나타내기 위해 <code>ng-invalid</code> 및 <code>ng-dirty</code> 클래스를 사용하여 잘못된 상태 스타일이 추가됩니다.`,
+      desc: `실패한 유효성 검사를 나타내기 위해 <code>[styleClass]="'is-invalid'"</code> 클래스를 사용하여 잘못된 상태 스타일이 추가됩니다.`,
       anchor: 'invalid',
     },
   ];
@@ -65,6 +65,8 @@ export class StyleGuideInputMaskComponent implements AfterViewInit, OnDestroy {
   value1: string | undefined;
   value2: string | undefined;
   value3: string | undefined;
+
+  invalid = '';
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -76,5 +78,9 @@ export class StyleGuideInputMaskComponent implements AfterViewInit, OnDestroy {
     this.cd.detectChanges();
   }
 
+  changeValue(e: any) {
+    console.log(e);
+    this.invalid = e !== '' ? 'invalid' : '';
+  }
   ngOnDestroy(): void { }
 }

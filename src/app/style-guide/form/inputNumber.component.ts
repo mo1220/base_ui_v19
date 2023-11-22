@@ -55,12 +55,12 @@ export class StyleGuideInputNumberComponent implements AfterViewInit, OnDestroy 
     },
     {
       title: 'Invalid',
-      desc: `실패한 유효성 검사를 나타내기 위해 <code>ng-invalid</code> 및 <code>ng-dirty</code> 클래스를 사용하여 잘못된 상태 스타일이 추가됩니다.`,
+      desc: `실패한 유효성 검사를 나타내기 위해 <code>[styleClass]="'is-invalid'"</code> 클래스를 사용하여 잘못된 상태 스타일이 추가됩니다.`,
       anchor: 'invalid',
     },
     {
-      title: 'Disabled',
-      desc: `비활성화된 경우 요소를 편집하고 집중할 수 없습니다. <code>[disabled]</code>`,
+      title: 'Disabled & ReadOnly',
+      desc: `비활성화된 경우 요소를 편집하고 집중할 수 없습니다. <code>[disabled]="boolean" [readonly]="boolean"</code>`,
       anchor: 'disabled',
     }
   ];
@@ -99,6 +99,7 @@ export class StyleGuideInputNumberComponent implements AfterViewInit, OnDestroy 
     value3: 25
   }
   value = 20;
+  invalid = '';
   constructor(
     private cd: ChangeDetectorRef,
     private translate: TranslateService,
@@ -110,6 +111,10 @@ export class StyleGuideInputNumberComponent implements AfterViewInit, OnDestroy 
   }
   ngAfterViewInit(): void {
     this.cd.detectChanges();
+  }
+
+  changeValue(e: any) {
+    this.invalid = e !== null ? 'invalid' : '';
   }
 
   ngOnDestroy(): void { }
