@@ -1,10 +1,14 @@
 @import "styles-variables";
 // 첫번째는 체크박스 사이즈 두번째는 라벨 폰트 사이즈 check width 네번째는 check height
-$check-sizes: (
-  xs: 10 $font-size-xs 5,
-  sm: 12 $font-size-sm 6,
-  lg: 19 $font-size-lg 10,
-  xl: 22 $font-size-xl 14
+$checkbox-default-size: 16px;
+$checkbox-default-color: #424242;
+$checkbox-border-color: #d7d7d7;
+$checkbox-border-color: #d7d7d7;
+$checkbox-sizes: (
+  xs: 10px $font-size-xs 5px 20px 1px,
+  sm: 12px $font-size-sm 6px 20px 2px,
+  lg: 19px $font-size-lg 10px 30px 4px,
+  xl: 22px $font-size-xl 11px 36px 5px
 );
 
 // 첫번째는 라디오 사이즈 두번째는 라벨 폰트 사이즈 안에 원(before)
@@ -37,10 +41,12 @@ $button-size: (
   .mdc-form-field>label {
     padding-left: 3px;
   }
+
   .mat-mdc-radio-touch-target {
     height: 30px;
     width: 30px;
   }
+
   .mat-mdc-radio-button {
     margin-left: -3px;
     margin-right: 15px;
@@ -68,11 +74,9 @@ $button-size: (
       --mdc-radio-unselected-pressed-icon-color: #d7d7d7;
       --mat-radio-disabled-label-color: rgba(0, 0, 0, 0.38);
     }
-
     label {
       cursor: pointer;
     }
-
     // 라디오 버튼 컬러
     @each $key, $color in $colors {
       &.mat-radio-#{$key} {
@@ -90,7 +94,6 @@ $button-size: (
         }
       }
     }
-
     @each $key, $value in $radio-sizes {
       &.mat-radio-#{$key} {
         .mdc-radio {
@@ -204,6 +207,123 @@ $button-size: (
   .mat-mdc-autocomplete-panel {
     box-shadow: $box-shadow;
   }
+
+  /****************************** ST: Mat-checkbox *************************************************/
+
+
+/*
+  .mat-mdc-checkbox {
+    margin-left: -6.4px;
+    margin-right: 15px;
+  }
+*/
+
+  .mat-mdc-checkbox-touch-target {
+    height: 30px;
+    width: 30px;
+  }
+
+  .mat-mdc-checkbox {
+    margin-left: -3px;
+    margin-right: 15px;
+    --mdc-checkbox-disabled-selected-icon-color: rgba(0, 0, 0, 0.38);
+    --mdc-checkbox-disabled-unselected-icon-color: rgba(0, 0, 0, 0.38);
+    --mdc-checkbox-selected-checkmark-color: #fff;
+    --mdc-checkbox-selected-focus-icon-color: #{$checkbox-default-color};
+    --mdc-checkbox-selected-hover-icon-color: #{$checkbox-default-color};
+    --mdc-checkbox-selected-icon-color: #{$checkbox-default-color};
+    --mdc-checkbox-selected-pressed-icon-color: #{$checkbox-default-color};
+    --mdc-checkbox-unselected-focus-icon-color: #{$checkbox-border-color};
+    --mdc-checkbox-unselected-hover-icon-color: #{$checkbox-border-color};
+    --mdc-checkbox-unselected-icon-color: #{$checkbox-border-color};
+    --mdc-checkbox-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
+    --mdc-checkbox-selected-focus-state-layer-color: #{$checkbox-default-color};
+    --mdc-checkbox-selected-hover-state-layer-color: #{$checkbox-default-color};
+    --mdc-checkbox-selected-pressed-state-layer-color: #{$checkbox-default-color};
+    --mdc-checkbox-unselected-focus-state-layer-color: #{$checkbox-border-color};
+    --mdc-checkbox-unselected-hover-state-layer-color: #{$checkbox-border-color};
+    --mdc-checkbox-unselected-pressed-state-layer-color: #{$checkbox-border-color};
+
+    &.mat-checkbox-rounded {
+      .mdc-checkbox__background {
+        border-radius: 50%;
+      }
+    }
+
+    .mdc-checkbox {
+      width: $checkbox-default-size;
+      height: $checkbox-default-size;
+      --mdc-checkbox-state-layer-size: 26px;
+    }
+    .mdc-checkbox__background {
+      width: $checkbox-default-size;
+      height: $checkbox-default-size;
+      border-width: 1px;
+      border-radius: 3px;
+      .mdc-checkbox__outer-circle {
+        border-width: 1px;
+      }
+    }
+    .mdc-checkbox__checkmark {
+      transform: scale(.7);
+    }
+    .mdc-checkbox__mixedmark {
+      width: 65%;
+    }
+    label {
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+    // 라디오 버튼 컬러
+    @each $key, $color in $colors {
+      &.mat-checkbox-#{$key} {
+        --mdc-checkbox-selected-focus-icon-color: #{$color};
+        --mdc-checkbox-selected-hover-icon-color: #{$color};
+        --mdc-checkbox-selected-icon-color: #{$color};
+        --mdc-checkbox-selected-pressed-icon-color: #{$color};
+        --mdc-checkbox-selected-focus-state-layer-color: #{$color};
+        --mdc-checkbox-selected-hover-state-layer-color: #{$color};
+        --mdc-checkbox-selected-pressed-state-layer-color: #{$color};
+        label:hover {
+          color: $color;
+        }
+      }
+    }
+    @each $key, $value in $checkbox-sizes {
+      &.mat-checkbox-#{$key} {
+        .mat-mdc-checkbox-touch-target {
+          width: #{nth($value, 4)};
+          height: #{nth($value, 4)};
+        }
+        .mdc-checkbox {
+          width: #{nth($value, 1)};
+          height: #{nth($value, 1)};
+          flex: 0 0 #{nth($value, 1)};
+          --mdc-checkbox-state-layer-size: #{nth($value, 4)};
+        }
+
+        .mdc-checkbox__native-control {
+          top: calc(-1 * (var(--mdc-checkbox-state-layer-size) - #{nth($value, 1)}) / 2) !important;
+          left: calc(-1 * (var(--mdc-checkbox-state-layer-size) - (#{nth($value, 1)} + 1px)) / 2) !important;
+          right: unset;
+        }
+
+        .mdc-checkbox__background {
+          width: #{nth($value, 1)};
+          height: #{nth($value, 1)};
+          border-radius: #{nth($value, 5)};
+          .mdc-checkbox__outer-circle {
+            border-width: 1px;
+          }
+        }
+        label {
+          font-size: #{nth($value, 2)};
+        }
+      }
+    }
+  }
+  /****************************** EN: Mat-checkbox *************************************************/
 }
 
 

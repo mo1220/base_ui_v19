@@ -16,10 +16,9 @@
     <div class="style-guide-example d-flex alignC">
       <code style="width: 70px">Material</code>
       <div class="form-group flex">
-        <mat-checkbox class="matcheckbox"
+        <mat-checkbox [ngClass]="item.color ? 'mat-checkbox-' + item.color : ''"
                       *ngFor="let item of checkList.sublist"
                       [(ngModel)]="item.checked"
-                      [color]="item.color"
                       (ngModelChange)="updateAllComplete()">
           {{item.name}}
         </mat-checkbox>
@@ -32,6 +31,8 @@
       <div style="flex:1">
         <code>magic input</code>
         <div class="form-group flex" style="align-items: center">
+          <input id="x-small-size" type="checkbox" class="mgc mgc-xs mgc-primary" checked />
+          <label for="x-small-size">x small</label>
           <input id="small-size" type="checkbox" class="mgc mgc-sm mgc-primary" checked />
           <label for="small-size">small</label>
           <input id="default-size" type="checkbox" class="mgc mgc-primary" checked />
@@ -43,9 +44,10 @@
       <div style="flex: 1">
         <code>material</code>
         <div class="form-group flex">
-          <mat-checkbox class="matcheckbox-sm" [color]="'primary'">small</mat-checkbox>
-          <mat-checkbox class="matcheckbox" [color]="'primary'">default</mat-checkbox>
-          <mat-checkbox class="matcheckbox-lg" [color]="'primary'">large</mat-checkbox>
+          <mat-checkbox class="mat-checkbox-xs">X Small</mat-checkbox>
+          <mat-checkbox class="mat-checkbox-sm">small</mat-checkbox>
+          <mat-checkbox class="mat-checkbox">default</mat-checkbox>
+          <mat-checkbox class="mat-checkbox-lg">large</mat-checkbox>
         </div>
       </div>
     </div>
@@ -65,10 +67,10 @@
     </div>
     <div class="style-guide-example d-flex alignC">
       <code style="width: 70px">Material</code>
-      <mat-checkbox class="matcheckbox matcheckbox-rounded"
+      <mat-checkbox class="mat-checkbox-rounded"
                     *ngFor="let item of checkList.sublist"
                     [(ngModel)]="item.checked"
-                    [color]="item.color"
+                    [ngClass]="item.color ? 'mat-checkbox-' + item.color : ''"
                     (ngModelChange)="updateAllComplete()">
         {{item.name}}
       </mat-checkbox>
@@ -80,9 +82,9 @@
       <code>Material</code>
       <ul class="checkbox-group">
         <li class="select-all">
-          <mat-checkbox class="matcheckbox"
-                        [checked]="checkList.checked"
-                        [color]="checkList.color"
+          <mat-checkbox [checked]="checkList.checked"
+                        [ngClass]="checkList.color ? 'mat-checkbox-' + checkList.color : ''"
+                        [color]=""
                         [indeterminate]="someComplete()"
                         (change)="setAll($event.checked)">
             {{checkList.name}}
@@ -91,7 +93,7 @@
         <li *ngFor="let item of checkList.sublist">
           <mat-checkbox class="matcheckbox-sm"
                         [(ngModel)]="item.checked"
-                        [color]="item.color"
+                        [ngClass]="item.color ? 'mat-checkbox-' + item.color : ''"
                         (ngModelChange)="updateAllComplete()">
             {{item.name}}
           </mat-checkbox>
@@ -116,10 +118,10 @@
     <div class="style-guide-example d-flex alignC">
       <code style="width: 70px">Material</code>
       <div class="form-group flex">
-        <mat-checkbox class="matcheckbox matcheckbox-rounded"
+        <mat-checkbox class="mat-checkbox-rounded"
                       *ngFor="let item of checkList.sublist"
                       [(ngModel)]="item.checked"
-                      [color]="item.color"
+                      [ngClass]="item.color ? 'mat-checkbox-' + item.color : ''"
                       [disabled]="true">
           {{item.name}}
         </mat-checkbox>
@@ -146,13 +148,9 @@
           <mat-slide-toggle
             class="mat-slide-toggle"
             [color]="'primary'"
-            [checked]="'checked'"
             [disabled]="false">
             Slide me!
           </mat-slide-toggle>
-<!--          <mat-checkbox class="matcheckbox-sm" [color]="'primary'">small</mat-checkbox>-->
-<!--          <mat-checkbox class="matcheckbox" [color]="'primary'">default</mat-checkbox>-->
-<!--          <mat-checkbox class="matcheckbox-lg" [color]="'primary'">large</mat-checkbox>-->
         </div>
       </div>
     </div>

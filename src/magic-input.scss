@@ -1,10 +1,10 @@
 @import "styles-variables";
 // 첫번째는 체크박스 사이즈 두번째는 라벨 폰트 사이즈 check width 네번째는 check height
 $check-sizes: (
-  xs: 10 $font-size-xs 5,
-  sm: 12 $font-size-sm 6,
-  lg: 19 $font-size-lg 10,
-  xl: 22 $font-size-xl 14
+  xs: 10 $font-size-xs 5.5px 3.5px 2px 1.5px,
+  sm: 12 $font-size-sm 6px 4px 2.5px 2.5px,
+  lg: 19 $font-size-lg 12px 7px 3px 3px,
+  xl: 22 $font-size-xl 14px 9px 3px 3px
 );
 
 // 첫번째는 라디오 사이즈 두번째는 라벨 폰트 사이즈 안에 원(before)
@@ -23,7 +23,7 @@ $radio-sizes: (
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  margin: 0.2rem 0.4rem 0 0; //-0.15px 3px 0 0;
+  margin: 0 0.4rem 0 0; // 0.2rem 0.4rem 0 0; //-0.15px 3px 0 0;
   vertical-align: text-bottom;
   border-radius: 3px;
   transition: background-color 0.25s;
@@ -33,8 +33,8 @@ $radio-sizes: (
   &:checked:after {
     content: '';
     display: block;
-    height: 4px;
-    width: 7px;
+    height: 5px;
+    width: 9px;
     border: 0 solid #FFF;
     border-width: 0 0 2px 2px;
     transform: rotate(-45deg);
@@ -57,12 +57,16 @@ $radio-sizes: (
     &.mgc-#{$key} {
       width: #{nth($size, 1)}  + px;
       height: #{nth($size, 1)} + px;
+
       & + label {
         font-size: #{nth($size, 2)};
       }
+
       &:checked:after {
-        width: #{nth($size, 3)} + px;
-        height: #{nth($size, 3)} + px;
+        width: #{nth($size, 3)};
+        height: #{nth($size, 4)};
+        top: #{nth($size, 5)};
+        left: #{nth($size, 6)};
       }
     }
   }
@@ -86,32 +90,6 @@ $radio-sizes: (
 .mgc-circle {
   border-radius: 50%;
 }
-
-.mgc-sm {
-  width: 12px;
-  height: 12px;
-}
-
-.mgc-sm:checked:after {
-  top: 3px;
-  left: 2px;
-  height: 3px;
-  width: 6px;
-}
-
-.mgc-lg {
-  width: 19px;
-  height: 19px;
-}
-
-.mgc-lg:checked:after {
-  top: 5px;
-  left: 3px;
-  height: 5px;
-  width: 10px;
-}
-
-
 
 input[type="radio"].mgr {
   position: relative;
