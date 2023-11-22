@@ -38,7 +38,7 @@ export class StyleGuideKeyFilterComponent implements AfterViewInit, OnDestroy {
   value: string | undefined;
 
   invalid = '';
-  blockSpace: RegExp = /[^s]/;
+  blockSpace: RegExp = /[^\s]/;
   blockChars: RegExp = /^[^<>*!]+$/;
 
   constructor(

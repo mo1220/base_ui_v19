@@ -54,13 +54,13 @@
             <div class="form-group flex1 me-3">
               <label for="blockspace" class="font-bold block mb-2"> Block Space </label>
               <input id="blockspace" [keyFilter]="blockSpace"
-                     placeholder="정규식 /[^s]/ <-- 인데 스페이스 바가 먹는다!"
+                     placeholder="정규식 /[^\s]/ 스페이스바 제거"
                      class="form-control" />
             </div>
             <div class="form-group flex1">
               <label for="block" class="font-bold block mb-2"> Block < > * ! </label>
               <input id="block" [keyFilter]="blockChars"
-                     placeholder="정규식 /^[^<>*!]+$/"
+                     placeholder="정규식 /^[^<>*!]+$/ <>*! 입력 안됌"
                      class="form-control" />
             </div>
           </div>
