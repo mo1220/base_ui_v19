@@ -15,3 +15,26 @@ export class DateRangePipe implements PipeTransform {
     else return;
   }
 }
+
+
+@Pipe({ name: 'timeForToday' })
+export class TimeForTodayPipe implements PipeTransform {
+  transform(value: any, format?:string ): string {
+    const today = new Date();
+    let timeValue = new Date(value);
+    const betweenTime = Math.floor((today.getTime() - (timeValue.getTime())) / 1000 / 60);
+    if (betweenTime < 1) return '방금전';
+    if (betweenTime < 60) {
+      return `${betweenTime}분전`;
+    }
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+      return `${betweenTimeHour}시간전`;
+    }
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 10) {
+      return `${betweenTimeDay}일전`;
+    }
+    return format ? `${moment(value).format(format)}` : `${moment(value).format('YYYY-MM-DD HH:mm:ss')}`;
+  }
+}

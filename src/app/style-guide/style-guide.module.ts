@@ -31,6 +31,10 @@ import { StyleGuideRadioButtonComponent } from './form/RadioButton.component';
 import { StyleGuideRatingComponent } from './form/Rating.component';
 import { StyleGuideSelectComponent } from './form/Select.component';
 import { StyleGuideSliderComponent } from './form/Slider.component';
+import { StyleGuideInputMaskComponent } from './form/InputMask.component';
+import { StyleGuideInputNumberComponent } from './form/inputNumber.component';
+import { StyleGuideKeyFilterComponent } from './form/KeyFilter.component';
+
 // Menu
 import { StyleGuideBreadcrumbComponent } from './menu/Breadcrumb.component';
 import { StyleGuideContextMenuComponent } from './menu/ContextMenu.component';
@@ -49,11 +53,10 @@ import { StyleGuideDividerComponent } from './panel/Divider.component';
 import { StyleGuideSplitterComponent } from './panel/Splitter.component';
 // typography
 import { StyleGuideTypographyComponent } from './typography/typography.component';
-import {AsideMenuRightComponent} from "./aside-menu-right/aside-menu-right.component";
-import {CdkAccordionModule} from "@angular/cdk/accordion";
-import {StyleGuideGridsterComponent} from "./panel/Gridster.component";
-import {NgSelectModule} from "@ng-select/ng-select";
-
+import {AsideMenuRightComponent} from './aside-menu-right/aside-menu-right.component';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import {StyleGuideGridsterComponent} from './panel/Gridster.component';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -88,6 +91,9 @@ import {NgSelectModule} from "@ng-select/ng-select";
     StyleGuideRatingComponent,
     StyleGuideSelectComponent,
     StyleGuideSliderComponent,
+    StyleGuideInputMaskComponent,
+    StyleGuideInputNumberComponent,
+    StyleGuideKeyFilterComponent,
     // Menu
     StyleGuideBreadcrumbComponent,
     StyleGuideContextMenuComponent,

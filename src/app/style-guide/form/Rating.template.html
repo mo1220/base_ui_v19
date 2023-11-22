@@ -6,14 +6,14 @@
       <ng-container [ngSwitch]="menu.anchor">
         <!--ST: 베이직 페이지 네이션 -->
         <div class="style-guide-example" *ngSwitchCase="'basic'">
-          <h3>Readonly</h3>
+          <h4>Readonly</h4>
           <p>읽기 전용 일때</p>
           <div class="form-group flex">
             <label class="wd-80">읽기 전용</label>
             <rating [(ngModel)]="rate" [max]="max" [readonly]="true"></rating>
           </div>
-
-          <h3>Not Readonly</h3>
+          <hr />
+          <h4>Not Readonly</h4>
           <p>입력을 받을때</p>
           <div class="form-group flex">
             <label class="wd-80">입력 전용</label>

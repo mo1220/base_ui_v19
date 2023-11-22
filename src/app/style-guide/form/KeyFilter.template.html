@@ -1,0 +1,74 @@
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <ng-container *ngFor="let menu of menus;">
+      <h3 #anchors>{{ menu.title }}</h3>
+      <p [innerHTML]="menu.desc | safeHtml"></p>
+      <ng-container [ngSwitch]="menu.anchor">
+        <!--ST: 베이직 페이지 네이션 -->
+        <div class="style-guide-example" *ngSwitchCase="'presets'">
+          <div class="form-grid mb-4">
+            <div class="form-group flex1 me-3">
+              <label for="integer" class="font-bold block mb-2"> Integer </label>
+              <input class="form-control"
+                     placeholder="Integer만 입력 됨"
+                     id="integer" keyFilter="int" />
+            </div>
+            <div class="form-group flex1 me-3">
+              <label for="number" class="font-bold block mb-2"> Number </label>
+              <input class="form-control"
+                     placeholder="숫자만 입력 됨"
+                     id="number"
+                     keyFilter="num" />
+            </div>
+            <div class="form-group flex1">
+              <label for="money" class="font-bold block mb-2"> Money </label>
+              <input class="form-control"
+                     placeholder="숫자만 입력 됨"
+                     id="money" keyFilter="money" />
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group flex1 me-3">
+              <label for="hex" class="font-bold block mb-2"> Hex </label>
+              <input class="form-control"
+                     placeholder="숫자,A,B,C,D,E,F 만 입력 됨"
+                     id="hex" keyFilter="hex" />
+            </div>
+            <div class="form-group flex1 me-3">
+              <label for="alphabetic" class="font-bold block mb-2"> Alphabetic </label>
+              <input class="form-control"
+                     placeholder="알파벳만 입력 됨"
+                     id="alphabetic" keyFilter="alpha" />
+            </div>
+            <div class="form-group flex1">
+              <label for="alphanumeric" class="font-bold block mb-2"> Alphanumeric </label>
+              <input class="form-control"
+                     placeholder="알파벳, 숫자만 입력 됨"
+                     id="alphanumeric" keyFilter="alphanum" />
+            </div>
+          </div>
+        </div>
+
+        <div class="style-guide-example" *ngSwitchCase="'regex'">
+          <div class="form-grid">
+            <div class="form-group flex1 me-3">
+              <label for="blockspace" class="font-bold block mb-2"> Block Space </label>
+              <input id="blockspace" [keyFilter]="blockSpace"
+                     placeholder="정규식 /[^\s]/ 스페이스바 제거"
+                     class="form-control" />
+            </div>
+            <div class="form-group flex1">
+              <label for="block" class="font-bold block mb-2"> Block < > * ! </label>
+              <input id="block" [keyFilter]="blockChars"
+                     placeholder="정규식 /^[^<>*!]+$/ <>*! 입력 안됌"
+                     class="form-control" />
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <aside-menu-right [menu]="menus"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

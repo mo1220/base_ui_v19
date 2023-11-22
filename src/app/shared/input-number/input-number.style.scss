@@ -1,0 +1,120 @@
+@import '../../../styles-variables.scss';
+
+$btn-sizes: (
+  xs: $font-size-xs $border-radius-xs 6.5px,
+  sm: $font-size-sm $border-radius-sm 10px,
+  lg: $font-size-lg $border-radius-lg 14px,
+  xl: $font-size-xl $border-radius-xl 18px
+);
+
+.input-number {
+  display: inline-flex;
+  width: 100%;
+  &-input {
+    flex: 1 1 auto;
+  }
+
+  &-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    padding:0 11px;
+    border-radius: $border-radius;
+    height: auto;
+    background: $primary;
+    color: rgba(255,255,255, .75);
+    &:hover {
+      color: #FFF;
+    }
+    // 버튼 사이즈
+    @each $key, $value in $btn-sizes {
+      &.btn-#{$key} {
+        font-size: #{nth($value, 1)};
+        border-radius: #{nth($value, 2)};
+        padding: 0 #{nth($value, 3)}
+      }
+    }
+  }
+  &-buttons {
+
+    &-stacked {
+      .input-number-input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      .input-number-button-group {
+        display: flex;
+        flex-direction: column;
+        button {
+          &.input-number-button {
+            flex: 1 1 auto;
+          }
+          &.input-number-button-up {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom:1px solid rgba(0,0,0, .05);
+          }
+          &.input-number-button-down {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 0;
+            padding: 0;
+            border-top:1px solid rgba(255,255,255, .2);
+          }
+        }
+      }
+    }
+
+    &-horizontal {
+      .input-number-input {
+        order: 2;
+        border-radius: 0;
+      }
+
+      button {
+        height: auto;
+        &.input-number-button-up {
+          order: 3;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          height: auto;
+        }
+        &.input-number-button-down {
+          order: 1;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          height: auto;
+        }
+      }
+    }
+
+    &-vertical {
+      flex-direction: column;
+      .input-number-input {
+        order: 2;
+        border-radius: 0;
+        text-align: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      button {
+        padding: 5px 0;
+        &.input-number-button-up {
+          order: 1;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          width: 100%;
+        }
+        &.input-number-button-down {
+          order: 3;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

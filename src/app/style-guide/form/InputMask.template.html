@@ -1,0 +1,93 @@
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <ng-container *ngFor="let menu of menus;">
+      <h3 #anchors>{{ menu.title }}</h3>
+      <p [innerHTML]="menu.desc | safeHtml"></p>
+      <ng-container [ngSwitch]="menu.anchor">
+        <!--ST: 베이직 페이지 네이션 -->
+        <div class="style-guide-example" *ngSwitchCase="'basic'">
+          <input-mask mask="99-999999" [(ngModel)]="value"
+                      placeholder="99-999999"></input-mask>
+        </div>
+
+        <div class="style-guide-example" *ngSwitchCase="'size'">
+          <label class="font-bold block mb-1">X Small</label>
+          <input-mask mask="99-999999" [(ngModel)]="value"
+                      [size]="'xs'"
+                      placeholder="99-999999"></input-mask>
+          <label class="font-bold block mb-1 mt-2">Small</label>
+          <input-mask mask="99-999999" [(ngModel)]="value"
+                      [size]="'sm'"
+                      placeholder="99-999999"></input-mask>
+          <label class="font-bold block mb-1 mt-2">Default</label>
+          <input-mask mask="99-999999" [(ngModel)]="value"
+                      placeholder="99-999999"></input-mask>
+          <label class="font-bold block mb-1 mt-2">Large</label>
+          <input-mask mask="99-999999" [(ngModel)]="value"
+                      [size]="'lg'"
+                      placeholder="99-999999"></input-mask>
+          <!--<label class="font-bold block mb-2">X Large</label>
+          <input-mask mask="99-999999" [(ngModel)]="value"
+                      [size]="'xl'"
+                      placeholder="99-999999"></input-mask>-->
+        </div>
+
+        <div class="style-guide-example" *ngSwitchCase="'mask'">
+          <label class="font-bold block mb-2">SSN</label>
+          <input-mask mask="999-99-9999" [(ngModel)]="value1" placeholder="999-99-9999"></input-mask>
+          <label class="font-bold block mb-2">Phone</label>
+          <input-mask mask="(999) 999-9999" [(ngModel)]="value2" placeholder="(999) 999-9999"></input-mask>
+          <label class="font-bold block mb-2">Serial Number</label>
+          <input-mask mask="a*-999-a999" [(ngModel)]="value3" placeholder="a*-999-a999"></input-mask>
+        </div>
+
+        <div class="style-guide-example" *ngSwitchCase="'slotChar'">
+          <input-mask [(ngModel)]="value"
+                      mask="99/99/9999"
+                      placeholder="99/99/9999"
+                      slotChar="mm/dd/yyyy"></input-mask>
+        </div>
+
+        <div class="style-guide-example" *ngSwitchCase="'optional'">
+          <input-mask mask="(999) 999-9999? x99999"
+                      [autoClear]="false"
+                      [(ngModel)]="value"
+                      placeholder="(999) 999-9999? x99999"></input-mask>
+        </div>
+
+        <div class="style-guide-example" *ngSwitchCase="'disabled'">
+          <div class="form-group mb-3">
+            <label style="display: block;" [for]="'disabled'" class="mb-1">Disabled</label>
+            <input-mask mask="999-99-9999"
+                        placeholder="999-99-9999"
+                        [(ngModel)]="value"
+                        [disabled]="true"></input-mask>
+          </div>
+          <div class="form-group">
+            <label style="display: block;" [for]="'readonly'" class="mb-1">ReadOnly</label>
+            <input-mask mask="999-99-9999"
+                        placeholder="999-99-9999"
+                        [(ngModel)]="value"
+                        [readonly]="true"></input-mask>
+          </div>
+        </div>
+
+        <div class="style-guide-example" *ngSwitchCase="'invalid'">
+          <div class="form-group mb-1">
+            <label>Invalid</label>
+            <input-mask mask="999-99-9999"
+                        placeholder="999-99-9999"
+                        [styleClass]="invalid == '' ? 'is-invalid' : ''"
+                        (ngModelChange)="changeValue($event)"
+                        [(ngModel)]="value"></input-mask>
+            <span class="invalid-feedback"
+                  [style.display]="invalid == '' ? 'block': 'none'">필수 입력</span>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <aside-menu-right [menu]="menus"
+                    [anchor]="anchors"></aside-menu-right>
+</div>

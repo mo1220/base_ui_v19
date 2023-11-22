@@ -2,64 +2,171 @@
   <div class="component-wrap" #contentWrap>
     <h3 #anchor #basic>Basic</h3>
     <p>클릭 시 자동완성 열림</p>
-    <div class="style-guide-example">
-      <input type="text" class="form-control form-control-sm"
-             #searchInput
-             [placeholder]="'placeholder.keyword_placeholder' | translate"
-             (focus)="onFocus()"
-             [(ngModel)]="searchKeyword"
-             (keyup)="keyupEvent($event)"
-             [matAutocomplete]="auto"/>
-      <div class="auto_complete-wrap">
-        <mat-autocomplete #auto="matAutocomplete"
-                          class="search-auto-complete"
-                          (closed)="onFocusout()" (opened)="onFocus()">
-          <ng-container *ngIf="focused">
-            <ng-container *ngIf="(keywordLoading || filteredList.length === 0) else content">
-              <ng-container *ngIf="keywordLoading else noData">
-                <div class="loading-content" *ngFor="let item of loadingList;">
-                  <ngx-skeleton width="95%" height="18px" margin="10px"></ngx-skeleton>
-                </div>
-              </ng-container>
-              <ng-template #noData>
-                <div class="autocomplete-box-no">
-                  <img src="/assets/images/icon/no-data.svg" alt="no data image" style="width: 50px;"/>
-                  <p>최근검색어/인기검색어 내력이 없습니다.</p>
+    <div class="style-guide-example d-flex col">
+      <!-- ST: Basic -->
+      <div class="d-flex-1 mb-2">
+        <h4 class="mb-1">Mat-option</h4>
+        <button type="button" class="btn btn-sm mb-1"
+                [ngClass]="{ 'btn-primary': keywordLoading, 'btn-secondary': !keywordLoading }"
+                (click)="keywordLoading=!keywordLoading">Toggle Loading
+        </button>
+        <input type="text" class="form-control"
+               #searchInput
+               [placeholder]="'placeholder.keyword_placeholder' | translate"
+               (focus)="onFocus()"
+               [(ngModel)]="searchKeyword"
+               (keyup)="keyupEvent($event)"
+               [matAutocomplete]="auto"/>
+        <div class="autocomplete-wrap">
+          <mat-autocomplete #auto="matAutocomplete"
+                            class="autocomplete"
+                            (closed)="onFocusout()" (opened)="onFocus()">
+            <ng-container *ngIf="focused">
+              <!-- ST: loading || 데이터가 없을 때-->
+              <div class="autocomplete-loading"
+                   *ngIf="(keywordLoading || (inputList$ | async)?.length === 0 ) else content">
+                <ng-container *ngIf="keywordLoading else noData">
+                  <mat-option class="autocomplete-no-data" *ngFor="let item of loadingList;">
+                    <ngx-skeleton width="100%" height="18px" margin="5px 0"></ngx-skeleton>
+                  </mat-option>
+                </ng-container>
+                <ng-template #noData>
+                  <div class="d-flex col justify-content-center align-items-center">
+                    <mat-option class="autocomplete-no-data">
+                      <p class="mt-1">
+                        <span>
+                          <mat-icon class="md-28 wt-700">search</mat-icon>
+                        </span>
+                        <b>{{searchKeyword}}</b> 검색 결과가 없습니다.
+                      </p>
+                    </mat-option>
+                  </div>
+                </ng-template>
+              </div>
+              <!-- EN: loading || 데이터가 없을 때-->
+              <ng-template #content>
+                <!-- ST:  검색어 자동 완성 -->
+                <div class="autocomplete-box">
+                  <mat-option *ngFor="let list of keywordList" [value]="list.val">
+                    <mat-icon class="md-14">search</mat-icon>
+                    <span [innerHTML]="list.label"></span>
+                  </mat-option>
                 </div>
               </ng-template>
             </ng-container>
-
-            <ng-template #content>
-              <!-- ST:  검색어 자동 완성 -->
-              <div class="autocomplete-box">
-                <mat-optgroup *ngFor="let list of filteredList" [label]="list">
-                  <ng-container *ngIf="list.length === 0 else keywordList">
-                    <div class="autocomplete-box-no">검색어 내력이 없습니다.</div>
-                  </ng-container>
-                  <ng-template #keywordList>
-                    <mat-option [value]="list">
-                      <mat-icon class="md-14">search</mat-icon>
-                      <span [innerHTML]="list"></span>
-<!--                      <span class="autocomplete-box-date" *ngIf="list.group === 'history'">{{ word.logtime | timeForToday: 'YYYY-MM-DD HH:mm'}}</span>-->
-                    </mat-option>
-                  </ng-template>
-                </mat-optgroup>
-              </div>
-            </ng-template>
-          </ng-container>
-          <!-- END: 검색어 자동 완성 -->
-        </mat-autocomplete>
+            <!-- END: 검색어 자동 완성 -->
+          </mat-autocomplete>
+        </div>
       </div>
+
+
+      <!-- ST: Mat-optgroup -->
+      <div class="d-flex-1">
+        <h4 class="mb-1">Mat-optgroup</h4>
+        <button type="button" class="btn btn-sm mb-1"
+                [ngClass]="{ 'btn-primary': keywordLoading, 'btn-secondary': !keywordLoading }"
+                (click)="keywordLoading=!keywordLoading">Toggle Loading
+        </button>
+        <input type="text" class="form-control"
+               #searchInput2
+               [placeholder]="'placeholder.keyword_placeholder' | translate"
+               (focus)="onFocus()"
+               [(ngModel)]="searchKeyword"
+               (keyup)="keyupEvent($event)"
+               [matAutocomplete]="autoGroup"/>
+        <div class="autocomplete-wrap">
+          <mat-autocomplete #autoGroup="matAutocomplete"
+                            class="autocomplete"
+                            (optionSelected)="onOptionSelected($event)"
+                            (closed)="onFocusout()" (opened)="onFocus()">
+            <ng-container *ngIf="focused">
+              <!-- ST: loading || 데이터가 없을 때-->
+              <div class="autocomplete-loading"
+                   *ngIf="(keywordLoading || (inputList$ | async)?.length === 0) else content">
+                <ng-container *ngIf="keywordLoading else noData">
+                  <mat-option class="autocomplete-no-data" *ngFor="let item of loadingList;">
+                    <ngx-skeleton width="100%" height="18px" margin="5px 0"></ngx-skeleton>
+                  </mat-option>
+                </ng-container>
+                <ng-template #noData>
+                  <div class="d-flex col justify-content-center align-items-center">
+                    <mat-option class="autocomplete-no-data">
+                      <!-- <img src="/assets/images/icon/no-data.svg" alt="no data image" style="width: 50px;"/>-->
+                      <p class="mt-1">
+                      <span>
+                          <mat-icon class="md-28 wt-700">search</mat-icon>
+                        </span>
+                        <b>{{searchKeyword}}</b> 검색 결과가 없습니다.
+                      </p>
+                    </mat-option>
+                  </div>
+                </ng-template>
+              </div>
+              <!-- EN: loading || 데이터가 없을 때-->
+
+              <ng-template #content>
+                <!-- ST:  검색어 자동 완성 -->
+                <div class="autocomplete-box">
+                  <mat-optgroup *ngFor="let list of keywordGroupList" [label]="list.label">
+                    <ng-container *ngIf="list.length === 0 else contentList">
+                      <div class="autocomplete-box-no">
+                        {{list.label}} 검색어 내력이 없습니다.
+                      </div>
+                    </ng-container>
+                    <ng-template #contentList>
+                      <mat-option *ngFor="let word of list.values" [value]="word.val">
+                        <mat-icon class="md-14">{{list.group === 'history' ? 'schedule' : 'search'}}</mat-icon>
+                        <span [innerHTML]="word.label"></span>
+                        <span class="autocomplete-box-date"
+                              *ngIf="list.group === 'history'">{{ word.logtime | timeForToday: 'YYYY-MM-DD HH:mm'}}</span>
+                      </mat-option>
+                    </ng-template>
+                  </mat-optgroup>
+                </div>
+              </ng-template>
+            </ng-container>
+            <!-- END: 검색어 자동 완성 -->
+          </mat-autocomplete>
+          <!-- ST: Mat-optgroup -->
+        </div>
+      </div>
+      <!-- EN: Basic -->
     </div>
 
-    <h3 #anchor #reactive>Group Autocompl</h3>
+    <h3 #anchor #reactive>Input Auto Complete</h3>
     <p>입력 시 자동완성</p>
     <div class="style-guide-example">
       <input type="text" class="form-control"
              [placeholder]="'placeholder.keyword_placeholder' | translate"
+             (focus)="onFocus()"
+             (keyup)="keyupEvent($event)"
              [(ngModel)]="searchKeyword"
-             [formControl]="control"
-             [matAutocomplete]="auto"/>
+             [matAutocomplete]="inputAuto"/>
+      <mat-autocomplete #inputAuto="matAutocomplete"
+                        class="autocomplete"
+                        (closed)="onFocusout()"
+                        (opened)="onFocus()">
+        <ng-container *ngIf="focused">
+          <mat-option *ngFor="let item of inputList$ | async;  let i=index;"
+                      [value]="item.val"
+                      (mouseup)="onSelectionClick($event, item)"
+                      (mousedown)="onSelectionClick($event, item)"
+                      (onSelectionChange)="onSelectionChange($event, item)">
+            <span [innerHTML]="item.label"></span>
+          </mat-option>
+          <ng-container *ngIf="(inputList$ | async)?.length === 0">
+            <mat-option class="autocomplete-no-data">
+              <p class="mt-1">
+                <span>
+                 <mat-icon class="md-28 wt-700">search</mat-icon>
+               </span>
+                <b>{{searchKeyword}}</b>
+                검색 결과가 없습니다.
+              </p>
+            </mat-option>
+          </ng-container>
+        </ng-container>
+      </mat-autocomplete>
     </div>
   </div>
 
