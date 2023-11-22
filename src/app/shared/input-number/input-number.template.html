@@ -1,17 +1,13 @@
 <!-- [class]="styleClass" -->
 <span
   [ngClass]="{
-      'input-number': true,
       'input-number-buttons-stacked': this.showButtons && this.buttonLayout === 'stacked',
       'input-number-buttons-horizontal': this.showButtons && this.buttonLayout === 'horizontal',
       'input-number-buttons-vertical': this.showButtons && this.buttonLayout === 'vertical'
   }"
-  [ngStyle]="style"
-  [attr.data-pc-name]="'input-number'"
-  [attr.data-pc-section]="'root'">
-  <!--[ngClass]="'input-number-input'"-->
+  class="input-number"
+  [ngStyle]="style">
     <input
-      inputText
       #input
       [attr.id]="inputId"
       role="spinbutton"
@@ -25,10 +21,7 @@
       [disabled]="disabled"
       [readonly]="readonly"
       [attr.placeholder]="placeholder"
-      [attr.aria-label]="ariaLabel"
-      [attr.aria-labelledby]="ariaLabelledBy"
       [attr.title]="title"
-      [attr.size]="size"
       [attr.name]="name"
       [attr.autocomplete]="autocomplete"
       [attr.maxlength]="maxlength"
@@ -44,16 +37,14 @@
       (paste)="onPaste($event)"
       (click)="onInputClick()"
       (focus)="onInputFocus($event)"
-      (blur)="onInputBlur($event)"
-      [attr.data-pc-section]="'input'"
-    />
+      (blur)="onInputBlur($event)" />
   <ng-container *ngIf="showButtons">
     <ng-container *ngIf="buttonLayout === 'stacked'">
       <span class="input-number-button-group">
           <button
             type="button"
             [ngClass]="size && size !== '' ? 'btn-' + size + ' ' + incrementButtonClass : incrementButtonClass"
-            class="button-icon-only bg-primary color-white"
+            class="button-icon-only"
             [class]="'input-number-button input-number-button-up'"
             [disabled]="disabled"
             tabindex="-1"
@@ -64,8 +55,7 @@
             (keyup)="onUpButtonKeyUp()"
             [attr.aria-hidden]="true"
             [attr.data-pc-section]="'incrementbutton'">
-              <span *ngIf="incrementButtonIcon"
-                    [ngClass]="incrementButtonIcon"></span>
+              <i class="fa" *ngIf="incrementButtonIcon" [ngClass]="incrementButtonIcon"></i>
               <ng-container *ngIf="!incrementButtonIcon">
                   <i class="fa fa-caret-up" *ngIf="!incrementButtonIconTemplate"></i>
                   <ng-template *ngTemplateOutlet="incrementButtonIconTemplate"></ng-template>
@@ -74,7 +64,7 @@
           <button
             type="button"
             [ngClass]="size && size !== '' ? 'btn-' + size + ' ' + decrementButtonClass : decrementButtonClass"
-            class="button-icon-only bg-primary color-white"
+            class="button-icon-only"
             [class]="'input-number-button input-number-button-down'"
             [disabled]="disabled"
             tabindex="-1"
@@ -84,9 +74,7 @@
             (mouseleave)="onDownButtonMouseLeave()"
             (keydown)="onDownButtonKeyDown($event)"
             (keyup)="onDownButtonKeyUp()">
-              <span *ngIf="decrementButtonIcon"
-                    [ngClass]="decrementButtonIcon">
-              </span>
+              <i class="fa" *ngIf="decrementButtonIcon" [ngClass]="decrementButtonIcon"></i>
               <ng-container *ngIf="!decrementButtonIcon">
                   <i class="fa fa-caret-down" *ngIf="!decrementButtonIconTemplate"></i>
                   <ng-template *ngTemplateOutlet="decrementButtonIconTemplate"></ng-template>
@@ -98,7 +86,7 @@
       <button
         type="button"
         [ngClass]="size && size !== '' ? 'btn-' + size + ' ' + incrementButtonClass : incrementButtonClass"
-        [class]="'input-number-button input-number-button-up bg-primary color-white'"
+        [class]="'input-number-button input-number-button-up'"
         class="button-icon-only"
         [disabled]="disabled"
         tabindex="-1"
@@ -117,7 +105,7 @@
       <button  type="button"
                [ngClass]="size && size !== '' ? 'btn-' + size + ' ' + decrementButtonClass : decrementButtonClass"
         class="button-icon-only"
-        [class]="'input-number-button input-number-button-down bg-primary color-white'"
+        [class]="'input-number-button input-number-button-down'"
         [disabled]="disabled"
         tabindex="-1"
         [attr.aria-hidden]="true"

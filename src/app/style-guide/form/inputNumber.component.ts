@@ -65,11 +65,40 @@ export class StyleGuideInputNumberComponent implements AfterViewInit, OnDestroy 
     }
   ];
 
-  value1: number = 42723;
-  value2: number = 58151;
-  value3: number = 2351.35;
-  value4: number = 50;
+  basic = {
+    value1: 42723,
+    value2: 58151,
+    value3: 2351.35,
+    value4: 50
+  }
 
+  locale = {
+    value1: 151351,
+    value2: 115744,
+    value3: 635524,
+    value4: 732762
+  }
+
+  currency = {
+    value1: 1500,
+    value2: 2500,
+    value3: 4250,
+    value4: 5002
+  }
+
+  prefixSuffix = {
+    value1: 20,
+    value2: 50,
+    value3: 10,
+    value4: 20
+  }
+
+  buttons = {
+    value1: 20,
+    value2: 10.5,
+    value3: 25
+  }
+  value = 20;
   constructor(
     private cd: ChangeDetectorRef,
     private translate: TranslateService,
