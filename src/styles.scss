@@ -48,6 +48,7 @@ ButtonsModule,
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins';
+@import "bootstrap/scss/utilities";
 
 // 부스트랩 5
 @import 'ngx-toastr/toastr-bs5-alert';
@@ -193,6 +194,7 @@ ul, ol, dl {
   }
 }
 
+
 .font {
   &-bold {
     font-weight: 600;
@@ -201,13 +203,44 @@ ul, ol, dl {
 .block {
   display: block;
 }
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+);
+/******* ST: Flex Layout ***********/
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: nowrap;
+  &.wrap {
+    flex-wrap: wrap;
+  }
+  @each $align in 'start', 'center', 'end' {
+    &.justify-#{$align} {
+      justify-content: $align;
+    }
+    &.align-#{$align} {
+      align-items: $align;
+    }
+  }
 
+  &.column {
+    flex-direction: column;
+  }
+}
 /* flex  1~10 (23-11-22수정) */
 @each $flex in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 {
-  .flex#{$flex} {
+  .flex-#{$flex} {
     flex: $flex;
   }
 }
+/******* EN: Flex Layout ***********/
 
 .base-guide {
   border: 1px solid #DDD;
@@ -355,12 +388,19 @@ $font-sizes: (
   xl: $font-size-xl
 );
 /* Font Size */
-@each $key, $value in $font-sizes {
-  .font-#{$key} {
-    font-size: $value;
+.font {
+  @each $weight in 100, 200, 400, 500, 600, 800 {
+    &-#{$weight} {
+      font-weight: $weight;
+    }
+  }
+
+  @each $key, $value in $font-sizes {
+    &-#{$key} {
+      font-size: $value;
+    }
   }
 }
-
 /****************************** ST: Material Style ******************************************/
 /* ST: Mat-icon */
 .mat-icon {
@@ -524,41 +564,6 @@ $font-sizes: (
 }
 
 /****************************** EN: Breadcrumb *************************************************/
-.d-flex {
-  //display: flex;
-  white-space: nowrap;
-
-  &.row {
-    flex-direction: row;
-  }
-
-  &.col {
-    flex-direction: column;
-
-    &-center {
-      align-items: center;
-    }
-  }
-
-
-  @each $size in 1, 2, 3 {
-    &-#{$size} {
-      flex: $size
-    }
-  }
-
-  &.alignC {
-    align-items: center;
-  }
-
-  & > * {
-    margin: 0 5px 5px 0;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-}
 
 
 /****************************** ST: magic-input checkbox *************************************************/

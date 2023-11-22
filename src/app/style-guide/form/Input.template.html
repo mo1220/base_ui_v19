@@ -3,22 +3,22 @@
     <h3 #anchor #basic>Basic</h3>
     <p>기본 입력용 input. 가로로 정렬할 경우 클래스에 'flex' 추가 <br>
     간격 조정은 mb-1, me-2 등으로 조절</p>
-    <div class="style-guide-example">
-      <div class="form-group mb-1">
-        <label for="input-basic">Basic Input</label>
+    <div class="style-guide-example d-flex gap-3">
+      <div class="form-group flex-1">
+        <label class="mb-1" for="input-basic">Basic Input</label>
         <input id="input-basic" class="form-control"
                [placeholder]="'placeholder.keyword_placeholder' | translate"
                [(ngModel)]="keyword">
       </div>
-      <div class="form-group mb-1">
-        <label for="input-basic-disalbed">Basic Input Disabled</label>
+      <div class="form-group flex-1">
+        <label class="mb-1" for="input-basic-disalbed">Basic Input Disabled</label>
         <input id="input-basic-disalbed" class="form-control"
                [disabled]="true"
                [placeholder]="'placeholder.keyword_placeholder' | translate"
                [(ngModel)]="keyword">
       </div>
-      <div class="form-group">
-        <label for="input-basic-readonly">Basic Input Readonly</label>
+      <div class="form-group flex-1">
+        <label class="mb-1" for="input-basic-readonly">Basic Input Readonly</label>
         <input id="input-basic-readonly" class="form-control"
                [readonly]="true"
                [placeholder]="'placeholder.keyword_placeholder' | translate"
