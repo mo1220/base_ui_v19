@@ -193,6 +193,21 @@ ul, ol, dl {
   }
 }
 
+.font {
+  &-bold {
+    font-weight: 600;
+  }
+}
+.block {
+  display: block;
+}
+
+/* flex  1~10 (23-11-22수정) */
+@each $flex in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 {
+  .flex#{$flex} {
+    flex: $flex;
+  }
+}
 
 .base-guide {
   border: 1px solid #DDD;

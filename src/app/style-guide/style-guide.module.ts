@@ -33,6 +33,8 @@ import { StyleGuideSelectComponent } from './form/Select.component';
 import { StyleGuideSliderComponent } from './form/Slider.component';
 import { StyleGuideInputMaskComponent } from './form/InputMask.component';
 import { StyleGuideInputNumberComponent } from './form/inputNumber.component';
+import { StyleGuideKeyFilterComponent } from './form/KeyFilter.component';
+
 // Menu
 import { StyleGuideBreadcrumbComponent } from './menu/Breadcrumb.component';
 import { StyleGuideContextMenuComponent } from './menu/ContextMenu.component';
@@ -91,6 +93,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
     StyleGuideSliderComponent,
     StyleGuideInputMaskComponent,
     StyleGuideInputNumberComponent,
+    StyleGuideKeyFilterComponent,
     // Menu
     StyleGuideBreadcrumbComponent,
     StyleGuideContextMenuComponent,

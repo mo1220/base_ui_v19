@@ -50,6 +50,7 @@
 
         <div class="style-guide-example" *ngSwitchCase="'optional'">
           <input-mask mask="(999) 999-9999? x99999"
+                      [autoClear]="false"
                       [(ngModel)]="value"
                       placeholder="(999) 999-9999? x99999"></input-mask>
         </div>

@@ -1,6 +1,5 @@
 <input
   #input
-  inputText
   class="form-control"
   [attr.id]="inputId"
   [attr.type]="type"
@@ -22,7 +21,6 @@
   (blur)="onInputBlur($event)"
   (keydown)="onInputKeydown($event)"
   (keypress)="onKeyPress($event)"
-  autoFocus
   [autofocus]="autoFocus"
   (input)="onInputChange($event)"
   (paste)="handleInputChange($event)"

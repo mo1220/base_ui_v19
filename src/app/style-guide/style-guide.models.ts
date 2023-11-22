@@ -69,7 +69,11 @@ export const STYLE_GUIDE_MENU = [
         link: '/form/inputNumber',
         desc: `InputNumber는 숫자 입력을 제공하는 입력 구성 요소입니다.`
       },
-
+      {
+        name: 'KeyFilter',
+        link: '/form/keyFilter',
+        desc: `KeyFilter는 정규식을 기반으로 사용자 입력을 제한하기 위한 Input의 기본 제공 기능입니다`
+      },
       {
         name: 'Knob',
         link: '/form/knob',
