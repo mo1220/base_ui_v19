@@ -223,7 +223,7 @@ $spacers: (
   &.wrap {
     flex-wrap: wrap;
   }
-  @each $align in 'start', 'center', 'end' {
+  @each $align in start, center, end {
     &.justify-#{$align} {
       justify-content: $align;
     }
@@ -234,6 +234,11 @@ $spacers: (
 
   &.column {
     flex-direction: column;
+  }
+
+  > .btn {
+    height: 100%;
+    margin-top: auto;
   }
 }
 /* flex  1~10 (23-11-22수정) */

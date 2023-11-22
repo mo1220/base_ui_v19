@@ -394,11 +394,32 @@ label.btn-split {
           }
         }
 
+        @if $position == 'right' {
+          &:has(.clear-btn) {
+            .form-control {
+              padding-right:  $input-icon-padding + $font-size-base * 2;//$font-size-base * 2;
+
+            }
+            .clear-btn {
+              right: $input-btn-padding-x * 2 + $font-size-base;
+            }
+            &:has(.form-control.form-control-#{$key}) {
+              .form-control-#{$key} {
+                padding-right: calc(#{nth($value,2)} + #{nth($value, 1)} * 2);
+              }
+              .clear-btn {
+                right: calc(#{nth($value, 3)} * 2 + #{nth($value, 1)}); // input-padding-x * 2 + input-icon size
+              }
+            }
+
+          }
+        }
+
         &:before { // 아이콘 기본 설정
           display: inline-block;
           z-index: 1;
           position: absolute;
-          top:52%;
+          top:40%;
           color: $input-icon-color;
           transform: translateY(-50%);
         }
@@ -406,20 +427,28 @@ label.btn-split {
         &:has(.form-control) {
           &:before {
             font-size: $font-size-base;
+            width: $font-size-base;
+            height: $font-size-base;
             #{$position}: $input-btn-padding-x; // left or right
           }
           &.icon-mat:before {
             font-size: $font-size-base * 1.3;
+            width: $font-size-base * 1.3;
+            height: $font-size-base * 1.3;
             #{$position}: $input-btn-padding-x - 0.25rem;
           }
 
           &:has(.form-control-#{$key}) {
             &:before {
               font-size: #{nth($value, 1)};
+              width: #{nth($value, 1)};
+              height: #{nth($value, 1)};
               #{$position}: #{nth($value, 3)};
             }
             &.icon-mat:before {
               font-size: calc(#{nth($value, 1)} * 1.3);
+              width: calc(#{nth($value, 1)} * 1.3);
+              height: calc(#{nth($value, 1)} * 1.3);
               #{$position}: calc(#{nth($value, 3)} - #{nth($value, 4)});
             }
           }
@@ -430,14 +459,21 @@ label.btn-split {
 
   $input-icons: // $key  $icon(FontAwesome)  $mat-icon
     search "\f002" "search",
-    loading "\f110" "search",
+    //loading "\f110" "search",
     calendar "\f133" "calendar_clock";
     // 클래스명: "" 로 정의
-
   @keyframes loading-spin {
-    0% { transform: rotate(0deg) translateY(-50%); }
-    100% { transform: rotate(359deg) translateY(-50%); }
+    //0% { transform: rotate(0deg) translateY(-50%); }
+    //100% { transform: rotate(359deg) translateY(-50%); }
   }
+  @keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0); transform: rotate(0deg) translateY(-50%);}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%); transform: rotate(360deg) translateY(-50%);}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0); transform: rotate(480deg) translateY(-50%);}
+  }
+
   /* 아이콘 모양 설정 */
   &.icon-left, &.icon-right {
     @each $key, $icon, $mat-icon in $input-icons {
@@ -451,22 +487,32 @@ label.btn-split {
       }
     }
     &.loading:before { // loading일 경우 spin
-      animation: loading-spin 1s infinite steps(8);
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      //inset: 0px;
+      top: 50%;
+      border-radius: 50%;
+      border: 1.5px solid $input-icon-color;
+      animation: //loading-spin 1s infinite steps(8);
+        prixClipFix 2.5s linear infinite ;
       transform-origin: top;
     }
   }
   /*********************************EN: input-icons *********************************/
 
   /*********************************ST: input-celar & input-valid *********************************/
-  $input-clear-size: ( // 1: font-size, 2:label-padding, 3: clear의 bottom, 4: clear size
-    xs: $font-size-xs $input-label-padding-xs 3px 12px,
-    sm: $font-size-sm $input-label-padding-sm 4px 15px,
-    base: $font-size-base $input-label-padding 6px 18px,
-    lg: $font-size-lg $input-label-padding-lg 10px 22px
+  $input-clear-size: ( // 1: font-size, 2:label-padding, 3: clear size
+    xs: $font-size-xs $input-label-padding-xs 12px,
+    sm: $font-size-sm $input-label-padding-sm 15px,
+    base: $font-size-base $input-label-padding 18px,
+    lg: $font-size-lg $input-label-padding-lg 22px
   );
   .clear-btn {
     position: absolute;
     color: rgba(0, 0, 0, 0.35);
+    top: 50%;
+    transform: translateY(-50%);
     right: 5px;
     cursor: pointer;
     &:hover {
@@ -500,12 +546,11 @@ label.btn-split {
         padding: $input-label-padding 0;
       }
       .clear-btn {
-        bottom: 6px;
         mat-icon {
           font-size: 18px !important;
           width: 18px !important;
           height: 18px !important;
-          line-height: 17px !important;
+          line-height: 18px !important;
         }
       }
       .is-valid, .is-invalid {
@@ -525,16 +570,15 @@ label.btn-split {
           padding: #{nth($value,2)} 0;
         }
         .clear-btn {
-          bottom: #{nth($value,3)};
           mat-icon {
-            font-size: #{nth($value,4)} !important;
-            width: #{nth($value,4)} !important;
-            height: #{nth($value,4)} !important;
-            line-height: #{nth($value,4)} - 1px !important;
+            font-size: #{nth($value,3)} !important;
+            width: #{nth($value,3)} !important;
+            height: #{nth($value,3)} !important;
+            line-height: #{nth($value,3)} !important;
           }
         }
         .is-valid, .is-invalid {
-          background-size: calc(#{nth($value,4)} - 2px);
+          background-size: calc(#{nth($value,3)} - 2px);
         }
         .valid-feedback, .invalid-feedback {
           font-size: calc(#{nth($value,1)} * 0.9);

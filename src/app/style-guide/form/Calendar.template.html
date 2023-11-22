@@ -1,7 +1,7 @@
 <div class="d-flex">
   <div class="component-wrap" #contentWrap>
     <h3 #anchor #basic>Basic</h3>
-    <p>기본 날짜 선택 Date Picker</p>
+    <p>기본 날짜 선택 Date Picker로 기본 사이즈는 <span class="highlight-green">form-control-sm</span></p>
     <div class="base-guide info">
       <h5>&lt;date-picker&gt; 옵션 설정 <span class="color-pink">(입력 안 했을 경우 기본값)</span></h5>
       <p>옵션 없이 &lt;date-picker&gt; 사용 가능 (단일 날짜 picker)</p>
@@ -20,14 +20,14 @@
         <li><b class="wd-150">[withTimepicker]</b> <span class="color-pink">true</span> | false </li>
       </ul>
     </div>
-    <div class="msg info">calendar와 input의 가로 사이즈를 맞추려면 date-picker에 'wd-220' 클래스 추가</div>
-    <div class="style-guide-example">
-      <code><b>선택한 날짜 : {{selectedDate | json}}</b></code><hr>
-
-      <div class="form-group mb-3">
+    <div class="msg info">calendar와 input의 가로 사이즈를 맞추려면 date-picker에 <span class="highlight-blue">'wd-220'</span> 클래스 추가</div>
+    <div class="style-guide-example d-flex flex-column gap-2">
+      <code><b>선택한 날짜 : {{selectedDate | json}}</b></code>
+      <hr>
+      <div class="form-group">
         <label>옵션 없는 기본 date-picker</label>
-        <div class="form-group flex">
-          <date-picker class="me-1"
+        <div class="form-group flex gap-1">
+          <date-picker class="wd-220"
                        [(selectDate)]="selectedDate"></date-picker>
           <date-picker class="wd-220"
                        [(selectDate)]="selectedDate"
@@ -37,35 +37,35 @@
         </div>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>Input Size (xs, sm, default)</label>
-        <div class="form-group flex">
-          <date-picker class="wd-220 me-1"
+        <div class="form-group d-flex align-center gap-1">
+          <date-picker class="wd-220"
                        [(selectDate)]="selectedDate"
                        [size]="'xs'"
                        [placeholder]="'form-control-xs'"></date-picker>
-          <date-picker class="wd-220 me-1"
+          <date-picker class="wd-220"
                        [(selectDate)]="selectedDate"
                        [placeholder]="'form-control-sm (기본사이즈)'"></date-picker>
-          <date-picker class="wd-220 me-1"
+          <date-picker class="wd-220"
                        [(selectDate)]="selectedDate"
                        [size]="'default'"
                        [placeholder]="'form-control-default'"></date-picker>
         </div>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>Input Format</label>
-        <div class="form-group flex">
-          <date-picker class="wd-220 me-1"
+        <div class="form-group d-flex align-center gap-1">
+          <date-picker class="wd-220"
                        [(selectDate)]="selectedDate"
                        [dateInputFormat]="'YYYY/MM/DD'"
                        [returnFocusToInput] = true></date-picker>
-          <date-picker class="wd-220 me-1"
+          <date-picker class="wd-220"
                        [(selectDate)]="selectedDate"
                        [dateInputFormat]="'YYYY.MM.DD'"
                        [returnFocusToInput] = true></date-picker>
-          <date-picker class="wd-220 me-1"
+          <date-picker class="wd-220"
                        [(selectDate)]="selectedDate"
                        [dateInputFormat]="'YYYY MM DD h:mm a'"
                        [returnFocusToInput] = true></date-picker>
@@ -76,20 +76,20 @@
         </div>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>Custom Tooltips</label>
         <date-picker [(selectDate)]="selectedDate"
                      [dateTooltipTexts]="tooltipDates"></date-picker>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>With Time Picker</label>
-        <div class="form-group flex">
-          <date-picker class="wd-220 me-1"
+        <div class="form-group d-flex gap-1">
+          <date-picker class="flex-1"
                        [(selectDate)]="selectedDate"
                        [dateInputFormat]="'YYYY-MM-DD h:mm a'"
                        [withTimepicker]="true"></date-picker>
-          <date-picker class="wd-220"
+          <date-picker class="flex-1"
                        [(selectDate)]="selectedDate"
                        [dateInputFormat]="'YYYY-MM-DD H:mm'"
                        [withTimepicker]="true"></date-picker>
@@ -110,21 +110,20 @@
         <li><b class="wd-150">[minDate], [maxDate]</b> Date format 변수</li>
         <li><b class="wd-150">[rangeInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</li>
         <li><b class="wd-150">[showWeekNumbers]</b> true | <span class="color-pink">false</span></li>
-        <!--        <li><b class="wd-150">[returnFocusToInput]</b> true | <span class="color-pink">false</span> (날짜 선택 후 input에 focus)</li>-->
-        <!--        <li><b class="wd-150">[placement]</b> <span class="color-pink">(adaptivePosition:true)</span> | 'bottom' | 'top' | 'left' | 'right' (캘린더 위치, 입력 안 할 경우 adaptivePosition:true) <span class="color-red">* bottom+left 등 불가능... 한가지 포지션만 설정 가능</span></li>-->
         <li><b class="wd-150">[customTodayClass]</b> <span class="color-pink">'ngx-today'</span> | '' (ngx-today 입력 시 오늘 날짜 스타일링)</li>
         <li><b class="wd-150">[dateTooltipTexts]</b> <span class="color-pink">[ &#123; date: Today, tooltipText: '오늘' &#125; ]</span> | tooltipDates: DatepickerDateTooltipText[] (툴팁 변수에 date, tooltipText 지정)</li>
         <li><b class="wd-150">[withTimepicker]</b> <span class="color-pink">true</span> | false </li>
         <li><b class="wd-150">[ranges]</b> <span class="color-pink">[최근 일주일, 최근 1개월, 최근 3개월, 최근 6개월, 최근 1년]</span> | ranges: IRange[] (자동 선택 범위)</li>
       </ul>
     </div>
-    <div class="style-guide-example">
-      <code><b>선택한 날짜 : {{selectedRange | json}}</b></code><hr>
-
-      <div class="form-group mb-3">
+    <div class="msg info">calendar와 input의 가로 사이즈를 맞추려면 date-range-picker에 <span class="highlight-blue">'wd-440'</span> 클래스 추가</div>
+    <div class="style-guide-example d-flex flex-column gap-2">
+      <code><b>선택한 날짜 : {{selectedRange | json}}</b></code>
+      <hr>
+      <div class="form-group">
         <label>옵션 없는 기본 range-picker</label>
-        <div class="form-group flex">
-          <date-range-picker class="wd-440 me-1"
+        <div class="form-group flex gap-1">
+          <date-range-picker class="wd-440"
                              [(selectDate)]="selectedRange"></date-range-picker>
           <date-range-picker class="wd-440"
                        [(selectDate)]="selectedRange"
@@ -134,35 +133,35 @@
         </div>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>Input Size (xs, sm, default)</label>
-        <div class="form-group flex">
-          <date-range-picker class="wd-440 me-1"
+        <div class="form-group d-flex align-center gap-1">
+          <date-range-picker class="wd-440"
                        [(selectDate)]="selectedRange"
                        [size]="'xs'"
                        [placeholder]="'form-control-xs'"></date-range-picker>
-          <date-range-picker class="wd-440 me-1"
+          <date-range-picker class="wd-440"
                        [(selectDate)]="selectedRange"
                        [placeholder]="'form-control-sm (기본사이즈)'"></date-range-picker>
-          <date-range-picker class="wd-440 me-1"
+          <date-range-picker class="wd-440"
                        [(selectDate)]="selectedRange"
                        [size]="'default'"
                        [placeholder]="'form-control-default'"></date-range-picker>
         </div>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>Input Format</label>
-        <div class="form-group flex">
-          <date-range-picker class="wd-220 me-1"
+        <div class="form-group flex gap-1">
+          <date-range-picker class="wd-220"
                        [(selectDate)]="selectedRange"
                        [rangeInputFormat]="'YYYY/MM/DD'"
                        [returnFocusToInput] = true></date-range-picker>
-          <date-range-picker class="wd-220 me-1"
+          <date-range-picker class="wd-220"
                        [(selectDate)]="selectedRange"
                        [rangeInputFormat]="'YYYY.MM.DD'"
                        [returnFocusToInput] = true></date-range-picker>
-          <date-range-picker class="wd-220 me-1"
+          <date-range-picker class="wd-220"
                        [(selectDate)]="selectedRange"
                        [rangeInputFormat]="'YYYY MM DD h:mm a'"
                        [returnFocusToInput] = true></date-range-picker>
@@ -173,20 +172,20 @@
         </div>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>Custom Tooltips</label>
         <date-range-picker [(selectDate)]="selectedRange"
                      [dateTooltipTexts]="tooltipDates"></date-range-picker>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>With Time Picker</label>
-        <div class="form-group flex">
-          <date-range-picker class="wd-440 me-1"
+        <div class="form-group d-flex gap-1">
+          <date-range-picker class="flex-1"
                        [(selectDate)]="selectedRange"
                        [rangeInputFormat]="'YYYY-MM-DD h:mm a'"
                        [withTimepicker]="true"></date-range-picker>
-          <date-range-picker class="wd-440"
+          <date-range-picker class="flex-1"
                        [(selectDate)]="selectedRange"
                        [rangeInputFormat]="'YYYY-MM-DD H:mm'"
                        [withTimepicker]="true"></date-range-picker>
@@ -196,7 +195,6 @@
 
   <h3 #anchor #timepicker>Time Picker</h3>
     <p>시간 선택 Time Picker</p>
-    <div class="msg info">timepicker에 클래스를 입력하지 않을 경우, 커스텀 스타일이 적용되지 않음</div>
     <div class="base-guide info">
       <h5>&lt;timepicker&gt; 옵션 설정 <span class="color-pink">(기본값)</span></h5>
       <ul class="icon-ul check">
@@ -209,69 +207,70 @@
         <li><b class="wd-150">[min], [max]</b> Date 변수 선언 후 setHours(), setMinutes()로 설정</li>
       </ul>
     </div>
-    <div class="style-guide-example">
-      <code><b>선택한 시간 : {{selectedTime | json}}</b></code><hr>
-
-      <div class="form-group mb-3">
+    <div class="msg info"><span class="highlight-blue">timepicker에 클래스를 입력하지 않을 경우, 커스텀 스타일이 적용되지 않음</span></div>
+    <div class="style-guide-example d-flex flex-column gap-3">
+      <code><b>선택한 시간 : {{selectedTime | json}}</b><hr></code>
+      <div class="form-group">
         <label>옵션 없는 기본 timepicker</label>
         <timepicker class="time-base"
                     [(ngModel)]="selectedTime"></timepicker>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>Disable</label>
         <timepicker class="time-base"
                     [disabled]="true"
                     [(ngModel)]="selectedTime"></timepicker>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>Size (time-xs, time-sm, time-base)</label>
         <div class="form-group flex">
-          <timepicker class="time-xs me-3"
+          <timepicker class="time-xs flex-1"
                       [(ngModel)]="selectedTime"></timepicker>
-          <timepicker class="time-sm me-3"
+          <timepicker class="time-sm flex-1"
                       [(ngModel)]="selectedTime"></timepicker>
-          <timepicker class="time-base me-3"
+          <timepicker class="time-base flex-1"
                       [(ngModel)]="selectedTime"></timepicker>
         </div>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group d-flex flex-column gap-2">
         <label style="font-size: 0.75rem; line-height: 0.75rem; max-height: 1.65rem; padding: 0.1875rem 0;">
           Custom Step (스크롤 시 변경 스텝)
         </label>
-        <div class="form-grid mb-1">
-          <div class="form-group me-1">
+        <div class="d-flex gap-1">
+          <div class="form-group">
             <label>Hours step</label>
             <input class="form-control form-control-xs" [(ngModel)]="hourStep">
           </div>
-          <div class="form-group me-3">
+          <div class="form-group">
             <label>Minutes step</label>
             <input class="form-control form-control-xs" [(ngModel)]="minStep">
           </div>
+
+          <timepicker class="time-sm ms-3"
+                      [(ngModel)]="selectedTime"
+                      [hourStep]="hourStep"
+                      [minuteStep]="minStep"></timepicker>
         </div>
-        <timepicker class="time-sm"
-                    [(ngModel)]="selectedTime"
-                    [hourStep]="hourStep"
-                    [minuteStep]="minStep"></timepicker>
       </div>
 
-      <div class="form-group mb-3">
-        <label>Meridian (12H / 24H)</label><br>
+      <div class="form-group">
+        <label>Meridian (12H / 24H 표기방식 변경)</label><br>
         <code><b>showMeridian : {{showMeridian}}</b></code>
-        <div class="form-group flex">
-          <button class="btn btn-xs btn-primary me-1"
+        <div class="form-group flex gap-2">
+          <button class="btn btn-xs btn-primary"
                   (click)="showMeridian = !showMeridian">change mode</button>
           <timepicker class="time-xs me-3"
                       [(ngModel)]="selectedTime"
                       [showMeridian]="showMeridian"></timepicker>
-          <button class="btn btn-sm btn-primary me-1"
+          <button class="btn btn-sm btn-primary"
                   (click)="showMeridian = !showMeridian">change mode</button>
           <timepicker class="time-sm me-3"
                       [(ngModel)]="selectedTime"
                       [showMeridian]="showMeridian"></timepicker>
-          <button class="btn btn-primary me-1"
+          <button class="btn btn-primary"
                   (click)="showMeridian = !showMeridian">change mode</button>
           <timepicker class="time-base me-3"
                       [(ngModel)]="selectedTime"
@@ -279,22 +278,22 @@
         </div>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>Custom Meridian</label><br>
-        <div class="form-group flex">
-          <button class="btn btn-xs btn-primary me-1"
+        <div class="form-group flex gap-2">
+          <button class="btn btn-xs btn-primary"
                   (click)="showMeridian = !showMeridian">change mode</button>
           <timepicker class="time-xs me-3"
                       [(ngModel)]="selectedTime"
                       [showMeridian]="showMeridian"
                       [meridians]="customMeridian"></timepicker>
-          <button class="btn btn-sm btn-primary me-1"
+          <button class="btn btn-sm btn-primary"
                   (click)="showMeridian = !showMeridian">change mode</button>
           <timepicker class="time-sm me-3"
                       [(ngModel)]="selectedTime"
                       [showMeridian]="showMeridian"
                       [meridians]="customMeridian"></timepicker>
-          <button class="btn btn-primary me-1"
+          <button class="btn btn-primary"
                   (click)="showMeridian = !showMeridian">change mode</button>
           <timepicker class="time-base me-3"
                       [(ngModel)]="selectedTime"
@@ -303,9 +302,9 @@
         </div>
       </div>
 
-      <div class="form-group mb-3">
+      <div class="form-group">
         <label>Min Max time</label><br>
-        <code><b>minTime : {{minTime | time: 'hh:mm a'}}<br> maxTime: {{maxTime |  time: 'HH:mm'}}</b></code>
+        <code><b>minTime : {{minTime | time: 'hh:mm a'}} // maxTime: {{maxTime |  time: 'HH:mm'}}</b></code>
         <div class="form-group flex">
           <timepicker class="time-xs me-3"
                       [(ngModel)]="selectedTime"
@@ -315,12 +314,12 @@
       </div>
 
 
-      <!--<div class="form-group mb-3">
+      <!--<div class="form-group">
         <label>Minutes, Seconds Show/Hide</label><br>
         <div class="form-group flex my-2">
-          <button class="btn btn-sm btn-primary me-1"
+          <button class="btn btn-sm btn-primary"
                   (click)="showMin = !showMin">{{showMin? 'Hide minutes' : 'Show minutes'}}</button>
-          <button class="btn btn-sm btn-primary me-1"
+          <button class="btn btn-sm btn-primary"
                   (click)="showSec = !showSec">{{showSec? 'Hide seconds' : 'Show seconds'}}</button>
         </div>
         <div class="form-group flex">
