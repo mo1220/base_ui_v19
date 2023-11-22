@@ -49,8 +49,8 @@ export const STYLE_GUIDE_MENU = [
         name: 'Input',
         link: '/form/input',
         desc: `기본 입력용 Input <br>
-               <span class="color-pink"><b>[group 순서]</b> form-grid > form-group > label + input.form-control.form-control-sm + clear-btn + valid-feedback <br></span>
-               <span class="color-purple"><b>[간격 지정 예시]</b> margin-bottom : mb-1 (1~5) / margin-right : me-1 (1~5) / padding-x : px-1 (1~5) / padding-left : ps-1 (1~5)<br>
+               <span class="color-pink"><b>[group 순서]</b> <span class="highlight-pink">.form-group</span> > <span class="highlight-pink">label</span> + <span class="highlight-pink">input.form-control.form-control-sm</span> + clear-btn + valid-feedback <br></span>
+               <span class="color-purple"><b>[간격 지정 예시]</b> margin-bottom : <span class="highlight-purple">mb-1</span> (1~5) / margin-right : <span class="highlight-purple">me-1</span> (1~5) / padding-x : <span class="highlight-purple">px-1</span> (1~5) / padding-left : <span class="highlight-purple">ps-1</span> (1~5)<br>
                 * 1 : 0.25rem <br>
                 * 2 : 0.5rem <br>
                 * 3 : 1rem <br>

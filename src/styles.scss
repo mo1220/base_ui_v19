@@ -370,6 +370,10 @@ $spacers: (
   .bg-#{$key} {
     background-color: $color;
   }
+  .highlight-#{$key} {
+    color: $color;
+    background-color: lighten($color,38);
+  }
 }
 
 /* overlay background */

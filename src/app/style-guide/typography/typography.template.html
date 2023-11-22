@@ -131,7 +131,7 @@
       <div class="msg error">처리중 오류가 발생했습니다.</div>
     </div>
 
-    <h3 #anchor #textColor>텍스트 컬러, 백그라운드 컬러</h3>
+    <h3 #anchor #textColor>텍스트, 백그라운드, 하이라이트 컬러</h3>
     <p>
       UI에 지정한 컬러 설정
     </p>
@@ -152,6 +152,15 @@
               style="display: inline-block; margin-right: 5px; padding:0 5px; line-height: 30px;"
               [style.color]="['gray-light', 'light', 'white'].includes(color) ? '#000' : '#FFF'"
               [ngClass]="'bg-' + color">
+          bg-{{color}}
+        </span>
+      </div>
+
+      <p>하이라이트 컬러 <code>class="highlight-"</code></p>
+      <div style="margin-bottom: 30px; font-size: 11px; white-space: initial;">
+        <span *ngFor="let color of colorsPalette; index as i"
+              style="display: inline-block; margin-right: 5px; padding:0 5px;"
+              [ngClass]="'highlight-' + color">
           bg-{{color}}
         </span>
       </div>
