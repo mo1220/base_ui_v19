@@ -2,9 +2,9 @@
   <div class="component-wrap" #contentWrap>
     <h3 #anchor #basic>Basic</h3>
     <p>클릭 시 자동완성 열림</p>
-    <div class="style-guide-example d-flex col">
+    <div class="style-guide-example d-flex gap-3">
       <!-- ST: Basic -->
-      <div class="d-flex-1 mb-2">
+      <div class="flex-1">
         <h4 class="mb-1">Mat-option</h4>
         <button type="button" class="btn btn-sm mb-1"
                 [ngClass]="{ 'btn-primary': keywordLoading, 'btn-secondary': !keywordLoading }"
@@ -61,7 +61,7 @@
 
 
       <!-- ST: Mat-optgroup -->
-      <div class="d-flex-1">
+      <div class="flex-1">
         <h4 class="mb-1">Mat-optgroup</h4>
         <button type="button" class="btn btn-sm mb-1"
                 [ngClass]="{ 'btn-primary': keywordLoading, 'btn-secondary': !keywordLoading }"
