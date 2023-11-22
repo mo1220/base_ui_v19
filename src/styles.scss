@@ -215,8 +215,10 @@ $spacers: (
 /******* ST: Flex Layout ***********/
 .d-flex {
   display: flex;
+  /*
   align-items: center;
   justify-content: start;
+  */
   flex-wrap: nowrap;
   &.wrap {
     flex-wrap: wrap;
