@@ -34,9 +34,14 @@
                   <div class="d-flex col justify-content-center align-items-center">
                     <mat-option class="autocomplete-no-data">
                       <p class="mt-1">
-                        <span>
-                          <mat-icon class="md-28 wt-700">search</mat-icon>
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-times fa-stack-1x"></i>
+                          <i class="fa fa-search fa-stack-2x"></i>
                         </span>
+
+                        <!--<span>
+                          <mat-icon class="md-28 wt-700">search</mat-icon>
+                        </span>-->
                         <b>{{searchKeyword}}</b> 검색 결과가 없습니다.
                       </p>
                     </mat-option>
@@ -93,8 +98,9 @@
                     <mat-option class="autocomplete-no-data">
                       <!-- <img src="/assets/images/icon/no-data.svg" alt="no data image" style="width: 50px;"/>-->
                       <p class="mt-1">
-                      <span>
-                          <mat-icon class="md-28 wt-700">search</mat-icon>
+                      <span class="fa-stack fa-lg">
+                          <i class="fa fa-times fa-stack-1x"></i>
+                          <i class="fa fa-search fa-stack-2x"></i>
                         </span>
                         <b>{{searchKeyword}}</b> 검색 결과가 없습니다.
                       </p>
@@ -157,9 +163,7 @@
           <ng-container *ngIf="(inputList$ | async)?.length === 0">
             <mat-option class="autocomplete-no-data">
               <p class="mt-1">
-                <span>
-                 <mat-icon class="md-28 wt-700">search</mat-icon>
-               </span>
+               <span class="fa-stack fa-lg"><i class="fa fa-times fa-stack-1x"></i><i class="fa fa-search fa-stack-2x"></i></span>
                 <b>{{searchKeyword}}</b>
                 검색 결과가 없습니다.
               </p>

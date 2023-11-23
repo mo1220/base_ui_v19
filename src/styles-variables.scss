@@ -19,8 +19,7 @@ $gray-light: #EFEFEF;
 //$secondary: #AAAAAA;
 
 
-
-$primary: $pink;//#007bff;
+$primary: $pink; //#007bff;
 $secondary: #6d6e71;
 $success: #28a745;
 $info: #007bff;
@@ -65,7 +64,7 @@ $colors: (
   dark: $dark
 );
 
-$font-family-sans-serif: 'Noto Sans KR', 'Roboto', 'Helvetica','Dotum','돋움','AppleSDGothicNeo',sans-serif;
+$font-family-sans-serif: 'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
 $code-font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
 $toolbar-breakpoint: 600px;
 
@@ -101,68 +100,68 @@ $gray: #545454;
 $footer-bg-color: #fff;
 $header-bg: #FFF;
 $header-height: 70px;
-$box-shadow: 0 2px 2px rgba(10,16,20,.24), 0 0 2px rgba(10,16,20,.12);
-$box-shadow-hover: 0 8px 8px rgba(10,16,20,.24), 0 0 8px rgba(10,16,20,.12);
+$box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
+$box-shadow-hover: 0 8px 8px rgba(10, 16, 20, .24), 0 0 8px rgba(10, 16, 20, .12);
 $box-shadow-card-list-hover: 0 6px 8px 0 rgba(0, 0, 0, 0.16);
-$input-icon-color: rgba(0,0,0, 0.5);
+$input-icon-color: rgba(0, 0, 0, 0.5);
 
 // Bootstrap Style 재정의
-$font-size-base:              0.75rem !default; // Default Font Size
-$font-size-xs:                $font-size-base * .75 !default; //xs 사이즈 새로 정의
-$font-size-sm:                $font-size-base * .875 !default;
-$font-size-lg:                $font-size-base * 1.25 !default;
-$font-size-xl:                $font-size-base * 1.4 !default; //xl 사이즈 새로 정의
+$font-size-base: 0.75rem !default; // Default Font Size
+$font-size-xs: $font-size-base * .75 !default; //xs 사이즈 새로 정의
+$font-size-sm: $font-size-base * .875 !default;
+$font-size-lg: $font-size-base * 1.25 !default;
+$font-size-xl: $font-size-base * 1.4 !default; //xl 사이즈 새로 정의
 
-$border-radius:               .15rem !default; // Default Border Radius
-$border-radius-xs:            $border-radius * .5 !default;
-$border-radius-sm:            $border-radius * .7 !default;
-$border-radius-lg:            $border-radius * 1.2 !default;
-$border-radius-xl:            $border-radius * 1.6 !default;
-$border-radius-left:          $border-radius 0 0 $border-radius;
-$border-radius-right: 0       $border-radius $border-radius 0;
+$border-radius: .15rem !default; // Default Border Radius
+$border-radius-xs: $border-radius * .5 !default;
+$border-radius-sm: $border-radius * .7 !default;
+$border-radius-lg: $border-radius * 1.2 !default;
+$border-radius-xl: $border-radius * 1.6 !default;
+$border-radius-left: $border-radius 0 0 $border-radius;
+$border-radius-right: 0 $border-radius $border-radius 0;
 
-$border-radius-round:         1.2rem !default; // Default Border Radius
+$border-radius-round: 1.2rem !default; // Default Border Radius
 
 
 // Disabled, ReadOnly BG
 $input-disabled-bg: #F9FcFf;
 
-$input-btn-padding-y-xs:      .15rem !default;
-$input-btn-padding-x-xs:      .3rem !default;//
-$input-btn-padding-y-sm:      .25rem !default;
-$input-btn-padding-x-sm:      .5rem !default;//
-$input-btn-padding-y:         .375rem !default;
-$input-btn-padding-x:         .7rem !default;//
-$input-btn-padding-y-lg:      .4rem !default;
-$input-btn-padding-x-lg:      .8rem !default;//
-$input-btn-padding-y-xl:      .75rem !default;
-$input-btn-padding-x-xl:      1.2rem !default;//
+$input-btn-padding-y-xs: .15rem !default;
+$input-btn-padding-x-xs: .3rem !default; //
+$input-btn-padding-y-sm: .25rem !default;
+$input-btn-padding-x-sm: .5rem !default; //
+$input-btn-padding-y: .375rem !default;
+$input-btn-padding-x: .7rem !default; //
+$input-btn-padding-y-lg: .4rem !default;
+$input-btn-padding-x-lg: .8rem !default; //
+$input-btn-padding-y-xl: .75rem !default;
+$input-btn-padding-x-xl: 1.2rem !default; //
 
-$input-label-padding-xs:       $input-btn-padding-y-xs * .5;
-$input-label-padding-sm:       $input-btn-padding-y-sm * .5;
-$input-label-padding:          $input-btn-padding-y * .5;
-$input-label-padding-lg:       $input-btn-padding-y-lg * .5;
+$input-label-padding-xs: $input-btn-padding-y-xs * .5;
+$input-label-padding-sm: $input-btn-padding-y-sm * .5;
+$input-label-padding: $input-btn-padding-y * .5;
+$input-label-padding-lg: $input-btn-padding-y-lg * .5;
 
-$input-icon-padding-xs:       $font-size-xs + 0.16rem*3;
-$input-icon-padding-sm:       $font-size-sm + 0.3rem*3;
-$input-icon-padding:          $font-size-base + 0.35rem*3;
-$input-icon-padding-lg:       $font-size-lg + 0.42rem*3;
+$input-icon-padding-xs: $font-size-xs + 0.16rem*3;
+$input-icon-padding-sm: $font-size-sm + 0.3rem*3;
+$input-icon-padding: $font-size-base + 0.35rem*3;
+$input-icon-padding-lg: $font-size-lg + 0.42rem*3;
 
 //$input-line-height:           $line-height-base !default;
-$line-height-base:            1.5 !default;
-$line-height-xs:              1.0 !default;
-$line-height-sm:              1.25 !default;
-$line-height-lg:              2 !default;
-$line-height-xl:              2.5 !default;
+$line-height-base: 1.5 !default;
+$line-height-xs: 1.0 !default;
+$line-height-sm: 1.25 !default;
+$line-height-lg: 2 !default;
+$line-height-xl: 2.5 !default;
 
-$border-width:                1px !default;
-$input-height-border:         $border-width * 2 !default;
+$border-width: 1px !default;
+$input-height-border: $border-width * 2 !default;
 
 // form-control-xs
-$input-height-xs:             add($line-height-base * 1em, add($input-btn-padding-y-xs * 2, $input-height-border, false)) !default;
+$input-height-xs: add($line-height-base * 1em, add($input-btn-padding-y-xs * 2, $input-height-border, false)) !default;
 
 
-$btn-padding: .5rem !default; // 기본 icon padding
+$btn-padding: .5rem !default; // 기본 icon btn padding
 $btn-padding-xl: $btn-padding * 1.5;
 $btn-padding-lg: $btn-padding * 1.2;
 $btn-padding-sm: $btn-padding * .8;
@@ -172,8 +171,25 @@ $btn-mat-width: 40px !default; // mat-icon-button 기본 너비
 $btn-mat-width-lg: 48px !default; // mat-icon-button 기본 너비
 
 
+// btn-labeld 버튼 | btn-split 시 icon 위치
+$button-label:    -12px;
+$button-label-xs: -6px;
+$button-label-sm: -9px;
+$button-label-lg: -15px;
+$button-label-xl: -20px;
+
+// 버튼 사이즈
+$button-size: (
+  //1: padding-y, 2: padding-x, 3: font-size, 4: border-radius, 5: icon 위치, 6: padding
+  xl: $input-btn-padding-y-xl $input-btn-padding-x-xl $font-size-xl $border-radius-xl $button-label-xl $btn-padding-xl,
+  lg: $input-btn-padding-y-lg $input-btn-padding-x-lg $font-size-lg $border-radius-lg $button-label-lg $btn-padding-lg,
+  sm: $input-btn-padding-y-sm $input-btn-padding-x-sm $font-size-sm $border-radius-sm $button-label-sm $btn-padding-sm,
+  xs: $input-btn-padding-y-xs $input-btn-padding-x-xs $font-size-xs $border-radius-xs $button-label-xs $btn-padding-xs,
+);
+
+
 // icon only button style
-@mixin btn-icon($padding){
+@mixin btn-icon($padding) {
   padding: $padding !important;
   display: inline-flex !important;
   justify-content: center !important;
@@ -182,9 +198,9 @@ $btn-mat-width-lg: 48px !default; // mat-icon-button 기본 너비
 }
 
 // Alert Message
-$alert-padding-y: .5rem;          //    $spacer; <-- 1rem
-$alert-padding-x: 1rem;          //    $spacer;<-- 1rem
-$alert-margin-bottom:           1rem;
+$alert-padding-y: .5rem; //    $spacer; <-- 1rem
+$alert-padding-x: 1rem; //    $spacer;<-- 1rem
+$alert-margin-bottom: 1rem;
 //$alert-border-radius:           $border-radius;
 //$alert-link-font-weight:        $font-weight-bold;
 //$alert-border-width:            $border-width;
@@ -199,7 +215,7 @@ $input-focus-border-color: rgba($primary, .5) !default;
 $input-focus-box-shadow: 0 0 0 $input-focus-width $input-focus-shadow-color !default;
 
 $btn-primary-color: #FFF !default;
-$btn-font-family: $font-family-sans-serif;//'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
+$btn-font-family: $font-family-sans-serif; //'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
 //$btn-font-size: .75rem !default;
 
 //$btn-sm-font-size: 11.5px; // TODO 지울것들
@@ -270,7 +286,7 @@ $mat-btn-icon-sm: 20px;
 $mat-btn-icon-xs: 16px;
 
 
-  //$btn-border-width:            $input-btn-border-width;
+//$btn-border-width:            $input-btn-border-width;
 
 //$btn-font-weight:             $font-weight-normal;
 
