@@ -28,6 +28,10 @@ export class StyleGuideSelectComponent implements AfterViewInit, OnDestroy {
       title: 'Basic Select',
       anchor: 'basic',
     },
+    {
+      title: 'Size',
+      anchor: 'size',
+    },
   ];
 
   defaultBindingsList = [
@@ -55,6 +59,30 @@ export class StyleGuideSelectComponent implements AfterViewInit, OnDestroy {
   ];
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
+
+
+  sizeList = [ // 사이즈별 반복용
+    {
+      label: 'Xsmall',
+      class: 'xs',
+      buttonClass: 'btn-xs'
+    },
+    {
+      label: 'Small',
+      class: 'sm',
+      buttonClass: 'btn-sm'
+    },
+    {
+      label: 'Base',
+      class: 'base',
+      buttonClass: ''
+    },
+    {
+      label: 'Large',
+      class: 'lg',
+      buttonClass: 'btn-lg'
+    },
+  ]
 
   constructor(
     private cd: ChangeDetectorRef,

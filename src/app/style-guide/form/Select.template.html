@@ -1,18 +1,20 @@
 <div class="d-flex">
   <div class="component-wrap" #contentWrap>
     <h3 #anchor #basic>Basic Select</h3>
-    <p>기본 셀렉트박스</p>
+    <p>기본 셀렉트박스를 사용할 때에는 반드시
+      <span class="highlight-pink">ng-select</span>와
+      <span class="highlight-pink">ng-selct-base</span>(사이즈) 클래스를 모두 추가해야함</p>
     <div class="msg info">옵션 검색 가능</div>
-    <div class="style-guide-example d-flex">
-      <div class="form-group" style="flex: 1">
-        <ng-select class="ng-select-default"
+    <div class="style-guide-example d-flex gap-3">
+      <div class="form-group flex-1">
+        <ng-select class="ng-select ng-select-base"
                    [items]="defaultBindingsList"
                    [(ngModel)]="selectedCity">
         </ng-select>
         <code>Selected city object: {{selectedCity | json}}</code>
       </div>
-      <div class="form-group" style="flex: 1">
-        <ng-select class="ng-select-default"
+      <div class="form-group flex-1">
+        <ng-select class="ng-select ng-select-base"
                    [items]="defaultBindingsList"
                    bindLabel="label"
                    bindValue="value"
@@ -24,61 +26,30 @@
 
     <h3 #anchor #size>Size</h3>
     <p>크기 별 select</p>
-    <div class="style-guide-example">
-      <div class="form-group">
-        <div class="form-set flex">
-          <label for="input-xs" class="form-label min-50">XSmall</label>
-          <input id="input-xs" class="form-control form-control-xs" placeholder="form-control-xs" style="width: 200px">
-          <ng-select class="ng-select-xs"
-                     [placeholder]="'ng-select-xs'"
-                     [items]="defaultBindingsList" style="flex: 1;"
-                     bindLabel="label"
-                     bindValue="value"
-                     [(ngModel)]="selectedCity2">
-          </ng-select>
-        </div>
-        <div class="form-set flex">
-          <label for="input-sm" class="form-label min-50">Small</label>
-          <input id="input-sm" class="form-control form-control-sm" placeholder="form-control-sm" style="width: 200px">
-          <ng-select class="ng-select-sm"
-                     [placeholder]="'ng-select-sm'"
-                     [items]="defaultBindingsList" style="flex: 1;"
-                     bindLabel="label"
-                     bindValue="value"
-                     [(ngModel)]="selectedCity2">
-          </ng-select>
-        </div>
-        <div class="form-set flex">
-          <label for="input-default" class="form-label min-50">Default</label>
-          <input id="input-default" class="form-control" placeholder="form-control" style="width: 200px">
-          <ng-select class="ng-select-default"
-                     [placeholder]="'ng-select-default'"
-                     [items]="defaultBindingsList" style="flex: 1;"
-                     bindLabel="label"
-                     bindValue="value"
-                     [(ngModel)]="selectedCity2">
-          </ng-select>
-        </div>
-        <div class="form-set flex">
-          <label for="input-large" class="form-label min-50">Large</label>
-          <input id="input-large" class="form-control form-control-lg" placeholder="form-control-lg" style="width: 200px">
-          <ng-select class="ng-select-lg"
-                     [placeholder]="'ng-select-lg'"
-                     [items]="defaultBindingsList" style="flex: 1;"
-                     bindLabel="label"
-                     bindValue="value"
-                     [(ngModel)]="selectedCity2">
-          </ng-select>
-        </div>
+    <div class="style-guide-example d-flex flex-column gap-2">
+      <div class="form-group d-flex gap-1" *ngFor="let item of sizeList">
+        <label class="wd-70">{{item.label}}</label>
+        <input class="flex-1 form-control"
+               [ngClass]="item.class !== '' ? 'form-control-' + item.class : ''"
+               [(ngModel)]="selectedCity2"
+               [placeholder]="item.label">
+        <ng-select class="flex-1 ng-select"
+                   [ngClass]="'ng-select-' + item.class"
+                   [placeholder]="'ng-select + ' + 'ng-select-' + item.class"
+                   [items]="defaultBindingsList"
+                   bindLabel="label"
+                   bindValue="label"
+                   [(ngModel)]="selectedCity2">
+        </ng-select>
       </div>
     </div>
 
     <h3 #anchor #multiple>Multiple Select</h3>
     <p>멀티 셀렉트</p>
-    <div class="style-guide-example">
+    <!--<div class="style-guide-example">
       <div class="form-group">
-        <div class="form-set flex">
-          <label for="input-xs" class="form-label min-50">XSmall</label>
+        <div class="form-group flex">
+          <label for="input-xs" class="wd-70">XSmall</label>
           <div class="form-control chips form-control-xs" style="width: 200px;">
             <mat-chip-grid #chipGrid2>
               <mat-chip-row *ngFor="let chip of chipList"
@@ -114,8 +85,8 @@
             </ng-template>
           </ng-select>
         </div>
-        <div class="form-set flex">
-          <label for="input-sm" class="form-label min-50">Small</label>
+        <div class="form-group flex">
+          <label for="input-sm" class="wd-70">Small</label>
           <div class="form-control chips form-control-sm" style="width: 200px;">
             <mat-chip-grid #chipGrid2>
               <mat-chip-row *ngFor="let chip of chipList"
@@ -151,8 +122,8 @@
             </ng-template>
           </ng-select>
         </div>
-        <div class="form-set flex">
-          <label for="input-default" class="form-label min-50">Default</label>
+        <div class="form-group flex">
+          <label for="input-default" class="wd-70">Default</label>
           <div class="form-control chips" style="width: 200px;">
             <mat-chip-grid #chipGrid2>
               <mat-chip-row *ngFor="let chip of chipList"
@@ -188,8 +159,8 @@
             </ng-template>
           </ng-select>
         </div>
-        <div class="form-set flex">
-          <label for="input-large" class="form-label min-50">Large</label>
+        <div class="form-group flex">
+          <label for="input-large" class="wd-70">Large</label>
           <div class="form-control chips form-control-lg" style="width: 200px;">
             <mat-chip-grid #chipGrid2>
               <mat-chip-row *ngFor="let chip of chipList"
@@ -226,7 +197,7 @@
           </ng-select>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
 
   <aside-menu-right [menu]="selectMenu"

@@ -67,8 +67,6 @@ ButtonsModule,
 @import '@circlon/angular-tree-component/css/angular-tree-component.css';
 // angular2-draggable
 @import 'node_modules/angular2-draggable/css/resizable.min.css';
-// Ng-select
-@import "@ng-select/ng-select/themes/default.theme.css";
 
 * {
   font-family: $default-font;
@@ -582,39 +580,112 @@ $font-sizes: (
 /****************************** EN: magic-input checkbox *************************************************/
 
 /****************************** ST: Ng-select *************************************************/
-.ng-select {
+@import "@ng-select/ng-select/themes/default.theme.css";
+ng-select.ng-select {
   margin-bottom: 0;
-
-  &.ng-select-default {
-    .ng-clear-wrapper {
-      .ng-clear {
-        @include font-size($font-size-base);
-      }
-    }
-  }
-
   .ng-select-container {
-    min-height: 0;
-    height: 30px !important;
-    box-sizing: content-box;
-    @include font-size($font-size-base);
-    @include border-radius($border-radius);
-
+    //여기다가 기본값 초기화 해도 우선순위때문에 적용X
+    &:hover {
+      box-shadow: none;
+    }
     .ng-value-container {
-      padding-left: $input-btn-padding-x;
+      padding-left: 0 !important;
     }
   }
+  $ng-select-size: ( // 1: font-size, 2:padding x, 3: padding y, 4: border-radius
+    //    1                2                        3                        4
+    xs:   $font-size-xs    $input-btn-padding-x-xs  $input-btn-padding-y-xs  $border-radius-xs,
+    sm:   $font-size-sm    $input-btn-padding-x-sm  $input-btn-padding-y-sm  $input-border-radius-sm,
+    base: $font-size-base  $input-padding-x     $input-padding-y             $input-border-radius  ,
+    lg:   $font-size-lg    $input-btn-padding-x-lg  $input-btn-padding-y-lg  $input-border-radius-lg
+  );
+  @each $key, $value in $ng-select-size {
+    &.ng-select-#{$key} {
+      .ng-select-container { // 전체 box
+        width: auto;
+        height: auto !important;
+        min-height: 0;
+        font-size: #{nth($value, 1)};
+        padding: #{nth($value, 3)} #{nth($value, 2)};
+        border-radius: #{nth($value, 4)};
+        border-color: $input-border-color;
+        .ng-value-container { // input
+          .ng-input {
+            width: calc(100% - (#{nth($value, 1)} + #{nth($value, 2)*2.5}));
+            left: #{nth($value, 2)};
+            top: 50%;
+            transform: translateY(-50%);
+            padding-left: 0;
+            padding-right: 0;
+            input { //input cursor 제거
+              color: transparent;
+              text-shadow: 0 0 0 black;
+            }
+          }
+        }
+        .ng-clear-wrapper { // clear-btn
+          width: calc(#{nth($value, 1)} + #{nth($value, 2)});
+          text-align: center;
+          .ng-clear {
+            font-size: #{nth($value, 1)};
+            color: $input-icon-color;
+          }
+        }
+        .ng-arrow-wrapper { // arrow
+          padding-right: 0;
+          width: calc(#{nth($value, 1)} + #{nth($value, 2)});
+          &:after {
+            content: "\f107";//"\f078";
+            font-family: FontAwesome;
+            font-size: #{nth($value, 1)};
+            font-weight: 600;
+            color: $input-icon-color;
+          }
+          .ng-arrow {
+            border: none;
+          }
+        }
+      }
 
-  .ng-clear-wrapper {
-    width: 16px !important;
+      // select dropdown
+      .ng-dropdown-panel.ng-select-bottom {
+        .ng-dropdown-panel-items {
+          .ng-option {
+            &, .ng-optgroup {
+              padding: #{nth($value, 3)} #{nth($value, 2)};
+            }
+            &.ng-option-child {
+              padding-left: calc(#{nth($value, 2)} * 2.2);
+            }
+            &.ng-option-marked, .ng-optgroup.ng-option-marked, .ng-optgroup.ng-option-selected.ng-option-marked {
+              background-color: rgba($primary, 0.1);
+            }
+            &.ng-option-selected, .ng-optgroup.ng-option-selected {
+              background-color: rgba($primary, 0.06);
+            }
+          }
+        }
+        //button {
+        //  margin-right: 5px;
+        //}
+      }
 
-    .ng-clear {
-      @include font-size($font-size-base);
-      color: rgba(0, 0, 0, 0.35) !important;
-    }
-
-    &:hover .ng-clear {
-      color: rgba(0, 0, 0, 0.45) !important;
+      //.ng-select.ng-select-opened>.ng-select-container .ng-arrow
+      &.ng-select-opened > .ng-select-container{
+        border-color: $input-focus-border-color;
+        outline: 0;
+        @if $enable-shadows {
+          @include box-shadow($input-box-shadow, $input-focus-box-shadow);
+        } @else {
+          // Avoid using mixin so we can pass custom focus shadow properly
+          box-shadow: $input-focus-box-shadow;
+        }
+        .ng-arrow-wrapper {
+          &:after {
+            content: "\f106";//"\f077";
+          }
+        }
+      }
     }
   }
 
@@ -623,113 +694,6 @@ $font-sizes: (
     box-shadow: $input-btn-focus-box-shadow;
   }
 
-  .ng-dropdown-panel .ng-dropdown-panel-items {
-    .ng-option, .ng-optgroup {
-      padding: $input-btn-padding-y $input-btn-padding-x
-    }
-
-    .ng-option.ng-option-child {
-      padding-left: $input-btn-padding-x * 2.2;
-    }
-
-    .ng-option.ng-option-marked, .ng-optgroup.ng-option-marked, .ng-optgroup.ng-option-selected.ng-option-marked {
-      background-color: rgba($primary, 0.1);
-    }
-
-    .ng-option.ng-option-selected, .ng-optgroup.ng-option-selected {
-      background-color: rgba($primary, 0.06);
-    }
-  }
-
-  &.ng-select-xs {
-    .ng-select-container {
-      height: 19px !important;
-      @include font-size($font-size-xs);
-      @include border-radius($border-radius-xs);
-
-      .ng-value-container {
-        padding-left: $input-btn-padding-x-xs;
-      }
-    }
-
-    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
-      padding: $input-btn-padding-y-xs $input-btn-padding-x-xs;
-    }
-
-    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-child {
-      padding-left: $input-btn-padding-x-xs * 3;
-    }
-
-    .ng-clear-wrapper {
-      width: 12px !important;
-
-      .ng-clear {
-        @include font-size($font-size-xs);
-      }
-    }
-  }
-
-  &.ng-select-sm {
-    .ng-select-container {
-      height: 24px !important;
-      @include font-size($font-size-sm);
-      @include border-radius($border-radius-sm);
-
-      .ng-value-container {
-        padding-left: $input-btn-padding-x-sm;
-      }
-    }
-
-    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
-      padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
-    }
-
-    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-child {
-      padding-left: $input-btn-padding-x-sm * 2.5;
-    }
-
-    .ng-clear-wrapper {
-      width: 14px !important;
-
-      .ng-clear {
-        @include font-size($font-size-sm);
-      }
-    }
-  }
-
-  &.ng-select-lg {
-    .ng-select-container {
-      height: 39px !important;
-      @include font-size($font-size-lg);
-      @include border-radius($border-radius-lg);
-
-      .ng-value-container {
-        padding-left: $input-btn-padding-x-lg;
-      }
-    }
-
-    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
-      padding: $input-btn-padding-y-lg $input-btn-padding-x-lg;
-    }
-
-    .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-child {
-      padding-left: $input-btn-padding-x-lg * 2;
-    }
-
-    .ng-clear-wrapper {
-      width: 18px !important;
-
-      .ng-clear {
-        @include font-size($font-size-lg);
-      }
-    }
-  }
-
-  .ng-select-bottom {
-    button {
-      margin-right: 5px;
-    }
-  }
 
   &-multiple {
     .ng-select-container .ng-value-container .ng-value {
