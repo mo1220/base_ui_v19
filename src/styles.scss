@@ -651,6 +651,9 @@ ng-select.ng-select {
       .ng-dropdown-panel.ng-select-bottom {
         .ng-dropdown-panel-items {
           .ng-option {
+            &.ng-option-disabled {
+              //color: disable-color;
+            }
             &, .ng-optgroup {
               padding: #{nth($value, 3)} #{nth($value, 2)};
             }
@@ -861,115 +864,150 @@ timepicker {
 /****************************** EN: ngx-datepicker *************************************************/
 
 /****************************** ST: Mat-chips *************************************************/
-.chips {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  //mat-chip color
-  .mat-primary, .mat-success, .mat-info, .mat-warning, .mat-danger {
-    &.mat-mdc-chip.mdc-evolution-chip--with-trailing-action .mat-mdc-chip-action-label, &.mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--trailing, &.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label {
-      color: #fff !important;
+.mat-chips {
+  width: 100%;
+  padding: 0 !important;
+  border: 1px solid $input-border-color;
+  .mat-mdc-chip-set .mdc-evolution-chip-set__chips{
+    input.mat-mdc-chip-input.mat-mdc-input-element.mdc-text-field__input.mat-input-element {
+      border: none !important;
+      box-shadow: none !important;
     }
   }
 
-  .mat-primary {
-    background-color: $primary !important;
+  $mat-chip-bg: rgba(0,0,0, 0.1);
+  $mat-chips-size: (
+    // 1. input font-size, 2: mat-chip height, 3: chip padding-x, 4: chip padding-y, 5: chip border-radius
+    //    1                2     3                        4
+    xs:   $font-size-xs    14px  $input-btn-padding-x-xs  $input-btn-padding-y-xs  $border-radius-xs,
+    sm:   $font-size-sm    18px  $input-btn-padding-x-sm  $input-btn-padding-y-sm  $border-radius-sm,
+    base: $font-size-base  20px  $input-padding-x         $input-padding-y         $border-radius,
+    lg:   $font-size-lg    22px  $input-btn-padding-x-lg  $input-btn-padding-y-lg  $border-radius-lg
+  );
+  @each $key, $value in $mat-chips-size {
+    &.mat-chips-#{$key} {
+      .mat-mdc-chip-set { //mat-chip-grid
+        .mdc-evolution-chip-set__chips {
+          align-items: center;
+          margin-left: 0;
+          padding:  #{nth($value, 4)} #{nth($value, 3)};
+          gap: #{nth($value, 4)};
+          .mat-mdc-chip { //mat-chip-row
+            margin: 0;//#{nth($value, 4)} #{nth($value, 3)} #{nth($value, 4)} 0;
+            --mdc-chip-container-height: #{nth($value, 2)};
+            background-color: $mat-chip-bg;
+            border-radius: #{nth($value, 5)};
+            &:hover {
+              background-color: rgba(0,0,0, 0.15);
+              box-shadow: 0 1px 2px rgba(0,0,0, 0.3);
+            }
+            .mat-mdc-chip-action { //mat-chip의 왼쪽 text 영역
+              padding-left: #{nth($value, 3)};
+              .mat-mdc-chip-action-label { //mat-chip의 왼쪽 text라벨
+                font-size: calc(#{nth($value, 1) * 0.9});
+                line-height: calc(#{nth($value, 1) * 0.9});
+              }
+            }
+            .mdc-evolution-chip__cell--trailing { //mat-chip의 오른쪽 X 영역
+              button.mat-mdc-chip-remove { //mat-chip의 오른쪽 X버튼
+                color: #000;
+                font-size: #{nth($value, 1)};
+                width: #{nth($value, 1)};
+                height: #{nth($value, 1)};
+                padding: 0 #{nth($value, 4)} 0 calc(#{nth($value, 4)}*0.6);
+              }
+            }
+          }
+          input.mat-mdc-chip-input.mat-mdc-input-element.mdc-text-field__input.mat-input-element {
+            width: fit-content;
+            font-size: #{nth($value, 1)};
+            padding: 0;//#{nth($value, 4)} 0;
+            margin: 0;
+            border: none !important;
+            box-shadow: none !important;
+          }
+        }
+      }
+    }
   }
 
-  .mat-success {
-    background-color: $success !important;
-  }
 
-  .mat-info {
-    background-color: $info !important;
-  }
 
-  .mat-warning {
-    background-color: $warning !important;
-  }
-
-  .mat-danger {
-    background-color: $danger !important;
-  }
-
-  input.mat-mdc-chip-input.mat-mdc-input-element.mdc-text-field__input.mat-input-element {
-    border: none !important;
-    box-shadow: none !important;
-  }
 
   // rounded
-  .mdc-evolution-chip-set .mdc-evolution-chip {
-    border-radius: 0.25rem;
-  }
-
-  &-circle {
-    .mdc-evolution-chip-set .mdc-evolution-chip {
-      border-radius: 25rem;
-    }
-  }
-
-
-  &.form-control.form-control-xs {
-    .mdc-evolution-chip-set {
-      //min-height: calc(1.5em + 2px) !important;
-      min-height: calc(1.5em + 0.2rem + 2px) !important;
-
-      .mdc-evolution-chip {
-        height: 18px !important;
-        margin-top: 2px !important;
-        margin-bottom: 2px !important;
-
-        .mdc-evolution-chip__text-label {
-          font-size: $font-size-xs;
-        }
-      }
-    }
-
-    input {
-      min-height: calc(1.5em + 0.2rem + 2px) !important;
-      padding: 0.15rem 0.35rem !important;
-      font-size: $font-size-xs !important;
-      border-radius: 0.1rem !important;
-    }
-
-  }
-
-  &.form-control.form-control-sm {
-    .mdc-evolution-chip-set {
-      min-height: calc(1.5em + 0.5rem + 2px);
-
-      .mdc-evolution-chip {
-        height: 22px !important;
-        margin-top: 4px !important;
-        margin-bottom: 4px !important;
-
-        .mdc-evolution-chip__text-label {
-          font-size: $font-size-sm;
-        }
-      }
-    }
-
-    input {
-      min-height: calc(1.5em + 0.5rem + 2px);
-      padding: 0.25rem 0.5rem;
-      font-size: $font-size-sm;
-      border-radius: 0.2rem;
-    }
-
-  }
-
-  &.form-control .mdc-evolution-chip-set .mdc-evolution-chip {
-    height: 28px !important;
-    background-color: #f0f0f0;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-
-    .mdc-evolution-chip__text-label {
-      font-size: $font-size-base;
-    }
-  }
-}
-
-.mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--trailing {
-  margin: 0 !important;
+//  .mdc-evolution-chip-set .mdc-evolution-chip {
+//    border-radius: 0.25rem;
+//  }
+//
+//  &-circle {
+//    .mdc-evolution-chip-set .mdc-evolution-chip {
+//      border-radius: 25rem;
+//    }
+//  }
+//
+//
+//  &.form-control.form-control-xs {
+//    .mdc-evolution-chip-set {
+//      //min-height: calc(1.5em + 2px) !important;
+//      min-height: calc(1.5em + 0.2rem + 2px) !important;
+//
+//      .mdc-evolution-chip {
+//        height: 18px !important;
+//        margin-top: 2px !important;
+//        margin-bottom: 2px !important;
+//
+//        .mdc-evolution-chip__text-label {
+//          font-size: $font-size-xs;
+//        }
+//      }
+//    }
+//
+//    input {
+//      min-height: calc(1.5em + 0.2rem + 2px) !important;
+//      padding: 0.15rem 0.35rem !important;
+//      font-size: $font-size-xs !important;
+//      border-radius: 0.1rem !important;
+//    }
+//
+//  }
+//
+//  &.form-control.form-control-sm {
+//    .mdc-evolution-chip-set {
+//      min-height: calc(1.5em + 0.5rem + 2px);
+//
+//      .mdc-evolution-chip {
+//        height: 22px !important;
+//        margin-top: 4px !important;
+//        margin-bottom: 4px !important;
+//
+//        .mdc-evolution-chip__text-label {
+//          font-size: $font-size-sm;
+//        }
+//      }
+//    }
+//
+//    input {
+//      min-height: calc(1.5em + 0.5rem + 2px);
+//      padding: 0.25rem 0.5rem;
+//      font-size: $font-size-sm;
+//      border-radius: 0.2rem;
+//    }
+//
+//  }
+//
+//  &.form-control .mdc-evolution-chip-set .mdc-evolution-chip {
+//    height: 28px !important;
+//    background-color: #f0f0f0;
+//    border: 1px solid rgba(0, 0, 0, 0.08);
+//
+//    .mdc-evolution-chip__text-label {
+//      font-size: $font-size-base;
+//    }
+//  }
+//}
+//
+//.mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--trailing {
+//  margin: 0 !important;
 }
 
 /****************************** EN: Mat-chips *************************************************/

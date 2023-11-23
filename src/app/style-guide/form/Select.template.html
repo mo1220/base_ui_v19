@@ -31,15 +31,13 @@
         <label class="wd-70">{{item.label}}</label>
         <input class="flex-1 form-control"
                [ngClass]="item.class !== '' ? 'form-control-' + item.class : ''"
-               [(ngModel)]="selectedCity2"
+               [ngModel]="selectedCity? selectedCity.label : ''"
                [placeholder]="item.label">
         <ng-select class="flex-1 ng-select"
                    [ngClass]="'ng-select-' + item.class"
                    [placeholder]="'ng-select + ' + 'ng-select-' + item.class"
                    [items]="defaultBindingsList"
-                   bindLabel="label"
-                   bindValue="label"
-                   [(ngModel)]="selectedCity2">
+                   [(ngModel)]="selectedCity">
         </ng-select>
       </div>
     </div>

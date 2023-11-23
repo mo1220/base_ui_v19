@@ -4,9 +4,9 @@
     <p>입력, 삭제가 가능한 색상 별 기본 Chips<br>
     </p>
     <div class="style-guide-example">
-      <div class="form-control chips">
+      <div class="mat-chips mat-chips-base">
         <mat-chip-grid #chipGrid1>
-          <mat-chip-row *ngFor="let chip of basicChips"
+          <mat-chip-row *ngFor="let chip of chipList"
                         [color]="chip.color"
                         (removed)="removeChip(chip)">
             {{chip.name}}
@@ -16,18 +16,21 @@
                  [placeholder]="'placeholder.chips_placeholder' | translate"
                  [matChipInputFor]="chipGrid1"
                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                 (matChipInputTokenEnd)="add($event, 'basic')"/>
+                 (matChipInputTokenEnd)="add($event)"/>
         </mat-chip-grid>
       </div>
     </div>
 
     <h3 #anchor #size>Size</h3>
     <p>크기 별 Chips</p>
-    <div class="style-guide-example">
-      <div class="d-flex">
-        <input class="form-control form-control-xs" placeholder="form-control-xs" style="width: 300px;">
-        <div class="form-control chips form-control-xs">
-          <mat-chip-grid #chipGrid2>
+    <div class="style-guide-example d-flex flex-column gap-1">
+      <div class="form-group flex gap-1" *ngFor="let item of sizeList">
+        <input class="form-control flex-1"
+               [ngClass]="'form-control-' + item.class "
+               [placeholder]="'form-control-' + item.class">
+        <div class="mat-chips flex-2"
+             [ngClass]="'mat-chips-' + item.class">
+          <mat-chip-grid #chipGrid>
             <mat-chip-row *ngFor="let chip of chipList"
                           [color]="chip.color"
                           (removed)="removeChip(chip)">
@@ -35,46 +38,8 @@
               <button matChipRemove><mat-icon>close</mat-icon></button>
             </mat-chip-row>
             <input class="form-control"
-                   [placeholder]="'Xsmall'"
-                   [matChipInputFor]="chipGrid2"
-                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                   (matChipInputTokenEnd)="add($event)"/>
-          </mat-chip-grid>
-        </div>
-      </div>
-
-      <div class="d-flex">
-        <input class="form-control form-control-sm" placeholder="form-control-sm" style="width: 300px;">
-        <div class="form-control chips form-control-sm">
-          <mat-chip-grid #chipGrid3>
-            <mat-chip-row *ngFor="let chip of chipList"
-                          [color]="chip.color"
-                          (removed)="removeChip(chip)">
-              {{chip.name}}
-              <button matChipRemove><mat-icon>close</mat-icon></button>
-            </mat-chip-row>
-            <input class="form-control"
-                   [placeholder]="'Small'"
-                   [matChipInputFor]="chipGrid3"
-                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                   (matChipInputTokenEnd)="add($event)"/>
-          </mat-chip-grid>
-        </div>
-      </div>
-
-      <div class="d-flex">
-        <input class="form-control" placeholder="form-control"  style="width: 300px;">
-        <div class="form-control chips">
-          <mat-chip-grid #chipGrid4>
-            <mat-chip-row *ngFor="let chip of chipList"
-                          [color]="chip.color"
-                          (removed)="removeChip(chip)">
-              {{chip.name}}
-              <button matChipRemove><mat-icon>close</mat-icon></button>
-            </mat-chip-row>
-            <input class="form-control"
-                   [placeholder]="'Default'"
-                   [matChipInputFor]="chipGrid4"
+                   [placeholder]="'mat-chips + mat-chips-'+item.class"
+                   [matChipInputFor]="chipGrid"
                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                    (matChipInputTokenEnd)="add($event)"/>
           </mat-chip-grid>
@@ -137,7 +102,7 @@
                        cdkDropList
                        cdkDropListOrientation="horizontal"
                        (cdkDropListDropped)="drop($event)">
-          <mat-chip-row *ngFor="let chip of basicChips"
+          <mat-chip-row *ngFor="let chip of chipList"
                         [editable]="true"
                         (edited)="edit(chip, $event)"
                         [color]="chip.color || 'default'"
@@ -158,7 +123,7 @@
                        cdkDropList
                        cdkDropListOrientation="horizontal"
                        (cdkDropListDropped)="drop($event)">
-          <mat-chip-row *ngFor="let chip of basicChips"
+          <mat-chip-row *ngFor="let chip of chipList"
                         [editable]="true"
                         (edited)="edit(chip, $event)"
                         [color]="chip.color || 'default'"
@@ -171,7 +136,7 @@
                  [placeholder]="'placeholder.chips_placeholder' | translate"
                  [matChipInputFor]="chipGrid9"
                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                 (matChipInputTokenEnd)="add($event, 'basic')"/>
+                 (matChipInputTokenEnd)="add($event)"/>
         </mat-chip-grid>
       </div>
     </div>

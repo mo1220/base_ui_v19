@@ -61,11 +61,33 @@ export class StyleGuideChipsComponent implements AfterViewInit, OnDestroy {
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
+
+  sizeList = [ // 사이즈별 반복용
+    {
+      label: 'Xsmall',
+      class: 'xs',
+    },
+    {
+      label: 'Small',
+      class: 'sm',
+    },
+    {
+      label: 'Base',
+      class: 'base',
+    },
+    {
+      label: 'Large',
+      class: 'lg',
+    },
+  ]
+
   constructor(
     private cd: ChangeDetectorRef,
     private translate: TranslateService,
     private router: Router
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() : void {
 
@@ -82,18 +104,8 @@ export class StyleGuideChipsComponent implements AfterViewInit, OnDestroy {
     moveItemInArray(this.chipList, event.previousIndex, event.currentIndex);
   }
 
-  add(event: MatChipInputEvent, type?: string): void {
+  add(event: MatChipInputEvent): void {
     console.log(event);
-    if(type && type === 'basic') {
-      const value = { name: (event.value || '').trim(), color: (event.value || '').trim() };
-      if (value) {
-        this.basicChips.push(value);
-        // Clear the input value
-        event.chipInput!.clear();
-      }
-      return;
-    }
-
     const value = { name: (event.value || '').trim(), color: (event.value || '').trim() };
 
     // Add our keyword
