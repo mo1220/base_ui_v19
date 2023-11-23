@@ -48,19 +48,17 @@ export class StyleGuideChipsComponent implements AfterViewInit, OnDestroy {
       title: 'Rounded',
       anchor: 'round',
     }
-  ]
-  basicChips = [{name:'chip1', color: 'default'}];
+  ];
+
   chipList = [
     // {name: 'Default', color: ''},
-    {name: 'Primary', color: 'primary'},
-    {name: 'Success', color: 'success'},
-    {name: 'Info', color: 'info'},
-    {name: 'Warning', color: 'warning'},
-    {name: 'Danger', color: 'danger'},
+    {name: 'Primary', value: 'primary'},
+    {name: 'Success', value: 'success'},
+    {name: 'Info', value: 'info'},
+    {name: 'Warning', value: 'warning'},
+    {name: 'Danger', value: 'danger'},
   ];
-  addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-
 
   sizeList = [ // 사이즈별 반복용
     {
@@ -105,30 +103,33 @@ export class StyleGuideChipsComponent implements AfterViewInit, OnDestroy {
   }
 
   add(event: MatChipInputEvent): void {
-    console.log(event);
-    const value = { name: (event.value || '').trim(), color: (event.value || '').trim() };
+    const value = {
+      name: event.value.trim(),
+      value: event.value.trim()
+    };
 
     // Add our keyword
-    if (value) {
+    if (value.name) {
       this.chipList.push(value);
     }
-    console.log(this.chipList)
-
     // Clear the input value
     event.chipInput!.clear();
   }
 
   edit(chip:any, event: MatChipEditedEvent) {
-    const value = { ...chip, name: event.value.trim() };
+    const value = {
+      name: event.value.trim(),
+      value: event.value.trim()
+    };
 
-    if (!value) {
+    if (!value.name) { // 입력한 것을 지우고 수정 시 칩 삭제
       this.removeChip(chip);
       return;
-    }
-    // Edit existing fruit
-    const index = this.chipList.indexOf(chip);
-    if (index >= 0) {
-      this.chipList[index] = value;
+    }else { // 입력사항이 있을 경우 해당 칩을 찾아서 수정
+      const index = this.chipList.indexOf(chip);
+      if (index >= 0) {
+        this.chipList[index] = value;
+      }
     }
   }
 
