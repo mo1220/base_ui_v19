@@ -2937,14 +2937,22 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
       margin-bottom: 0;
       & > span.fa-stack {
         display: inline-block;
-        //padding: 3px;
-        background-color: rgba(0,0,0,.05);
-        border-radius: 50%;
+        position: relative;
+        margin-bottom: 5px;
         margin-right: 5px;
-        width: 35px;
-        height: 35px;
         color: #999;
         //.mat-icon{ margin-right: 0}
+        &::before{
+          content: '';
+          display: inline-block;
+          width: calc(2em * 1.2);
+          height: calc(2em * 1.2);
+          position: absolute;
+          top: -4px;
+          left: -6px;
+          background-color: rgba(0,0,0,.05);
+          border-radius: 50%;
+        }
         .fa-times:before{
           position: absolute;
           top: -2px;

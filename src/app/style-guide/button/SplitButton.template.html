@@ -2,7 +2,7 @@
   <div class="component-wrap" #contentWrap>
     <ng-container *ngFor="let menu of splitMenu; let i=index;">
       <h3 #anchors>{{menu.title}}</h3>
-      <p>{{menu.desc}}</p>
+      <p [innerHTML]="menu.desc | safeHtml"></p>
       <ng-container [ngSwitch]="menu.anchor">
         <div class="style-guide-example d-flex" *ngSwitchCase="'basic'">
           <div class="d-flex-1 me-1">

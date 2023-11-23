@@ -27,7 +27,8 @@ export class StyleGuideSplitButtonComponent implements AfterViewInit, OnDestroy 
     {
       title: 'Basic',
       anchor: 'basic',
-      desc: '기본 split 버튼'
+      desc: '기본 split 버튼 <br/>' +
+        '<span class="msg info font-size-xs">화살표 버튼 클릭 참고 : 아이콘 버튼 cursor default 주기 위해 <b>label.btn.btn-split > span</b></span>'
     },
     {
       title: 'Position',
