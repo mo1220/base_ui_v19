@@ -1,25 +1,33 @@
 @import "styles-variables";
 // 첫번째는 체크박스 사이즈 두번째는 라벨 폰트 사이즈 check width 네번째는 check height
-$checkbox-default-size: 16px;
+$checkbox-default-size: $input-icon;
 $checkbox-default-color: #424242;
 $checkbox-border-color: #d7d7d7;
 $checkbox-border-color: #d7d7d7;
+
 $checkbox-sizes: (
-  xs: 10px $font-size-xs 5px 20px 1px,
-  sm: 12px $font-size-sm 6px 20px 2px,
-  lg: 19px $font-size-lg 10px 30px 4px,
-  xl: 22px $font-size-xl 11px 36px 5px
+  xs: $input-icon-xs $font-size-xs $border-radius-xs $input-icon-layer-xs,
+  sm: $input-icon-sm $font-size-sm $border-radius-sm $input-icon-layer-sm,
+  lg: $input-icon-lg $font-size-lg $border-radius-lg $input-icon-layer-lg,
+  xl: $input-icon-xl $font-size-xl $border-radius-xl $input-icon-layer-xl
 );
+
+
+$radio-inner: 8px;
+$radio-inner-xs: 5px;
+$radio-inner-sm: 6px;
+$radio-inner-lg: 10px;
+$radio-inner-xl: 11px;
 
 // 첫번째는 라디오 사이즈 두번째는 라벨 폰트 사이즈 안에 원(before)
 $radio-sizes: (
-  xs: 10px $font-size-xs 5px 20px,
-  sm: 12px $font-size-sm 6px 20px,
-  lg: 19px $font-size-lg 10px 30px,
-  xl: 22px $font-size-xl 11px 36px
+  xs: $input-icon-xs $font-size-xs $radio-inner-xs $input-icon-layer-xs,
+  sm: $input-icon-sm $font-size-sm $radio-inner-sm $input-icon-layer-sm,
+  lg: $input-icon-lg $font-size-lg $radio-inner-lg $input-icon-layer-lg,
+  xl: $input-icon-xl $font-size-xl $radio-inner-xl $input-icon-layer-xl
 );
 
-$radio-default-size: 16px;
+$radio-default-size: $input-icon;
 
 $button-size: (
   // padding-y, padding-x, font-size, border-radius
@@ -53,7 +61,7 @@ $button-size: (
     .mdc-radio {
       width: $radio-default-size;
       height: $radio-default-size;
-      --mdc-radio-state-layer-size: 26px;
+      --mdc-radio-state-layer-size: #{$input-icon-layer};
     }
     .mdc-radio__background {
       width: $radio-default-size;
@@ -67,7 +75,7 @@ $button-size: (
       }
     }
     .mdc-radio__inner-circle {
-      border-width: 8px;
+      border-width: $radio-inner;
     }
     &.mat-accent {
       --mdc-radio-unselected-icon-color: #d7d7d7;
@@ -253,7 +261,7 @@ $button-size: (
     .mdc-checkbox {
       width: $checkbox-default-size;
       height: $checkbox-default-size;
-      --mdc-checkbox-state-layer-size: 26px;
+      --mdc-checkbox-state-layer-size: #{$input-icon-layer};
     }
     .mdc-checkbox__background {
       width: $checkbox-default-size;
@@ -312,7 +320,7 @@ $button-size: (
         .mdc-checkbox__background {
           width: #{nth($value, 1)};
           height: #{nth($value, 1)};
-          border-radius: #{nth($value, 5)};
+          border-radius: #{nth($value, 3)};
           .mdc-checkbox__outer-circle {
             border-width: 1px;
           }

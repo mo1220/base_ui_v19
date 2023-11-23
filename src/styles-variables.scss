@@ -123,6 +123,19 @@ $border-radius-right: 0       $border-radius $border-radius 0;
 
 $border-radius-round:         1.2rem !default; // Default Border Radius
 
+// Radio, Checkbox 박스 크기
+$input-icon:          16px;
+$input-icon-xs:       10px;
+$input-icon-sm:       12px;
+$input-icon-lg:       19px;
+$input-icon-xl:       22px;
+
+// Material Touch 영역
+$input-icon-layer:    26px;
+$input-icon-layer-xs: 20px;
+$input-icon-layer-sm: 20px;
+$input-icon-layer-lg: 30px;
+$input-icon-layer-xl: 36px;
 
 // Disabled, ReadOnly BG
 $input-disabled-bg: #F9FcFf;
