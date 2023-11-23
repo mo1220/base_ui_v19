@@ -18,7 +18,7 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Calendar',
         link: '/form/calendar',
-        desc: `<b>날짜</b> 혹은 <b>시간</b> 선택을 위한 Calendar`
+        desc: `<b>날짜</b> 혹은 <b>시간</b> 선택을 위한 <span class="highlight-pink">date-picekr, date-range-picker, timepicker</span>`
       },
       {
         name: 'Checkbox',
@@ -28,7 +28,7 @@ export const STYLE_GUIDE_MENU = [
       {
         name: 'Chips',
         link: '/form/chips',
-        desc: `<b>키워드, 목록</b> 등 String Array를 관리하기 위한 Chips<br> input이 없는 경우 mat-chip-set을, input이 있는 경우 mat-chip-grid를 사용함`
+        desc: `String Array를 관리하기 위한 Chips<br> input이 없는 경우 mat-chip-set을, input이 있는 경우 mat-chip-grid를 사용함`
       },
       {
         name: 'Color Picker',
