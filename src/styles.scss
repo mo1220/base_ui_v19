@@ -2935,13 +2935,23 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
   .mat-mdc-option {
     p {
       margin-bottom: 0;
-      & > span {
+      & > span.fa-stack {
         display: inline-block;
-        padding: 3px;
+        //padding: 3px;
         background-color: rgba(0,0,0,.05);
         border-radius: 50%;
-        margin-right: 10px;
-        .mat-icon{ margin-right: 0}
+        margin-right: 5px;
+        width: 35px;
+        height: 35px;
+        color: #999;
+        //.mat-icon{ margin-right: 0}
+        .fa-times:before{
+          position: absolute;
+          top: -2px;
+          left: 50%;
+          transform: translateX(-50%);
+          margin-left: -2px;
+        }
       }
     }
   }

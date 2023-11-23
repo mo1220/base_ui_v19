@@ -16,7 +16,8 @@
               <p class="mb-0"><b>설명 : </b>{{op.desc}}</p>
               <!--ST: Compact Type-->
               <ng-container *ngIf="op.key === 'compactType'">
-                <ng-select [placeholder]="'compactType 설정'"
+                <ng-select class="ng-select ng-select-xs"
+                           [placeholder]="'compactType 설정'"
                            [items]="op.options"
                            (change)="changedOptions()"
                            [(ngModel)]="options.compactType"></ng-select>
@@ -25,7 +26,8 @@
 
               <!--ST: Display Grid-->
               <ng-container *ngIf="op.key === 'displayGrid'">
-                <ng-select [placeholder]="'display Grid 설정'"
+                <ng-select class="ng-select ng-select-xs"
+                           [placeholder]="'display Grid 설정'"
                            [items]="op.options"
                            (change)="changedOptions()"
                            [(ngModel)]="options.displayGrid"></ng-select>
@@ -269,7 +271,7 @@
                 <div class="form-group flex">
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs me-1"
                               [label]="'Min Item Cols'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
@@ -295,7 +297,7 @@
                               [(value)]="options.minItemRows"></dtk-slider>
                   <dtk-slider class="dtk-slider-link-item dtk-slider-xs"
                               [label]="'Max Item Rows'"
-                              [unit]="'px'"
+                              [unit]="''"
                               [min]="1"
                               [max]="100"
                               [mode]="'less'"
@@ -340,7 +342,8 @@
               <!-- ST: GridType-->
               <ng-container *ngIf="op.key === 'gridType'">
                 <div class="form-group">
-                  <ng-select placeholder="'Grid Type 설정'"
+                  <ng-select class="ng-select ng-select-xs"
+                             placeholder="'Grid Type 설정'"
                              [items]="op.options"
                              appendTo="body"
                              (change)="changedOptions()"

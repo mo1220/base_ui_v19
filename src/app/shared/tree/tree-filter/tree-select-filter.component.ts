@@ -23,7 +23,7 @@ import {ITreeOptions, KEYS, TreeComponent} from "@odymaui/angular-tree-component
 
 export class TreeSelectFilterComponent implements OnInit, OnChanges, AfterViewInit {
   options: ITreeOptions = {
-    displayField: 'dept_nm', //'dept_nm',
+    displayField: 'dept_nm', // TODO 변경,
     useVirtualScroll: true,
     nodeHeight: 18,
     // dropSlotHeight: 3,

@@ -1,11 +1,17 @@
 <div class="tree-filter">
   <div class="tree-filter-wrap " #treeWrap>
     <div class="tree-filter-search tree-filter-box wd-200">
-      <mat-icon class="md-16 search-icon">search</mat-icon>
+      <div class="form-box icon-left search">
+        <input type="text" class="form-control form-control-sm"
+               #inputElem
+               placeholder="검색할 팀명을 입력해 주세요."
+               (keyup)="filterTree($event)"/>
+      </div>
+      <!--<mat-icon class="md-16 search-icon">search</mat-icon>
       <input type="text" class="form-control form-control-sm pl-24"
              #inputElem
              placeholder="검색할 팀명을 입력해 주세요."
-             (keyup)="filterTree($event)"/>
+             (keyup)="filterTree($event)"/>-->
     </div>
     <div class="tree-filter-content tree-filter-box">
       <tree-root #tree class="dp-directory"
@@ -14,9 +20,9 @@
                  [options]="options"
                  [nodes]="nodes">
         <ng-template #treeNodeTemplate let-node let-index="index">
-                    <span class="tree-item" (click)="selectOwner(node)" *ngIf="node">
-                      {{node.data.dept_nm}}
-                    </span>
+            <span class="tree-item" (click)="selectOwner(node)" *ngIf="node">
+              {{node.data.dept_nm}}
+            </span>
         </ng-template>
       </tree-root>
     </div>

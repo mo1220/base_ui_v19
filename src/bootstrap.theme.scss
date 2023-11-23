@@ -23,41 +23,6 @@
 }
 
 .btn {
-//  border-radius: $border-radius;
-//  &.btn-primary,
-//  &.btn-secondary,
-//  &.btn-success,
-//  &.btn-info,
-//  &.btn-warning,
-//  &.btn-danger,
-//  &.btn-light,
-//  &.btn-dark {
-//    // Split button
-//    .btn-split-menu {
-//      border-left-width: 1px;
-//      border-left-style: solid;
-//      border-left-color: #EEEEEE;
-//    }
-//  }
-//
-//  &.btn-outline-primary,
-//  &.btn-outline-secondary,
-//  &.btn-outline-success,
-//  &.btn-outline-info,
-//  &.btn-outline-warning,
-//  &.btn-outline-danger,
-//  &.btn-outline-light,
-//  &.btn-outline-dark {
-//    box-sizing: border-box;
-//    // Split button
-//    .btn-split-menu {
-//      border-left-width: 1px;
-//      border-left-style: solid;
-//      border-left-color: inherit;
-//    }
-//  }
-//
-
   /**** Size Button ****/
   &.btn-xl {
     font-size: $font-size-xl;
@@ -82,41 +47,20 @@
 
     span.btn-label {
       position: relative;
-      left: -12px;
+      left: $button-label;
       display: inline-block;
       padding: $btn-padding-y 0 $btn-padding-y $btn-padding-x;
-      //background: rgba(0, 0, 0, 0.15);
       border-radius: $border-radius-left;
+      //background: rgba(0, 0, 0, 0.15);
     }
 
-    &.btn-xl {
-      span.btn-label {
-        left: -20px;
-        padding: $btn-padding-y-xl 0 $btn-padding-y-xl $btn-padding-x-xl;
-      }
-    }
-
-    &.btn-lg {
-      span.btn-label {
-        left: -16px;
-        //padding: 8px 12px;
-        padding: $btn-padding-y-lg 0 $btn-padding-y-lg $btn-padding-x-lg;
-      }
-    }
-
-    &.btn-sm {
-      span.btn-label {
-        left: -9px;
-        padding: $btn-padding-y-sm 0 $btn-padding-y-sm $btn-padding-x-sm;
-        //padding: 4px 8px;
-      }
-    }
-
-    &.btn-xs {
-      span.btn-label {
-        left: -7px;
-        padding: $btn-padding-y-xs 0 $btn-padding-y-xs $btn-padding-x-xs;
-      }
+    @each $key, $value in $button-size{
+      &.btn-#{$key} {
+        span.btn-label {
+          left: #{nth($value, 5)};
+          padding: #{nth($value, 1)} 0 #{nth($value, 1)} #{nth($value, 2)};
+        }
+     }
     }
   }
 
@@ -125,46 +69,6 @@
     border-radius: 50%;
   }
 
-  ///**** Icon Only button ****/
-  //&.btn-icon {
-  //  @include btn-icon($btn-padding);
-  //  .fa {
-  //    width: $font-size-base;
-  //    height: $font-size-base;
-  //  }
-  //
-  //  &.btn-xl {
-  //    @include btn-icon($btn-padding-xl);
-  //    .fa {
-  //      width: $font-size-xl;
-  //      height: $font-size-xl;
-  //    }
-  //  }
-  //
-  //  &.btn-lg {
-  //    @include btn-icon($btn-padding-lg);
-  //    .fa {
-  //      width: $font-size-lg;
-  //      height: $font-size-lg;
-  //    }
-  //  }
-  //
-  //  &.btn-sm {
-  //    @include btn-icon($btn-padding-sm);
-  //    .fa {
-  //      width: 10px; //$font-size-sm;
-  //      height: 10px; //$font-size-sm;
-  //    }
-  //  }
-  //
-  //  &.btn-xs {
-  //    @include btn-icon($btn-padding-xs);
-  //    .fa {
-  //      width: $font-size-xs;
-  //      height: $font-size-xs;
-  //    }
-  //  }
-  //}
 
   /**** Raised(shadow) button ****/
   &.btn-raised {
@@ -175,51 +79,39 @@
   &.btn-split {
     padding-top: 0;
     padding-bottom: 0;
+
     span {
       cursor: pointer;
       position: relative;
-      right: -12px;
+      right: $button-label;
       display: inline-block;
-      padding: 6px 12px;
+      padding: $btn-padding-y $btn-padding-x;
       border-radius: $border-radius-right;
 
-      &.btn-split-menu {
-        //&-border {
+      @each $key, $color in $colors{
+        &.border-#{$key} {
           border-left-width: 1px;
           border-left-style: solid;
-          border-left-color: inherit;
-        //}
-        &:hover {
-          background-color: rgba(0, 0, 0, .2);
+          border-color: lighten($color, 10%) !important;
         }
       }
     }
 
-    &.btn-xl {
-      span.btn-split-menu {
-        right: -20px;
+    .btn-split-menu{
+      &:hover {
+        background-color: rgba(0, 0, 0, .2);
       }
     }
 
-    &.btn-lg {
-      span.btn-split-menu {
-        right: -16px;
+    @each $key, $value in $button-size{
+      &.btn-#{$key} {
+        span {
+          right: #{nth($value, 5)};
+          padding: #{nth($value, 1)}  #{nth($value, 2)};
+        }
       }
     }
 
-    &.btn-sm {
-      span.btn-split-menu {
-        right: -9px;
-      }
-    }
-
-    &.btn-xs {
-      span.btn-split-menu {
-        right: -6px;
-        padding-left: 8px;
-        padding-right: 8px;
-      }
-    }
     &-rounded{
       border-radius: $border-radius-round;
 
@@ -283,6 +175,7 @@ label.btn-split {
 .btn-outline-info:hover {
   color: $btn-primary-color !important;
 }
+
 /**** Icon Only button ****/
 .btn-icon {
   @include btn-icon($btn-padding);
@@ -291,22 +184,15 @@ label.btn-split {
     height: $font-size-base;
   }
 
-  &.btn-xl {
-    @include btn-icon($btn-padding-xl);
-    .fa {
-      width: $font-size-xl;
-      height: $font-size-xl;
+  @each $key, $size in $button-size {
+    &.btn-#{$key}{
+      @include btn-icon(#{nth($size, 6)});
+      .fa {
+        width: #{nth($size, 3)};
+        height: #{nth($size, 3)};
+      }
     }
   }
-
-  &.btn-lg {
-    @include btn-icon($btn-padding-lg);
-    .fa {
-      width: $font-size-lg;
-      height: $font-size-lg;
-    }
-  }
-
   &.btn-sm {
     --mdc-icon-button-state-layer-size: 35px !important;
     @include btn-icon($btn-padding-sm);
