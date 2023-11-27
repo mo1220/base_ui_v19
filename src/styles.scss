@@ -420,7 +420,7 @@ $spacers: (
     border-left: 1px solid $btn-divider-color;
     @each $key, $color in $colors {
       &-#{$key} {
-        border-left: 1px solid  darken($color, 5%) !important;
+        border-left: 1px solid  darken($color, 5%)
       }
     }
   }
