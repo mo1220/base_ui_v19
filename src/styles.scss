@@ -620,6 +620,15 @@ $font-sizes: (
 
 /****************************** ST: Ng-select *************************************************/
 @import "@ng-select/ng-select/themes/default.theme.css";
+
+$ng-select-size: ( // 1: font-size, 2:padding x, 3: padding y, 4: border-radius
+  //    1                2                        3                        4
+  xs:   $font-size-xs    $input-btn-padding-x-xs  $input-btn-padding-y-xs  $border-radius-xs,
+  sm:   $font-size-sm    $input-btn-padding-x-sm  $input-btn-padding-y-sm  $input-border-radius-sm,
+  base: $font-size-base  $input-padding-x     $input-padding-y             $input-border-radius  ,
+  lg:   $font-size-lg    $input-btn-padding-x-lg  $input-btn-padding-y-lg  $input-border-radius-lg
+);
+
 ng-select.ng-select {
   margin-bottom: 0;
   .ng-select-container {
@@ -631,13 +640,6 @@ ng-select.ng-select {
       padding-left: 0 !important;
     }
   }
-  $ng-select-size: ( // 1: font-size, 2:padding x, 3: padding y, 4: border-radius
-    //    1                2                        3                        4
-    xs:   $font-size-xs    $input-btn-padding-x-xs  $input-btn-padding-y-xs  $border-radius-xs,
-    sm:   $font-size-sm    $input-btn-padding-x-sm  $input-btn-padding-y-sm  $input-border-radius-sm,
-    base: $font-size-base  $input-padding-x     $input-padding-y             $input-border-radius  ,
-    lg:   $font-size-lg    $input-btn-padding-x-lg  $input-btn-padding-y-lg  $input-border-radius-lg
-  );
   @each $key, $value in $ng-select-size {
     &.ng-select-#{$key} {
       .ng-select-container { // 전체 box
@@ -691,7 +693,8 @@ ng-select.ng-select {
         .ng-dropdown-panel-items {
           .ng-option {
             &.ng-option-disabled {
-              //color: disable-color;
+              color: #999;
+              background-color: $input-disabled-bg;
             }
             &, .ng-optgroup {
               padding: #{nth($value, 3)} #{nth($value, 2)};
@@ -735,7 +738,6 @@ ng-select.ng-select {
     border-color: $input-focus-border-color;
     box-shadow: $input-btn-focus-box-shadow;
   }
-
 
   &-multiple {
     .ng-select-container .ng-value-container .ng-value {
@@ -914,6 +916,12 @@ timepicker {
     }
   }
 
+  &.round {
+    .mat-mdc-chip {
+      border-radius: 50px !important;
+    }
+  }
+
   $mat-chip-bg: rgba(0,0,0, 0.1);
   $mat-chips-size: (
     // 1. input font-size, 2: mat-chip height, 3: chip padding-x, 4: chip padding-y, 5: chip border-radius
@@ -925,6 +933,18 @@ timepicker {
   );
   @each $key, $value in $mat-chips-size {
     &.mat-chips-#{$key} {
+      &.primary { // chip color 변경 (primary)
+        .mat-mdc-chip-set .mdc-evolution-chip-set__chips .mat-mdc-chip {
+          background-color: $primary;
+          &:hover {
+            background-color: darken($primary, 10);
+          }
+          .mat-mdc-chip-action .mat-mdc-chip-action-label, .mdc-evolution-chip__cell--trailing button.mat-mdc-chip-remove {
+            color: #fff;
+          }
+        }
+      }
+
       .mat-mdc-chip-set { //mat-chip-grid
         .mdc-evolution-chip-set__chips {
           align-items: center;
@@ -948,12 +968,17 @@ timepicker {
               }
             }
             .mdc-evolution-chip__cell--trailing { //mat-chip의 오른쪽 X 영역
+              display: flex;
+              align-items: center;
               button.mat-mdc-chip-remove { //mat-chip의 오른쪽 X버튼
                 color: #000;
                 font-size: #{nth($value, 1)};
                 width: #{nth($value, 1)};
                 height: #{nth($value, 1)};
                 padding: 0 #{nth($value, 4)} 0 calc(#{nth($value, 4)}*0.6);
+                .mat-icon {
+                  line-height: #{nth($value, 1)};
+                }
               }
             }
           }
@@ -1049,6 +1074,22 @@ timepicker {
 //  margin: 0 !important;
 }
 
+// drag chip
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+  &:has(.mat-mdc-chip-focus-overlay) {
+    border-radius: $border-radius;
+    .mat-mdc-chip-action{
+      padding: 0;
+      .mat-mdc-chip-action-label {
+        font-family: $font-family;
+        font-size: $font-size-base * 0.9;
+      }
+    }
+    .mdc-evolution-chip__cell--trailing {
+      display: none;
+    }
+  }
+}
 /****************************** EN: Mat-chips *************************************************/
 
 /******************************** ST: Toast Message *******************************************/
