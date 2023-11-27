@@ -1,12 +1,15 @@
 import {
   AfterViewInit,
-  Component, ElementRef,
+  Component,
   EventEmitter,
   Input,
   OnDestroy,
   OnInit,
-  Output, QueryList,
-  ViewChild, ViewChildren
+  Output,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  ViewEncapsulation
 } from "@angular/core";
 import {ITreeOptions, TreeComponent, TreeModel, TreeNode} from "@odymaui/angular-tree-component";
 import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
@@ -14,13 +17,14 @@ import {TreeNodeType} from "./tree-dir-model";
 import {PopupMessage} from "../../popup-message/popup-message";
 import {MatDialog} from "@angular/material/dialog";
 import * as _ from 'lodash';
-import {RowDropZoneParams} from "ag-grid-community";
 import {MessagesService} from "../../../core/toast-message/messages.service";
 
 @Component({
   selector: 'tree-dir-component-app',
   templateUrl: 'tree-component.template.html',
-  styleUrls: ['tree-component.styles.scss']
+  styleUrls: ['tree-component.styles.scss'],
+  host: { class:'page-tree-filter-content tree-filter-box' },
+  encapsulation: ViewEncapsulation.None
 })
 
 export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
@@ -38,10 +42,14 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() outputNodeAPI: EventEmitter<any> = new EventEmitter(); // 수정, 생성, 삭제 API 에 필요한 파라미터 보내기
   @Output() treeElements: EventEmitter<any> = new EventEmitter(); // Tree Element
 
-  @Input() mode: string | undefined; // default: 추가|삭제|수정 등 관리 기능 | 'select': 선택 기능
-  @Input() loading: boolean | undefined; // loading 상태
-  @Input() viewType: string;  // View Type(ex. 추천 | 관심)
-  @Input() dragoverId: any;
+  // undefined: 추가|삭제|수정 등 관리 기능 | 'select': 선택 기능
+  @Input() mode: string | undefined;
+  @Input() iconUsed: boolean;
+  @Input() displayField: any;
+
+  // @Input() viewType: string;  // View Type(ex. 추천 | 관심)
+  @Input() size: string = '';  // tree size ( lg. sm xs )
+  @Input() dragoverId: any; // dragover 시 tree node id
 
   _nodes: Array<any>; // 트리 노드
   @Input()
@@ -192,7 +200,7 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
       let child = this.tree.treeModel.getNodeById(lastChild._id);
       child.isEdit = true;
       child.focus();
-      this.tree.treeModel.setFocus(this.state[this.viewType].activeNodeIds[0]);
+      this.tree.treeModel.setFocus(this.state.activeNodeIds[0]);
     }, 10);
 
     setTimeout(() => {

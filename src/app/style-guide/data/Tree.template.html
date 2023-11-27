@@ -1,17 +1,64 @@
 <div class="d-flex">
   <div class="component-wrap" #contentWrap>
-    <ng-container *ngFor="let menu of menus;">
+    <div *ngFor="let menu of menus;">
       <h3 #anchors>{{ menu.title }}</h3>
       <p [innerHTML]="menu.desc | safeHtml"></p>
+      <ng-container *ngIf="['icon', 'event'].includes(menu.anchor)">
+        <div class="base-guide info d-flex column">
+          <strong>
+            &lt;tree-dir-component-app&gt; 컴포넌트 사용
+          </strong>
+          <div>
+            <code>[nodes]</code>: 트리 리스트
+          </div>
+          <div>
+            <code>[mode]</code> : <code>undefined(defualt)</code> 일 때만 삭제, 수정 버튼 보임
+          </div>
+          <div>
+            <code>[dragoverId]</code> : 드래그 오버 시 tree node id
+          </div>
+          <div>
+            <code>(treeElements)</code> Tree Expanded 상태일 때 Tree Element(div.node-content-wrapper) 받아 DropZoon 생성
+          </div>
+          <div>
+            <code>(nodeActiveChanged)</code> : 선택(active)한 node 정보
+          </div>
+          <div>
+            <code>(outputNodeAPI)</code> : 수정, 생성, 삭제, 폴더 이동 등 API에 필요한 파라미터 보내기
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="['filter'].includes(menu.anchor)">
+        <div class="base-guide info d-flex column">
+          <strong>
+            &lt;tree-select-filter&gt; 컴포넌트 사용
+          </strong>
+          <div>
+            <code>[nodes]</code>: 트리 리스트
+          </div>
+          <div>
+            <code>[displayField]</code> : tree node name 형식이 아닐 때 보여질 key 값
+          </div>
+          <div>
+            <code>[(label)]</code> : 실제 binding되는 label 값
+          </div>
+          <div>
+            <code>[(value)]</code> : 실제 binding 되는 value 파라미터 값
+          </div>
+          <div>
+            <code>[(openState)]</code> : 열림/닫힘 상태
+          </div>
+        </div>
+      </ng-container>
       <ng-container [ngSwitch]="menu.anchor">
         <!--ST: 베이직 페이지 네이션 -->
         <div class="style-guide-example d-flex" *ngSwitchCase="'basic'">
-          <div class="d-flex-1">
+          <div class="flex-1">
             <h5>기본 접기</h5>
             <tree-root class="dp-directory"
                        [nodes]="nodes"></tree-root>
           </div>
-          <div class="d-flex-1">
+          <div class="flex-1">
             <h5>기본 펼치기</h5>
             <tree-root class="dp-directory" #trees
                        [nodes]="nodes"></tree-root>
@@ -35,14 +82,14 @@
           <h5 *ngIf="selectedNode.icon">Id: {{ selectedNode.icon.id  }} / Name: {{ selectedNode.icon.name }}</h5>
           <tree-dir-component-app [nodes]="nodes"
                                   [mode]="'select'"
-                                  [viewType]="'styleGuide'"
+                                  [iconUsed]="true"
                                   (nodeActiveChanged)="nodeActiveChanged($event, 'icon')"></tree-dir-component-app>
         </div>
         <!--EN: Icon -->
 
         <!--ST: loading -->
         <div class="style-guide-example d-flex" *ngSwitchCase="'loading'">
-          <div class="d-flex-1">
+          <div class="flex-1">
             <h5>기본 skeleton loading</h5>
             <div *ngFor="let node of loadingContent let i=index">
               <div class="tree-renderer">
@@ -54,7 +101,7 @@
             </div>
           </div>
 
-          <div class="d-flex-1">
+          <div class="flex-1">
             <h5>circle skeleton loading</h5>
             <div *ngFor="let node of loadingContent let i=index;">
               <div class="tree-renderer">
@@ -66,7 +113,7 @@
             </div>
           </div>
 
-          <div class="d-flex-1">
+          <div class="flex-1">
             <button type="button" class="btn btn-primary"
                     [ngClass]="loading ? 'btn-primary' : 'btn-secondary'"
                     (click)="loading=!loading">Toggle Loading
@@ -83,8 +130,7 @@
             </ng-container>
             <ng-template #content>
               <tree-dir-component-app [nodes]="nodes"
-                                      [mode]="'select'"
-                                      [viewType]="'styleGuide'"></tree-dir-component-app>
+                                      [mode]="'select'"></tree-dir-component-app>
             </ng-template>
           </div>
         </div>
@@ -104,58 +150,59 @@
               </div>
             </ng-container>
             <ng-template #content>
-              <tree-dir-component-app [nodes]="nodes2"
-                                      [viewType]="'styleGuide'"
+              <tree-dir-component-app [iconUsed]="true"
+                                      [nodes]="nodes2"
                                       (treeElements)="setDropZone($event)"
                                       [dragoverId]="dragOverId"
                                       (nodeActiveChanged)="nodeActiveChanged($event, 'event')"
                                       (outputNodeAPI)="outputAPI($event)"></tree-dir-component-app>
             </ng-template>
           </div>
-          <div class="card d-flex-1">
-            <div class="card-item" *ngFor="let item of countries | slice: 0 : 5; let li=index"
-                 [treeDrag]="{ rowData: item }"
-                 [treeDragEnabled]="true">
-              <img class="card-img-top"
-                   src="https://primefaces.org/cdn/primeng/images/usercard.png"
-                   alt="포탈 데이터 아이콘"/>
-              <div class="card-body">
-                <h4 class="card-title">{{item.name}}</h4>
-                <p class="card-text">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                </p>
-                <!--<div class="card-item-content-footer" [class.flex-end]="li===0">
-                  <div class="card-item-content-footer-l" *ngIf="li > 0">
-                    <ul class="keyword-list">
-                      <li *ngFor="let tag of tags;">
-                        <span class="tag" [title]="tag">{{tag}}</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="card-item-content-footer-r">
-                    <span class="text-body-secondary"><i class="fa fa-clock-o" aria-hidden="true"></i>YYYY-MM-dd HH:mm:ss</span>
-                    <span class="text-body-secondary"><i class="fa fa-eye"
-                                                         aria-hidden="true"></i>{{(li + 1) * 10}}</span>
-                  </div>
-                </div>-->
-              </div>
-              <div class="card-footer flex-end">
+          <div class="flex-1">
+            <!--<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0">
+              <mat-tab label="Card list">-->
+            <tabset>
+              <tab heading="Card list">
+                <div class="card py-2">
+                  <div class="card-item" *ngFor="let item of countries | slice: 0 : 5; let li=index"
+                       [treeDrag]="{ rowData: item }"
+                       [treeDragEnabled]="true">
+                    <img class="card-img-top"
+                         src="https://primefaces.org/cdn/primeng/images/usercard.png"
+                         alt="포탈 데이터 아이콘"/>
+                    <div class="card-body">
+                      <h4 class="card-title">{{item.name}}</h4>
+                      <p class="card-text">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      </p>
+                    </div>
+                    <div class="card-footer flex-end">
                 <span class="text-body-secondary">
                   <i class="fa fa-clock-o" aria-hidden="true"></i>YYYY-MM-dd HH:mm:ss</span>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex-1">
-            <ag-grid-angular style="width: 100%; height: 100%"
-                             class="ag-theme-alpine"
-                             [rowDragManaged]="true"
-                             [defaultColDef]="defaultColDef"
-                             [gridOptions]="gridOptions"
-                             (gridReady)="onGridReady($event)"
-                             [columnDefs]="columnDefs"
-                             [rowData]="countries">
+                    </div>
+                  </div>
+                </div>
+              </tab>
 
-            </ag-grid-angular>
+             <!-- </mat-tab>
+              <mat-tab label="Ag-grid Table">-->
+              <tab heading="Ag-grid">
+                <div class="py-2">
+                  <ag-grid-angular style="width: 100%; height: 100%"
+                                   class="ag-theme-alpine"
+                                   [rowDragManaged]="true"
+                                   [defaultColDef]="defaultColDef"
+                                   [gridOptions]="gridOptions"
+                                   (gridReady)="onGridReady($event)"
+                                   [columnDefs]="columnDefs"
+                                   [rowData]="countries">
+
+                  </ag-grid-angular>
+                </div>
+              </tab>
+            </tabset>
+             <!-- </mat-tab>
+            </mat-tab-group>-->
           </div>
         </div>
         <!--EN: Event -->
@@ -185,6 +232,7 @@
                          [cdkConnectedOverlayOrigin]="t1"
                          [cdkConnectedOverlayOpen]="filterTeamView.owner">
               <tree-select-filter [nodes]="deptList"
+                                  [displayField]="'dept_nm'"
                                   [(label)]="datasetParams.owner_name"
                                   [(value)]="datasetParams.owner"
                                   [(openState)]="filterTeamView.owner"></tree-select-filter>
@@ -212,6 +260,7 @@
                          [cdkConnectedOverlayOpen]="filterTeamView.it_owner">
               <tree-select-filter class="tree-filter"
                                   [nodes]="deptList"
+                                  [displayField]="'dept_nm'"
                                   [(label)]="datasetParams.it_owner_name"
                                   [(value)]="datasetParams.it_owner"
                                   [(openState)]="filterTeamView.it_owner"></tree-select-filter>
@@ -223,8 +272,40 @@
              (click)="filterTeamView.owner = false; filterTeamView.it_owner = false"></div>
         <!--EN: fiter -->
 
+        <!--ST: SIZE-->
+        <div class="style-guide-example d-flex" *ngSwitchCase="'size'">
+          <div class="flex-1 d-flex column">
+            <h5>xs</h5>
+            <tree-dir-component-app [nodes]="nodes2"
+                                    [size]="'xs'"
+                                    (treeElements)="setDropZone($event)"
+                                    [dragoverId]="dragOverId"
+                                    (nodeActiveChanged)="nodeActiveChanged($event, 'event')"
+                                    (outputNodeAPI)="outputAPI($event)"></tree-dir-component-app>
+          </div>
+
+          <div class="flex-1 d-flex column">
+            <h5>sm</h5>
+            <tree-dir-component-app [nodes]="nodes2"
+                                    [size]="'sm'"
+                                    (treeElements)="setDropZone($event)"
+                                    [dragoverId]="dragOverId"
+                                    (nodeActiveChanged)="nodeActiveChanged($event, 'event')"
+                                    (outputNodeAPI)="outputAPI($event)"></tree-dir-component-app>
+          </div>
+
+          <div class="flex-1 d-flex column">
+            <h5>default</h5>
+            <tree-dir-component-app [nodes]="nodes2"
+                                    (treeElements)="setDropZone($event)"
+                                    [dragoverId]="dragOverId"
+                                    (nodeActiveChanged)="nodeActiveChanged($event, 'event')"
+                                    (outputNodeAPI)="outputAPI($event)"></tree-dir-component-app>
+          </div>
+        </div>
+        <!--EN: SIZE-->
       </ng-container>
-    </ng-container>
+    </div>
   </div>
   <aside-menu-right [menu]="menus"
                     [anchor]="anchors"></aside-menu-right>

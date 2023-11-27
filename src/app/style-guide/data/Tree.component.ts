@@ -59,6 +59,12 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
       desc: '검색 Tree Component',
       anchor: 'filter'
     },
+    {
+      title: 'Size Tree',
+      desc: 'Size Tree Component  <div class="msg info"> ' +
+        '<strong class="color-dark">&lt;tree-dir-component-app&gt; 컴포넌트 사용</strong> <br/> <code>[size]</code> : 사이즈(xs, sm) 입력</div>',
+      anchor: 'size'
+    },
   ];
   @ViewChildren('anchors') anchors: QueryList<ElementRef>;
 
@@ -220,6 +226,13 @@ export class StyleGuideTreeComponent implements AfterViewInit, OnDestroy {
     private router: Router,
     private msgs: MessagesService,
   ) {
+    this.gridOptions = <GridOptions>{
+      rowHeight: 30,
+      headerHeight: 30,
+      unSortIcon: true,
+      suppressPropertyNamesCheck: true, // ag grid console 제거
+    };
+
     this.columnDefs = [
       // {
       //   field: 'id',
