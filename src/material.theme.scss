@@ -132,18 +132,44 @@ $radio-default-size: $input-icon;
 
   // mat-button
   .mat-mdc-button {
-    --mdc-text-button-container-height: $btn-line-height;
-    --mdc-typography-button-line-height: $btn-line-height;
-    line-height: var(--mdc-typography-button-line-height) !important;
-    height: var(--mdc-text-button-container-height) !important;
-    @include mat-button-size($btn-padding-y, $btn-padding-x, $font-size-base, $border-radius);
-    @each $key, $size in $button-size {
-      &.btn-#{$key} {
-        @include mat-button-size(#{nth($size, 1)}, #{nth($size, 2)}, #{nth($size, 3)}, #{nth($size, 4)});
+    &.btn{
+      --mdc-text-button-container-height: $btn-line-height;
+      --mdc-typography-button-line-height: $btn-line-height;
+      --mat-mdc-button-persistent-ripple-color: rgba(#FFF, .2);
+      line-height: var(--mdc-typography-button-line-height) !important;
+      height: var(--mdc-text-button-container-height) !important;
+      @include mat-button-size($btn-padding-y, $btn-padding-x, $font-size-base, $border-radius);
+      @each $key, $size in $button-size {
+        &.btn-#{$key} {
+          @include mat-button-size(#{nth($size, 1)}, #{nth($size, 2)}, #{nth($size, 3)}, #{nth($size, 4)});
+        }
+      }
+      @each $key, $color in $colors{
+        &.btn-#{$key} {
+          color: $color;
+        }
+      }
+      @each $key, $size in $button-size {
+        &.btn-#{$key} {
+          @include mat-button-size(#{nth($size, 1)}, #{nth($size, 2)}, #{nth($size, 3)}, #{nth($size, 4)});
+        }
+      }
+
+      &:hover:not(:disabled),
+      &:active:not(:disabled){
+        @each $key, $color in $colors{
+          &.btn-#{$key} {
+            background-color: rgba($color, .2);
+          }
+        }
+      }
+      &:focus:not(:disabled){
+        background-color: transparent;
       }
     }
+
     & > .mat-icon{
-      margin-right: 0;
+      margin: 0;
     }
   }
 
@@ -332,6 +358,18 @@ $radio-default-size: $input-icon;
     }
   }
   /****************************** EN: Mat-checkbox *************************************************/
+
+  /***** ST: Mat-tab******/
+  .mdc-tab { padding: 0; }
+  .mat-mdc-tab {
+    &-list{
+      border-bottom: 1px solid #ddd;
+    }
+    //.mat-mdc-tab-body
+    &-body {
+      padding: 10px;
+    }
+  }
 }
 
 

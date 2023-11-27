@@ -23,6 +23,21 @@
 }
 
 .btn {
+  &-primary,
+  &-info {
+    color: $btn-primary-color;
+
+    &:hover,&:active,&:focus,&:disabled {
+      color: $btn-primary-color;
+    }
+  }
+  &-outline-primary:hover,
+  &-outline-info:hover {
+    color: $btn-primary-color;
+  }
+
+
+
   /**** Size Button ****/
   &.btn-xl {
     font-size: $font-size-xl;
@@ -76,25 +91,16 @@
   }
 
   /**** Split Button ****/
-  &.btn-split {
+  &.btn-split{
     padding-top: 0;
     padding-bottom: 0;
-
-    span {
+    span{
       cursor: pointer;
       position: relative;
       right: $button-label;
       display: inline-block;
       padding: $btn-padding-y $btn-padding-x;
       border-radius: $border-radius-right;
-
-      @each $key, $color in $colors{
-        &.border-#{$key} {
-          border-left-width: 1px;
-          border-left-style: solid;
-          border-color: lighten($color, 10%) !important;
-        }
-      }
     }
 
     .btn-split-menu{
@@ -128,7 +134,6 @@
       background-color: inherit;
     }
   }
-
   &.active {
     background-color: $primary !important;
     border-color: $primary !important;
@@ -142,24 +147,44 @@ label.btn-split {
 
 .btn-split-group {
   display: flex;
-
-  button.btn {
-    margin-right: 0 !important;
-  }
+  //button.btn {
+  //  margin-right: 0 !important;
+  //}
 
   .btn-split-item {
     border-radius: 0;
+    & > span {
+      //position: relative;
+      //right: $button-label;
+      //display: inline-block;
+    }
+    &:first-child{
+      border-radius: $border-radius-left;
+      //@each $key, $color in $colors{
+      //  &.btn-outline-#{$key}{
+      //    border-right: none;
+      //  }
+      //}
+    }
+    &:last-child{
+      border-radius: $border-radius-right;
+      @each $key, $color in $colors{
+        &.btn-outline-#{$key}{
+          border-left: none;
+        }
+      }
+    }
   }
 
-  .btn-split-item:first-child {
-    border-radius: $border-radius-left;
-    padding: 0 12px;
-  }
-
-  .btn-split-item:last-child {
-    padding: 6px 12px;
-    border-radius: $border-radius-right;
-  }
+  //.btn-split-item:first-child {
+  //  border-radius: $border-radius-left;
+  //  //padding: 0 $btn-padding-x;
+  //}
+  //
+  //.btn-split-item:last-child {
+  //  //padding: $btn-padding-y $btn-padding-x;
+  //  border-radius: $border-radius-right;
+  //}
 }
 
 .btn-group{
@@ -169,12 +194,6 @@ label.btn-split {
   }
 }
 
-.btn-info,
-.btn-primary,
-.btn-outline-primary:hover,
-.btn-outline-info:hover {
-  color: $btn-primary-color !important;
-}
 
 /**** Icon Only button ****/
 .btn-icon {

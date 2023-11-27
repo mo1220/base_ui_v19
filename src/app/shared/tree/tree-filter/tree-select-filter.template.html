@@ -14,6 +14,11 @@
              (keyup)="filterTree($event)"/>-->
     </div>
     <div class="tree-filter-content tree-filter-box">
+     <!-- <tree-dir-component-app [iconUsed]="false"
+                              [displayField]="'dept_nm'"
+                              [nodes]="nodes"
+                              (nodeActiveChanged)="selectOwner($event)">
+      </tree-dir-component-app>-->
       <tree-root #tree class="dp-directory"
                  (event)="onEvent($event)"
                  [focused]="true"
@@ -21,7 +26,7 @@
                  [nodes]="nodes">
         <ng-template #treeNodeTemplate let-node let-index="index">
             <span class="tree-item" (click)="selectOwner(node)" *ngIf="node">
-              {{node.data.dept_nm}}
+              {{node.data[displayField]}}
             </span>
         </ng-template>
       </tree-root>
