@@ -582,12 +582,12 @@ $font-sizes: (
 /****************************** ST: Ng-select *************************************************/
 @import "@ng-select/ng-select/themes/default.theme.css";
 
-$ng-select-size: ( // 1: font-size, 2:padding x, 3: padding y, 4: border-radius
-  //    1                2                        3                        4
-  xs:   $font-size-xs    $input-btn-padding-x-xs  $input-btn-padding-y-xs  $border-radius-xs,
-  sm:   $font-size-sm    $input-btn-padding-x-sm  $input-btn-padding-y-sm  $input-border-radius-sm,
-  base: $font-size-base  $input-padding-x     $input-padding-y             $input-border-radius  ,
-  lg:   $font-size-lg    $input-btn-padding-x-lg  $input-btn-padding-y-lg  $input-border-radius-lg
+$ng-select-size: ( // 1: font-size, 2:padding x, 3: padding y, 4: border-radius, 5: chip height
+  //    1                2                        3                        4                        5
+  xs:   $font-size-xs    $input-btn-padding-x-xs  $input-btn-padding-y-xs  $border-radius-xs        14px,
+  sm:   $font-size-sm    $input-btn-padding-x-sm  $input-btn-padding-y-sm  $input-border-radius-sm  18px,
+  base: $font-size-base  $input-padding-x     $input-padding-y             $input-border-radius     20px,
+  lg:   $font-size-lg    $input-btn-padding-x-lg  $input-btn-padding-y-lg  $input-border-radius-lg  22px
 );
 
 ng-select.ng-select {
@@ -635,7 +635,7 @@ ng-select.ng-select {
         }
         .ng-arrow-wrapper { // arrow
           padding-right: 0;
-          width: calc(#{nth($value, 1)} + #{nth($value, 2)});
+          width: #{nth($value, 1)};//calc(#{nth($value, 1)} + #{nth($value, 2)});
           &:after {
             content: "\f107";//"\f078";
             font-family: FontAwesome;
@@ -650,30 +650,37 @@ ng-select.ng-select {
       }
 
       // select dropdown
-      .ng-dropdown-panel.ng-select-bottom {
-        .ng-dropdown-panel-items {
-          .ng-option {
-            &.ng-option-disabled {
-              color: #999;
-              background-color: $input-disabled-bg;
-            }
-            &, .ng-optgroup {
-              padding: #{nth($value, 3)} #{nth($value, 2)};
-            }
-            &.ng-option-child {
-              padding-left: calc(#{nth($value, 2)} * 2.2);
-            }
-            &.ng-option-marked, .ng-optgroup.ng-option-marked, .ng-optgroup.ng-option-selected.ng-option-marked {
-              background-color: rgba($primary, 0.1);
-            }
-            &.ng-option-selected, .ng-optgroup.ng-option-selected {
-              background-color: rgba($primary, 0.06);
-            }
+      .ng-dropdown-panel {
+        .ng-dropdown-header {
+          .btn-link {
+            position: static;
           }
         }
-        //button {
-        //  margin-right: 5px;
-        //}
+        .ng-select-bottom {
+          .ng-dropdown-panel-items {
+            .ng-option {
+              &.ng-option-disabled {
+                color: #999;
+                background-color: $input-disabled-bg;
+              }
+              &, .ng-optgroup {
+                padding: #{nth($value, 3)} #{nth($value, 2)};
+              }
+              &.ng-option-child {
+                padding-left: calc(#{nth($value, 2)} * 2.2);
+              }
+              &.ng-option-marked, .ng-optgroup.ng-option-marked, .ng-optgroup.ng-option-selected.ng-option-marked {
+                background-color: rgba($primary, 0.1);
+              }
+              &.ng-option-selected, .ng-optgroup.ng-option-selected {
+                background-color: rgba($primary, 0.06);
+              }
+            }
+          }
+          //button {
+          //  margin-right: 5px;
+          //}
+        }
       }
 
       //.ng-select.ng-select-opened>.ng-select-container .ng-arrow
@@ -689,6 +696,42 @@ ng-select.ng-select {
         .ng-arrow-wrapper {
           &:after {
             content: "\f106";//"\f077";
+          }
+        }
+      }
+
+      // multiple select
+      &.ng-select-multiple {
+        @each $key, $value in $ng-select-size {
+          &.ng-select-#{$key} {
+            .ng-select-container {
+              z-index: 10;
+              .ng-value-container {
+                padding-top: 0;
+                gap: #{nth($value, 3)};
+              }
+              .ng-value {
+                height: #{nth($value, 5)};
+                margin: 0;
+                display: flex;
+                align-items: center;
+                flex-direction: row-reverse;
+                padding: 0 #{nth($value, 3)} 0 calc(#{nth($value, 3)} * 1.5);
+                .ng-value-icon { // X 버튼
+                  border: none !important;
+                  color: rgba(0,0,0, .6);
+                  font-size: calc(#{nth($value, 1)} * 0.8);
+                  width: #{nth($value, 1)};
+                  height: #{nth($value, 1)};
+                  line-height: #{nth($value, 1)};
+                  padding: 0;
+                  margin-left: calc(#{nth($value, 3)} * 0.5);
+                }
+                .ng-value-label { // text 영역
+                  padding: 0;
+                }
+              }
+            }
           }
         }
       }
@@ -883,7 +926,7 @@ timepicker {
     }
   }
 
-  $mat-chip-bg: rgba(0,0,0, 0.1);
+  $mat-chip-bg: rgba(0,0,0, 0.08);
   $mat-chips-size: (
     // 1. input font-size, 2: mat-chip height, 3: chip padding-x, 4: chip padding-y, 5: chip border-radius
     //    1                2     3                        4
@@ -913,16 +956,20 @@ timepicker {
           padding:  #{nth($value, 4)} #{nth($value, 3)};
           gap: #{nth($value, 4)};
           .mat-mdc-chip { //mat-chip-row
-            margin: 0;//#{nth($value, 4)} #{nth($value, 3)} #{nth($value, 4)} 0;
+            margin: 0;
+            padding: 0 calc(#{nth($value, 4)} * 1.5);
             --mdc-chip-container-height: #{nth($value, 2)};
             background-color: $mat-chip-bg;
             border-radius: #{nth($value, 5)};
+            &:has(.mat-mdc-chip-remove) {
+              padding: 0 #{nth($value, 4)} 0 calc(#{nth($value, 4)} * 1.5);
+            }
             &:hover {
-              background-color: rgba(0,0,0, 0.15);
+              background-color: rgba(0,0,0, 0.1);
               box-shadow: 0 1px 2px rgba(0,0,0, 0.3);
             }
             .mat-mdc-chip-action { //mat-chip의 왼쪽 text 영역
-              padding-left: #{nth($value, 3)};
+              padding: 0;
               .mat-mdc-chip-action-label { //mat-chip의 왼쪽 text라벨
                 font-size: calc(#{nth($value, 1) * 0.9});
                 line-height: calc(#{nth($value, 1) * 0.9});
@@ -936,7 +983,7 @@ timepicker {
                 font-size: #{nth($value, 1)};
                 width: #{nth($value, 1)};
                 height: #{nth($value, 1)};
-                padding: 0 #{nth($value, 4)} 0 calc(#{nth($value, 4)}*0.6);
+                margin-left: calc(#{nth($value, 4)} * 0.5);
                 .mat-icon {
                   line-height: #{nth($value, 1)};
                 }

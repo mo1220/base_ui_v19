@@ -11,7 +11,7 @@
       input에 <span class="highlight-blue">[matChipInputFor]="chipGrid"</span>를 맞춰줘야함</div>
     <div class="style-guide-example d-flex flex-column gap-1">
       <div class="mat-chips mat-chips-base">
-        <mat-chip-grid #basicChipGrid>
+        <mat-chip-grid #basicChipGrid1>
           <mat-chip-row *ngFor="let chip of chipList"
                         (removed)="removeChip(chip)">
             {{chip.name}}
@@ -19,13 +19,13 @@
           </mat-chip-row>
           <input class="form-control"
                  [placeholder]="'mat-chips + mat-chips-base'"
-                 [matChipInputFor]="basicChipGrid"
+                 [matChipInputFor]="basicChipGrid1"
                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                  (matChipInputTokenEnd)="add($event)"/>
         </mat-chip-grid>
       </div>
       <div class="mat-chips mat-chips-base primary">
-        <mat-chip-grid #basicChipGrid>
+        <mat-chip-grid #basicChipGrid2>
           <mat-chip-row *ngFor="let chip of chipList"
                         (removed)="removeChip(chip)">
             {{chip.name}}
@@ -33,12 +33,31 @@
           </mat-chip-row>
           <input class="form-control"
                  [placeholder]="'mat-chips + mat-chips-base + primary'"
-                 [matChipInputFor]="basicChipGrid"
+                 [matChipInputFor]="basicChipGrid2"
                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                  (matChipInputTokenEnd)="add($event)"/>
         </mat-chip-grid>
       </div>
     </div>
+
+    <div class="msg info">input 없이 사용할 경우 <span class="highlight-blue">mat-chip-set</span>을 사용</div>
+    <div class="style-guide-example d-flex gap-1">
+      <div class="mat-chips mat-chips-base">
+        <mat-chip-set #basicChipSet>
+          <mat-chip *ngFor="let chip of chipList">
+            {{chip.name}}
+          </mat-chip>
+        </mat-chip-set>
+      </div>
+      <div class="mat-chips mat-chips-base primary">
+        <mat-chip-set #basicChipSet2>
+          <mat-chip *ngFor="let chip of chipList">
+            {{chip.name}}
+          </mat-chip>
+        </mat-chip-set>
+      </div>
+    </div>
+
 
     <h3 #anchor #size>Size</h3>
     <p>크기 별 Chips</p>

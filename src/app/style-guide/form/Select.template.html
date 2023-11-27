@@ -15,7 +15,9 @@
       </div>
       <div class="form-group flex-1">
         <ng-select class="ng-select ng-select-base"
+                   placeholder="검색 불가능"
                    [items]="defaultBindingsList"
+                   [searchable]="false"
                    bindLabel="label"
                    bindValue="value"
                    [(ngModel)]="selectedCity2">
@@ -44,8 +46,48 @@
 
     <h3 #anchor #multiple>Multiple Select</h3>
     <p>멀티 셀렉트</p>
-    <!--<div class="style-guide-example">
-      <div class="form-group">
+
+    <div class="style-guide-example d-flex flex-column gap-2">
+      <div class="form-group d-flex gap-1" *ngFor="let item of sizeList">
+        <label class="wd-70">{{item.label}}</label>
+        <div class="mat-chips flex-1"
+             [ngClass]="'mat-chips-' + item.class">
+          <mat-chip-set>
+            <mat-chip *ngFor="let chip of people">
+              {{chip.label}}
+              <button matChipRemove><mat-icon>close</mat-icon></button>
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+        <ng-select class="flex-1 ng-select"
+                   [ngClass]="'ng-select-' + item.class"
+                   [placeholder]="'ng-select + ' + 'ng-select-' + item.class"
+                   bindLabel="label"
+                   bindValue="value"
+                   groupBy="group"
+                   [multiple]="true"
+                   [closeOnSelect]="false"
+                   [selectableGroup]="true"
+                   [selectableGroupAsModel]="false"
+                   [items]="people"
+                   [(ngModel)]="selectedPeople">
+          <ng-template ng-header-tmp>
+            <button class="btn btn-link"
+                    (click)="selectAll()">
+              <mat-icon>library_add_check</mat-icon>Select All</button>
+            <button class="btn btn-link"
+                    (click)="unselectAll()">Clear All</button>
+          </ng-template>
+          <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.group | uppercase}}
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.label}}
+          </ng-template>
+        </ng-select>
+      </div>
+    </div>
+      <!--<div class="form-group">
         <div class="form-group flex">
           <label for="input-xs" class="wd-70">XSmall</label>
           <div class="form-control chips form-control-xs" style="width: 200px;">

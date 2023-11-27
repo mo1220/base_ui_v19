@@ -55,7 +55,11 @@ export class StyleGuideSelectComponent implements AfterViewInit, OnDestroy {
   ];
   selectedPeople:Array<any> = [];
   chipList = [
-    {name: 'Default', color: ''},
+    {name: 'Primary', value: 'primary'},
+    {name: 'Success', value: 'success'},
+    {name: 'Info', value: 'info'},
+    {name: 'Warning', value: 'warning'},
+    {name: 'Danger', value: 'danger'},
   ];
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
