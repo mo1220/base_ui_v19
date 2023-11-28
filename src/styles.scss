@@ -481,27 +481,7 @@ $font-sizes: (
   min-width: 0 !important;
   padding: 0 5px;
 }
-
 /* EN: Mat-button*/
-
-/* ST: Mat-Menu-Item */
-.mat-mdc-menu-item {
-  min-height: 30px !important;
-  height: 30px;
-  padding: 0 8px !important;
-  .mat-icon {
-    margin-right: 8px !important;
-    // TODO Theme에서 설정 가능 하도록 변경
-    color: #999 !important;
-  }
-  &:hover {
-    .mat-icon {
-      color: #333 !important;
-    }
-  }
-}
-
-/* EN: Mat-Menu-Item */
 /****************************** EN: Material Style ******************************************/
 
 
@@ -1170,79 +1150,79 @@ timepicker {
 
 
   // rounded
-//  .mdc-evolution-chip-set .mdc-evolution-chip {
-//    border-radius: 0.25rem;
-//  }
-//
-//  &-circle {
-//    .mdc-evolution-chip-set .mdc-evolution-chip {
-//      border-radius: 25rem;
-//    }
-//  }
-//
-//
-//  &.form-control.form-control-xs {
-//    .mdc-evolution-chip-set {
-//      //min-height: calc(1.5em + 2px) !important;
-//      min-height: calc(1.5em + 0.2rem + 2px) !important;
-//
-//      .mdc-evolution-chip {
-//        height: 18px !important;
-//        margin-top: 2px !important;
-//        margin-bottom: 2px !important;
-//
-//        .mdc-evolution-chip__text-label {
-//          font-size: $font-size-xs;
-//        }
-//      }
-//    }
-//
-//    input {
-//      min-height: calc(1.5em + 0.2rem + 2px) !important;
-//      padding: 0.15rem 0.35rem !important;
-//      font-size: $font-size-xs !important;
-//      border-radius: 0.1rem !important;
-//    }
-//
-//  }
-//
-//  &.form-control.form-control-sm {
-//    .mdc-evolution-chip-set {
-//      min-height: calc(1.5em + 0.5rem + 2px);
-//
-//      .mdc-evolution-chip {
-//        height: 22px !important;
-//        margin-top: 4px !important;
-//        margin-bottom: 4px !important;
-//
-//        .mdc-evolution-chip__text-label {
-//          font-size: $font-size-sm;
-//        }
-//      }
-//    }
-//
-//    input {
-//      min-height: calc(1.5em + 0.5rem + 2px);
-//      padding: 0.25rem 0.5rem;
-//      font-size: $font-size-sm;
-//      border-radius: 0.2rem;
-//    }
-//
-//  }
-//
-//  &.form-control .mdc-evolution-chip-set .mdc-evolution-chip {
-//    height: 28px !important;
-//    background-color: #f0f0f0;
-//    border: 1px solid rgba(0, 0, 0, 0.08);
-//
-//    .mdc-evolution-chip__text-label {
-//      font-size: $font-size-base;
-//    }
-//  }
-//}
-//
-//.mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--trailing {
-//  margin: 0 !important;
+  //  .mdc-evolution-chip-set .mdc-evolution-chip {
+  //    border-radius: 0.25rem;
+  //  }
+  //
+  //  &-circle {
+  //    .mdc-evolution-chip-set .mdc-evolution-chip {
+  //      border-radius: 25rem;
+  //    }
+  //  }
+  //
+  //
+  //  &.form-control.form-control-xs {
+  //    .mdc-evolution-chip-set {
+  //      //min-height: calc(1.5em + 2px) !important;
+  //      min-height: calc(1.5em + 0.2rem + 2px) !important;
+  //
+  //      .mdc-evolution-chip {
+  //        height: 18px !important;
+  //        margin-top: 2px !important;
+  //        margin-bottom: 2px !important;
+  //
+  //        .mdc-evolution-chip__text-label {
+  //          font-size: $font-size-xs;
+  //        }
+  //      }
+  //    }
+  //
+  //    input {
+  //      min-height: calc(1.5em + 0.2rem + 2px) !important;
+  //      padding: 0.15rem 0.35rem !important;
+  //      font-size: $font-size-xs !important;
+  //      border-radius: 0.1rem !important;
+  //    }
+  //
+  //  }
+  //
+  //  &.form-control.form-control-sm {
+  //    .mdc-evolution-chip-set {
+  //      min-height: calc(1.5em + 0.5rem + 2px);
+  //
+  //      .mdc-evolution-chip {
+  //        height: 22px !important;
+  //        margin-top: 4px !important;
+  //        margin-bottom: 4px !important;
+  //
+  //        .mdc-evolution-chip__text-label {
+  //          font-size: $font-size-sm;
+  //        }
+  //      }
+  //    }
+  //
+  //    input {
+  //      min-height: calc(1.5em + 0.5rem + 2px);
+  //      padding: 0.25rem 0.5rem;
+  //      font-size: $font-size-sm;
+  //      border-radius: 0.2rem;
+  //    }
+  //
+  //  }
+  //
+  //  &.form-control .mdc-evolution-chip-set .mdc-evolution-chip {
+  //    height: 28px !important;
+  //    background-color: #f0f0f0;
+  //    border: 1px solid rgba(0, 0, 0, 0.08);
+  //
+  //    .mdc-evolution-chip__text-label {
+  //      font-size: $font-size-base;
+  //    }
+  //  }
+  //}
+  //
+  //.mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--trailing {
+  //  margin: 0 !important;
 }
 
 // drag chip
@@ -1886,31 +1866,32 @@ timepicker {
 
   .tree-children {
     position: relative;
+    padding-left: 10px;
 
-    tree-node > div::before {
-      content: "" !important;
-      position: absolute !important;
-      border-bottom: 1px solid #CCC !important;
-      width: 12px !important;
-      margin-top: -1px !important;
-      left: 9px !important;
-      height: 13px; //16px;
-      border-left: 1px solid #CCC;
-    }
+    /*   tree-node > div::before {
+         content: "" !important;
+         position: absolute !important;
+         border-bottom: 1px solid #CCC !important;
+         width: 12px !important;
+         margin-top: -1px !important;
+         left: 9px !important;
+         height: 13px; //16px;
+         border-left: 1px solid #CCC;
+       }
 
-    tree-node > div::after {
-      content: "" !important;
-      position: absolute !important;
-      width: 1px !important;
-      left: 9px !important;
-      height: 100%;
-      top: -13px;
-      border-left: 1px solid #CCC;
-    }
+       tree-node > div::after {
+         content: "" !important;
+         position: absolute !important;
+         width: 1px !important;
+         left: 9px !important;
+         height: 100%;
+         top: -13px;
+         border-left: 1px solid #CCC;
+       }
 
-    tree-node:last-child > div::after {
-      display: none;
-    }
+       tree-node:last-child > div::after {
+         display: none;
+       }*/
   }
 
   .node-wrapper {
@@ -3113,11 +3094,11 @@ gridster-item {
       & button {
         height: 100%;
       }
-     &-btns{
-       position: absolute;
-       top: 0;
-       right: 0;
-     }
+      &-btns{
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
     }
   }
   .drag-handler {
