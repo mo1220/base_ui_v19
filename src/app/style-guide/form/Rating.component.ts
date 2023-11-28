@@ -44,7 +44,7 @@ export class StyleGuideRatingComponent implements AfterViewInit, OnDestroy {
       anchor: 'customIcon',
     }
   ];
-  rate = 1;
+  rate = 5;
   max: number = 10;
 
   colorlist = [

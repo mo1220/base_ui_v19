@@ -1,9 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import * as numeral from 'numeral';
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import * as chroma from 'chroma-js';
-import * as d3 from 'd3';
 
 @Pipe({ name: 'time' })
 export class TimePipe implements PipeTransform {
@@ -45,9 +42,20 @@ export class TimeForTodayPipe implements PipeTransform {
       return `${betweenTimeHour}시간전`;
     }
     const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
-    if (betweenTimeDay < 10) {
+    if (betweenTimeDay < 30) {
       return `${betweenTimeDay}일전`;
     }
+
+    const betweenTimeMonth = Math.floor(moment().diff(moment(timeValue), 'months', true));
+    if (betweenTimeMonth < 12) {
+      return `${betweenTimeMonth}달전`;
+    }
+
+    const betweenTimeYear = Math.floor(moment().diff(moment(timeValue), 'years', true));
+    if (betweenTimeYear < 10) {
+      return `${betweenTimeYear}년전`;
+    }
+
     return format ? `${moment(value).format(format)}` : `${moment(value).format('YYYY-MM-DD HH:mm:ss')}`;
   }
 }

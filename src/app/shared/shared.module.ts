@@ -79,6 +79,7 @@ import { ResizedEventModule } from './resized-event/angular-resized-event.module
 import { DtkSliderComponent } from './dtk-slider/dtk-slider';
 import { DtkMatSliderComponent } from './dtk-mat-slider/dtk-mat-slider';
 import { AngularDraggableModule } from 'angular2-draggable';
+import { DndModule } from 'ngx-drag-drop';
 
 import { GnbComponent, GnbItemComponent } from './gnb/gnb.component'; // Drag 하여 사이즈 변경시 사용
 
@@ -173,7 +174,8 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     NgxSliderModule,
     NgSelectModule,
     AngularDraggableModule,
-    GridsterModule
+    GridsterModule,
+    DndModule,
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -293,6 +295,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     NgSelectModule,
     AngularDraggableModule, // Element Resize 모듈
     GridsterModule, // Angular Gridster2
+    DndModule,
   ],
   providers: [
     { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }
