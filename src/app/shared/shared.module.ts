@@ -95,6 +95,7 @@ import { KnobComponent } from './knob/knob.component';
 import { InputMask } from './input-mask/input-mask.component';
 import { InputNumber } from './input-number/input-number.component';
 import { KeyFilter } from './key-filter/key-filter';
+import { LetterAvatarComponent } from "./letter-avatar/letter-avatar.component";
 ModuleRegistry.registerModules([ ExcelExportModule ]);
 
 
@@ -184,8 +185,8 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     ColorInputComponent, // 컬러 인풋
     ColorsScaleComponent, // 스케일 컬러 인풋
     DatePickerComponent, // 캘린더 DatePicker
-
     DateRangePickerComponent,
+    LetterAvatarComponent,
     TreeDirComponent, // Tree directory
     TreeSelectFilterComponent, // Tree Filter
     DtkSliderComponent, // Slider Component
@@ -260,6 +261,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     ColorsScaleComponent, // 스케일 컬러 인풋
     DatePickerComponent, // 캘린더 DatePicker
     DateRangePickerComponent,
+    LetterAvatarComponent,
     DtkSliderComponent, // Slider Component
     DtkMatSliderComponent, // Slider Material Component
     TreeDirComponent, // 트리 디렉토리 구조

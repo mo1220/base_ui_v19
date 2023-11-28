@@ -1,0 +1,39 @@
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basic>Basic</h3>
+    <p>입력받은 string을 기반으로 생성되는 기본 Letter Avatar</p>
+    <div class="style-guide-example d-flex gap-2">
+      <div *ngFor="let item of avatar; let i=index">
+        <letter-avatar [name]="item" [idx]="i"></letter-avatar>
+      </div>
+    </div>
+
+    <h3 #anchor #size>Size</h3>
+    <p>입력받은 size에 따라 크기 변경 가능 (1~100, px단위)</p>
+    <div class="style-guide-example d-flex gap-2 align-center">
+      <div class="d-flex flex-column align-center"
+           *ngFor="let item of avatar; let i=index">
+        <letter-avatar [name]="item"
+                       [idx]="i"
+                       [size]="sizes[i]"></letter-avatar>
+        {{sizes[i]}}px
+      </div>
+    </div>
+
+    <h3 #anchor #radius>Radius</h3>
+    <p>입력받은 size에 따라 둥글기 변경 가능 (px단위)</p>
+    <div class="msg info">radius를 입력하지 않으면 50%로 설정</div>
+    <div class="style-guide-example d-flex gap-2 align-center">
+      <div class="d-flex flex-column align-center"
+           *ngFor="let item of avatar; let i=index">
+        <letter-avatar [name]="item"
+                       [idx]="i"
+                       [size]="sizes[i]"
+                       [radius]="_radius[i]"></letter-avatar>
+        {{_radius[i]}}px
+      </div>
+    </div>
+  </div>
+  <aside-menu-right [menu]="LetterAvatarMenu"
+                    [anchor]="anchors"></aside-menu-right>
+</div>
