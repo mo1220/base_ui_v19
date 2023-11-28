@@ -103,7 +103,12 @@ $header-height: 70px;
 $box-shadow: 0 2px 2px rgba(10, 16, 20, .24), 0 0 2px rgba(10, 16, 20, .12);
 $box-shadow-hover: 0 8px 8px rgba(10, 16, 20, .24), 0 0 8px rgba(10, 16, 20, .12);
 $box-shadow-card-list-hover: 0 6px 8px 0 rgba(0, 0, 0, 0.16);
+
 $input-icon-color: rgba(0, 0, 0, 0.5);
+
+$component-active-bg:         $primary !default;
+
+// $input-focus-color: $input-color;
 
 // Bootstrap Style 재정의
 $font-size-base: 0.75rem !default; // Default Font Size
@@ -179,9 +184,16 @@ $btn-padding-xl: $btn-padding * 1.5;
 $btn-padding-lg: $btn-padding * 1.2;
 $btn-padding-sm: $btn-padding * .8;
 $btn-padding-xs: $btn-padding * .7;
-$input-btn-focus-width: .12rem !default;
+
 $btn-mat-width: 40px !default; // mat-icon-button 기본 너비
 $btn-mat-width-lg: 48px !default; // mat-icon-button 기본 너비
+
+$input-border-color: #ced4da;
+$input-btn-focus-color-opacity: .25 !default;
+$input-btn-focus-width: .12rem !default;
+$input-btn-focus-color:         rgba($component-active-bg, $input-btn-focus-color-opacity) !default;
+$input-btn-focus-blur:          0 !default;
+$input-btn-focus-box-shadow:    0 0 $input-btn-focus-blur $input-btn-focus-width $input-btn-focus-color !default;
 
 
 // btn-labeld 버튼 | btn-split 시 icon 위치
