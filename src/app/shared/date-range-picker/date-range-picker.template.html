@@ -1,6 +1,13 @@
 <!-- ST: range picker -->
-<div class="form-group">
+<div class="form-group" [class.input-group]="preNext">
+  <button class="btn btn-outline-secondary"
+          *ngIf="preNext"
+          (click)="moveToRange('pre')"
+          [ngClass]="size && size !== '' ? 'btn-' + size : ''">
+    <i class="fa fa-angle-left"></i>
+  </button>
   <div class="form-box icon-left calendar"
+       [class.flex-1]="preNext"
        [class.icon-mat]="_bsConfig.withTimepicker === true">
     <!-- calendar-time 사용 시 icon-mat 클래스 추가 -->
     <input type="text" style="display: block"
@@ -32,6 +39,12 @@
            (click)="open = false"></div>
     </ng-template>
   </div>
+  <button class="btn btn-outline-secondary"
+          *ngIf="preNext"
+          (click)="moveToRange('next')"
+          [ngClass]="size && size !== '' ? 'btn-' + size : ''">
+    <i class="fa fa-angle-right"></i>
+  </button>
 </div>
 
 <!-- EN: range picker -->

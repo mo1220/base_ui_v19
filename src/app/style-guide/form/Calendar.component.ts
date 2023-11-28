@@ -66,6 +66,13 @@ export class StyleGuideCalendarComponent implements AfterViewInit, OnDestroy {
   minTime: Date = new Date();
   maxTime: Date = new Date();
 
+  ranges : any[] = [{
+    value: [new Date(new Date().setDate(new Date().getDate() - 1)), new Date()],
+    label: '최근 1일'
+  }, {
+    value: [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()],
+    label: '최근 일주일'
+  }];
   constructor(
     private cd: ChangeDetectorRef,
     private translate: TranslateService,

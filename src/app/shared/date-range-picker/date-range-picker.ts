@@ -22,6 +22,27 @@ interface IRange {
   label: string;
 }
 
+const RANGES_INIT: IRange[] = [
+  {
+    value: [new Date(new Date().setDate(new Date().getDate() - 1)), new Date()],
+    label: '최근 1일'
+  }, {
+    value: [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()],
+    label: '최근 일주일'
+  }, {
+    value: [new Date(new Date().setDate(new Date().getMonth() - 1)), new Date()],
+    label: '최근 1개월'
+  }, {
+    value: [new Date(new Date().setDate(new Date().getMonth() - 3)), new Date()],
+    label: '최근 3개월'
+  }, {
+    value: [new Date(new Date().setDate(new Date().getMonth() - 6)), new Date()],
+    label: '최근 6개월'
+  }, {
+    value: [new Date(new Date().setDate(new Date().getMonth() - 12)), new Date()],
+    label: '최근 1년'
+  }
+];
 @Component({
   selector: 'date-range-picker',
   templateUrl: './date-range-picker.template.html',
@@ -74,27 +95,7 @@ export class DateRangePickerComponent implements OnInit {
       // { date: this.yesterday, tooltipText: '어제'},
       // { date: this.tomorrow, tooltipText: '내일'},
     ],
-    ranges: [
-      {
-        value: [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()],
-        label: '최근 일주일'
-      }, {
-        value: [new Date(new Date().setDate(new Date().getDate() - 30)), new Date()],
-        label: '최근 1개월'
-      }, {
-        value: [new Date(new Date().setDate(new Date().getDate() - 61)), new Date()],
-        label: '최근 3개월'
-      }, {
-        value: [new Date(new Date().setDate(new Date().getDate() - 183)), new Date()],
-        label: '최근 6개월'
-      }, {
-        value: [new Date(new Date().setDate(new Date().getDate() - 365)), new Date()],
-        label: '최근 1년'
-      }, {
-        value: [new Date(new Date().setDate(new Date().getDate() - 1095)), new Date()],
-        label: '최근 3년'
-      }
-    ]
+    ranges: false
   }
 
   @Input()
@@ -117,6 +118,7 @@ export class DateRangePickerComponent implements OnInit {
       showWeekNumbers: value || false
     }
   }
+  // _ranges: any[] | boolean | undefined = false;
   @Input()
   get ranges() {
     return this._bsConfig.ranges;
@@ -124,7 +126,7 @@ export class DateRangePickerComponent implements OnInit {
   set ranges(value) {
     this._bsConfig = {
       ...this._bsConfig,
-      ranges: value || undefined
+      ranges: value ? value === true ? RANGES_INIT : value : []
     }
   }
   @Input()
@@ -148,6 +150,8 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
+  @Input() preNext:boolean = false;
+
   constructor(
     private cd: ChangeDetectorRef,
     private localeService: BsLocaleService
@@ -157,6 +161,33 @@ export class DateRangePickerComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  moveToRange(type: string) {
+    const start = this._selectDate[0];
+    const end = this._selectDate[1];
+    if(start && end) {
+      const format = this._bsConfig.withTimepicker ? 'YYYY-MM-DD[T]HH:mm:ss' : 'YYYY-MM-DD';
+      let diff = Number(moment(end).format('x')) - Number(moment(start).format('x'));
+      let eDiff = type === 'pre' ? moment(end).subtract(diff, 'ms').format(format) :
+        moment(end).add(diff, 'ms').format(format);
+      let sDiff = type === 'pre' ? moment(start).subtract(diff, 'ms').format(format) :
+        moment(start).add(diff, 'ms').format(format);
+
+      // 달 단위 체크
+      if(moment(start).format('YYYY-MM-DD') == moment(start).startOf('months').format('YYYY-MM-DD')
+        && moment(end).format('YYYY-MM-DD') == moment(end).endOf('months').format('YYYY-MM-DD')){
+
+        eDiff = type === 'pre' ? moment(end).subtract(1, 'months').endOf('months').format(format) :
+          moment(end).add(1, 'months').endOf('months').format(format);
+        sDiff = type === 'pre' ? moment(start).subtract(1, 'months').startOf('months').format(format) :
+          moment(start).add(1, 'months').startOf('months').format(format);
+      }
+
+      this._selectDate = [ new Date(sDiff), new Date(eDiff) ];
+      this.selectDateChange.emit(this._selectDate);
+      this.cd.detectChanges();
+    }
   }
 
   changeDate(e:any): void {

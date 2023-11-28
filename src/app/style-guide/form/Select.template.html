@@ -46,12 +46,11 @@
 
     <h3 #anchor #multiple>Multiple Select</h3>
     <p>멀티 셀렉트</p>
-
+    <div class="msg info">[ngClass]로 ng-select-xs 추가 시 dropdown에 커스텀 클래스가 붙지 않으므로 반드시 ng-select의 class에 사이즈 클래스를 바로 추가해야함 (주석 참고)</div>
     <div class="style-guide-example d-flex flex-column gap-2">
-      <div class="form-group d-flex gap-1" *ngFor="let item of sizeList">
-        <label class="wd-70">{{item.label}}</label>
-        <div class="mat-chips flex-1"
-             [ngClass]="'mat-chips-' + item.class">
+      <div class="form-group d-flex gap-1">
+        <label class="wd-70">Xsmall</label>
+        <div class="mat-chips mat-chips-xs flex-1">
           <mat-chip-set>
             <mat-chip *ngFor="let chip of people">
               {{chip.label}}
@@ -59,7 +58,169 @@
             </mat-chip>
           </mat-chip-set>
         </div>
-        <ng-select class="flex-1 ng-select"
+        <ng-select class="flex-1 ng-select ng-select-xs"
+                   [placeholder]="'ng-select-xs'"
+                   bindLabel="label"
+                   bindValue="value"
+                   groupBy="group"
+                   [multiple]="true"
+                   [closeOnSelect]="false"
+                   [selectableGroup]="true"
+                   [selectableGroupAsModel]="false"
+                   [appendTo]="'body'"
+                   [items]="people"
+                   [(ngModel)]="selectedPeople">
+          <ng-template ng-header-tmp>
+            <button class="btn btn-link"
+                    (click)="selectAll()">
+              <mat-icon class="md-14">done_all</mat-icon>Select All</button>
+            <button class="btn btn-link"
+                    (click)="unselectAll()">
+              <mat-icon class="md-14">remove_done</mat-icon>Clear All</button>
+          </ng-template>
+          <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/>
+             {{item.group | uppercase}}
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.label}}
+          </ng-template>
+          <ng-template ng-multi-label-tmp let-items="items" let-item$="item$"
+                       *ngIf="people.length === selectedPeople.length">
+              전체
+          </ng-template>
+        </ng-select>
+      </div>
+      <div class="form-group d-flex gap-1">
+        <label class="wd-70">Small</label>
+        <div class="mat-chips mat-chips-sm flex-1">
+          <mat-chip-set>
+            <mat-chip *ngFor="let chip of people">
+              {{chip.label}}
+              <button matChipRemove><mat-icon>close</mat-icon></button>
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+        <ng-select class="flex-1 ng-select ng-select-sm"
+                   [placeholder]="'ng-select-sm'"
+                   bindLabel="label"
+                   bindValue="value"
+                   groupBy="group"
+                   [multiple]="true"
+                   [closeOnSelect]="false"
+                   [selectableGroup]="true"
+                   [selectableGroupAsModel]="false"
+                   [appendTo]="'body'"
+                   [items]="people"
+                   [(ngModel)]="selectedPeople">
+          <ng-template ng-header-tmp>
+            <button class="btn btn-link"
+                    (click)="selectAll()">
+              <mat-icon class="md-14">done_all</mat-icon>Select All</button>
+            <button class="btn btn-link"
+                    (click)="unselectAll()">
+              <mat-icon class="md-14">remove_done</mat-icon>Clear All</button>
+          </ng-template>
+          <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.group | uppercase}}
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.label}}
+          </ng-template>
+          <ng-template ng-multi-label-tmp let-items="items" let-item$="item$"
+                       *ngIf="people.length === selectedPeople.length">
+            전체
+          </ng-template>
+        </ng-select>
+      </div>
+      <div class="form-group d-flex gap-1">
+        <label class="wd-70">Base</label>
+        <div class="mat-chips mat-chips-base flex-1">
+          <mat-chip-set>
+            <mat-chip *ngFor="let chip of people">
+              {{chip.label}}
+              <button matChipRemove><mat-icon>close</mat-icon></button>
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+        <ng-select class="flex-1 ng-select ng-select-base"
+                   [placeholder]="'ng-select-base'"
+                   bindLabel="label"
+                   bindValue="value"
+                   groupBy="group"
+                   [multiple]="true"
+                   [closeOnSelect]="false"
+                   [selectableGroup]="true"
+                   [selectableGroupAsModel]="false"
+                   [appendTo]="'body'"
+                   [items]="people"
+                   [(ngModel)]="selectedPeople">
+          <ng-template ng-header-tmp>
+            <button class="btn btn-link"
+                    (click)="selectAll()">
+              <mat-icon class="md-14">done_all</mat-icon>Select All</button>
+            <button class="btn btn-link"
+                    (click)="unselectAll()">
+              <mat-icon class="md-14">remove_done</mat-icon>Clear All</button>
+          </ng-template>
+          <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.group | uppercase}}
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.label}}
+          </ng-template>
+          <ng-template ng-multi-label-tmp let-items="items" let-item$="item$"
+                       *ngIf="people.length === selectedPeople.length">
+            전체
+          </ng-template>
+        </ng-select>
+      </div>
+      <div class="form-group d-flex gap-1">
+        <label class="wd-70">Large</label>
+        <div class="mat-chips mat-chips-lg flex-1">
+          <mat-chip-set>
+            <mat-chip *ngFor="let chip of people">
+              {{chip.label}}
+              <button matChipRemove><mat-icon>close</mat-icon></button>
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+        <ng-select class="flex-1 ng-select ng-select-lg"
+                   [placeholder]="'ng-select-lg'"
+                   bindLabel="label"
+                   bindValue="value"
+                   groupBy="group"
+                   [multiple]="true"
+                   [closeOnSelect]="false"
+                   [selectableGroup]="true"
+                   [selectableGroupAsModel]="false"
+                   [appendTo]="'body'"
+                   [items]="people"
+                   [(ngModel)]="selectedPeople">
+          <ng-template ng-header-tmp>
+            <button class="btn btn-link"
+                    (click)="selectAll()">
+              <mat-icon class="md-14">done_all</mat-icon>Select All</button>
+            <button class="btn btn-link"
+                    (click)="unselectAll()">
+              <mat-icon class="md-14">remove_done</mat-icon>Clear All</button>
+          </ng-template>
+          <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.group | uppercase}}
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+            <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.label}}
+          </ng-template>
+          <ng-template ng-multi-label-tmp let-items="items" let-item$="item$"
+                       *ngIf="people.length === selectedPeople.length">
+            전체
+          </ng-template>
+        </ng-select>
+      </div>
+
+      <!-- // 다음과 같이 [ngClass]로 ng-select-xs을 추가하려고 할 경우 dropdown의 커스텀이 불가능함
+      <div class="form-group d-flex gap-1" *ngFor="let item of sizeList">
+        <ng-select class="flex-1 ng-select dd"
                    [ngClass]="'ng-select-' + item.class"
                    [placeholder]="'ng-select + ' + 'ng-select-' + item.class"
                    bindLabel="label"
@@ -69,14 +230,16 @@
                    [closeOnSelect]="false"
                    [selectableGroup]="true"
                    [selectableGroupAsModel]="false"
+                   [appendTo]="'body'"
                    [items]="people"
                    [(ngModel)]="selectedPeople">
           <ng-template ng-header-tmp>
             <button class="btn btn-link"
                     (click)="selectAll()">
-              <mat-icon>library_add_check</mat-icon>Select All</button>
+              <mat-icon class="md-14">done_all</mat-icon>Select All</button>
             <button class="btn btn-link"
-                    (click)="unselectAll()">Clear All</button>
+                    (click)="unselectAll()">
+              <mat-icon class="md-14">remove_done</mat-icon>Clear All</button>
           </ng-template>
           <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
             <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.group | uppercase}}
@@ -85,7 +248,7 @@
             <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.label}}
           </ng-template>
         </ng-select>
-      </div>
+      </div>-->
     </div>
       <!--<div class="form-group">
         <div class="form-group flex">

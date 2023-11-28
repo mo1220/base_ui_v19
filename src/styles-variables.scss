@@ -19,8 +19,8 @@ $gray-light: #EFEFEF;
 //$secondary: #AAAAAA;
 
 
-$primary: $pink; //#007bff;
-$secondary: #6d6e71;
+$primary: #007bff;
+$secondary: #9ea4aa;
 $success: #28a745;
 $info: #007bff;
 $warning: #e1ac00;
@@ -129,6 +129,32 @@ $input-icon-sm:       12px;
 $input-icon-lg:       19px;
 $input-icon-xl:       22px;
 
+// Checked icon Width / Height
+$input-checked-w:     9px;
+$input-checked-w-xs:  5.5px;
+$input-checked-w-sm:  6px;
+$input-checked-w-lg:  12px;
+$input-checked-w-xl:  14px;
+
+$input-checked-h:     5px;
+$input-checked-h-xs:  3.5px;
+$input-checked-h-sm:  4px;
+$input-checked-h-lg:  7px;
+$input-checked-h-xl:  9px;
+
+// Checked icon Top / left
+$input-checked-t:     4px;
+$input-checked-t-xs:  2px;
+$input-checked-t-sm:  2.5px;
+$input-checked-t-lg:  3px;
+$input-checked-t-xl:  3px;
+
+$input-checked-l:     2.5px;
+$input-checked-l-xs:  1px;
+$input-checked-l-sm:  2.5px;
+$input-checked-l-lg:  3px;
+$input-checked-l-xl:  3px;
+
 // Material Touch 영역
 $input-icon-layer:    26px;
 $input-icon-layer-xs: 20px;
@@ -183,6 +209,10 @@ $input-btn-focus-width: .12rem !default;
 $btn-mat-width: 40px !default; // mat-icon-button 기본 너비
 $btn-mat-width-lg: 48px !default; // mat-icon-button 기본 너비
 
+$chip-height-xs: 14px;
+$chip-height-sm: 18px;
+$chip-height: 20px;
+$chip-height-lg: 22px;
 
 // btn-labeld 버튼 | btn-split 시 icon 위치
 $button-label:    -12px;

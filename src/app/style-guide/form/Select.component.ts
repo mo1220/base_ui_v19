@@ -23,6 +23,7 @@ import {COMMA, ENTER} from "@angular/cdk/keycodes";
 export class StyleGuideSelectComponent implements AfterViewInit, OnDestroy {
   @ViewChild('contentWrap') contentWrap: ElementRef;
   @ViewChildren('anchor') anchors: QueryList<ElementRef>;
+  @ViewChildren('multiple') multiple: ElementRef;
   selectMenu: any = [
     {
       title: 'Basic Select',
@@ -44,7 +45,7 @@ export class StyleGuideSelectComponent implements AfterViewInit, OnDestroy {
   selectedCity2:any = null;
 
   people:Array<any> = [
-    {value:1, label:'kim', group: 'male', selected:true},
+    {value:1, label:'kim', group: 'male', selected:false},
     {value:2, label:'lee', group: 'male', selected:false},
     {value:3, label:'jeong', group: 'male', selected:false},
     {value:4, label:'park', group: 'male', selected:false},
@@ -93,7 +94,8 @@ export class StyleGuideSelectComponent implements AfterViewInit, OnDestroy {
     private translate: TranslateService,
     private router: Router,
     private notiService: NotificationService,
-  ) { }
+  ) {
+  }
 
   ngAfterViewInit(): void {
     this.cd.detectChanges();

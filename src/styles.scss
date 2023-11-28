@@ -621,16 +621,64 @@ $font-sizes: (
 /****************************** ST: Ng-select *************************************************/
 @import "@ng-select/ng-select/themes/default.theme.css";
 
-$ng-select-size: ( // 1: font-size, 2:padding x, 3: padding y, 4: border-radius, 5: chip height
-  //    1                2                        3                        4                        5
-  xs:   $font-size-xs    $input-btn-padding-x-xs  $input-btn-padding-y-xs  $border-radius-xs        14px,
-  sm:   $font-size-sm    $input-btn-padding-x-sm  $input-btn-padding-y-sm  $input-border-radius-sm  18px,
-  base: $font-size-base  $input-padding-x     $input-padding-y             $input-border-radius     20px,
-  lg:   $font-size-lg    $input-btn-padding-x-lg  $input-btn-padding-y-lg  $input-border-radius-lg  22px
+$ng-select-size: ( // 1: font-size, 2:padding x, 3: padding y, 4: border-radius, 5: chip height, 6: line-height, 7: label-padding, 8: Checkbox Size
+  //    1                2                        3                        4                        5                 6                   7                         8
+  xs:   $font-size-xs    $input-btn-padding-x-xs  $input-btn-padding-y-xs  $border-radius-xs        $chip-height-xs   $line-height-xs     $input-label-padding-xs   $input-icon-xs $input-checked-w-xs $input-checked-h-xs $input-checked-t-xs $input-checked-l-xs,
+  sm:   $font-size-sm    $input-btn-padding-x-sm  $input-btn-padding-y-sm  $input-border-radius-sm  $chip-height-sm   $line-height-sm     $input-label-padding-sm   $input-icon-sm $input-checked-w-sm $input-checked-h-sm $input-checked-t-sm $input-checked-l-sm,
+  base: $font-size-base  $input-padding-x     $input-padding-y             $input-border-radius     $chip-height      $line-height-base   $input-label-padding      $input-icon    $input-checked-w    $input-checked-h    $input-checked-t    $input-checked-l,
+  lg:   $font-size-lg    $input-btn-padding-x-lg  $input-btn-padding-y-lg  $input-border-radius-lg  $chip-height-lg   $line-height-lg     $input-label-padding-xs   $input-icon-lg $input-checked-w-lg $input-checked-h-lg $input-checked-t-lg $input-checked-l-lg,
 );
 
-ng-select.ng-select {
+.ng-select {
   margin-bottom: 0;
+  input[type="checkbox"] {
+    vertical-align: middle;
+    margin-right: 5px;
+    position: relative;
+    width: $input-icon;
+    height: $input-icon;
+    background-clip: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0 0.4rem 0 0; // 0.2rem 0.4rem 0 0; //-0.15px 3px 0 0;
+    vertical-align: text-bottom;
+    border-radius: 3px;
+    transition: background-color 0.25s;
+    background-color: #fff;
+    border: 1px solid #d7d7d7;
+
+    &:checked:after {
+      content: '';
+      display: block;
+      height: 5px;
+      width: 9px;
+      border: 0 solid #FFF;
+      border-width: 0 0 2px 2px;
+      transform: rotate(-45deg);
+      position: absolute;
+      top: 4px;
+      left: 3px;
+    }
+
+    &:disabled {
+      opacity: 0.65;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.075), 0 0 2px #38a7ff;
+    }
+
+    &:checked {
+      background-color: $primary;
+      border-color: $primary;
+    }
+
+    &:checked:after {
+      border-color: #FFF;
+    }
+  }
   .ng-select-container {
     //여기다가 기본값 초기화 해도 우선순위때문에 적용X
     &:hover {
@@ -642,6 +690,16 @@ ng-select.ng-select {
   }
   @each $key, $value in $ng-select-size {
     &.ng-select-#{$key} {
+      input[type="checkbox"] {
+        width: #{nth($value, 8)};
+        height: #{nth($value, 8)};
+        &:checked:after {
+          width: #{nth($value, 9)};
+          height: #{nth($value, 10)};
+          top: #{nth($value, 11)};
+          left: #{nth($value, 12)};
+        }
+      }
       .ng-select-container { // 전체 box
         width: auto;
         height: auto !important;
@@ -688,37 +746,20 @@ ng-select.ng-select {
         }
       }
 
-      // select dropdown
       .ng-dropdown-panel {
-        .ng-dropdown-header {
-          .btn-link {
-            position: static;
+        .ng-option {
+          &.ng-option-marked { // hover 했을 때
+            background-color: lighten($primary, 38);
+          }
+          &.ng-option-selected { // 선택 했을 때
+            background-color: lighten($primary, 35);
           }
         }
-        .ng-select-bottom {
-          .ng-dropdown-panel-items {
-            .ng-option {
-              &.ng-option-disabled {
-                color: #999;
-                background-color: $input-disabled-bg;
-              }
-              &, .ng-optgroup {
-                padding: #{nth($value, 3)} #{nth($value, 2)};
-              }
-              &.ng-option-child {
-                padding-left: calc(#{nth($value, 2)} * 2.2);
-              }
-              &.ng-option-marked, .ng-optgroup.ng-option-marked, .ng-optgroup.ng-option-selected.ng-option-marked {
-                background-color: rgba($primary, 0.1);
-              }
-              &.ng-option-selected, .ng-optgroup.ng-option-selected {
-                background-color: rgba($primary, 0.06);
-              }
-            }
+        .ng-outgroup {
+          background-color: #fff;
+          &.ng-option-marked {// hover 했을 때
+            background-color: lighten($primary, 38);
           }
-          //button {
-          //  margin-right: 5px;
-          //}
         }
       }
 
@@ -741,38 +782,115 @@ ng-select.ng-select {
 
       // multiple select
       &.ng-select-multiple {
-        @each $key, $value in $ng-select-size {
-          &.ng-select-#{$key} {
-            .ng-select-container {
-              z-index: 10;
-              .ng-value-container {
-                padding-top: 0;
-                gap: #{nth($value, 3)};
-              }
-              .ng-value {
-                height: #{nth($value, 5)};
-                margin: 0;
-                display: flex;
-                align-items: center;
-                flex-direction: row-reverse;
-                padding: 0 #{nth($value, 3)} 0 calc(#{nth($value, 3)} * 1.5);
-                .ng-value-icon { // X 버튼
-                  border: none !important;
-                  color: rgba(0,0,0, .6);
-                  font-size: calc(#{nth($value, 1)} * 0.8);
-                  width: #{nth($value, 1)};
-                  height: #{nth($value, 1)};
-                  line-height: #{nth($value, 1)};
-                  padding: 0;
-                  margin-left: calc(#{nth($value, 3)} * 0.5);
-                }
-                .ng-value-label { // text 영역
-                  padding: 0;
-                }
-              }
+        .ng-select-container {
+          z-index: 10;
+          .ng-value-container {
+            padding-top: 0;
+            gap: #{nth($value, 3)};
+            .ng-placeholder {
+              position: static;
+              padding: 0;
+            }
+            .ng-input {
+              transform: none;
+              padding: 0;
+            }
+          }
+          .ng-value {
+            height: #{nth($value, 5)};
+            margin: 0;
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            padding: 0 #{nth($value, 3)} 0 calc(#{nth($value, 3)} * 1.5);
+            background-color: rgba(0, 0, 0, 0.08) !important;
+            .ng-value-icon { // X 버튼
+              border: none !important;
+              color: rgba(0,0,0, .6);
+              font-size: calc(#{nth($value, 1)} * 0.8);
+              width: #{nth($value, 1)};
+              height: #{nth($value, 1)};
+              line-height: #{nth($value, 1)};
+              padding: 0;
+              margin-left: calc(#{nth($value, 3)} * 0.5);
+            }
+            .ng-value-label { // text 영역
+              padding: 0;
             }
           }
         }
+
+
+        &.ng-dropdown-panel.ng-select-multiple { // appendTo body 일 때에는 &.ng-dropdown-panel
+          .ng-dropdown-header {
+            background-color: rgba(lighten($primary,  40), .2);
+            mat-icon {
+              margin-right: #{nth($value, 3)};
+              font-size: #{nth($value, 1)};
+              width: #{nth($value, 1)};
+              height: #{nth($value, 1)};
+            }
+            .btn-link {
+              position: static;
+              text-decoration: none;
+              font-size: #{nth($value, 1)};
+              margin-right: #{nth($value, 2)};
+              padding: 0 calc(#{nth($value, 7)} * 2);
+            }
+          }
+
+          .ng-dropdown-panel-items {
+            .ng-optgroup, .ng-option {
+              font-size: #{nth($value, 1)};
+              &.ng-option-selected { // 선택 했을 때
+                background-color: rgba(lighten($primary, 35), .5);
+              }
+
+              &.ng-option-marked { // hover 했을 때
+                background-color: rgba(lighten($primary, 38), .3);
+              }
+            }
+
+            // {
+            //  font-size: #{nth($value, 1)};
+            //  &.ng-option-selected { // 선택 했을 때
+            //    background-color: rgba(lighten($primary, 35), .5);
+            //  }
+            //
+            //  &.ng-option-marked { // hover 했을 때
+            //    background-color: rgba(lighten($primary, 38), .5);
+            //  }
+            //}
+          }
+        }
+        //&.ng-dropdown-panel {
+        //  font-size: #{nth($value, 1)};
+        //  line-height: #{nth($value, 1)};
+        //  /*max-height: calc(#{nth($value, 1)} * #{nth($value, 6)});
+        //  padding: #{nth($value, 7)} 0;*/
+        //  .ng-dropdown-header {
+        //    background-color: lighten($primary, 40);
+        //    mat-icon {
+        //      margin-right: #{nth($value, 3)};
+        //      font-size: #{nth($value, 1)};
+        //      width: #{nth($value, 1)};
+        //      height: #{nth($value, 1)};
+        //    }
+        //    .btn-link {
+        //      position: static;
+        //      font-size: #{nth($value, 1)};
+        //      text-decoration: none;
+        //    }
+        //  }
+        //  .ng-dropdown-panel-items {
+        //    .ng-outgroup {
+        //
+        //    }
+        //    .ng-option {
+        //
+        //    }
+        //  }
+        //}
       }
     }
   }
@@ -781,23 +899,29 @@ ng-select.ng-select {
     border-color: $input-focus-border-color;
     box-shadow: $input-btn-focus-box-shadow;
   }
-
-  &-multiple {
-    .ng-select-container .ng-value-container .ng-value {
-      background-color: rgba(0, 0, 0, 0.08) !important;
-
-      .ng-value-icon {
-        &.left {
-          border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
-        }
-
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.1) !important;
-        }
-      }
-    }
-  }
 }
+
+// multiple select
+//@each $key, $value in $ng-select-size {
+//  .ng-select-multiple.ng-select-#{$key} {
+//    font-size: #{nth($value, 1)};
+//    line-height: #{nth($value, 1)};
+//    //max-height: calc(#{nth($value, 1)} * #{nth($value, 6)});
+//    padding: #{nth($value, 7)} 0;
+//    .ng-dropdown-header {
+//      background-color: lighten($primary, 40);
+//      mat-icon {
+//        margin-right: #{nth($value, 3)};
+//        font-size: #{nth($value, 1)};
+//        width: #{nth($value, 1)};
+//        height: #{nth($value, 1)};
+//      }
+//      .btn-link {
+//        position: static;
+//      }
+//    }
+//  }
+//}
 
 /****************************** EN: Ng-select *************************************************/
 
@@ -969,10 +1093,10 @@ timepicker {
   $mat-chips-size: (
     // 1. input font-size, 2: mat-chip height, 3: chip padding-x, 4: chip padding-y, 5: chip border-radius
     //    1                2     3                        4
-    xs:   $font-size-xs    14px  $input-btn-padding-x-xs  $input-btn-padding-y-xs  $border-radius-xs,
-    sm:   $font-size-sm    18px  $input-btn-padding-x-sm  $input-btn-padding-y-sm  $border-radius-sm,
-    base: $font-size-base  20px  $input-padding-x         $input-padding-y         $border-radius,
-    lg:   $font-size-lg    22px  $input-btn-padding-x-lg  $input-btn-padding-y-lg  $border-radius-lg
+    xs:   $font-size-xs    $chip-height-xs  $input-btn-padding-x-xs  $input-btn-padding-y-xs  $border-radius-xs,
+    sm:   $font-size-sm    $chip-height-sm  $input-btn-padding-x-sm  $input-btn-padding-y-sm  $border-radius-sm,
+    base: $font-size-base  $chip-height     $input-padding-x         $input-padding-y         $border-radius,
+    lg:   $font-size-lg    $chip-height-lg  $input-btn-padding-x-lg  $input-btn-padding-y-lg  $border-radius-lg
   );
   @each $key, $value in $mat-chips-size {
     &.mat-chips-#{$key} {
