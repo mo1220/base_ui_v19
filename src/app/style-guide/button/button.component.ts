@@ -82,6 +82,11 @@ export class StyleGuideButtonComponent implements AfterViewInit, OnDestroy {
       title: 'Radio Buttons',
       anchor: 'radio',
       desc: '라디오 형태 버튼',
+    },
+    {
+      title: 'Close Buttons',
+      anchor: 'closeButtons',
+      desc: 'Bootstrap 기본 닫기 버튼 <code>class="btn-close"</code>',
     }
   ]
 
