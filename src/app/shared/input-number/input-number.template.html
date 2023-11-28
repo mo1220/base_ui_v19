@@ -57,7 +57,7 @@
             [attr.data-pc-section]="'incrementbutton'">
               <i class="fa" *ngIf="incrementButtonIcon" [ngClass]="incrementButtonIcon"></i>
               <ng-container *ngIf="!incrementButtonIcon">
-                  <i class="fa fa-caret-up" *ngIf="!incrementButtonIconTemplate"></i>
+                  <i class="fa fa-angle-up" *ngIf="!incrementButtonIconTemplate"></i>
                   <ng-template *ngTemplateOutlet="incrementButtonIconTemplate"></ng-template>
               </ng-container>
           </button>
@@ -76,7 +76,7 @@
             (keyup)="onDownButtonKeyUp()">
               <i class="fa" *ngIf="decrementButtonIcon" [ngClass]="decrementButtonIcon"></i>
               <ng-container *ngIf="!decrementButtonIcon">
-                  <i class="fa fa-caret-down" *ngIf="!decrementButtonIconTemplate"></i>
+                  <i class="fa fa-angle-down" *ngIf="!decrementButtonIconTemplate"></i>
                   <ng-template *ngTemplateOutlet="decrementButtonIconTemplate"></ng-template>
               </ng-container>
           </button>
@@ -98,7 +98,7 @@
         (keyup)="onUpButtonKeyUp()">
           <i class="fa" *ngIf="incrementButtonIcon" [ngClass]="incrementButtonIcon"></i>
           <ng-container *ngIf="!incrementButtonIcon">
-            <i class="fa fa-caret-up" *ngIf="!incrementButtonIconTemplate" [attr.data-pc-section]="'incrementbuttonicon'"></i>
+            <i class="fa fa-angle-up" *ngIf="!incrementButtonIconTemplate" [attr.data-pc-section]="'incrementbuttonicon'"></i>
             <ng-template *ngTemplateOutlet="incrementButtonIconTemplate"></ng-template>
           </ng-container>
       </button>
@@ -116,7 +116,7 @@
         (keyup)="onDownButtonKeyUp()">
           <i class="fa" *ngIf="decrementButtonIcon" [ngClass]="decrementButtonIcon"></i>
           <ng-container *ngIf="!decrementButtonIcon">
-            <i class="fa fa-caret-down" *ngIf="!decrementButtonIconTemplate" [attr.data-pc-section]="'decrementbuttonicon'"></i>
+            <i class="fa fa-angle-down" *ngIf="!decrementButtonIconTemplate" [attr.data-pc-section]="'decrementbuttonicon'"></i>
             <ng-template *ngTemplateOutlet="decrementButtonIconTemplate"></ng-template>
           </ng-container>
       </button>

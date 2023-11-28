@@ -6,29 +6,29 @@
       <ng-container [ngSwitch]="menu.anchor">
         <!--ST: 베이직 페이지 네이션 -->
         <div class="style-guide-example" *ngSwitchCase="'numeral'">
-          <div class="form-grid">
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'integeronly'" style="display: block;">Integer Only</label>
+          <div class="d-flex gap-3">
+            <div class="form-group flex-1">
+              <label [for]="'integeronly'" class="block mb-2">Integer Only</label>
               <input-number inputId="integeronly"
                             [(ngModel)]="basic.value1"></input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'withoutgrouping'" style="display: block;">Without Grouping</label>
+            <div class="form-group flex-1">
+              <label [for]="'withoutgrouping'" class="block mb-2">Without Grouping</label>
               <input-number [(ngModel)]="basic.value2"
                             mode="decimal"
                             inputId="withoutgrouping"
                             [useGrouping]="false"></input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'minmaxfraction'" style="display: block;">Min-Max Fraction Digits</label>
+            <div class="form-group flex-1">
+              <label [for]="'minmaxfraction'" class="block mb-2">Min-Max Fraction Digits</label>
               <input-number [(ngModel)]="basic.value3"
                             inputId="minmaxfraction"
                             mode="decimal"
                             [minFractionDigits]="2"
                             [maxFractionDigits]="5"></input-number>
             </div>
-            <div class="form-group" style="flex: 1;">
-              <label [for]="'minmax'" style="display: block;">Min-Max Boundaries</label>
+            <div class="form-group flex-1">
+              <label [for]="'minmax'" class="block mb-2">Min-Max Boundaries</label>
               <input-number [(ngModel)]="basic.value4"
                             inputId="minmax"
                             mode="decimal"
@@ -39,31 +39,31 @@
         </div>
 
         <div class="style-guide-example" *ngSwitchCase="'locale'">
-          <div class="form-grid">
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'locale-user'" style="display: block;">User Locale</label>
+          <div class="d-flex gap-3">
+            <div class="form-group flex-1">
+              <label [for]="'locale-user'" class="block mb-2">User Locale</label>
               <input-number [(ngModel)]="locale.value1"
                             inputId="locale-user"
                             locale="ko-KR"
                             [minFractionDigits]="2"></input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'locale-us'" style="display: block;">United States Locale</label>
+            <div class="form-group flex-1">
+              <label [for]="'locale-us'" class="block mb-2">United States Locale</label>
               <input-number [(ngModel)]="locale.value2"
                             inputId="locale-us"
                             mode="decimal"
                             locale="en-US" [minFractionDigits]="2"> </input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'locale-german'" style="display: block;">German Locale</label>
+            <div class="form-group flex-1">
+              <label [for]="'locale-german'" class="block mb-2">German Locale</label>
               <input-number [(ngModel)]="locale.value3"
                             inputId="locale-german"
                             mode="decimal"
                             locale="de-DE"
                             [minFractionDigits]="2"> </input-number>
             </div>
-            <div class="form-group" style="flex: 1;">
-              <label [for]="'locale-indian'" style="display: block;">Indian Locale</label>
+            <div class="form-group flex-1">
+              <label [for]="'locale-indian'" class="block mb-2">Indian Locale</label>
               <input-number [(ngModel)]="locale.value4"
                             inputId="locale-indian"
                             mode="decimal"
@@ -74,25 +74,25 @@
         </div>
 
         <div class="style-guide-example" *ngSwitchCase="'currency'">
-          <div class="form-grid">
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'currency-us'" style="display: block;">United States(USD)</label>
+          <div class="d-flex gap-3">
+            <div class="form-group flex-1">
+              <label [for]="'currency-us'" class="block mb-2">United States(USD)</label>
               <input-number [(ngModel)]="currency.value1"
                             inputId="currency-us"
                             mode="currency"
                             currency="USD"
                             locale="en-US"></input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'currency-germany'" style="display: block;">Germany(EUR)</label>
+            <div class="form-group flex-1">
+              <label [for]="'currency-germany'" class="block mb-2">Germany(EUR)</label>
               <input-number [(ngModel)]="currency.value2"
                             mode="currency"
                             inputId="currency-germany"
                             currency="EUR"
                             locale="de-DE"> </input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'currency-india'" style="display: block;">India(INR)</label>
+            <div class="form-group flex-1">
+              <label [for]="'currency-india'" class="block mb-2">India(INR)</label>
               <input-number [(ngModel)]="currency.value3"
                             mode="currency"
                             inputId="currency-india"
@@ -100,8 +100,8 @@
                             currencyDisplay="code"
                             locale="en-IN"> </input-number>
             </div>
-            <div class="form-group" style="flex: 1;">
-              <label [for]="'currency-japan'" style="display: block;">Korea(KRW)</label>
+            <div class="form-group flex-1">
+              <label [for]="'currency-japan'" class="block mb-2">Korea(KRW)</label>
               <input-number [(ngModel)]="currency.value4"
                             mode="currency"
                             inputId="currency-japan"
@@ -112,28 +112,28 @@
         </div>
 
         <div class="style-guide-example" *ngSwitchCase="'prefixSuffix'">
-          <div class="form-grid">
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'mile'" style="display: block;">Mile</label>
+          <div class="d-flex gap-3">
+            <div class="form-group flex-1">
+              <label [for]="'mile'" class="block mb-2">Mile</label>
               <input-number [(ngModel)]="prefixSuffix.value1"
                             inputId="mile"
                             suffix=" mi"></input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'percent'" style="display: block;">Percent</label>
+            <div class="form-group flex-1">
+              <label [for]="'percent'" class="block mb-2">Percent</label>
               <input-number [(ngModel)]="prefixSuffix.value2"
                             inputId="percent"
                             suffix=" %"> </input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label [for]="'expiry'" style="display: block;">Expiry</label>
+            <div class="form-group flex-1">
+              <label [for]="'expiry'" class="block mb-2">Expiry</label>
               <input-number [(ngModel)]="prefixSuffix.value3"
                             inputId="expiry"
                             prefix="Expires in "
                             suffix=" days"></input-number>
             </div>
-            <div class="form-group" style="flex: 1;">
-              <label [for]="'temperature'" style="display: block;">Temperature</label>
+            <div class="form-group flex-1">
+              <label [for]="'temperature'" class="block mb-2">Temperature</label>
               <input-number [(ngModel)]="prefixSuffix.value4"
                             [prefix]="prefixSuffix.value4 > 0 ? '↑' : '↓'"
                             inputId="temperature"
@@ -146,9 +146,9 @@
 
         <div class="style-guide-example" *ngSwitchCase="'buttons'">
           <h4>X Small Size</h4>
-          <div class="form-grid">
-            <div class="form-group me-3" style="flex: 1;">
-              <label style="display: block;">Stacked</label>
+          <div class="d-flex gap-3">
+            <div class="form-group flex-1">
+              <label class="block mb-2">Stacked</label>
               <input-number [(ngModel)]="buttons.value1"
                             [showButtons]="true"
                             [size]="'xs'"
@@ -156,8 +156,8 @@
                             mode="currency"
                             currency="USD"> </input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label style="display: block;">Min-Max Boundaries</label>
+            <div class="form-group flex-1">
+              <label class="block mb-2">Min-Max Boundaries</label>
               <input-number [(ngModel)]="buttons.value2"
                             mode="decimal"
                             [size]="'xs'"
@@ -166,8 +166,8 @@
                             [min]="0"
                             [max]="100"> </input-number>
             </div>
-            <div class="form-group" style="flex: 1;">
-              <label style="display: block;">Horizontal with Step</label>
+            <div class="form-group flex-1">
+              <label class="block mb-2">Horizontal with Step</label>
               <input-number [(ngModel)]="buttons.value3"
                             [showButtons]="true"
                             [size]="'xs'"
@@ -185,9 +185,9 @@
 
           <hr />
           <h4>Small Size</h4>
-          <div class="form-grid">
-            <div class="form-group me-3" style="flex: 1;">
-              <label style="display: block;">Stacked</label>
+          <div class="d-flex gap-3">
+            <div class="form-group flex-1">
+              <label class="block mb-2">Stacked</label>
               <input-number [(ngModel)]="buttons.value1"
                             [showButtons]="true"
                             [size]="'sm'"
@@ -195,8 +195,8 @@
                             mode="currency"
                             currency="USD"> </input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label style="display: block;">Min-Max Boundaries</label>
+            <div class="form-group flex-1">
+              <label class="block mb-2">Min-Max Boundaries</label>
               <input-number [(ngModel)]="buttons.value2"
                             mode="decimal"
                             [size]="'sm'"
@@ -205,8 +205,8 @@
                             [min]="0"
                             [max]="100"> </input-number>
             </div>
-            <div class="form-group" style="flex: 1;">
-              <label style="display: block;">Horizontal with Step</label>
+            <div class="form-group flex-1">
+              <label class="block mb-2">Horizontal with Step</label>
               <input-number [(ngModel)]="buttons.value3"
                             [showButtons]="true"
                             [size]="'sm'"
@@ -224,9 +224,9 @@
 
           <hr />
           <h4>Default Size</h4>
-          <div class="form-grid">
-            <div class="form-group me-3" style="flex: 1;">
-              <label style="display: block;">Stacked</label>
+          <div class="d-flex gap-3">
+            <div class="form-group flex-1">
+              <label class="block mb-2">Stacked</label>
               <input-number [(ngModel)]="buttons.value1"
                             [showButtons]="true"
                             [styleClass]="'is-invalid'"
@@ -234,8 +234,8 @@
                             mode="currency"
                             currency="USD"> </input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label style="display: block;">Min-Max Boundaries</label>
+            <div class="form-group flex-1">
+              <label class="block mb-2">Min-Max Boundaries</label>
               <input-number [(ngModel)]="buttons.value2"
                             mode="decimal"
                             [styleClass]="'is-invalid'"
@@ -244,8 +244,8 @@
                             [min]="0"
                             [max]="100"> </input-number>
             </div>
-            <div class="form-group" style="flex: 1;">
-              <label style="display: block;">Horizontal with Step</label>
+            <div class="form-group flex-1">
+              <label class="block mb-2">Horizontal with Step</label>
               <input-number [(ngModel)]="buttons.value3"
                             [showButtons]="true"
                             [styleClass]="'is-invalid'"
@@ -263,9 +263,9 @@
 
           <hr />
           <h4>Large Size</h4>
-          <div class="form-grid">
-            <div class="form-group me-3" style="flex: 1;">
-              <label style="display: block;">Stacked</label>
+          <div class="d-flex gap-3">
+            <div class="form-group flex-1">
+              <label class="block mb-2">Stacked</label>
               <input-number [(ngModel)]="buttons.value1"
                             [showButtons]="true"
                             [size]="'lg'"
@@ -273,8 +273,8 @@
                             mode="currency"
                             currency="USD"> </input-number>
             </div>
-            <div class="form-group me-3" style="flex: 1;">
-              <label style="display: block;">Min-Max Boundaries</label>
+            <div class="form-group flex-1">
+              <label class="block mb-2">Min-Max Boundaries</label>
               <input-number [(ngModel)]="buttons.value2"
                             [size]="'lg'"
                             mode="decimal"
@@ -283,8 +283,8 @@
                             [min]="0"
                             [max]="100"> </input-number>
             </div>
-            <div class="form-group" style="flex: 1;">
-              <label style="display: block;">Horizontal with Step</label>
+            <div class="form-group flex-1">
+              <label class="block mb-2">Horizontal with Step</label>
               <input-number [(ngModel)]="buttons.value3"
                             [size]="'lg'"
                             [showButtons]="true"
@@ -315,7 +315,7 @@
 
         <div class="style-guide-example" *ngSwitchCase="'invalid'">
           <div class="form-group mb-1">
-            <label [for]="'invalid'" style="display: block;" class="mb-1">Invalid</label>
+            <label [for]="'invalid'" class="block mb-2" class="mb-1">Invalid</label>
             <input-number inputId="invalid"
                           [styleClass]="invalid == '' ? 'is-invalid' : ''"
                           class="ng-invalid ng-dirty"
@@ -328,11 +328,11 @@
 
         <div class="style-guide-example" *ngSwitchCase="'disabled'">
           <div class="form-group mb-3">
-            <label style="display: block;" [for]="'disabled'" class="mb-1">Disabled</label>
+            <label class="block mb-2" [for]="'disabled'" class="mb-1">Disabled</label>
             <input-number inputId="disabled" [disabled]="true" suffix="%" [(ngModel)]="value"> </input-number>
           </div>
-          <div class="form-group">
-            <label style="display: block;" [for]="'readonly'" class="mb-1">ReadOnly</label>
+          <div class="form-group flex-1">
+            <label class="block mb-2" [for]="'readonly'" class="mb-1">ReadOnly</label>
             <input-number inputId="readonly" [readonly]="true" suffix="%" [(ngModel)]="value"> </input-number>
           </div>
         </div>
