@@ -51,6 +51,7 @@ import { StyleGuideSplitterComponent } from './panel/Splitter.component';
 // typography
 import { StyleGuideTypographyComponent } from './typography/typography.component';
 import {StyleGuideGridsterComponent} from "./panel/Gridster.component";
+import {StyleGuideLetterAvatarComponent} from "./message/LetterAvatar.component";
 
 const routes: Routes = [
   {
@@ -242,6 +243,11 @@ const routes: Routes = [
         path: 'menu/tabMenu',
         component: StyleGuideTabMenuComponent,
         data: {title: 'TabMenu'}
+      },
+      {
+        path: 'messages/letterAvatar',
+        component: StyleGuideLetterAvatarComponent,
+        data: {title: 'LetterAvatar'}
       },
       {
         path: 'messages/messages',

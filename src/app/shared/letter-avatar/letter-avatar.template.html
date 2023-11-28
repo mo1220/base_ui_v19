@@ -1,0 +1,18 @@
+<!--<div *ngIf="title"-->
+<!--     [style.width]="size+'px'"-->
+<!--     [style.height]="size+'px'"-->
+<!--     [style.background-color]="color"-->
+<!--      class="letter-avatar-wrap">-->
+<!--  <span class="letter-avatar-title"-->
+<!--        [style.font-size]="size*0.4+'px'">{{title}}</span>-->
+<!--</div>-->
+<style>
+</style>
+<!--  [style.background-color]="color" -->
+<!--  [ngClass]="'css-icon-' + color" -->
+<i class="css-icon"
+    [ngClass]="['color-'+color+ ' size-'+size]"
+    [style.border-radius]="radius? radius+'px' : '50%'">
+  <span [innerHTML]="_title" [title]="title"></span>
+</i>
+

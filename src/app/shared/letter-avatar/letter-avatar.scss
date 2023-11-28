@@ -1,0 +1,132 @@
+@import './src/styles-variables';
+//$sizes: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100;
+// A decent font
+//@import url('https://fonts.googleapis.com/css?family=Work+Sans:800');
+// The loop for generating text shadows
+@mixin render-shadow($depth, $shadow-color) {
+  $longshadow: ();
+  $longshadow: append($longshadow, 0px 0px 0 $shadow-color),; // Start with 0px 0px
+  @for $i from 1 through $depth - 1 {
+    $longshadow: append($longshadow, $i * 1px $i * 1px 0 $shadow-color),; // Append & increment by 1
+  }
+  text-shadow: $longshadow; // render a bunch of text shadaw values
+}
+
+
+letter-avatar {
+  display: inline-block;
+  .css-icon {
+    //font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-style:normal;
+    font-size: 25px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background: #CCC;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    border:solid 1px transparent;
+    box-shadow: 0 1px 5px rgba(black, 0.2);
+    span {
+      width: 100%;
+      font-size: 100%;
+      //word-break: break-all;
+      line-height: 100%;
+      //padding: 10%;
+      text-align: center;
+      display: block;
+      color: white;
+      @include render-shadow (80, darken(#ccc, 10));
+    }
+  }
+
+  //$colors: red, blue, green, yellow;
+  // $shadowColor: ;
+  @each $key, $color in $avatar-palette {
+    .color-#{$key} {
+      background: $color;
+      span {
+        @include render-shadow (80, darken($color, 8));
+      }
+    }
+  }
+
+  @each $size in $size1to100 {
+    .size-#{$size} {
+      $sizePx: $size + px;
+      $sizeRadius: $size / 5;
+      //$sizeRadiusPx: $sizeRadius + px;
+      font-size:$size*0.5 + px;
+      @if ($size <= 30) {
+        font-weight: 300;
+      }@else if($size <= 60) {
+        font-weight: 500;
+      }
+      height:$sizePx;
+      width:$sizePx;
+      //border-radius: $sizeRadiusPx;
+    }
+  }
+
+  .letter-avatar {
+    &-wrap {
+      position: relative;
+      background-color: $orange;
+      border-radius: 50%;
+    }
+
+    &-title {
+      font-size: 1.7em;
+      letter-spacing: -0.06em;
+      color: #fff;
+      font-weight: 700;
+      text-shadow: 2px 4px 0 rgba(0,0,0, 0.3);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+
+
+// The mixin
+/*@mixin css-icon($shadow-color, $size) {
+  $sizePx: $size + px;
+  $sizeRadius: $size / 5;
+  $sizeRadiusPx: $sizeRadius + px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight:800;
+  font-style:normal;
+  font-size:$size*0.5 + px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  //background: $background-color;
+  height:$sizePx;
+  width:$sizePx;
+  border-radius: $sizeRadiusPx;
+  overflow: hidden;
+  border:solid 1px transparent;
+  box-shadow: 0 10px 30px rgba(black, 0.2);
+  span {
+    font-size: 80%;
+    text-align: center;
+    display: block;
+    color: white;
+    //@include render-shadow ($size, rgba(0,0,0, 0.05));
+  }
+}*/
+
+
+// The CSS
+//.css-icon {
+//  @include css-icon(#589381, 100);
+//}

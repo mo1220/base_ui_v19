@@ -29,8 +29,8 @@
     <h3 #anchor #size>Size</h3>
     <p>크기 별 select</p>
     <div class="style-guide-example d-flex flex-column gap-2">
-      <div class="form-group d-flex gap-1" *ngFor="let item of sizeList">
-        <label class="wd-70">{{item.label}}</label>
+      <div class="form-group d-flex align-center gap-1" *ngFor="let item of sizeList">
+        <label class="wd-70" [ngClass]="'font-'+item.class">{{item.label}}</label>
         <input class="flex-1 form-control"
                [ngClass]="item.class !== '' ? 'form-control-' + item.class : ''"
                [ngModel]="selectedCity? selectedCity.label : ''"

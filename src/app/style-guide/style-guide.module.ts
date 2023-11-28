@@ -44,6 +44,7 @@ import { StyleGuideMenuComponent } from './menu/Menu.component';
 import { StyleGuideStepsComponent } from './menu/Steps.component';
 import { StyleGuideTabMenuComponent } from './menu/TabMenu.component';
 // Message
+import { StyleGuideLetterAvatarComponent } from "./message/LetterAvatar.component";
 import { StyleGuideMessagesComponent } from './message/Messages.component';
 import { StyleGuideToastComponent } from './message/Toast.component';
 // Panel
@@ -103,6 +104,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
     StyleGuideStepsComponent,
     StyleGuideTabMenuComponent,
     // Message
+    StyleGuideLetterAvatarComponent,
     StyleGuideMessagesComponent,
     StyleGuideToastComponent,
     // Panel

@@ -1,6 +1,5 @@
 // @import '@angular/material/theming';
 
-
 $blue: #007bff;
 $indigo: #6610f2;
 $purple: #6f42c1;
@@ -17,6 +16,22 @@ $gray-dark: #343a40;
 $gray-light: #EFEFEF;
 //$primary: #183D85;
 //$secondary: #AAAAAA;
+
+$pastel-magenta: #FB9CC4;
+$coral-dust: #F0A88B;
+$yucatan: #E6AD7A;
+$baby-frog: #CAB963;
+$be-spontaneous: #A4C46A;
+$spring-bouquet: #73CB88;
+$jade-mountain: #34CFAD;
+$dark-turquoise: #0FCDD0;
+$malibu: #5EC5EB;
+$sail-to-sea: #9EB8F8;
+$light-wisteria: #D0A9F6;
+$candy-floss: #EE9EE3;
+
+
+
 
 
 $primary: $pink; //#007bff;
@@ -53,6 +68,30 @@ $colors-palette: (
   dark: $dark
 );
 
+$avatar-palette: (
+  blue: $blue,
+  indigo: $indigo,
+  purple: $purple,
+  pink: $pink,
+  red: $red,
+  orange: $orange,
+  yellow: $yellow,
+  green: $green,
+  teal: $teal,
+  cyan: $cyan,
+  //pastel-magenta: $pastel-magenta,
+  //coral-dust: $coral-dust,
+  //yucatan:$yucatan,
+  //baby-frog:$baby-frog,
+  //be-spontaneous:$be-spontaneous,
+  //spring-bouquet:$spring-bouquet,
+  //jade-mountain: $jade-mountain,
+  //dark-turquoise: $dark-turquoise,
+  //malibu: $malibu,
+  //sail-to-sea: $sail-to-sea,
+  //light-wisteria: $light-wisteria,
+  //candy-floss: $candy-floss
+);
 $colors: (
   primary: $primary,
   secondary: $secondary,
@@ -63,6 +102,11 @@ $colors: (
   light: $light,
   dark: $dark
 );
+
+
+//size 1~100
+$size1to100: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100);
+
 
 $font-family-sans-serif: 'Noto Sans KR', 'Roboto', 'Helvetica', 'Dotum', '돋움', 'AppleSDGothicNeo', sans-serif;
 $code-font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
