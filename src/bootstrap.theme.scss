@@ -22,10 +22,18 @@
   }
 }
 
+$close-icon-size: (
+  // close btn icon size
+  xl: 1.25rem,
+  lg: 1rem,
+  sm: .6rem,
+  xs: .45rem
+);
 .btn-close {
-  @each $key, $value in $button-size{
+  font-size: .75rem;
+  @each $key, $value in $close-icon-size{
     &.btn-#{$key} {
-      font-size: #{nth($value, 3)};
+      font-size: $value;
     }
   }
 }

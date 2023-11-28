@@ -17,6 +17,9 @@
           <p>입력을 받을때</p>
           <div class="form-group flex">
             <label class="wd-80">입력 전용</label>
+            <button (click)="rate = 0">
+              <i class="fa fa-ban color-danger"></i>
+            </button>
             <rating [(ngModel)]="rate" [max]="max" [readonly]="false"></rating>
           </div>
         </div>
@@ -29,6 +32,9 @@
                      [ngClass]="color.value !== 'default' ? 'color-' + color.value : ''">
                 {{color.name}}
               </label>
+              <button (click)="rate = 0">
+                <i class="fa fa-ban color-danger"></i>
+              </button>
               <rating [(ngModel)]="rate"
                       [ngClass]="color.value !== 'default' ? 'bs-rating-' + color.value : ''"
                       [max]="max" [readonly]="false"></rating>
@@ -45,6 +51,9 @@
                      [ngClass]="size.value !== 'default' ? 'font-' + size.value : ''">
                 {{size.name}}
               </label>
+              <button [ngClass]="size.value !== 'default' ? 'font-' + size.value : ''" (click)="rate = 0">
+                <i class="fa fa-ban color-danger"></i>
+              </button>
               <rating [(ngModel)]="rate"
                       [ngClass]="size.value !== 'default' ? 'bs-rating-' + size.value : ''"
                       [max]="max" [readonly]="false"></rating>
@@ -59,6 +68,9 @@
               <label class="wd-80">
                 {{icon.name}}
               </label>
+              <button (click)="rate = 0">
+                <i class="fa fa-ban color-danger"></i>
+              </button>
               <rating [max]="max"
                       class="rating-custom bs-rating-primary"
                       [(ngModel)]="rate"
@@ -75,6 +87,9 @@
             <label class="wd-80">
               Smile
             </label>
+            <button (click)="rate = 0">
+              <i class="fa fa-ban color-danger"></i>
+            </button>
             <rating [max]="max"
                     class="rating-custom bs-rating-primary"
                     [(ngModel)]="rate"
