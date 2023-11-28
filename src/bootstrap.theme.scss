@@ -22,6 +22,14 @@
   }
 }
 
+.btn-close {
+  @each $key, $value in $button-size{
+    &.btn-#{$key} {
+      font-size: #{nth($value, 3)};
+    }
+  }
+}
+
 .btn {
   &-primary,
   &-info {
