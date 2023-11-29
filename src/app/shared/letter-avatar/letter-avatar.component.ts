@@ -33,16 +33,27 @@ export class LetterAvatarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this._title = _.clone(this.title);
 
-    if(value && value.length > 1) this._title = value.slice(0,1);
+    if(value && value.length >= this.txLength) this._title = value.slice(0,this.txLength);
     // if(this._title.length === 4) {
     //   this._title = value.slice(0, 2) + '<br/>' + value.slice(2, 4);
     // }
 
     this.length = value? value.length : 0;
   }
+
+  txLength:number = 1;
+  @Input()
+  get textLength() {
+    return this.txLength;
+  };
+  set textLength(value) {
+    this.txLength = value;
+    if(value && this.title.length >= value) this._title = this.title.slice(0,value);
+  }
   @Input() size:number;
   @Input() radius: number;
   @Input() idx:number;
+  @Input() class: string;
 
   constructor(
     public store: Store<AppState>

@@ -1,7 +1,13 @@
 <div class="d-flex">
   <div class="component-wrap" #contentWrap>
     <h3 #anchor #basic>Basic</h3>
-    <p>입력받은 string을 기반으로 생성되는 기본 Letter Avatar</p>
+    <p>
+      입력받은 string을 기반으로 생성되는 기본 Letter Avatar
+      <a matTooltip="링크로 이동" target="_blank"
+         [href]="'https://codepen.io/eddieebeling/pen/OpveWK'">
+        <i class="fa fa-external-link"></i>
+      </a>
+    </p>
     <div class="style-guide-example d-flex gap-2">
       <div *ngFor="let item of avatar; let i=index">
         <letter-avatar [name]="item" [idx]="i"></letter-avatar>
@@ -21,16 +27,53 @@
     </div>
 
     <h3 #anchor #radius>Radius</h3>
-    <p>입력받은 size에 따라 둥글기 변경 가능 (px단위)</p>
+    <p>입력받은 size에 따라 둥글기 변경 가능 (1이상, px단위)</p>
     <div class="msg info">radius를 입력하지 않으면 50%로 설정</div>
+    <div class="msg info">0 입력 시 50%로 들어가기 때문에 [radius]는 1이상 입력</div>
     <div class="style-guide-example d-flex gap-2 align-center">
       <div class="d-flex flex-column align-center"
            *ngFor="let item of avatar; let i=index">
         <letter-avatar [name]="item"
                        [idx]="i"
-                       [size]="sizes[i]"
+                       [size]="100"
                        [radius]="_radius[i]"></letter-avatar>
         {{_radius[i]}}px
+      </div>
+    </div>
+
+    <h3 #anchor #circle>Circle Border Style</h3>
+    <p>커스텀 스타일링 클래스</p>
+    <div class="msg info">[class]="'border-inner'" 클래스 추가</div>
+    <div class="style-guide-example d-flex gap-2 align-center">
+      <div class="d-flex align-center gap-1"
+           *ngFor="let item of avatar; let i=index">
+        <letter-avatar [name]="item"
+                       [idx]="i"
+                       [size]="sizes[i]"
+                       [class]="'border-inner'"></letter-avatar>
+        <letter-avatar [name]="item"
+                       [idx]="i"
+                       [size]="sizes[i]"
+                       [radius]="1"
+                       [class]="'border-inner'"></letter-avatar>
+      </div>
+    </div>
+
+    <h3 #anchor #max2>Max Text 2</h3>
+    <p>2글자 까지 표시 (3글자 부터는 따로 작업 필요)</p>
+<!--    <div class="msg info">[class]="'border-round'" 클래스 추가</div>-->
+    <div class="style-guide-example d-flex gap-2 align-center">
+      <div class="d-flex align-center gap-1"
+           *ngFor="let item of avatar; let i=index">
+        <letter-avatar [name]="item"
+                       [idx]="i"
+                       [textLength]="2"
+                       [size]="sizes[i]"></letter-avatar>
+        <letter-avatar [name]="item"
+                       [idx]="i"
+                       [textLength]="2"
+                       [size]="sizes[i]"
+                       [class]="'border-inner'"></letter-avatar>
       </div>
     </div>
   </div>

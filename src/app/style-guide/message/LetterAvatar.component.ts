@@ -35,10 +35,14 @@ export class StyleGuideLetterAvatarComponent implements AfterViewInit, OnDestroy
       title: 'Radius',
       anchor: 'radius',
     },
+    {
+      title: 'Circle Border Style',
+      anchor: 'circle',
+    },
   ];
 
   avatar: any[] = ['금','은','동','기술','자원','업무','혁신','외부','보고','기타'];
-  sizes: any[] = [18,25,40,50,60,70,75,80,90,100];
+  sizes: any[] = [18,25,30,40,50,60,70,80,90,100];
   _radius: any[] = [5, 10, 15, 20, 25, 30, 32, 35, 40, 44, 46]
 
   constructor(

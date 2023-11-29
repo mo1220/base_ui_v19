@@ -31,6 +31,7 @@ letter-avatar {
     overflow: hidden;
     border:solid 1px transparent;
     box-shadow: 0 1px 5px rgba(black, 0.2);
+    position: relative;
     span {
       width: 100%;
       font-size: 100%;
@@ -61,14 +62,40 @@ letter-avatar {
       $sizeRadius: $size / 5;
       //$sizeRadiusPx: $sizeRadius + px;
       font-size:$size*0.5 + px;
-      @if ($size <= 30) {
+      @if ($size <= 20) {
         font-weight: 300;
-      }@else if($size <= 60) {
+      }@else if($size <= 30) {
+        font-weight: 400;
+      }@else if($size <= 40) {
         font-weight: 500;
       }
       height:$sizePx;
       width:$sizePx;
       //border-radius: $sizeRadiusPx;
+
+      &.border-inner {
+        &:after {
+          content: '';
+          width: 90%;
+          height: 90%;
+          border-radius: inherit;
+          border: 1px solid #fff;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          @if ($size <= 30) {
+            width: 99%;
+            height: 99%;
+          }@else if($size <= 40) {
+            border: 1.5px solid #fff;
+          }@else if($size >= 60) {
+            width: 88%;
+            height: 88%;
+            border: 2px solid #fff;
+          }
+        }
+      }
     }
   }
 
