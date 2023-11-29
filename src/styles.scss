@@ -691,15 +691,14 @@ $ng-select-size: ( // 1: font-size, 2:padding x, 3: padding y, 4: border-radius,
         border-color: $input-border-color;
         .ng-value-container { // input
           .ng-input {
-            width: calc(100% - (#{nth($value, 1)} + #{nth($value, 2)*2.5}));
             left: #{nth($value, 2)};
             top: 50%;
             transform: translateY(-50%);
             padding-left: 0;
             padding-right: 0;
-            input { //input cursor 제거
-              color: transparent;
-              text-shadow: 0 0 0 black;
+            input {
+              width: calc(100% - (#{nth($value, 1)} + #{nth($value, 2)*2.5}));
+              padding: 0 #{nth($value, 2)};
             }
           }
         }
@@ -788,20 +787,23 @@ $ng-select-size: ( // 1: font-size, 2:padding x, 3: padding y, 4: border-radius,
             background-color: rgba(0, 0, 0, 0.08) !important;
             .ng-value-icon { // X 버튼
               border: none !important;
-              color: rgba(0,0,0, .6);
+              color: rgba(0,0,0, .55);
               font-size: calc(#{nth($value, 1)} * 0.8);
               width: #{nth($value, 1)};
               height: #{nth($value, 1)};
               line-height: #{nth($value, 1)};
               padding: 0;
               margin-left: calc(#{nth($value, 3)} * 0.5);
+              &:hover {
+                background-color: #ebebeb;
+                color: rgba(0,0,0, .8);
+              }
             }
             .ng-value-label { // text 영역
               padding: 0;
             }
           }
         }
-
 
         &.ng-dropdown-panel.ng-select-multiple { // appendTo body 일 때에는 &.ng-dropdown-panel
           .ng-dropdown-header {
@@ -827,52 +829,12 @@ $ng-select-size: ( // 1: font-size, 2:padding x, 3: padding y, 4: border-radius,
               &.ng-option-selected { // 선택 했을 때
                 background-color: rgba(lighten($primary, 35), .5);
               }
-
               &.ng-option-marked { // hover 했을 때
                 background-color: rgba(lighten($primary, 38), .3);
               }
             }
-
-            // {
-            //  font-size: #{nth($value, 1)};
-            //  &.ng-option-selected { // 선택 했을 때
-            //    background-color: rgba(lighten($primary, 35), .5);
-            //  }
-            //
-            //  &.ng-option-marked { // hover 했을 때
-            //    background-color: rgba(lighten($primary, 38), .5);
-            //  }
-            //}
           }
         }
-        //&.ng-dropdown-panel {
-        //  font-size: #{nth($value, 1)};
-        //  line-height: #{nth($value, 1)};
-        //  /*max-height: calc(#{nth($value, 1)} * #{nth($value, 6)});
-        //  padding: #{nth($value, 7)} 0;*/
-        //  .ng-dropdown-header {
-        //    background-color: lighten($primary, 40);
-        //    mat-icon {
-        //      margin-right: #{nth($value, 3)};
-        //      font-size: #{nth($value, 1)};
-        //      width: #{nth($value, 1)};
-        //      height: #{nth($value, 1)};
-        //    }
-        //    .btn-link {
-        //      position: static;
-        //      font-size: #{nth($value, 1)};
-        //      text-decoration: none;
-        //    }
-        //  }
-        //  .ng-dropdown-panel-items {
-        //    .ng-outgroup {
-        //
-        //    }
-        //    .ng-option {
-        //
-        //    }
-        //  }
-        //}
       }
     }
   }
@@ -882,29 +844,6 @@ $ng-select-size: ( // 1: font-size, 2:padding x, 3: padding y, 4: border-radius,
     box-shadow: $input-btn-focus-box-shadow;
   }
 }
-
-// multiple select
-//@each $key, $value in $ng-select-size {
-//  .ng-select-multiple.ng-select-#{$key} {
-//    font-size: #{nth($value, 1)};
-//    line-height: #{nth($value, 1)};
-//    //max-height: calc(#{nth($value, 1)} * #{nth($value, 6)});
-//    padding: #{nth($value, 7)} 0;
-//    .ng-dropdown-header {
-//      background-color: lighten($primary, 40);
-//      mat-icon {
-//        margin-right: #{nth($value, 3)};
-//        font-size: #{nth($value, 1)};
-//        width: #{nth($value, 1)};
-//        height: #{nth($value, 1)};
-//      }
-//      .btn-link {
-//        position: static;
-//      }
-//    }
-//  }
-//}
-
 /****************************** EN: Ng-select *************************************************/
 
 /****************************** ST: ngx-datepicker *************************************************/

@@ -33,6 +33,14 @@ export class StyleGuideSelectComponent implements AfterViewInit, OnDestroy {
       title: 'Size',
       anchor: 'size',
     },
+    {
+      title: 'Multiple Select',
+      anchor: 'multiple',
+    },
+    {
+      title: 'Multiple Short Label',
+      anchor: 'multipleShort',
+    },
   ];
 
   defaultBindingsList = [
