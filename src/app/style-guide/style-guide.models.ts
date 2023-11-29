@@ -35,11 +35,11 @@ export const STYLE_GUIDE_MENU = [
         link: '/form/colorPicker',
         desc: `Color Picker 설명 <span></span>`
       },
-      {
-        name: 'Dropdown',
-        link: '/form/dropdown',
-        desc: `Dropdown 설명 <span></span>`
-      },
+      // {
+      //   name: 'Dropdown',
+      //   link: '/form/dropdown',
+      //   desc: `Dropdown 설명 <span></span>`
+      // },
       {
         name: 'Editor',
         link: '/form/editor',
