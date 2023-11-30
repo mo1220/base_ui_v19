@@ -22,7 +22,7 @@ import {CheckList} from "./Checkbox.component";
 })
 export class StyleGuideInputMaskComponent implements AfterViewInit, OnDestroy {
   @ViewChild('contentWrap') contentWrap: ElementRef;
-  @ViewChildren('anchor') anchors: QueryList<ElementRef>;
+  @ViewChildren('anchors') anchors: QueryList<ElementRef>;
   menus: Array<menuType> = [
     {
       title: 'Basic',

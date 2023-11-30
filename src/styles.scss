@@ -372,6 +372,7 @@ $spacers: (
   }
   .bg-#{$key} {
     background-color: $color;
+    color: #fff;
   }
   .highlight-#{$key} {
     color: $color;
@@ -3149,7 +3150,7 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
   &-loading {
     display: flex;
     flex-direction: column;
-    padding: 10px 0;
+    //padding: 10px 0;
   }
   .mat-mdc-option {
     p {

@@ -403,6 +403,9 @@ $radio-default-size: $input-icon;
         display: none;
       }
     }
+    .mdc-label { // 라벨
+      user-select: none;
+    }
     /* Size */
     @each $key, $size in $mat-slide-sizes {
       &-#{$key} {
@@ -444,6 +447,7 @@ $radio-default-size: $input-icon;
 
         .mdc-label { // 라벨
           font-size: #{nth($size, 3)};
+          user-select: none;
         }
 
         .mdc-form-field {

@@ -6,18 +6,18 @@
       <h5>&lt;date-picker&gt; 옵션 설정 <span class="color-pink">(입력 안 했을 경우 기본값)</span></h5>
       <p>옵션 없이 &lt;date-picker&gt; 사용 가능 (단일 날짜 picker)</p>
       <ul class="icon-ul check">
-        <li><b class="wd-150">[size]</b> <span class="color-pink">'sm'</span> | 'xs' | 'default' (input.form-control size를 결정) </li>
-        <li><b class="wd-150">[placeholder]</b> <span class="color-pink">입력 안할 경우 dateInputFormat과 동일</span> | string 입력</li>
+        <li><b class="wd-150">[size]</b> 'xs' | <span class="color-pink">'sm'</span> | 'default' (input.form-control size를 결정) </li>
+        <li><b class="wd-150">[dateInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'YYYY.MM.DD H:ss' | 'YYYY/MM/DD h:ss a' | 나머지 포맷 moment.js 참고</li>
+        <li><b class="wd-150">[placeholder]</b> <span class="color-pink">입력 안할 경우 dateInputFormat</span> | string 입력</li>
         <li><b class="wd-150">[locale]</b> <span class="color-pink">'kr'</span> | 'en' | 'cn'</li>
         <li><b class="wd-150">[minDate], [maxDate]</b> Date format 변수</li>
-        <li><b class="wd-150">[dateInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'YYYY.MM.DD H:ss' | 'YYYY/MM/DD h:ss a' | 나머지 포맷 moment.js 참고</li>
 <!--        <li><b class="wd-150">[outsideClick]</b> <span class="color-pink">true</span> | false (영역 바깥 클릭 시 닫힘)</li>-->
-        <li><b class="wd-150">[showWeekNumbers]</b> true | <span class="color-pink">false</span></li>
 <!--        <li><b class="wd-150">[returnFocusToInput]</b> true | <span class="color-pink">false</span> (날짜 선택 후 input에 focus)</li>-->
 <!--        <li><b class="wd-150">[placement]</b> <span class="color-pink">(adaptivePosition:true)</span> | 'bottom' | 'top' | 'left' | 'right' (캘린더 위치, 입력 안 할 경우 adaptivePosition:true) <span class="color-red">* bottom+left 등 불가능... 한가지 포지션만 설정 가능</span></li>-->
         <li><b class="wd-150">[customTodayClass]</b> <span class="color-pink">'ngx-today'</span> | '' (ngx-today 입력 시 오늘 날짜 스타일링)</li>
         <li><b class="wd-150">[dateTooltipTexts]</b> <span class="color-pink">[ &#123; date: Today, tooltipText: '오늘' &#125; ]</span> | tooltipDates: DatepickerDateTooltipText[] (툴팁 변수에 date, tooltipText 지정)</li>
         <li><b class="wd-150">[withTimepicker]</b> <span class="color-pink">true</span> | false </li>
+        <li><b class="wd-150">[showWeekNumbers]</b> true | <span class="color-pink">false</span></li>
       </ul>
     </div>
     <div class="msg info">calendar와 input의 가로 사이즈를 맞추려면 date-picker에 <span class="highlight-blue">'wd-220'</span> 클래스 추가</div>
@@ -98,23 +98,24 @@
     </div>
 
   <h3 #anchor #rangepicker>Range Datepicker</h3>
-    <p>날짜 범위 선택 Range Picker (기본 옵션은 Date Picker와 동일)</p>
+    <p>날짜 범위 선택 Range Picker로 기본 사이즈는 <span class="highlight-green">form-control-sm</span></p>
     <div class="msg info">range-picker의 경우 [dateInputFormat] 대신 <b>[rangeInputFormat]</b>을 입력해야함</div>
     <div class="base-guide info">
       <h5>&lt;date-range-picker&gt; 옵션 설정 <span class="color-pink">(기본값)</span></h5>
       <p>&lt;date-range-picker&gt; 사용시 [rangeInpitFormat] 입력 필수 (날짜 범위 선택)</p>
       <ul class="icon-ul check">
-        <li><b class="wd-150">[size]</b> <span class="color-pink">'sm'</span> | 'xs' | 'default' (input.form-control size를 결정) </li>
+        <li><b class="wd-150">[size]</b> 'xs' | <span class="color-pink">'sm'</span> | 'default' (input.form-control size를 결정) </li>
+        <li><b class="wd-150">[rangeInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</li>
         <li><b class="wd-150">[placeholder]</b> <span class="color-pink">입력 안할 경우 rangeInputFormat과 동일</span> | string 입력</li>
         <li><b class="wd-150">[locale]</b> <span class="color-pink">'kr'</span> | 'en' | 'cn'</li>
         <li><b class="wd-150">[minDate], [maxDate]</b> Date format 변수</li>
-        <li><b class="wd-150">[rangeInputFormat]</b> <span class="color-pink">'YYYY-MM'-DD'</span> | 'MM/DD/YYYY' | 'MMMM Do YYYYY, h:mm:ss a'</li>
-        <li><b class="wd-150">[showWeekNumbers]</b> true | <span class="color-pink">false</span></li>
+        <li><b class="wd-150">[preNext]</b> true | <span class="color-pink">false</span> (선택한 범위 만큼 이동하는 버튼)</li>
         <li><b class="wd-150">[customTodayClass]</b> <span class="color-pink">'ngx-today'</span> | '' (ngx-today 입력 시 오늘 날짜 스타일링)</li>
         <li><b class="wd-150">[dateTooltipTexts]</b> <span class="color-pink">[ &#123; date: Today, tooltipText: '오늘' &#125; ]</span> | tooltipDates: DatepickerDateTooltipText[] (툴팁 변수에 date, tooltipText 지정)</li>
         <li><b class="wd-150">[withTimepicker]</b> <span class="color-pink">true</span> | false </li>
-        <li><b class="wd-150">[ranges]</b> <span class="color-pink">[최근 일주일, 최근 1개월, 최근 3개월, 최근 6개월, 최근 1년]</span> | ranges: IRange[] (자동 선택 범위)</li>
-        <li><b class="wd-150">[preNext]</b> true | <span class="color-pink">false</span> (선택한 범위 만큼 이동하는 버튼)</li>
+        <li><b class="wd-150">[ranges]</b> <span class="color-pink">true 입력 시 기본값[최근 1일, 최근 일주일, 최근 1개월, 최근 3개월, 최근 6개월, 최근 1년]</span> | ranges: IRange[] (자동 선택 범위)</li>
+        <li><b class="wd-150">[showWeekNumbers]</b> true | <span class="color-pink">false</span></li>
+
       </ul>
     </div>
     <div class="msg info">calendar와 input의 가로 사이즈를 맞추려면 date-range-picker에 <span class="highlight-blue">'wd-440'</span> 클래스 추가</div>
@@ -158,7 +159,7 @@
           <date-range-picker class="wd-440"
                        [(selectDate)]="selectedRange"
                        [size]="'xs'"
-                             [preNext]="true"
+                       [preNext]="true"
                        [placeholder]="'form-control-xs'"></date-range-picker>
           <date-range-picker class="wd-440"
                        [(selectDate)]="selectedRange"
@@ -203,7 +204,7 @@
         <div class="form-group d-flex gap-1">
           <date-range-picker class="flex-1"
                        [(selectDate)]="selectedRange"
-                             [preNext]="true"
+                       [preNext]="true"
                        [rangeInputFormat]="'YYYY-MM-DD h:mm a'"
                        [withTimepicker]="true"></date-range-picker>
           <date-range-picker class="flex-1"

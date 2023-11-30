@@ -153,18 +153,6 @@ $time-right-y: 74px;
     td.form-group {
       position: relative;
       &:nth-child(1) {
-        &:hover:after {
-          content: '스크롤 조절 가능';
-          padding: 2px 4px;
-          border-radius: 3px;
-          background-color: $gray-dark;
-          color: #fff;
-          font-size: 9px;
-          white-space: nowrap;
-          position: absolute;
-          top: -14px;
-          left: 0;
-        }
         &:has(.is-invalid) {
           &:after {
             content: '잘못된 입력';
@@ -181,18 +169,6 @@ $time-right-y: 74px;
         }
       }
       &:nth-child(3) {
-        &:hover:after {
-          content: '스크롤로 변경(5분 단위)';
-          padding: 2px 4px;
-          border-radius: 3px;
-          background-color: $gray-dark;
-          color: #fff;
-          font-size: 9px;
-          white-space: nowrap;
-          position: absolute;
-          top: -14px;
-          left: 0;
-        }
         &:has(.is-invalid) {
           &:after {
             content: '잘못된 입력';

@@ -219,6 +219,9 @@ input[type="radio"].mgr {
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   }
+  & + label {
+    user-select: none;
+  }
 
   /* Size */
   @each $key, $size in $switch-sizes {
@@ -236,6 +239,7 @@ input[type="radio"].mgr {
       }
       & + label {
         font-size: #{nth($size, 3)};
+        user-select: none;
       }
 
       &:checked:after {

@@ -21,7 +21,7 @@ import { menuType } from "../style-guide.models";
 })
 export class StyleGuideInputNumberComponent implements AfterViewInit, OnDestroy {
   @ViewChild('contentWrap') contentWrap: ElementRef;
-  @ViewChildren('anchor') anchors: QueryList<ElementRef>;
+  @ViewChildren('anchors') anchors: QueryList<ElementRef>;
   menus: Array<menuType> = [
     {
       title: 'Numeral',
