@@ -130,10 +130,12 @@
 
     <h3 #anchor #switch>Switch</h3>
     <p>switch style checkbox</p>
-    <div class="style-guide-example d-flex alignC">
+    <div class="style-guide-example d-flex align-center">
       <div style="flex:1">
         <code>magic input</code>
-        <div class="form-group flex" style="align-items: center">
+        <div class="form-group d-flex align-center gap-2">
+          <input id="x-small-switch" type="checkbox" class="mgc-switch mgc-xs mgc-primary" checked />
+          <label for="x-small-switch">x small</label>
           <input id="small-switch" type="checkbox" class="mgc-switch mgc-sm mgc-primary" checked />
           <label for="small-switch">small</label>
           <input id="default-switch" type="checkbox" class="mgc-switch mgc-primary" checked />
@@ -144,13 +146,12 @@
       </div>
       <div style="flex: 1">
         <code>material</code>
-        <div class="form-group flex">
-          <mat-slide-toggle
-            class="mat-slide-toggle"
-            [color]="'primary'"
-            [disabled]="false">
-            Slide me!
-          </mat-slide-toggle>
+
+        <div class="form-group d-flex align-center gap-2">
+          <mat-slide-toggle class="mat-slide-toggle-xs mat-slide-primary">x small</mat-slide-toggle>
+          <mat-slide-toggle class="mat-slide-toggle-sm mat-slide-primary">small</mat-slide-toggle>
+          <mat-slide-toggle class="mat-slide-toggle mat-slide-primary">default</mat-slide-toggle>
+          <mat-slide-toggle class="mat-slide-toggle-lg mat-slide-primary">large</mat-slide-toggle>
         </div>
       </div>
     </div>
