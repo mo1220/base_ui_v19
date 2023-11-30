@@ -163,7 +163,7 @@ export class DateRangePickerComponent implements OnInit {
 
   }
 
-  moveToRange(type: string) {
+  moveToRange(type: string) { //preNext === true일 때 이동하는 함수
     const start = this._selectDate[0];
     const end = this._selectDate[1];
     if(start && end) {
@@ -177,7 +177,6 @@ export class DateRangePickerComponent implements OnInit {
       // 달 단위 체크
       if(moment(start).format('YYYY-MM-DD') == moment(start).startOf('months').format('YYYY-MM-DD')
         && moment(end).format('YYYY-MM-DD') == moment(end).endOf('months').format('YYYY-MM-DD')){
-
         eDiff = type === 'pre' ? moment(end).subtract(1, 'months').endOf('months').format(format) :
           moment(end).add(1, 'months').endOf('months').format(format);
         sDiff = type === 'pre' ? moment(start).subtract(1, 'months').startOf('months').format(format) :

@@ -15,6 +15,15 @@ $radio-sizes: (
   xl: 22 $font-size-xl 11.5
 );
 
+$switch-sizes: (
+  //  1:width, 2:height, 3:font-size
+  xs: 12px     6px       $font-size-xs,
+  sm: 20px     10px      $font-size-sm,
+  lg: 40px     20px      $font-size-lg,
+  //xl: 45px 25px $font-size-xl 11.5
+);
+
+///// checkbox
 .mgc {
   position: relative;
   width: $input-icon;
@@ -94,6 +103,8 @@ $radio-sizes: (
   border-radius: 50%;
 }
 
+
+//// radio
 input[type="radio"].mgr {
   position: relative;
   width: 16px;
@@ -176,120 +187,123 @@ input[type="radio"].mgr {
   }
 }
 
+//// switch
 .mgc-switch {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   position: relative;
-  width: 36px;
-  height: 19px;
+  width: 34px;
+  height: 17px;
   border: 1px solid #dfdfdf;
   outline: 0;
   border-radius: 16px;
   box-sizing: border-box;
   background: #dfdfdf;
-}
-
-.mgc-switch:before,
-.mgc-switch:after {
-  content: " ";
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 15px;
-  transition: transform 0.3s;
-}
-
-.mgc-switch:before {
-  width: 34px;
-  height: 17px;
-  background-color: #fdfdfd;
-}
-
-.mgc-switch:after {
-  width: 17px;
-  height: 17px;
-  background-color: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-.mgc-switch:checked {
-  &:has(.mgc-primary) {
-    border-color: $primary;
-    background-color: $primary;
+  &:before, &:after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+    transition: transform 0.3s;
+  }
+  &:before {
+    width: 32px;
+    height: 15px;
+    background-color: #e0e0e0;
+  }
+  &:after {
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   }
 
-  &:has(.mgc-success) {
-    border-color: $success;
-    background-color: $success;
+  /* Size */
+  @each $key, $size in $switch-sizes {
+    &.mgc-#{$key} {
+      width: calc(#{nth($size, 1)} + 2px);
+      height: calc(#{nth($size, 2)} + 2px);
+      &:before {
+        width: #{nth($size, 1)};
+        height: #{nth($size, 2)};
+      }
+      &:after {
+        width: #{nth($size, 2)};
+        height: #{nth($size, 2)};
+        //background-color: red;
+      }
+      & + label {
+        font-size: #{nth($size, 3)};
+      }
+
+      &:checked:after {
+        top: 0;
+        left:0;
+        transform: translateX(calc(#{nth($size, 2)}));
+      }
+    }
   }
 
-  &:has(.mgc-info) {
-    border-color: $info;
-    background-color: $info;
+  &:checked {
+    &:before {
+      transform: scale(0);
+    }
+    &:after {
+      transform: translateX(17px);
+    }
+    &.mgc-primary {
+      border-color: $primary;
+      background-color: $primary;
+    }
+
+    &.mgc-success {
+      border-color: $success;
+      background-color: $success;
+    }
+
+    &.mgc-info {
+      border-color: $info;
+      background-color: $info;
+    }
+
+    &.mgc-warning {
+      border-color: $warning;
+      background-color: $warning;
+    }
+
+    &.mgc-danger {
+      border-color: $danger;
+      background-color: $danger;
+    }
   }
 
-  &:has(.mgc-warning) {
-    border-color: $warning;
-    background-color: $warning;
+  &:focus {
+    outline: 0;
   }
 
-  &:has(.mgc-danger) {
-    border-color: $danger;
-    background-color: $danger;
-  }
+
+  //.mgc-lg.mgc-switch {
+  //  height: 25px;
+  //  width: 45px;
+  //}
+  //
+  //.mgc-lg.mgc-switch:before {
+  //  height: 23px;
+  //  width: 43px;
+  //}
+  //
+  //.mgc-lg.mgc-switch:after {
+  //  width: 23px;
+  //  height: 23px;
+  //}
+  //
+  //.mgc-lg.mgc-switch:checked:after {
+  //  top: 0;
+  //  left: 2px;
+  //  transform: translateX(18px);
+  //}
+
 }
 
-.mgc-switch:checked:before {
-  transform: scale(0);
-}
-
-.mgc-switch:checked:after {
-  transform: translateX(17px);
-}
-
-.mgc-switch:focus {
-  outline: 0;
-}
-
-.mgc-sm.mgc-switch {
-  height: 10px;
-  width: 22px;
-}
-
-.mgc-sm.mgc-switch:before {
-  height: 8px;
-  width: 20px;
-}
-
-.mgc-sm.mgc-switch:after {
-  width: 8px;
-  height: 8px;
-}
-
-.mgc-sm.mgc-switch:checked:after {
-  top: 0;
-  left: 2px;
-  transform: translateX(10px);
-}
-
-.mgc-lg.mgc-switch {
-  height: 25px;
-  width: 45px;
-}
-
-.mgc-lg.mgc-switch:before {
-  height: 23px;
-  width: 43px;
-}
-
-.mgc-lg.mgc-switch:after {
-  width: 23px;
-  height: 23px;
-}
-
-.mgc-lg.mgc-switch:checked:after {
-  top: 0;
-  left: 2px;
-  transform: translateX(18px);
-}

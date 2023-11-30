@@ -46,7 +46,6 @@ import { StyleGuideTabMenuComponent } from './menu/TabMenu.component';
 // Message
 import { StyleGuideLetterAvatarComponent } from "./message/LetterAvatar.component";
 import { StyleGuideMessagesComponent } from './message/Messages.component';
-import { StyleGuideToastComponent } from './message/Toast.component';
 // Panel
 import { StyleGuideAccordionComponent } from './panel/Accordion.component';
 import { StyleGuideCardComponent } from './panel/Card.component';
@@ -106,7 +105,6 @@ import {NgSelectModule} from '@ng-select/ng-select';
     // Message
     StyleGuideLetterAvatarComponent,
     StyleGuideMessagesComponent,
-    StyleGuideToastComponent,
     // Panel
     StyleGuideAccordionComponent,
     StyleGuideCardComponent,

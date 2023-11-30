@@ -244,7 +244,6 @@ $radio-default-size: $input-icon;
 
   /****************************** ST: Mat-checkbox *************************************************/
 
-
   /*
     .mat-mdc-checkbox {
       margin-left: -6.4px;
@@ -357,6 +356,133 @@ $radio-default-size: $input-icon;
       }
     }
   }
+
+
+  //// mat-slide (switch)
+  $mat-slide-sizes: (
+    //    1:width, 2:height, 3:font-size
+    xs:   16px     8px       $font-size-xs,
+    sm:   24px     12px       $font-size-sm,
+    //base: 35px     18px      $font-size-base,
+    lg:   40px     20px      $font-size-lg,
+    //xl: 45px 25px $font-size-xl 11.5
+  );
+  .mat-slide-toggle {
+    .mdc-switch {
+      width: 35px;
+      height: 18px;
+      border: 1px solid #dfdfdf;
+      outline: 0;
+      border-radius: 18px;
+      box-sizing: border-box;
+      background: #dfdfdf;
+      .mdc-switch__track {
+        height: 18px;
+        &:before, &:after {
+          border: none;
+          border-radius: 18px;
+          transition: 0.3s !important;
+        }
+      }
+      .mdc-switch__handle-track {
+        width: 17px;
+        transition: 0.3s;
+      }
+      .mdc-switch__handle {
+        width: 15px;
+        height: 15px;
+        &:after {
+          background-color: #fff !important;
+        }
+      }
+      .mdc-switch__ripple {
+        width: 18px;
+        height: 18px;
+      }
+      .mdc-switch__icons {
+        display: none;
+      }
+    }
+    /* Size */
+    @each $key, $size in $mat-slide-sizes {
+      &-#{$key} {
+        .mdc-switch {
+          width: #{nth($size, 1)};//35px;
+          height: #{nth($size, 2)};//18px;
+          border: 1px solid #dfdfdf;
+          outline: 0;
+          border-radius: #{nth($size, 2)};
+          box-sizing: border-box;
+          background: #dfdfdf;
+          .mdc-switch__track {
+            height: #{nth($size, 2)};
+            &:before, &:after {
+              border: none;
+              border-radius: #{nth($size, 2)};
+              transition: 0.3s;
+            }
+          }
+          .mdc-switch__handle-track {
+            width: calc(#{nth($size, 2)} - 1px);//17px;
+            transition: 0.3s;
+          }
+          .mdc-switch__handle {
+            width: calc(#{nth($size, 2)} - 2px);//15px;
+            height: calc(#{nth($size, 2)} - 2px);//15px;
+            &:after {
+              background-color: #fff !important;
+            }
+          }
+          .mdc-switch__ripple {
+            width: #{nth($size, 2)};
+            height: #{nth($size, 2)};
+          }
+          .mdc-switch__icons {
+            display: none;
+          }
+        }
+
+        .mdc-label { // 라벨
+          font-size: #{nth($size, 3)};
+        }
+
+        .mdc-form-field {
+          .mdc-switch { // 스위치
+            .mdc-switch__track { // 스위치 배경 영역
+              &:before { // off일때 배경
+
+              }
+              &:after { //on일때 배경
+
+              }
+            }
+            .mdc-switch__handle-track { //스위치 동그란 버튼 영역
+              .mdc-switch__handle {
+
+              }
+            }
+          }
+
+        }
+        @each $key, $color in $colors {
+          &.mat-slide-#{$key} {
+            .mdc-switch .mdc-switch__track::after {
+              background-color: #{$color} !important;
+            }
+          }
+        }
+      }
+    }
+
+    @each $key, $color in $colors {
+      &.mat-slide-#{$key} {
+        .mdc-switch .mdc-switch__track::after {
+          background-color: #{$color} !important;
+        }
+      }
+    }
+  }
+
   /****************************** EN: Mat-checkbox *************************************************/
 
   /***** ST: Mat-tab******/

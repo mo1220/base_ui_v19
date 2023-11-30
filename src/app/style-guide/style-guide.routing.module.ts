@@ -42,7 +42,6 @@ import { StyleGuideStepsComponent } from './menu/Steps.component';
 import { StyleGuideTabMenuComponent } from './menu/TabMenu.component';
 // Message
 import { StyleGuideMessagesComponent } from './message/Messages.component';
-import { StyleGuideToastComponent } from './message/Toast.component';
 // Panel
 import { StyleGuideAccordionComponent } from './panel/Accordion.component';
 import { StyleGuideCardComponent } from './panel/Card.component';
@@ -253,11 +252,6 @@ const routes: Routes = [
         path: 'messages/messages',
         component: StyleGuideMessagesComponent,
         data: {title: 'Messages'}
-      },
-      {
-        path: 'messages/toast',
-        component: StyleGuideToastComponent,
-        data: {title: 'Toast'}
       },
       {
         path: 'menu/breadcrumb',
