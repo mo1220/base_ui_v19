@@ -6,31 +6,33 @@
     flex: 1;
     padding-left: 200px;
   }
-
   &-nav {
     flex: 1;
     overflow-y: auto;
+    transition: background 1s ease;
     /* width */
     &::-webkit-scrollbar {
       width: 10px;
       border-radius: 20px;
     }
-
     /* Track */
     &::-webkit-scrollbar-track {
-      background: #E6E7EB;
+      background: #E6E7EB00;
       border-radius: 20px;
     }
-
     /* Handle */
     &::-webkit-scrollbar-thumb {
-      background: #a8a8a8;
+      background: #a8a8a800;
       border-radius: 20px;
     }
-
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
-      background: rgba(#666, .7);
+      background: #a8a8a8FF;
+    }
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        background: #a8a8a899;
+      }
     }
   }
   &-aside {

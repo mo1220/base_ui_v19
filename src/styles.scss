@@ -3129,6 +3129,17 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
     flex: 1;
     background: #FFF;
     position: relative;
+    &-header {
+
+    }
+
+    &-body {
+
+    }
+
+    &-footer {
+      top:0 !important;
+    }
   }
 
   &-rnb {
