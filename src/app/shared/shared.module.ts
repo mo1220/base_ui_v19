@@ -97,6 +97,7 @@ import { InputMask } from './input-mask/input-mask.component';
 import { InputNumber } from './input-number/input-number.component';
 import { KeyFilter } from './key-filter/key-filter';
 import { LetterAvatarComponent } from "./letter-avatar/letter-avatar.component";
+import { DtkStepsComponent } from "./dtk-steps/dtk-steps.component";
 ModuleRegistry.registerModules([ ExcelExportModule ]);
 
 
@@ -199,6 +200,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     InputMask, // Input Mask
     InputNumber, // Input Number
     KeyFilter,  // key 입력 필터
+    DtkStepsComponent,
   ],
   exports: [
     CommonModule,
@@ -274,6 +276,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     KeyFilter, // key 입력 필터
     InputMask, // Input Mask
     InputNumber, // Input Number
+    DtkStepsComponent,
 
     //3rd Party
     LaddaModule,

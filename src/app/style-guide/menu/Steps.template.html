@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basic>Basic</h3>
+    <p>basic steps</p>
+    <div class="style-guide-example d-flex gap-2s">
+      <dtk-steps [model]="items" [activeIndex]="activeIndex" [clickToChangeIndex]="true">
+      </dtk-steps>
+      <dtk-steps [model]="items" [activeIndex]="activeIndex" [clickToChangeIndex]="true"
+                 [verticalMode]="'left'">
+      </dtk-steps>
+      <dtk-steps [model]="items" [activeIndex]="activeIndex" [clickToChangeIndex]="true"
+                 [verticalMode]="'center'">
+      </dtk-steps>
+      <dtk-steps [model]="items" [activeIndex]="activeIndex" [clickToChangeIndex]="true"
+                 [verticalMode]="'right'">
+      </dtk-steps>
+    </div>
 
-</body>
-</html>
+    <h3 #anchor #size>Size</h3>
+    <p>사이즈 별 steps (1~100, px단위)</p>
+    <div class="style-guide-example d-flex flex-column gap-2">
+      <ng-container *ngFor="let size of sizes">
+        <span class="color-blue">{{size}}px</span>
+        <dtk-steps [model]="items" [size]="size" [activeIndex]="activeIndex" [clickToChangeIndex]="true">
+        </dtk-steps>
+      </ng-container>
+    </div>
+    <div class="style-guide-example d-flex flex-wrap gap-1">
+      <ng-container *ngFor="let size of sizes">
+        <span class="color-blue">{{size}}px</span>
+        <dtk-steps class="flex-1"
+                   [model]="items" [size]="size" [activeIndex]="activeIndex" [clickToChangeIndex]="true"
+                   [verticalMode]="'center'">
+        </dtk-steps>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,155 @@
+@import './src/styles-variables';
+
+
+@each $size in $size1to100 {
+  .dtk-steps {
+    padding: 10px;
+    &.size-#{$size} {
+      $size: #{$size}+px;
+      .step-list {
+        display: flex;
+        li {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          flex: 1;
+          position: relative;
+          overflow: hidden;
+          &:before {
+            content: '';
+            width: 100%;
+            height: 1px;
+            background-color: #ddd;
+            position: absolute;
+            top: calc(#{$size} * 0.5) ;
+            left: 0;
+          }
+
+          .step-number {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: #{$size};
+            height: #{$size};
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: calc(#{$size} * 0.3);
+            font-weight: 600;
+            z-index: 1;
+          }
+
+          .step-label {
+            margin-top: 10px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            .step-txt {
+              width: 92%;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              margin: 2px auto;
+              color: rgba(0,0,0, 0.55);
+              font-size: $font-size-sm;
+            }
+          }
+
+
+          &.activeIndex {
+            .step-number {
+              background: lighten($primary, 40);
+              border: 2px solid $primary;
+              color: $primary;
+            }
+
+            .step-label {
+              font-weight: 600;
+            }
+          }
+        }
+
+
+        &.vertical {
+          flex-direction: column;
+          width: calc(#{$size} * 3);
+          li {
+            flex-wrap: wrap;
+            padding: calc(#{$size} * 0.5) 0;
+            &:before {
+              content: '';
+              height: 100%;
+              width: 1px;
+              background-color: #ddd;
+              position: absolute;
+              left: calc(#{$size} * 1.5);
+              top: 0;
+            }
+            .step-label {
+              padding: 0 5px;
+              .step-txt {
+                width: 100%;
+              }
+            }
+          }
+
+          &-left {
+            li {
+              align-items: start;
+              flex-direction: row;
+              flex-wrap: wrap;
+              &:before {
+                left: calc(#{$size} * 0.5);
+              }
+              .step-label {
+                text-align: left;
+                width: calc(100% - #{$size});
+              }
+            }
+          }
+
+          &-center {
+            width: calc(#{$size} * 6);
+            li {
+              &:before {
+                left: calc(#{$size} * 3);
+              }
+              .step-label {
+                width: calc(#{$size} * 2.5 - 5px);
+                position: absolute;
+              }
+              &:nth-child(odd) {
+                .step-label {
+                  left: 0;
+                  text-align: right;
+                }
+              }
+              &:nth-child(even) {
+                .step-label {
+                  right: 0;
+                  text-align: left;
+                }
+              }
+            }
+          }
+
+          &-right {
+            li {
+              align-items: end;
+              flex-direction: row-reverse;
+              flex-wrap: wrap;
+              &:before {
+                right: calc(#{$size} * 0.5);
+                left: auto;
+              }
+              .step-label {
+                text-align: right;
+                width: calc(100% - #{$size});
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<div class="dtk-steps" [ngClass]="'size-'+size">
+  <ul class="step-list"
+      [ngClass]="verticalMode !== '' ? 'vertical vertical-'+verticalMode : ''">
+    <li *ngFor="let item of model; let i = index"
+        [class.activeIndex]="activeIndex === i"
+        (click)="clickToChangeIndex ? activeIndex = i : undefined">
+      <div class="step-number">{{i+1}}</div>
+      <span class="step-label" [title]="item.label">{{item.label}}
+        <p class="step-txt" *ngIf="item.txt" [title]="item.txt"> {{item.txt}}</p>
+      </span>
+    </li>
+  </ul>
+</div>
