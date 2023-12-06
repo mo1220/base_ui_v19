@@ -1,10 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="d-flex">
+  <div class="component-wrap" #contentWrap>
+    <h3 #anchor #basic>Basic</h3>
+    <p>basic upload</p>
+    <div class="style-guide-example d-flex gap-2">
+      <div class="flex-1 d-flex flex-column gap-1">
+        <h3>Select files</h3>
+        <div ng2FileDrop
+             [ngClass]="{'file-drop-over': hasBaseDropZoneOver}"
+             (fileOver)="fileOverBase($event)"
+             [uploader]="uploader"
+             class="file-drop-zone">
+          <mat-icon class="md-18">file_upload</mat-icon>
+          파일을 드래그 하세요.
+        </div>
 
-</body>
-</html>
+        <div>
+          <button class="btn btn-outline-primary btn-sm"
+                  (click)="uppload.click()">
+            파일 업로드
+          </button>
+          <input type="file" ng2FileSelect
+                 accept=".gif, .jpg, .jpeg, .png, .csv, .tsv, .hwp, .pdf, .docx, .doc, .xls, .xlsx, .ppt, .pptx"
+                 class="hidden"
+                 #uppload
+                 [uploader]="uploader"
+                 multiple />
+          <!--multiple은 옵션-->
+        </div>
+      </div>
+
+      <div class="flex-1">
+        <h3>Upload queue</h3>
+        <p>Queue length: {{ uploader?.queue?.length }}</p>
+        <table class="table file-upload-table">
+          <thead class="table-light">
+          <tr>
+            <th width="50%">{{'guide.file_name' | translate}}<!--파일명--></th>
+            <th width="15%">{{'guide.size' | translate}}<!--용량--></th>
+            <th width="15%">{{'guide.progress' | translate}}<!--진행--></th>
+            <th width="15%">{{'guide.state' | translate}}<!--업로드상태--></th>
+            <th width="5%">{{ 'buttons.delete' | translate }} <!--삭제--> </th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngIf="uploader.queue.length > 0; else elseBlock">
+            <tr *ngFor="let item of uploader.queue">
+              <td><strong>{{ item?.file?.name }}</strong></td>
+              <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size / 1024 / 1024 | number:'.2' }} MB</td>
+              <td *ngIf="uploader.options.isHTML5">
+                <div class="queue-progress" style="margin-bottom: 0;">
+                  <div class="queue-progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                </div>
+              </td>
+              <td class="tx-cn">
+                  <span *ngIf="item.isSuccess">
+                    <i class="fa fa-check"></i>
+                  </span>
+                <span *ngIf="item.isCancel">
+                    <i class="fa fa-ban"></i>
+                  </span>
+                <span *ngIf="item.isError">
+                    <i class="fa fa-times"></i>
+                  </span>
+              </td>
+              <td class="tx-cn">
+                <button type="button" class="btn btn-danger btn-icon btn-xs my-1"
+                        (click)="onFileRemove(item)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-template #elseBlock>
+            <tr rowSpan="2">
+              <td colspan="5">
+                <div ng2FileDrop
+                     [ngClass]="{'file-drop-over': hasBaseDropZoneOver}"
+                     (fileOver)="fileOverBase($event)"
+                     [uploader]="uploader"
+                     class="file-drop-zone">
+                  <mat-icon class="md-18">file_upload</mat-icon>
+                  파일을 드래그 하세요.
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          </tbody>
+        </table>
+        <div class="d-flex flex-wrap gap-1">
+          <div class="w-100">
+            Queue progress:
+            <div class="queue-progress">
+              <div class="queue-progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-success btn-sm"
+                  (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+            <span class="glyphicon glyphicon-upload"></span> Upload all
+          </button>
+          <button type="button" class="btn btn-warning btn-sm"
+                  (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+          </button>
+          <button type="button" class="btn btn-danger btn-sm"
+                  (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+            <span class="glyphicon glyphicon-trash"></span> Remove all
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel panel-default">
+        <div class="panel-heading">Response</div>
+        <div class="panel-body">
+          {{ response }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

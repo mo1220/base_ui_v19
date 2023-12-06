@@ -205,7 +205,7 @@ const routes: Routes = [
       },
       {
         path: 'file/upload',
-        component: StyleGuideSplitterComponent,
+        component: StyleGuideUploadComponent,
         data: {title: 'File Upload'}
       },
       {

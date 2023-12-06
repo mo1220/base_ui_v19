@@ -60,6 +60,7 @@ import { AceModule } from 'ngx-ace-wrapper';
 import { ACE_CONFIG } from 'ngx-ace-wrapper';
 import { AceConfigInterface } from 'ngx-ace-wrapper';
 const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
+import { FileUploadModule } from "ng2-file-upload";
 
 import { ColorSketchModule } from 'ngx-color/sketch';
 import { ColorSwatchesModule } from 'ngx-color/swatches';
@@ -78,6 +79,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ResizedEventModule } from './resized-event/angular-resized-event.module';
 import { DtkSliderComponent } from './dtk-slider/dtk-slider';
 import { DtkMatSliderComponent } from './dtk-mat-slider/dtk-mat-slider';
+import { DtkStepsComponent } from "./dtk-steps/dtk-steps.component";
 import { AngularDraggableModule } from 'angular2-draggable';
 import { DndModule } from 'ngx-drag-drop';
 
@@ -97,7 +99,6 @@ import { InputMask } from './input-mask/input-mask.component';
 import { InputNumber } from './input-number/input-number.component';
 import { KeyFilter } from './key-filter/key-filter';
 import { LetterAvatarComponent } from "./letter-avatar/letter-avatar.component";
-import { DtkStepsComponent } from "./dtk-steps/dtk-steps.component";
 ModuleRegistry.registerModules([ ExcelExportModule ]);
 
 
@@ -105,7 +106,6 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
   imports: [
     CommonModule,
     FormsModule,
-
     TranslateModule,
 
     // Angular Material
@@ -177,6 +177,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     AngularDraggableModule,
     GridsterModule,
     DndModule,
+    FileUploadModule
   ],
   declarations: [
     AsideMenuComponent, // Left Menu
@@ -299,6 +300,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     AngularDraggableModule, // Element Resize 모듈
     GridsterModule, // Angular Gridster2
     DndModule,
+    FileUploadModule
   ],
   providers: [
     { provide: ACE_CONFIG, useValue: DEFAULT_ACE_CONFIG }
