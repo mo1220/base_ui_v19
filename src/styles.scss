@@ -3284,7 +3284,88 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
     transition: width 0.6s ease;
   }
 }
-
 /********************** EN: FileUpload *********************/
 
 
+/********************** ST: Tabs *********************/
+.mat-tabs {
+  font-size: 11px;
+  .mat-mdc-tab.mdc-tab {
+    height: 45px;
+    padding: 0 12px;
+  }
+  .mdc-tab__text-label {
+    font-size: 12px;
+  }
+  &-sm {
+    font-size: 10px;
+    .mat-mdc-tab.mdc-tab {
+      height: 40px;
+      padding: 0 10px;
+    }
+    .mdc-tab__text-label {
+      font-size: 11px;
+    }
+  }
+  &-lg {
+    font-size: 13px;
+    .mat-mdc-tab.mdc-tab {
+      height: 52px;
+      padding: 0 15px;
+    }
+    .mdc-tab__text-label {
+      font-size: 14px;
+    }
+  }
+}
+
+.ngx-tab {
+  .nav-tabs { //ul
+    .nav-item { //li
+      .nav-link {
+        color: $secondary;
+        &.active {
+          color: $primary;
+        }
+      }
+    }
+  }
+  .nav-tabs { //ul
+    .nav-item { //li
+      .nav-link {
+        font-size: 12px;
+        padding: 5px 12px;
+      }
+    }
+  }
+  .tab-content {
+    font-size: 13px;
+  }
+  &-sm {
+    .nav-tabs { //ul
+      .nav-item { //li
+        .nav-link {
+          font-size: 11px;
+          padding: 4px 10px;
+        }
+      }
+    }
+    .tab-content {
+      font-size: 11px;
+    }
+  }
+  &-lg {
+    .nav-tabs { //ul
+      .nav-item { //li
+        .nav-link {
+          font-size: 14px;
+          padding: 6px 14px;
+        }
+      }
+    }
+    .tab-content {
+      font-size: 13px;
+    }
+  }
+}
+/********************** EN: Tabs *********************/
