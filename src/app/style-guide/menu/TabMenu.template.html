@@ -93,5 +93,51 @@
         <tab heading="Basic Title 2">Basic content 2</tab>
       </tabset>
     </div>
+
+    <h3 #anchor #vertical>Vertical</h3>
+    <p>세로형 tab menu</p>
+    <div class="style-guide-example d-flex flex-column gap-2">
+      <h5>material (animation은 안됩니다)</h5>
+      <mat-tab-group class="mat-tabs mattabs-sm vertical" animationDuration="0ms"
+        mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab *ngFor="let item of [1,2,3]">
+          <ng-template mat-tab-label> mat-tab-sm </ng-template>
+          Content {{item}}
+        </mat-tab>
+      </mat-tab-group>
+      <mat-tab-group class="mat-tabs vertical" animationDuration="0ms"
+        mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab *ngFor="let item of [1,2,3]">
+          <ng-template mat-tab-label> mat-tab </ng-template>
+          Content {{item}}
+        </mat-tab>
+      </mat-tab-group>
+      <mat-tab-group class="mat-tabs mat-tabs-lg vertical" animationDuration="0ms"
+        mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab *ngFor="let item of [1,2,3]">
+          <ng-template mat-tab-label> mat-tab-lg </ng-template>
+          Content {{item}}
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+    <div class="style-guide-example d-flex flex-column gap-3">
+      <h5>ngx-bootstrap</h5>
+      <tabset class="ngx-tab ngx-tab-sm vertical">
+        <tab heading="Basic title">Basic content</tab>
+        <tab heading="Basic Title 1">Basic content 1</tab>
+        <tab heading="Basic Title 2">Basic content 2</tab>
+      </tabset>
+      <tabset class="ngx-tab vertical">
+        <tab heading="Basic title">Basic content</tab>
+        <tab heading="Basic Title 1">Basic content 1</tab>
+        <tab heading="Basic Title 2">Basic content 2</tab>
+      </tabset>
+      <tabset class="ngx-tab ngx-tab-lg vertical">
+        <tab heading="Basic title">Basic content</tab>
+        <tab heading="Basic Title 1">Basic content 1</tab>
+        <tab heading="Basic Title 2">Basic content 2</tab>
+      </tabset>
+    </div>
   </div>
 </div>

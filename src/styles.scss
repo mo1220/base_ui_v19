@@ -3317,12 +3317,40 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
       font-size: 14px;
     }
   }
+
+  &.vertical {
+    flex-direction: row;
+    .mat-mdc-tab-body {
+      --mat-tab-animation-duration: 0ms;
+    }
+    .mat-mdc-tab-body-wrapper {
+      flex: 1
+    }
+    .mat-mdc-tab-list {
+      border-bottom: none;
+      border-right: 1px solid #ddd;
+    }
+    .mat-mdc-tab-labels {
+      flex-direction: column;
+    }
+    .mdc-tab-indicator {
+      justify-content: end;
+    }
+    .mat-mdc-tab .mdc-tab-indicator__content--underline {
+      width: 0;
+      height: 100%;
+      border-bottom: none;
+      border-right: 2px solid $primary;
+    }
+  }
 }
 
 .ngx-tab {
   .nav-tabs { //ul
     .nav-item { //li
       .nav-link {
+        font-size: 12px;
+        padding: 5px 12px;
         color: $secondary;
         &.active {
           color: $primary;
@@ -3330,17 +3358,10 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
       }
     }
   }
-  .nav-tabs { //ul
-    .nav-item { //li
-      .nav-link {
-        font-size: 12px;
-        padding: 5px 12px;
-      }
-    }
-  }
   .tab-content {
     font-size: 13px;
   }
+
   &-sm {
     .nav-tabs { //ul
       .nav-item { //li
@@ -3354,6 +3375,7 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
       font-size: 11px;
     }
   }
+
   &-lg {
     .nav-tabs { //ul
       .nav-item { //li
@@ -3365,6 +3387,30 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
     }
     .tab-content {
       font-size: 13px;
+    }
+  }
+
+  &.vertical {
+    display: flex;
+    .nav-tabs { //ul
+      flex-direction: column;
+      border-bottom: 1px solid #fff;
+      border-right: 1px solid #dee2e6;
+      .nav-item { //li
+        text-align: right;
+        .nav-link {
+          border-radius: 0.15rem 0 0 0.15rem;
+          margin-right: -1px;
+          margin-bottom: 0;
+          &.active {
+            border-color: #dee2e6 #fff #dee2e6 #dee2e6;
+          }
+        }
+      }
+    }
+    .tab-content {
+      flex: 1;
+      padding: 10px;
     }
   }
 }
