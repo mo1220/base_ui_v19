@@ -46,6 +46,7 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() mode: string | undefined;
   @Input() iconUsed: boolean;
   @Input() displayField: any;
+  @Input() expandUsed: boolean = false;
 
   // @Input() viewType: string;  // View Type(ex. 추천 | 관심)
   @Input() size: string = '';  // tree size ( lg. sm xs )
@@ -138,6 +139,15 @@ export class TreeDirComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
+  }
+
+
+  expandAll() {
+    this.tree.treeModel.expandAll();
+  }
+
+  collapseAll() {
+    this.tree.treeModel.collapseAll();
   }
 
   /**

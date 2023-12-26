@@ -1,3 +1,15 @@
+<div class="btn-group" style="float: right" *ngIf="expandUsed">
+  <button class="btn btn-outline-secondary btn-xs"
+          (click)="expandAll()"
+          [matTooltip]="'buttons.expandAll' | translate">
+    <mat-icon class="md-14">unfold_more</mat-icon>
+  </button>
+  <button class="btn btn-outline-secondary btn-xs"
+          (click)="collapseAll()"
+          [matTooltip]="'buttons.collapseAll' | translate">
+    <mat-icon class="md-14">unfold_less</mat-icon>
+  </button>
+</div>
 <tree-root class="dp-directory" #tree
            [(state)]="state"
            (event)="onEvent($event)"
