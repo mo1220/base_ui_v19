@@ -110,10 +110,11 @@ $close-icon-size: (
   &.btn-split{
     padding-top: 0;
     padding-bottom: 0;
+    padding-right: 3px;
     span{
       cursor: pointer;
       position: relative;
-      right: $button-label;
+      right: -4px;//$button-label;
       display: inline-block;
       padding: $btn-padding-y $btn-padding-x;
       border-radius: $border-radius-right;
@@ -128,7 +129,7 @@ $close-icon-size: (
     @each $key, $value in $button-size{
       &.btn-#{$key} {
         span {
-          right: #{nth($value, 5)};
+          //right: #{nth($value, 5)};
           padding: #{nth($value, 1)}  #{nth($value, 2)};
         }
       }
@@ -136,7 +137,10 @@ $close-icon-size: (
 
     &-rounded{
       border-radius: $border-radius-round;
-
+      padding-right: 0;
+      span {
+        right: 0;
+      }
       .btn-split-menu{
         border-radius: 0 $border-radius-round $border-radius-round 0;
       }
