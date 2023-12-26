@@ -3354,6 +3354,9 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
 }
 
 .ngx-tab {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   .nav-tabs { //ul
     .nav-item { //li
       .nav-link {
@@ -3367,7 +3370,15 @@ gridster-item:hover .gridster-item-resizable-handler.handle-se {
     }
   }
   .tab-content {
+    flex: 1;
     font-size: 13px;
+    .tab-pane {
+      height: 100%;
+      &.active {
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
 
   &-sm {
