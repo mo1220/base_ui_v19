@@ -1757,7 +1757,15 @@ timepicker {
 
   &-item {
     width: 100%;
+    button {
+      flex: 0;
+    }
   }
+}
+
+.tree-btn-group {
+  display: flex;
+  justify-content: end;
 }
 
 .dp-directory {
