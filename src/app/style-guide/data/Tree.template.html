@@ -212,27 +212,60 @@
         <!--ST: fiter -->
         <div class="style-guide-example d-flex" *ngSwitchCase="'filter'">
           <div class="input-tree-wrap wd-200">
-            <div class="form-group">
-              <label>현업 담당자</label>
+            <label>현업 담당자 xs</label>
+            <div class="form-box">
               <input cdkOverlayOrigin
                      #t1="cdkOverlayOrigin"
-                     class="form-control"
+                     class="form-control form-control-xs"
                      placeholder="담당자를 입력하세요."
                      (focus)="openTree('owner')"
                      [(ngModel)]="datasetParams.owner_name"/>
-
-              <span class="expand-icon">
-                          <i class="fa"
-                             [ngClass]="{'fa-angle-down': !filterTeamView.owner, 'fa-angle-up': filterTeamView.owner}"
-                             aria-hidden="true"></i>
-                        </span>
+              <span class="tree-filter-expand-icon">
+                <span class="clear-btn"
+                      *ngIf="datasetParams.owner_name.trim() !== ''"
+                      (click)="datasetParams.owner_name = ''">
+                  <mat-icon class="mat-icon">close</mat-icon>
+                </span>
+                <i class="fa" [ngClass]="{'fa-angle-down': !filterTeamView.owner, 'fa-angle-up': filterTeamView.owner}" aria-hidden="true"></i>
+              </span>
             </div>
-
             <ng-container *ngIf="filterTeamView.owner"></ng-container>
             <ng-template cdkConnectedOverlay
                          [cdkConnectedOverlayOrigin]="t1"
                          [cdkConnectedOverlayOpen]="filterTeamView.owner">
               <tree-select-filter [nodes]="deptList"
+                                  [size]="'xs'"
+                                  [displayField]="'dept_nm'"
+                                  [(label)]="datasetParams.owner_name"
+                                  [(value)]="datasetParams.owner"
+                                  [(openState)]="filterTeamView.owner"></tree-select-filter>
+            </ng-template>
+          </div>
+
+          <div class="input-tree-wrap wd-200">
+            <label>IT 담당자 sm</label>
+            <div class="form-box">
+              <input cdkOverlayOrigin
+                     #t2="cdkOverlayOrigin"
+                     class="form-control form-control-sm"
+                     placeholder="담당자를 입력하세요."
+                     (focus)="openTree('owner')"
+                     [(ngModel)]="datasetParams.owner_name"/>
+              <span class="tree-filter-expand-icon">
+                <span class="clear-btn"
+                      *ngIf="datasetParams.owner_name.trim() !== ''"
+                      (click)="datasetParams.owner_name = ''">
+                  <mat-icon class="mat-icon">close</mat-icon>
+                </span>
+                <i class="fa" [ngClass]="{'fa-angle-down': !filterTeamView.owner, 'fa-angle-up': filterTeamView.owner}" aria-hidden="true"></i>
+              </span>
+            </div>
+            <ng-container *ngIf="filterTeamView.owner"></ng-container>
+            <ng-template cdkConnectedOverlay
+                         [cdkConnectedOverlayOrigin]="t2"
+                         [cdkConnectedOverlayOpen]="filterTeamView.owner">
+              <tree-select-filter [nodes]="deptList"
+                                  [size]="'sm'"
                                   [displayField]="'dept_nm'"
                                   [(label)]="datasetParams.owner_name"
                                   [(value)]="datasetParams.owner"
@@ -244,7 +277,7 @@
             <div class="form-group">
               <label>IT 현업 담당자</label>
               <input cdkOverlayOrigin
-                     #t2="cdkOverlayOrigin"
+                     #t3="cdkOverlayOrigin"
                      class="form-control input-team"
                      placeholder="담당자를 입력하세요."
                      (focus)="openTree('it_owner')"
@@ -257,7 +290,7 @@
             </div>
             <!--<ng-container *ngIf="filterTeamView.it_owner"></ng-container>-->
             <ng-template cdkConnectedOverlay
-                         [cdkConnectedOverlayOrigin]="t2"
+                         [cdkConnectedOverlayOrigin]="t3"
                          [cdkConnectedOverlayOpen]="filterTeamView.it_owner">
               <tree-select-filter class="tree-filter"
                                   [nodes]="deptList"

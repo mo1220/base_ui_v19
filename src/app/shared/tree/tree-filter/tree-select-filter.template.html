@@ -1,8 +1,9 @@
-<div class="tree-filter">
+<div class="tree-filter" [ngClass]="size !== '' ? 'tree-filter-'+size : ''">
   <div class="tree-filter-wrap " #treeWrap>
     <div class="tree-filter-search tree-filter-box wd-200">
       <div class="form-box icon-left search">
         <input type="text" class="form-control form-control-sm"
+               [ngClass]="size !== '' ? 'form-control-xs' : ''"
                #inputElem
                placeholder="검색할 팀명을 입력해 주세요."
                (keyup)="filterTree($event)"/>

@@ -2050,7 +2050,7 @@ timepicker {
       color: #666;
       display: inline-block;
       font: normal normal normal 14px/1 FontAwesome;
-      font-size: 11px;
+      font-size: 9px;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -2104,6 +2104,11 @@ timepicker {
   }
 }
 
+$tree-filter-size : (
+  //  1: font-size
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+);
 
 .tree-filter {
   background: #FFF;
@@ -2116,6 +2121,20 @@ timepicker {
     z-index: 1;
   }
 
+  &-expand-icon {
+    top: 0;//50%;
+    right: 8px;
+    margin-top: 2px;
+    padding: 0 2px;
+    position: absolute;
+    color: #999;
+    .clear-btn {
+      right: 12px;
+    }
+    .fa {
+      font-weight: 600;
+    }
+  }
   &-wrap {
     background: #FFF;
     border: 1px solid #ced4da;
@@ -2176,6 +2195,15 @@ timepicker {
     //width: 100%;
     //height: 100%;
     //z-index: 1;
+  }
+
+
+  @each $key, $value in $tree-filter-size {
+    &.tree-filter-#{$key} {
+      .dp-directory .node-wrapper, .dp-directory .node-wrapper .node-content-wrapper {
+        font-size: #{nth($value, 1)};
+      }
+    }
   }
 }
 /**** EN : 담당자 트리 선택 ***/

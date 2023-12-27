@@ -38,6 +38,7 @@ export class TreeSelectFilterComponent implements OnInit, OnChanges, AfterViewIn
   @Input('labelName') labelName: string;
   @Input() nodes: any;
   @Input() displayField: any;
+  @Input() size:string;
 
   _openState = false;
   // @Input()

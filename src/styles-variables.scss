@@ -271,7 +271,7 @@ $chip-height: 20px;
 $chip-height-lg: 22px;
 
 // btn-labeld 버튼 | btn-split 시 icon 위치
-$button-label:    -4px;//-12px;
+$button-label:    -12px;
 $button-label-xs: -6px;
 $button-label-sm: -9px;
 $button-label-lg: -15px;
@@ -386,7 +386,7 @@ $h6-font-size: 16px;
 $mat-btn-icon-sm: 20px;
 $mat-btn-icon-xs: 16px;
 
-
+$table-striped-columns-order: odd !default;
 //$btn-border-width:            $input-btn-border-width;
 
 //$btn-font-weight:             $font-weight-normal;
