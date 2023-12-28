@@ -4,13 +4,18 @@
     <p>basic tab menu</p>
     <div class="style-guide-example d-flex flex-column gap-2">
       <h5>material</h5>
-      <mat-tab-group animationDuration="0ms">
+      선택한 탭 인덱스 : {{matSelectedIndex}}
+      <mat-tab-group animationDuration="0ms"
+                     (selectedIndexChange)="changeTabIndex($event)"
+                     [selectedIndex]="matSelectedIndex">
         <mat-tab label="First">Content 1</mat-tab>
         <mat-tab label="Second">Content 2</mat-tab>
         <mat-tab label="Third">Content 3</mat-tab>
       </mat-tab-group>
 
-      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start"
+                     (selectedIndexChange)="changeTabIndex($event)"
+                     [selectedIndex]="matSelectedIndex">
         <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon class="md-14">thumb_up</mat-icon>
@@ -36,15 +41,34 @@
     </div>
     <div class="style-guide-example d-flex flex-column gap-3">
       <h5>ngx-bootstrap</h5>
+      방금 선택한 탭 : {{ngxSelectTab}}
       <tabset class="ngx-tab" [justified]="true">
-        <tab heading="Justified">Justified content</tab>
-        <tab heading="SJ">Short Labeled Justified content</tab>
-        <tab heading="Long Justified">Long Labeled Justified content</tab>
+        <tab heading="Justified" id="Justified" (selectTab)="onSelectTab($event)">Justified content</tab>
+        <tab heading="SJ" id="SJ" (selectTab)="onSelectTab($event)">Short Labeled Justified content</tab>
+        <tab heading="Long Justified" id="Long Justified" (selectTab)="onSelectTab($event)">Long Labeled Justified content</tab>
       </tabset>
       <tabset class="ngx-tab">
-        <tab heading="Basic title">Basic content</tab>
-        <tab heading="Basic Title 1">Basic content 1</tab>
-        <tab heading="Basic Title 2">Basic content 2</tab>
+        <tab id="custom1" (selectTab)="onSelectTab($event)">
+          <ng-template tabHeading>
+            <mat-icon class="md-14">thumb_up</mat-icon>
+            custom1
+          </ng-template>
+          헤더 템플릿 커스텀은 ng-template에 tabHeading
+        </tab>
+        <tab id="custom2" (selectTab)="onSelectTab($event)">
+          <ng-template tabHeading>
+            <mat-icon class="md-14">star</mat-icon>
+            custom2
+          </ng-template>
+          헤더 템플릿 커스텀은 ng-template에 tabHeading
+        </tab>
+        <tab id="custom3" (selectTab)="onSelectTab($event)">
+          <ng-template tabHeading>
+            <mat-icon class="md-14">check</mat-icon>
+            custom3
+          </ng-template>
+          헤더 템플릿 커스텀은 ng-template에 tabHeading
+        </tab>
       </tabset>
     </div>
 

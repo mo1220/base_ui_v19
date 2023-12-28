@@ -367,14 +367,14 @@ $spacers: (
 
 /* color */
 @each $key, $color in $colors-palette {
-  .color-#{$key} {
+  .color-#{""+$key} {
     color: $color;
   }
-  .bg-#{$key} {
+  .bg-#{""+$key} {
     background-color: $color;
     color: #fff;
   }
-  .highlight-#{$key} {
+  .highlight-#{""+$key} {
     color: $color;
     background-color: lighten($color,38);
   }
