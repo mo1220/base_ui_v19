@@ -48,7 +48,7 @@ letter-avatar {
   //$colors: red, blue, green, yellow;
   // $shadowColor: ;
   @each $key, $color in $avatar-palette {
-    .color-#{$key} {
+    .color-#{""+$key} {
       background: $color;
       span {
         @include render-shadow (80, darken($color, 8));
@@ -58,10 +58,10 @@ letter-avatar {
 
   @each $size in $size1to100 {
     .size-#{$size} {
-      $sizePx: $size + px;
-      $sizeRadius: $size / 5;
+      $sizePx: #{$size} + px;
+      $sizeRadius: #{$size} / 5;
       //$sizeRadiusPx: $sizeRadius + px;
-      font-size:$size*0.5 + px;
+      font-size: calc(#{$size}*0.5) + px;
       @if ($size <= 20) {
         font-weight: 300;
       }@else if($size <= 30) {
