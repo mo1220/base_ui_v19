@@ -14,6 +14,7 @@ import {default_colors} from "../../core/settings/settings.model";
 import {ColDef, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {TableVirtualScrollDataSource} from "ng-table-virtual-scroll";
 import {MatTable} from "@angular/material/table";
+import {CellLoadingComponent} from "../../shared/ag-grid/cell-loading/cell-loading.component";
 
 interface Country {
   name: string;
@@ -164,6 +165,10 @@ const DATA2 = Array.from({length: 10000}, (v, i) => ({
   encapsulation: ViewEncapsulation.None
 })
 export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnInit {
+  loading:boolean = true;
+  frameworkComponents = { 'CellLoadingComponent': CellLoadingComponent };
+  gridApi: any;
+
   menus: Array<menuType> = [
     {
       title: 'Basic',
@@ -265,23 +270,33 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
     this.columnDefs = [
       {
         field: 'id',
-        headerName: '#'
+        headerName: '#',
+        cellRenderer: 'CellLoadingComponent',
+        cellRendererParams: { loading: this.loading, field: 'id' }
       },
       {
         field: 'name',
-        headerName: '국가 이름'
+        headerName: '국가 이름',
+        cellRenderer: 'CellLoadingComponent',
+        cellRendererParams: { loading: this.loading, field: 'name' }
       },
       {
         field: 'flag',
-        headerName: '국기'
+        headerName: '국기',
+        cellRenderer: 'CellLoadingComponent',
+        cellRendererParams: { loading: this.loading, field: 'flag' }
       },
       {
         field: 'area',
-        headerName: '국가 면적'
+        headerName: '국가 면적',
+        cellRenderer: 'CellLoadingComponent',
+        cellRendererParams: { loading: this.loading, field: 'area' }
       },
       {
         field: 'population',
-        headerName: '인구수'
+        headerName: '인구수',
+        cellRenderer: 'CellLoadingComponent',
+        cellRendererParams: { loading: this.loading, field: 'population' }
       },
     ];
 
@@ -300,13 +315,41 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
   ngOnDestroy(): void {
   }
 
+  /**
+   * @function setColumnDefs: columnDef 재설정
+   */
+  setColumnDefs(){
+    let newCol = this.columnDefs.map((col:any) => {
+      // if(col.field === 'start_check_at') {
+      //   col = {
+      //     ...col,
+      //     cellRenderer: this.loading ? 'CellLoadingComponent' :  (params) => {
+      //       const { data } = params;
+      //       return `${moment(data.start_check_at).format('YYYY-MM-DD HH:mm')} ~ ${moment(data.end_check_at).format('YYYY-MM-DD HH:mm')}`
+      //     }
+      //   }
+      // }
+      col = {
+        ...col,
+        cellRendererParams: {
+          ...col.cellRendererParams,
+          loading: this.loading
+        }
+      };
+      return col;
+    });
+    this.gridApi?.setColumnDefs(newCol);
+  }
+
   onClickCheckBoxAll(e: any) {
     for (let k of this.countries) {
       this.checkMap[k.id] = e.target.checked;
     }
   }
 
-  onGridReady(params: GridReadyEvent){}
+  onGridReady(params: GridReadyEvent){
+    this.gridApi = params.api;
+  }
 
   setTableResize(tableWidth: number){
     let totWidth: number | undefined = 0;

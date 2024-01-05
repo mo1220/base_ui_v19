@@ -23,7 +23,7 @@ export class StyleGuideUploadComponent implements AfterViewInit, OnDestroy {
   public hasBaseDropZoneOver:boolean = false;
   uploadedFiles: Array<any>;
   totalFileSize = 0;
-  response:string;
+  response:string = '';
 
   constructor(
     private store: Store<any>,
@@ -130,16 +130,13 @@ export class StyleGuideUploadComponent implements AfterViewInit, OnDestroy {
         if (this.uploader.queue.length === this.uploadedFiles.length) {
           if (this.uploader.queue.length === this.uploader.queue.filter(f => f.isSuccess).length) {
             // dispatch
-
+            this.response = res;
           } else {
             // this.notiService.info(vm.translate.instant('guide.file_warning3')); //'파일 업로드를 실패했습니다.'
           }
         }
       }, 300);
     });
-
-    this.response = '';
-    this.uploader.response.subscribe( res => this.response = res );
   }
 
   public fileOverBase(e:any):void {

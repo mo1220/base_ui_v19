@@ -38,7 +38,7 @@ $switch-sizes: (
   transition: background-color 0.25s;
   background-color: #fff;
   border: 1px solid #d7d7d7;
-
+  cursor: pointer;
   &:checked:after {
     content: '';
     display: block;
@@ -96,6 +96,7 @@ $switch-sizes: (
   }
   & + label {
     user-select: none;
+    cursor: pointer;
   }
 }
 
@@ -118,11 +119,13 @@ input[type="radio"].mgr {
   border-radius: 50%;
   background-color: #fff;
   border: 1px solid #d7d7d7;
+  cursor: pointer;
   /* 바로 뒤에 오는 라벨 */
   & + label {
     display: inline-block;
     margin: 0 15px 0 5px;
     font-size: $font-size-base;
+    cursor: pointer;
   }
   /* Size */
   @each $key, $size in $radio-sizes {
@@ -219,9 +222,6 @@ input[type="radio"].mgr {
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   }
-  & + label {
-    user-select: none;
-  }
 
   /* Size */
   @each $key, $size in $switch-sizes {
@@ -239,7 +239,6 @@ input[type="radio"].mgr {
       }
       & + label {
         font-size: #{nth($size, 3)};
-        user-select: none;
       }
 
       &:checked:after {

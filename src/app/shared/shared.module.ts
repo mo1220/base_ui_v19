@@ -99,6 +99,7 @@ import { InputMask } from './input-mask/input-mask.component';
 import { InputNumber } from './input-number/input-number.component';
 import { KeyFilter } from './key-filter/key-filter';
 import { LetterAvatarComponent } from "./letter-avatar/letter-avatar.component";
+import {CellLoadingComponent} from "./ag-grid/cell-loading/cell-loading.component";
 ModuleRegistry.registerModules([ ExcelExportModule ]);
 
 
@@ -180,6 +181,7 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     FileUploadModule
   ],
   declarations: [
+    CellLoadingComponent,
     AsideMenuComponent, // Left Menu
     AsideMenuItemComponent, // Left Menu Item
     PopupMessage, // Popup Message
@@ -285,7 +287,10 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     QuillModule,
     AceModule,
     CdkMenuModule,
+
     AgGridModule,
+    CellLoadingComponent,
+
     ColorSketchModule,
     ColorSwatchesModule,
     ColorChromeModule,
