@@ -51,6 +51,7 @@ import { StyleGuideSplitterComponent } from './panel/Splitter.component';
 import { StyleGuideTypographyComponent } from './typography/typography.component';
 import {StyleGuideGridsterComponent} from "./panel/Gridster.component";
 import {StyleGuideLetterAvatarComponent} from "./message/LetterAvatar.component";
+import {StyleGuideAgGridComponent} from "./data/AgGrid.component";
 
 const routes: Routes = [
   {
@@ -162,6 +163,11 @@ const routes: Routes = [
         path: 'button/speedDial',
         component: StyleGuideSpeedDialComponent,
         data: {title: 'Speed Dial'}
+      },
+      {
+        path: 'data/ag-grid',
+        component: StyleGuideAgGridComponent,
+        data: {title: 'Ag-Grid'}
       },
       {
         path: 'data/table',

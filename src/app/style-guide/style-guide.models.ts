@@ -130,6 +130,11 @@ export const STYLE_GUIDE_MENU = [
     link: '/data',
     children: [
       {
+        name: 'AgGrid',
+        link: '/data/ag-grid',
+        desc: `AgGrid 설명 <span></span>`
+      },
+      {
         name: 'Table',
         link: '/data/table',
         desc: `Table 설명 <span></span>`

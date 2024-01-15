@@ -166,8 +166,6 @@ const DATA2 = Array.from({length: 10000}, (v, i) => ({
 })
 export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnInit {
   loading:boolean = true;
-  frameworkComponents = { 'CellLoadingComponent': CellLoadingComponent };
-  gridApi: any;
 
   menus: Array<menuType> = [
     {
@@ -184,16 +182,6 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
       title: 'Notice Table',
       desc: '게시판 Table <code class="language-plaintext highlighter-rouge">\n&lt;table class="board-table"&gt;&lt;/table&gt;\n</code>',
       anchor: 'notice'
-    },
-    {
-      title: 'Ag-grid Table',
-      desc: 'Ag-grid default Table <code class="language-plaintext highlighter-rouge">\n&lt;ag-grid-angular class="ag-theme-alpine"&gt;&lt;/ag-grid-angular&gt;\n</code>',
-      anchor: 'ag-grid'
-    },
-    {
-      title: 'Ag-grid Border Table',
-      desc: 'Ag-grid Border Table  <code class="language-plaintext highlighter-rouge">\n&lt;ag-grid-angular class="ag-theme-alpine ag-grid-border"&gt;&lt;/ag-grid-angular&gt;\n</code>',
-      anchor: 'ag-grid-boarder'
     },
     {
       title: 'Analysis Table',
@@ -214,16 +202,6 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
   allChecked: boolean = false; // 모두 Check box 상태
   checkMap: any = {};
 
-  columnDefs: ColDef[] = [];
-  defaultColDef: ColDef = {
-    minWidth: 50,
-    suppressMenu: true,
-    sortable: false,
-    resizable: true,
-    flex: 1
-  };
-
-  gridOptions:GridOptions;
 
   displayedColumns: string[] = [];
   dataSource = new TableVirtualScrollDataSource(DATA);
@@ -244,13 +222,6 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
     private router: Router,
     private renderer: Renderer2
   ) {
-    this.gridOptions = <GridOptions>{
-      rowHeight: 30,
-      headerHeight: 30,
-      unSortIcon: true,
-      suppressPropertyNamesCheck: true, // ag grid console 제거
-      overlayNoRowsTemplate: `<div class="no-data"><div class="no-data-content"><img src="/assets/images/icon/no-data.svg" /><p>${translate.instant('content.no_data')}</p></div></div>`
-    };
     this.displayedColumns.length = 24;
     this.displayedColumns.fill('filler');
 
@@ -267,39 +238,6 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
   }
 
   ngOnInit(): void {
-    this.columnDefs = [
-      {
-        field: 'id',
-        headerName: '#',
-        cellRenderer: 'CellLoadingComponent',
-        cellRendererParams: { loading: this.loading, field: 'id' }
-      },
-      {
-        field: 'name',
-        headerName: '국가 이름',
-        cellRenderer: 'CellLoadingComponent',
-        cellRendererParams: { loading: this.loading, field: 'name' }
-      },
-      {
-        field: 'flag',
-        headerName: '국기',
-        cellRenderer: 'CellLoadingComponent',
-        cellRendererParams: { loading: this.loading, field: 'flag' }
-      },
-      {
-        field: 'area',
-        headerName: '국가 면적',
-        cellRenderer: 'CellLoadingComponent',
-        cellRendererParams: { loading: this.loading, field: 'area' }
-      },
-      {
-        field: 'population',
-        headerName: '인구수',
-        cellRenderer: 'CellLoadingComponent',
-        cellRendererParams: { loading: this.loading, field: 'population' }
-      },
-    ];
-
     this.columns.forEach(( column: any, index: number) => {
       column.index = index;
       this.displayedColumns[index] = column.field;
@@ -315,31 +253,6 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
   ngOnDestroy(): void {
   }
 
-  /**
-   * @function setColumnDefs: columnDef 재설정
-   */
-  setColumnDefs(){
-    let newCol = this.columnDefs.map((col:any) => {
-      // if(col.field === 'start_check_at') {
-      //   col = {
-      //     ...col,
-      //     cellRenderer: this.loading ? 'CellLoadingComponent' :  (params) => {
-      //       const { data } = params;
-      //       return `${moment(data.start_check_at).format('YYYY-MM-DD HH:mm')} ~ ${moment(data.end_check_at).format('YYYY-MM-DD HH:mm')}`
-      //     }
-      //   }
-      // }
-      col = {
-        ...col,
-        cellRendererParams: {
-          ...col.cellRendererParams,
-          loading: this.loading
-        }
-      };
-      return col;
-    });
-    this.gridApi?.setColumnDefs(newCol);
-  }
 
   onClickCheckBoxAll(e: any) {
     for (let k of this.countries) {
@@ -347,9 +260,6 @@ export class StyleGuideTableComponent implements AfterViewInit, OnDestroy, OnIni
     }
   }
 
-  onGridReady(params: GridReadyEvent){
-    this.gridApi = params.api;
-  }
 
   setTableResize(tableWidth: number){
     let totWidth: number | undefined = 0;

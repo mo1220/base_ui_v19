@@ -57,6 +57,7 @@ import {AsideMenuRightComponent} from './aside-menu-right/aside-menu-right.compo
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import {StyleGuideGridsterComponent} from './panel/Gridster.component';
 import {NgSelectModule} from '@ng-select/ng-select';
+import {StyleGuideAgGridComponent} from "./data/AgGrid.component";
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
     StyleGuideDataViewComponent,
     StyleGuidePaginatorComponent,
     StyleGuideTableComponent,
+    StyleGuideAgGridComponent,
     StyleGuideTreeComponent,
     // File
     StyleGuideUploadComponent,

@@ -1,0 +1,45 @@
+<div class="d-flex">
+    <div class="component-wrap" #contentWrap>
+        <ng-container *ngFor="let menu of menus;">
+            <h3 #anchors>{{menu.title}}</h3>
+            <p [innerHTML]="menu.desc">
+                {{menu.desc}}
+            </p>
+            <ng-container [ngSwitch]="menu.anchor">
+                <!-- ST: ag-grid-->
+                <div class="style-guide-example" *ngSwitchCase="'ag-grid'">
+                    <button class="btn btn-sm btn-primary mb-1" (click)="loading = !loading; setColumnDefs()">
+                        toggle Loading</button>
+                    <ag-grid-angular style="width: 100%; height: 100%"
+                                     class="ag-theme-alpine ag-grid-border"
+                                     [defaultColDef]="defaultColDef"
+                                     [gridOptions]="gridOptions"
+                                     (gridReady)="onGridReady($event)"
+                                     [enableRangeSelection]="true"
+                                     [components]="frameworkComponents"
+                                     [columnDefs]="columnDefs"
+                                     [rowData]="countries">
+                    </ag-grid-angular>
+                </div>
+                <!-- EN: ag-grid-->
+
+                <!-- ST: cellRenderer / valueFormatter-->
+                <div class="style-guide-example" *ngSwitchCase="'render'">
+                    <ag-grid-angular style="width: 100%; height: 100%"
+                                     class="ag-theme-alpine ag-grid-border"
+                                     [defaultColDef]="defaultColDef"
+                                     [gridOptions]="gridOptions"
+                                     (gridReady)="onGridReady($event)"
+                                     [enableRangeSelection]="true"
+                                     [components]="frameworkComponents2"
+                                     [columnDefs]="columnDefs2"
+                                     [rowData]="logdate">
+                    </ag-grid-angular>
+                </div>
+                <!-- EN: ag-grid-border-->
+
+            </ng-container>
+        </ng-container>
+    </div>
+    <aside-menu-right [menu]="menus" [anchor]="anchors"></aside-menu-right>
+</div>

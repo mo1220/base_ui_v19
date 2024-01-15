@@ -100,6 +100,8 @@ import { InputNumber } from './input-number/input-number.component';
 import { KeyFilter } from './key-filter/key-filter';
 import { LetterAvatarComponent } from "./letter-avatar/letter-avatar.component";
 import {CellLoadingComponent} from "./ag-grid/cell-loading/cell-loading.component";
+import {ButtonRenderComponent} from "./ag-grid/button-render.component";
+import {ChipRenderComponent} from "./ag-grid/chip-render.component";
 ModuleRegistry.registerModules([ ExcelExportModule ]);
 
 
@@ -182,6 +184,8 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
   ],
   declarations: [
     CellLoadingComponent,
+    ButtonRenderComponent,
+    ChipRenderComponent,
     AsideMenuComponent, // Left Menu
     AsideMenuItemComponent, // Left Menu Item
     PopupMessage, // Popup Message
@@ -290,6 +294,8 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
 
     AgGridModule,
     CellLoadingComponent,
+    ButtonRenderComponent,
+    ChipRenderComponent,
 
     ColorSketchModule,
     ColorSwatchesModule,

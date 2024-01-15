@@ -112,38 +112,6 @@
         </div>
         <!--EN: Notice Table -->
 
-        <!-- ST: ag-grid-->
-        <div class="style-guide-example" *ngSwitchCase="'ag-grid'">
-          <ag-grid-angular style="width: 100%; height: 100%"
-                           class="ag-theme-alpine"
-                           [defaultColDef]="defaultColDef"
-                           [gridOptions]="gridOptions"
-                           (gridReady)="onGridReady($event)"
-                           [columnDefs]="columnDefs"
-                           [rowData]="countries">
-
-          </ag-grid-angular>
-        </div>
-        <!-- EN: ag-grid-->
-
-        <!-- ST: ag-grid-border-->
-        <div class="style-guide-example" *ngSwitchCase="'ag-grid-boarder'">
-          <button class="btn btn-sm btn-primary mb-1" (click)="loading = !loading; setColumnDefs()">
-            toggle Loading</button> {{loading}}
-          <ag-grid-angular style="width: 100%; height: 100%"
-                           class="ag-theme-alpine ag-grid-border"
-                           [defaultColDef]="defaultColDef"
-                           [gridOptions]="gridOptions"
-                           (gridReady)="onGridReady($event)"
-                           [enableRangeSelection]="true"
-                           [components]="frameworkComponents"
-                           [columnDefs]="columnDefs"
-                           [rowData]="countries">
-
-          </ag-grid-angular>
-        </div>
-        <!-- EN: ag-grid-border-->
-
         <!-- ST: ag-grid-border-->
         <div class="style-guide-example" *ngSwitchCase="'analysis'">
           <div style="max-width: 1000px; height: 600px; overflow: auto;">
