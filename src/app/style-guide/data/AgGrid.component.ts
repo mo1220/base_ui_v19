@@ -169,7 +169,6 @@ export class StyleGuideAgGridComponent implements AfterViewInit, OnDestroy, OnIn
         private cd: ChangeDetectorRef,
         private translate: TranslateService,
         private router: Router,
-        private renderer: Renderer2
     ) {
         this.gridOptions = <GridOptions>{
             rowHeight: 30,
@@ -293,6 +292,7 @@ export class StyleGuideAgGridComponent implements AfterViewInit, OnDestroy, OnIn
      * @function setColumnDefs: columnDef 재설정
      */
     setColumnDefs(){
+        this.loading = !this.loading;
         let newCol = this.columnDefs.map((col:any) => {
             col = {
                 ...col,
@@ -302,9 +302,8 @@ export class StyleGuideAgGridComponent implements AfterViewInit, OnDestroy, OnIn
             };
             return col;
         });
-        console.log(newCol, this.loading)
         this.gridApi?.setColumnDefs(newCol);
-        this.gridApi2?.setColumnDefs(newCol);
+        // this.gridApi2?.setColumnDefs(newCol);
     }
 
     onGridReady(params: GridReadyEvent){
