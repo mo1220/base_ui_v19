@@ -36,6 +36,26 @@
 
                 <!-- ST: cellRenderer / valueFormatter-->
                 <div class="style-guide-example" *ngSwitchCase="'render'">
+                    <div class="base-guide info">
+                        <h5>ag-grid에 cellRendrer 설정</h5>
+                        <p>template에 ag-grid-angular에 [components]="frameworkComponents"를 추가한 후 cellRenderer 설정 가능</p>
+                        <ul class="icon-ul check">
+                            <li><b class="wd-180">CellLoadingComponent</b> skeleton loading에 사용 <br><code>cellRendererParams: &#123; loading: this.loading &#125;</code></li>
+                            <li><b class="wd-180">ButtonRenderComponent</b> 아이콘 버튼 추가 시 사용할 수 있다.<span class="highlight-yellow">(배열로 받아야 합니다!!)</span><br>
+                                배열로 여러개를 받아 Action Group을 생성할 때 활용할 수 있고, 이벤트는 onClick 하나로 받아 actionType으로 구분하여 사용<br>
+                                <code>cellRendererParams: &#123;<br>
+                                btns: [<br>
+                                &#123;<br>
+                                icon: 'settings',<br>
+                                tooltip: '수정',<br>
+                                actionType: 'modify',<br>
+                                &#125;,<br>
+                                    ...<br>
+                                onClick: (d:any) => this.onConfigClick(d)<br>
+                                &#125;</code></li>
+                            <li><b class="wd-180">ChipRenderComponent</b> <span class="cell-chip">키워드</span> 형태로 추가 시 사용 가능<br><code>cellRendererParams는 필요 없지만 데이터가 <span class="highlight-pink">array&lt;string&gt;</span> 형태여야함</code></li>
+                        </ul>
+                    </div>
                     <ag-grid-angular style="width: 100%; height: 100%"
                                      class="ag-theme-alpine ag-grid-border"
                                      [defaultColDef]="defaultColDef"
@@ -46,6 +66,31 @@
                                      [columnDefs]="columnDefs2"
                                      [rowData]="logdate">
                     </ag-grid-angular>
+                </div>
+                <!-- EN: ag-grid-border-->
+
+                <!-- ST: col-group-->
+                <div class="style-guide-example" *ngSwitchCase="'col-group'">
+                    <div class="base-guide info">
+                        <h5>ColGroupDef</h5>
+                        <p>columnDefs: (ColDef | ColGroupDef)[] = [];로 선언</p>
+                        <ul class="icon-ul check">
+                            <li><b class="wd-140">marryChildren</b> 부모에 <code>marryChildren: true</code>를 반드시 추가하셔야 합니다.<br></li>
+                            <li><b class="wd-140">headerClass</b> 각 헤더 그룹의 스타일을 구분해주기 위해 headerClass: 'className'을 추가할 수 있습니다. <span class="highlight-indigo">css 예시: .col-group-grid</span></li>
+                        </ul>
+                    </div>
+                    <div style="height: 300px">
+                    <ag-grid-angular style="width: 100%; height: 100%"
+                                         class="ag-theme-alpine col-group-grid"
+                                         [defaultColDef]="defaultColDef"
+                                         [gridOptions]="gridOptions"
+                                         (gridReady)="onGridReady2($event)"
+                                         [enableRangeSelection]="true"
+                                         [components]="frameworkComponents2"
+                                         [columnDefs]="columnDefs3"
+                                         [rowData]="[]">
+                        </ag-grid-angular>
+                    </div>
                 </div>
                 <!-- EN: ag-grid-border-->
 

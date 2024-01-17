@@ -11,7 +11,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {Router} from '@angular/router';
 import {menuType} from "../style-guide.models";
 import {default_colors} from "../../core/settings/settings.model";
-import {ColDef, GridOptions, GridReadyEvent} from "ag-grid-community";
+import {ColDef, ColGroupDef, GridOptions, GridReadyEvent} from "ag-grid-community";
 import {TableVirtualScrollDataSource} from "ng-table-virtual-scroll";
 import {MatTable} from "@angular/material/table";
 import {CellLoadingComponent} from "../../shared/ag-grid/cell-loading/cell-loading.component";
@@ -146,8 +146,13 @@ export class StyleGuideAgGridComponent implements AfterViewInit, OnDestroy, OnIn
         },
         {
             title: 'Cell Renderer / ValueFormatter',
-            desc: 'DOM에 추가되는 요소가 있는 경우 <span class="highlight-blue">cellRenderer</span>를 사용하지만, 값만 바뀌는 경우 <span class="highlight-blue">valueFormatter</span>를 우선사용 하는것이 적절합니다',
+            desc: 'DOM에 추가되는 요소가 있는 경우 <span class="highlight-blue">cellRenderer</span>를 사용하지만, 값만 바뀌는 경우 <span class="highlight-blue">valueFormatter</span>를 우선사용 하는것이 적절합니다.',
             anchor: 'render'
+        },
+        {
+            title: 'ColGroupDef',
+            desc: '헤더를 그룹화 하고 스타일링 하기',
+            anchor: 'col-group'
         },
     ];
     countries = COUNTRIES;
@@ -156,6 +161,7 @@ export class StyleGuideAgGridComponent implements AfterViewInit, OnDestroy, OnIn
 
     columnDefs: ColDef[] = [];
     columnDefs2: ColDef[] = [];
+    columnDefs3: (ColDef | ColGroupDef)[] = [];
     defaultColDef: ColDef = {
         minWidth: 50,
         suppressMenu: true,
@@ -217,6 +223,7 @@ export class StyleGuideAgGridComponent implements AfterViewInit, OnDestroy, OnIn
                 cellRendererParams: { loading: this.loading }
             },
         ];
+
         this.columnDefs2 = [
             {
                 field: 'id',
@@ -228,35 +235,35 @@ export class StyleGuideAgGridComponent implements AfterViewInit, OnDestroy, OnIn
             },
             {
                 field: 'population',
-                headerName: '인구수',
+                headerName: 'valueFormatter',
                 valueFormatter: (params:any) => {
                     return numeral(params.value).format('0,0')
                 },
             },
             {
                 field: 'update_date',
-                headerName: '갱신일',
+                headerName: 'valueFormatter',
                 valueFormatter: (params:any) => {
                     return moment(params.value).format('YYYY-MM-DD hh:mm');
                 }
             },
             {
                 field: 'keyword',
-                headerName: '키워드',
+                headerName: 'ChipRenderComponent',
                 cellRenderer: 'ChipRenderComponent'
             },
             {
                 field: 'keyword',
-                headerName: '경로',
+                headerName: 'valueFormatter',
                 valueFormatter: (params:any) => {
                     return params.value.join(' > ');
                 }
             },
             {
                 field: 'config',
-                headerName: 'Action',
+                headerName: 'ButtonRenderComponent',
                 flex: 0,
-                width: 120,
+                width: 180,
                 cellRenderer: 'ButtonRenderComponent',
                 cellRendererParams: {
                     btns: [
@@ -273,6 +280,54 @@ export class StyleGuideAgGridComponent implements AfterViewInit, OnDestroy, OnIn
                     ],
                     onClick: (d:any) => this.onConfigClick(d)
                 }
+            },
+        ];
+
+        this.columnDefs3 =  [
+            {
+                headerName: 'Source',
+                marryChildren: true,
+                children: [
+                    {
+                        field: 'source.system',
+                        headerName: '시스템명',
+                    },
+                    {
+                        field: 'source.schema',
+                        headerName: '스키마명',
+                    },
+                    {
+                        field: 'source.table_en',
+                        headerName: '테이블명(영문)',
+                    },
+                    {
+                        field: 'source.table_kr',
+                        headerName: '테이블명(국문)',
+                    },
+                    {
+                        field: 'source.desc',
+                        headerName: '설명',
+                    },
+                ]
+            },
+            {
+                headerName: 'Target',
+                headerClass: 'target_header',
+                marryChildren: true,
+                children: [
+                    {
+                        field: 'target.system',
+                        headerName: '시스템명',
+                    },
+                    {
+                        field: 'target.schema',
+                        headerName: '스키마명',
+                    },
+                    {
+                        field: 'target.table_en',
+                        headerName: '테이블명(영문)',
+                    },
+                ]
             },
         ];
     }

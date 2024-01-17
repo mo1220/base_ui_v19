@@ -257,3 +257,15 @@ h5.card-title{
   height: 1300px;
   max-height: 10000px;
 }
+
+.col-group-grid {
+  .ag-header-group-cell{
+    border-top: 2px solid $primary;
+    &.target_header {
+      border-top: 2px solid $indigo;
+    }
+    &.arrow_header {
+      border-top: none;
+    }
+  }
+}
