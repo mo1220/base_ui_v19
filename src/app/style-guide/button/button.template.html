@@ -21,8 +21,8 @@
       <div class="flex-1">
         <h5>Material button
           <code>
-          &lt;button mat-button class="btn btn-primary"&gt;&lt;/button&gt;
-        </code>
+            &lt;button mat-button class="btn btn-primary"&gt;&lt;/button&gt;
+          </code>
         </h5>
         <div>
           <button mat-button class="btn btn-primary">Primary</button>
@@ -84,13 +84,25 @@
     </div>
 
     <h3 #anchor #block>Block</h3>
-    <p>Block 버튼</p>
-    <div class="style-guide-example">
-      <div class="d-grid gap-1">
-        <button class="btn btn-primary" type="button">Block button</button>
-        <button type="button" class="btn btn-secondary">Block button</button>
-        <button type="button" class="btn btn-outline-primary">Block button</button>
-        <button type="button" class="btn btn-outline-secondary">Block button</button>
+    <p>Block 버튼  <a matTooltip="부트스트랩 홈페이지" href="https://getbootstrap.com/docs/5.3/components/buttons/#block-buttons" target="_blank"><i class="fa fa-external-link"></i></a></p>
+    <div class="d-flex column">
+      <div class="style-guide-example">
+        <h6>bootstrap button</h6>
+        <code>&lt;div class="d-grid gap-1" &gt;&lt;button type="btn btn-primary"&gt;&lt;/button&gt;&lt;/div&gt;</code>
+        <div class="d-grid gap-1">
+          <button class="btn btn-primary" type="button">Block button</button>
+          <button type="button" class="btn btn-secondary">Block button</button>
+          <button type="button" class="btn btn-outline-primary">Block button</button>
+          <button type="button" class="btn btn-outline-secondary">Block button</button>
+        </div>
+      </div>
+      <div class="style-guide-example">
+        <h6>mat-button</h6>
+        <code>&lt;div class="d-grid gap-1" &gt;&lt;button mat-button type="btn btn-primary"&gt;&lt;/button&gt;&lt;/div&gt;</code>
+        <div class="d-grid gap-1">
+          <button mat-button class="btn btn-primary" type="button">Block button</button>
+          <button mat-button class="btn btn-secondary" type="button">Block button</button>
+        </div>
       </div>
 
       <!--<div>
