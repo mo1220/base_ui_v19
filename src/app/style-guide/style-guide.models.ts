@@ -148,7 +148,12 @@ export const STYLE_GUIDE_MENU = [
         name: 'Tree',
         link: '/data/tree',
         desc: `Tree 설명 <span></span>`
-      }
+      },
+      {
+        name: 'Progress / Loading',
+        link: '/data/progress',
+        desc: `Tree 설명 <span></span>`
+      },
     ]
   },
   {

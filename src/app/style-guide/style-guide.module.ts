@@ -58,6 +58,7 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 import {StyleGuideGridsterComponent} from './panel/Gridster.component';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {StyleGuideAgGridComponent} from "./data/AgGrid.component";
+import {StyleGuideProgressComponent} from "./data/Progress.component";
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import {StyleGuideAgGridComponent} from "./data/AgGrid.component";
     StyleGuideTableComponent,
     StyleGuideAgGridComponent,
     StyleGuideTreeComponent,
+    StyleGuideProgressComponent,
     // File
     StyleGuideUploadComponent,
     // Form

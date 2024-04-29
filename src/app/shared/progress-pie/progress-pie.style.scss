@@ -1,0 +1,20 @@
+@import "./src/styles-variables";
+
+.dtk-mat-progress-spinner {
+  @each $key, $color in $colors-palette {
+    &.#{""+$key}-theme {
+      .mat-mdc-progress-spinner .mdc-circular-progress__determinate-circle, .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic,
+      .mat-mdc-progress-spinner .mdc-circular-progress__determinate-circle, .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic,
+      .mdc-circular-progress--indeterminate .mdc-circular-progress__circle-right .mdc-circular-progress__indeterminate-circle-graphic,
+      .mat-mdc-progress-spinner .mdc-circular-progress__determinate-circle, .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic,
+      .mat-mdc-progress-spinner circle, .mat-mdc-progress-spinner circle,
+      .mat-progress-spinner circle, .mat-spinner circle {
+        stroke: $color !important;
+      }
+    }
+
+    .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+      stroke: $color !important;
+    }
+  }
+}

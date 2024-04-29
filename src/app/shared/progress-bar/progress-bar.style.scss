@@ -1,0 +1,26 @@
+@import "./src/styles-variables";
+
+.dtk-mat-progress-bar.mat-mdc-progress-bar {
+  .mdc-linear-progress__buffer, .mdc-linear-progress__bar, mdc-linear-progress__bar .mdc-linear-progress__bar-inner, .mdc-linear-progress__bar{
+    height: 100%;
+  }
+
+  @each $key, $color in $colors-palette {
+    &.#{""+$key}-theme {
+      .mdc-linear-progress__buffer .mdc-linear-progress__buffer-bar, .mat-mdc-progress-bar .mdc-linear-progress__buffer-dots {
+        background-color: rgba($color, .2) !important;
+      }
+      .mat-progress-bar-fill::after {
+        background-color: $color;
+      }
+      .mdc-linear-progress__bar {
+        //background-color: $color;
+        .mdc-linear-progress__bar-inner {
+          border: none;
+          height: 100%;
+          background-color: $color;
+        }
+      }
+    }
+  }
+}

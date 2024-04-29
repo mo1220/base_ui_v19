@@ -1,0 +1,71 @@
+<div class="d-flex">
+    <div class="component-wrap" #contentWrap>
+        <ng-container *ngFor="let menu of menus;">
+            <h3 #anchors>{{ menu.title }}</h3>
+            <p [innerHTML]="menu.desc | safeHtml"></p>
+            <ng-container [ngSwitch]="menu.anchor">
+                <div class="style-guide-example" *ngSwitchCase="'progress'">
+                    <div class="wd-280 mb-3">
+                        <dtk-mat-slider class="dtk-slider-link-item dtk-slider-sm dtk-slider-flex"
+                                        [label]="'progress (%)'"
+                                        [labelClass]="'wd-80'"
+                                        [unit]="'%'"
+                                        [min]="0"
+                                        [max]="100"
+                                        [mode]="'less'"
+                                        [(value)]="progress"></dtk-mat-slider>
+                    </div>
+                    <div class="d-flex flex-column gap-2">
+                        <progress-bar [value]="progress"
+                                      [height]="4"></progress-bar>
+                        <progress-bar [value]="progress"
+                                      [height]="10"
+                                      [borderRadius]="10"
+                                      [color]="'blue'"></progress-bar>
+                            <progress-spinner [value]="progress"></progress-spinner>
+                        <div class="d-flex">
+                            <progress-spinner [value]="progress"
+                                              [diameter]="10"
+                                              [pie]="true"
+                                              [color]="'#ff8652'"></progress-spinner>
+                            <progress-spinner [value]="progress"
+                                              [diameter]="30"
+                                              [pie]="true"
+                                              [color]="'#ffee0a'"></progress-spinner>
+                            <progress-spinner [value]="progress"
+                                              [diameter]="70"
+                                              [pie]="true"
+                                              [color]="'#41cc18'"></progress-spinner>
+                            <progress-spinner [value]="progress"
+                                              [diameter]="100"
+                                              [pie]="true"
+                                              [color]="'#1e9aff'"></progress-spinner>
+                            <progress-spinner [value]="progress"
+                                              [diameter]="200"
+                                              [pie]="true"
+                                              [color]="'#1625ff'"></progress-spinner>
+                            <progress-spinner [value]="progress"
+                                              [diameter]="300"
+                                              [pie]="true"
+                                              [color]="'#800eb3'"></progress-spinner>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-guide-example" *ngSwitchCase="'loading'">
+                    <div class="d-flex flex-column gap-2">
+                        <progress-bar [mode]="'indeterminate'"></progress-bar>
+                        <progress-bar [mode]="'indeterminate'"
+                                      [height]="6"
+                                      [color]="'success'"></progress-bar>
+                        <progress-spinner [mode]="'indeterminate'"></progress-spinner>
+                        <progress-spinner [mode]="'indeterminate'"
+                                          [diameter]="150"
+                                          [color]="'#12d5a7'"></progress-spinner>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+    <aside-menu-right [menu]="menus"
+                      [anchor]="anchors"></aside-menu-right>
+</div>

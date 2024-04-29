@@ -102,6 +102,9 @@ import { LetterAvatarComponent } from "./letter-avatar/letter-avatar.component";
 import {CellLoadingComponent} from "./ag-grid/cell-loading/cell-loading.component";
 import {ButtonRenderComponent} from "./ag-grid/button-render.component";
 import {ChipRenderComponent} from "./ag-grid/chip-render.component";
+import {ProgressBarComponent} from "./progress-bar/progress-bar.component";
+import {ProgressSpinnerComponent} from "./progress-spinner/progress-spinner.component";
+import {ProgressPieComponent} from "./progress-pie/progress-pie.component";
 ModuleRegistry.registerModules([ ExcelExportModule ]);
 
 
@@ -208,6 +211,9 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     InputNumber, // Input Number
     KeyFilter,  // key 입력 필터
     DtkStepsComponent,
+    ProgressBarComponent,
+    ProgressSpinnerComponent,
+    ProgressPieComponent
   ],
   exports: [
     CommonModule,
@@ -284,6 +290,9 @@ ModuleRegistry.registerModules([ ExcelExportModule ]);
     InputMask, // Input Mask
     InputNumber, // Input Number
     DtkStepsComponent,
+    ProgressBarComponent,
+    ProgressSpinnerComponent,
+    ProgressPieComponent,
 
     //3rd Party
     LaddaModule,

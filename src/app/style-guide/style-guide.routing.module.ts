@@ -52,6 +52,7 @@ import { StyleGuideTypographyComponent } from './typography/typography.component
 import {StyleGuideGridsterComponent} from "./panel/Gridster.component";
 import {StyleGuideLetterAvatarComponent} from "./message/LetterAvatar.component";
 import {StyleGuideAgGridComponent} from "./data/AgGrid.component";
+import {StyleGuideProgressComponent} from "./data/Progress.component";
 
 const routes: Routes = [
   {
@@ -183,6 +184,11 @@ const routes: Routes = [
         path: 'data/tree',
         component: StyleGuideTreeComponent,
         data: {title: 'Tree'}
+      },
+      {
+        path: 'data/progress',
+        component: StyleGuideProgressComponent,
+        data: {title: 'Progress'}
       },
       {
         path: 'panel/accordion',
