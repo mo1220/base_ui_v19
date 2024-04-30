@@ -23,6 +23,7 @@ import {ProgressSpinnerMode} from "@angular/material/progress-spinner";
     encapsulation: ViewEncapsulation.None
 })
 export class ProgressPieComponent implements AfterViewInit, OnDestroy, OnInit {
+    @Input() size: number  = 40; // 전체 가로세로 크기
     @Input() radius: number  = 100; // circle.r
     stroke_width = 200;
     @Input()
@@ -35,6 +36,7 @@ export class ProgressPieComponent implements AfterViewInit, OnDestroy, OnInit {
     }
     @Input() color: string  = '#E83E8CFF';
     @Input() value: number  = 10;
+    @Input() border: string;
 
 
 

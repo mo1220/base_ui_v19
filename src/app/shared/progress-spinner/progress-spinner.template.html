@@ -1,9 +1,9 @@
 <mat-progress-spinner class="dtk-mat-progress-spinner"
                       [class.pie-spinner]="_pie"
                       [ngClass]="color + '-theme'"
+                      [style.border]="border"
                       [color]="color"
                       [mode]="mode"
-                      [diameter]="diameter"
-                      [strokeWidth]="strokeWidth"
+                      [diameter]="_diameter"
                       [value]="value"></mat-progress-spinner>
 

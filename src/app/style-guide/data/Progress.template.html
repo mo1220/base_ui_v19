@@ -22,33 +22,20 @@
                                       [height]="10"
                                       [borderRadius]="10"
                                       [color]="'blue'"></progress-bar>
-                            <progress-spinner [value]="progress"></progress-spinner>
-                        <div class="d-flex">
-                            <progress-spinner [value]="progress"
-                                              [diameter]="10"
-                                              [pie]="true"
-                                              [color]="'#ff8652'"></progress-spinner>
-                            <progress-spinner [value]="progress"
-                                              [diameter]="30"
-                                              [pie]="true"
-                                              [color]="'#ffee0a'"></progress-spinner>
-                            <progress-spinner [value]="progress"
-                                              [diameter]="70"
-                                              [pie]="true"
-                                              [color]="'#41cc18'"></progress-spinner>
-                            <progress-spinner [value]="progress"
-                                              [diameter]="100"
-                                              [pie]="true"
-                                              [color]="'#1e9aff'"></progress-spinner>
-                            <progress-spinner [value]="progress"
-                                              [diameter]="200"
-                                              [pie]="true"
-                                              [color]="'#1625ff'"></progress-spinner>
-                            <progress-spinner [value]="progress"
-                                              [diameter]="300"
-                                              [pie]="true"
-                                              [color]="'#800eb3'"></progress-spinner>
-                        </div>
+                        <progress-spinner [value]="progress"></progress-spinner>
+                        <progress-spinner [value]="progress"
+                                          [diameter]="20"></progress-spinner>
+                        <progress-spinner [value]="progress"
+                                          [diameter]="100"
+                                          [color]="'#dcdcdc'"></progress-spinner>
+                        <progress-pie style="width: 50px"
+                                      [value]="progress"
+                                      [strokeWidth]="70"
+                                      [color]="'#ffc02a'"></progress-pie>
+                        <progress-pie [value]="progress"
+                                      [size]="100"
+                                      [strokeWidth]="'pie'"
+                                      [border]="'5px solid #E83E8CFF'"></progress-pie>
                     </div>
                 </div>
                 <div class="style-guide-example" *ngSwitchCase="'loading'">
