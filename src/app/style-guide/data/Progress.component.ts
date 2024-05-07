@@ -25,7 +25,7 @@ export class StyleGuideProgressComponent implements AfterViewInit, OnDestroy, On
     menus: Array<menuType> = [
         {
             title: 'Progress',
-            desc: 'pie 모양의 spinner 사용 시 [pie]="true" 추가',
+            desc: 'pie 모양의 spinner 사용 시 progress-pie 사용',
             anchor: 'progress'
         },
         {
