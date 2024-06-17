@@ -16,9 +16,10 @@ import 'quill-emoji/dist/quill-emoji.js'
 // TODO ImageResize type 에러 나는 거 해결
 // import { ImageResize } from 'quill-image-resize-module';
 // Quill.register('modules/imageResize', ImageResize);
-
-// import { ImageResize } from 'quill-image-resize-module';
-// Quill.register('modules/imageResize', ImageResize);
+// quill-image-resize는 angular6 이하에서 작동합니다.
+// 대신 BlotFormatter사용
+import BlotFormatter from 'quill-blot-formatter';
+Quill.register('modules/blotFormatter', BlotFormatter);
 
 import 'brace';
 import 'brace/mode/sql';
@@ -91,6 +92,9 @@ export class StyleGuideEditorComponent implements AfterViewInit, OnDestroy {
       'emoji-toolbar': true,
       formula: true,
       // imageResize: {},
+      blotFormatter: {
+        // empty object for default behaviour.
+      },
       syntax: {
         highlight: (text: any) => hljs.highlightAuto(text).value,
       },
