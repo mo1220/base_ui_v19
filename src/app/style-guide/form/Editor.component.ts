@@ -127,7 +127,7 @@ export class StyleGuideEditorComponent implements AfterViewInit, OnDestroy {
     console.log('editor-created', quill);
     quill.keyboard.addBinding({
       key: 'b'
-    }, (range, context) => {
+    }, (range: any, context: any) => {
       // tslint:disable-next-line:no-console
       console.log('KEYBINDING B', range, context)
     })
@@ -135,7 +135,7 @@ export class StyleGuideEditorComponent implements AfterViewInit, OnDestroy {
     quill.keyboard.addBinding({
       key: 'B',
       shiftKey: true
-    } as any, (range, context) => {
+    } as any, (range: any, context: any) => {
       // tslint:disable-next-line:no-console
       console.log('KEYBINDING SHIFT + B', range, context)
     })

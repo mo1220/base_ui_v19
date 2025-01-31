@@ -1,10 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
-import {
-  HttpClientModule,
-  HttpClient,
-  HTTP_INTERCEPTORS
-} from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {
   StoreRouterConnectingModule,
   RouterStateSerializer
@@ -73,66 +69,61 @@ export function HttpLoaderFactory(http: HttpClient) {
   );
 }
 
-@NgModule({
-  imports: [
-    // angular
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    MatSnackBarModule,
-    MatIconModule,
-    ToastrModule.forRoot({
-      // closeButton: true,
-      timeOut: 8000,
-      extendedTimeOut: 1500,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
-      progressBar: true,
-      closeButton: true,
-      toastClass: 'toast toast-bootstrap-compatibility-fix'
-    }),
-    // ngrx
-    StoreModule.forRoot(reducers, { metaReducers }),
-    StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([
-      AuthEffects,
-      SettingsEffects
-    ]),
-    environment.production
-      ? []
-      : StoreDevtoolsModule.instrument({
-        name: 'ENCORE DP'
-      }),
-    // 3rd party
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-  ],
-  declarations: [
-    ErrNotificationComponent
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
-    { provide: ErrorHandler, useClass: AppErrorHandler },
-    { provide: RouterStateSerializer, useClass: CustomSerializer },
-    { provide: COMPOSITION_BUFFER_MODE, useValue: false }
-  ],
-  exports: [
-    // angular
-    FormsModule,
-    // material
-    MatSnackBarModule,
-    MatIconModule,
-    // 3rd party
-    TranslateModule,
-    ToastrModule,
-    ErrNotificationComponent
-  ]
-})
+@NgModule({ declarations: [
+        ErrNotificationComponent
+    ],
+    exports: [
+        // angular
+        FormsModule,
+        // material
+        MatSnackBarModule,
+        MatIconModule,
+        // 3rd party
+        TranslateModule,
+        ToastrModule,
+        ErrNotificationComponent
+    ], imports: [
+        // angular
+        CommonModule,
+        FormsModule,
+        MatSnackBarModule,
+        MatIconModule,
+        ToastrModule.forRoot({
+            // closeButton: true,
+            timeOut: 8000,
+            extendedTimeOut: 1500,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+            progressBar: true,
+            closeButton: true,
+            toastClass: 'toast toast-bootstrap-compatibility-fix'
+        }),
+        // ngrx
+        StoreModule.forRoot(reducers, { metaReducers }),
+        StoreRouterConnectingModule.forRoot(),
+        EffectsModule.forRoot([
+            AuthEffects,
+            SettingsEffects
+        ]),
+        environment.production
+            ? []
+            : StoreDevtoolsModule.instrument({
+                name: 'ENCORE DP'
+            }),
+        // 3rd party
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })], providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+        { provide: ErrorHandler, useClass: AppErrorHandler },
+        { provide: RouterStateSerializer, useClass: CustomSerializer },
+        { provide: COMPOSITION_BUFFER_MODE, useValue: false },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class CoreModule {
   constructor(
     @Optional()
